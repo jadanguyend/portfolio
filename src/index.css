@@ -1,3 +1,147 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ================================
+   SATOSHI
+   ================================ */
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-BlackItalic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* ================================
+   GT Alpina Standard
+   ================================ */
+
+@font-face {
+  font-family: "GT Alpina Standard";
+  src: url("/src/assets/fonts/GT-Alpina/GT-Alpina-Standard-Thin-Trial.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GT Alpina Standard";
+  src: url("/src/assets/fonts/GT-Alpina/GT-Alpina-Standard-Thin-Italic-Trial.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+}
+/* Repeat all other weights like Light, Regular, Medium, Bold as before */
+
+body {
+  font-family: "Satoshi", sans-serif;
+}
+
+/* ----------------------------------------------------
+   Heading Style Guide — GT Alpina
+   Applies globally to all h1–h6
+----------------------------------------------------- */
+
+@layer base {
+  h1 {
+    font-family: "GT Alpina Standard", serif;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.1;
+    font-size: 2.8rem;
+  }
+  @media (min-width: 768px) { h1 { font-size: 4rem; } }
+  @media (min-width: 1024px) { h1 { font-size: 5rem; } }
+
+  h2 {
+    font-family: "GT Alpina Standard", serif;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.15;
+    font-size: 2rem;
+  }
+  @media (min-width: 768px) { h2 { font-size: 2.6rem; } }
+  @media (min-width: 1024px) { h2 { font-size: 3rem; } }
+
+  h3 {
+    font-family: "GT Alpina Standard", serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.6rem;
+  }
+  @media (min-width: 768px) { h3 { font-size: 2rem; } }
+
+  h4 {
+    font-family: "GT Alpina Standard", serif;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.2;
+    font-size: clamp(1.125rem, 2vw, 1.75rem);
+  }
+  h5 {
+    font-family: "GT Alpina Standard", serif;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.2;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+  }
+  h6 {
+    font-family: "GT Alpina Standard", serif;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.1;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+  }
+}
