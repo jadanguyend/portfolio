@@ -1,0 +1,119 @@
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+
+const projects = [
+  {
+    title: "Nomo",
+    description:
+      "A platform aims to help individuals address food waste by fostering social accountability and encouraging personal ownership of their food habits.",
+    tags: ["Redesign", "UI/UX"],
+    image: "/project1.png",
+  },
+  {
+    title: "Beesi",
+    description:
+      "Enabling owners to better promote their business and navigate social media algorithms",
+    tags: ["B2B Design", "Web App"],
+    image: "/project2.png",
+  },
+  {
+    title: "VietQ",
+    description:
+      "A website for the Vietnamese queer community in Seattle to improve usability",
+    tags: ["Mobile App", "Redesign"],
+    image: "/project3.png",
+  },
+];
+
+export default function ProjectsSection() {
+  const containerRef = useRef(null);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  return (
+    <section
+      ref={containerRef}
+      className="relative grid grid-cols-12 gap-12 px-12 md:px-24 py-32"
+    >
+      {/* Left Side */}
+      <div className="col-span-12 md:col-span-4">
+        <div className="md:sticky md:top-32 flex flex-col gap-4">
+          <h2 className="text-3xl font-bold mb-4">
+            {projects.map((p, i) => {
+              const start = i * window.innerHeight;
+              const end = (i + 1) * window.innerHeight;
+              if (scrollY >= start && scrollY < end) return p.title;
+              return null;
+            })}
+          </h2>
+          <p className="text-gray-700 mb-4">
+            {projects.map((p, i) => {
+              const start = i * window.innerHeight;
+              const end = (i + 1) * window.innerHeight;
+              if (scrollY >= start && scrollY < end) return p.description;
+              return null;
+            })}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {projects.map((p, i) => {
+              const start = i * window.innerHeight;
+              const end = (i + 1) * window.innerHeight;
+              if (scrollY >= start && scrollY < end)
+                return p.tags.map((tag, j) => (
+                  <span
+                    key={j}
+                    className="px-3 py-1 border border-gray-400 rounded-full text-sm"
+                  >
+                    {tag}
+                  </span>
+                ));
+              return null;
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Right Side */}
+      <div className="col-span-12 md:col-span-8 relative">
+        {projects.map((project, i) => {
+          const sectionTop = i * window.innerHeight;
+          const sectionHeight = window.innerHeight;
+          let progress = (scrollY - sectionTop) / sectionHeight;
+          progress = Math.min(Math.max(progress, 0), 1);
+
+          const yOffset = -30 * i * progress;
+          const rotate = i === 1 ? 2 * progress : i === 2 ? -2 * progress : 0;
+          const xOffset = i > 0 ? (Math.random() * 10 - 5) * progress : 0;
+
+          const zIndex = 100 + i;
+
+          return (
+            <motion.div
+              key={i}
+              className="sticky top-32 mb-12"
+              style={{ y: yOffset, rotate, x: xOffset, zIndex }}
+              transition={{ type: "spring", stiffness: 120, damping: 20 }}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full md:w-10/12 rounded-xl border-2 border-gray-200 shadow-xl"
+                draggable={false}
+              />
+            </motion.div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
