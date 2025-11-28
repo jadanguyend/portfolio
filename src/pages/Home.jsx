@@ -6,44 +6,49 @@ import Footer from "../components/Footer";
 export default function Home() {
   return (
     <div className="relative">
+
       {/* Hero Section */}
-      <div className="relative min-h-screen">
-        {/* Background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/Hero_Image.png')" }}
-        ></div>
+      <section className="relative py-12 px-6 md:px-24 flex justify-center">
 
-        {/* Hero Content */}
-        <div className="relative z-10 flex flex-col justify-between min-h-screen items-center text-center px-6 py-12">
-          {/* Center Text Block */}
-          <div className="flex flex-col items-center justify-center flex-1">
+        {/* Image Container */}
+        <div className="relative w-full max-w-[1280px] rounded-lg overflow-hidden">
 
-            {/* Hero Heading */}
+          {/* Background Image */}
+          <img
+            src="/Hero_Image.png"
+            alt="Hero"
+            className="w-full h-auto object-cover rounded-lg"
+          />
+
+          {/* Text Content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+
+            {/* Main Hero Text */}
             <motion.p
-            className="font-heading text-black text-3xl md:text-4xl lg:text-5xl max-w-3xl text-center leading-snug"
-            style={{ fontWeight: 400, fontStyle: "normal" }} // regular GT Alpina
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+              className="font-heading text-black text-3xl md:text-4xl lg:text-5xl leading-snug max-w-3xl"
+              style={{ fontWeight: 400, fontStyle: "normal" }} // regular GT Alpina
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
             >
-            I design experiences like building LEGOs—methodical in structure, creative in execution, and thoughtfully connected to build something greater.
+              I design experiences like building LEGOs—methodical in structure, creative in execution, and thoughtfully connected to build something greater.
             </motion.p>
+
+            {/* CTA */}
+            <motion.div
+              className="mt-16 flex flex-col items-center" // increased margin-top
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              <span className="text-lg font-satoshi text-black">View My Work</span>
+              <FaArrowDown className="mt-2 animate-bounce text-black" />
+            </motion.div>
           </div>
-
-          {/* View My Work Section */}
-          <motion.div
-            className="flex flex-col items-center text-black"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 1 }}
-          >
-            <span className="text-lg font-satoshi">View My Work</span>
-            <FaArrowDown className="mt-2 animate-bounce" />
-          </motion.div>
         </div>
-      </div>
+      </section>
 
-      {/* Projects */}
+      {/* Projects Section */}
       <ProjectsSection />
 
       {/* Footer */}

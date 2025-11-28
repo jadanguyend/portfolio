@@ -87,6 +87,7 @@
 
 body {
   font-family: "Satoshi", sans-serif;
+  cursor: url('/Cursor.png'), auto !important;
 }
 
 /* ----------------------------------------------------
@@ -145,3 +146,5 @@ body {
     font-size: clamp(0.85rem, 1.2vw, 1rem);
   }
 }
+
+
