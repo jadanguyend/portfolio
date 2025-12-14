@@ -1,29 +1,31 @@
 // src/components/ProjectsSection.jsx
 import { motion } from "framer-motion";
 
+import project1Img from "../assets/project1.png";
+import project2Img from "../assets/project2.png";
+import project3Img from "../assets/project3.png";
+
 const projects = [
   {
     title: "Nomo",
-    description:
-      "A platform aims to help individuals address food waste by fostering social accountability and encouraging personal ownership of their food habits.",
+    description: "A platform aims to help individuals address food waste...",
     tags: ["Redesign", "UI/UX"],
-    image: "/project1.png",
+    image: project1Img,
   },
   {
     title: "Beesi",
-    description:
-      "Enabling owners to better promote their business and navigate social media algorithms",
+    description: "Enabling owners to better promote their business...",
     tags: ["B2B Design", "Web App"],
-    image: "/project2.png",
+    image: project2Img,
   },
   {
     title: "VietQ",
-    description:
-      "A website for the Vietnamese queer community in Seattle to improve usability",
+    description: "A website for the Vietnamese queer community...",
     tags: ["Mobile App", "Redesign"],
-    image: "/project3.png",
+    image: project3Img,
   },
 ];
+
 
 export default function ProjectsSection() {
   return (

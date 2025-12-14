@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa";
 import ProjectsSection from "../components/ProjectSection";
 import Footer from "../components/Footer";
+import heroImage from "../assets/Hero_Image.png";
 
 export default function Home() {
   return (
@@ -15,9 +16,9 @@ export default function Home() {
 
           {/* Background Image */}
           <img
-            src="/Hero_Image.png"
+            src={heroImage}
             alt="Hero"
-            className="w-full h-auto object-cover rounded-lg"
+            className="w-full h-auto object-contain rounded-lg"
           />
 
           {/* Text Content */}
@@ -31,17 +32,20 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
             >
-              I design experiences like building LEGOs—methodical in structure, creative in execution, and thoughtfully connected to build something greater.
+              I design experiences like building LEGOs—methodical in structure,
+              creative in execution, and thoughtfully connected to build something greater.
             </motion.p>
 
             {/* CTA */}
             <motion.div
-              className="mt-16 flex flex-col items-center" // increased margin-top
+              className="mt-16 flex flex-col items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <span className="text-lg font-satoshi text-black">View My Work</span>
+              <span className="text-lg font-satoshi text-black">
+                View My Work
+              </span>
               <FaArrowDown className="mt-2 animate-bounce text-black" />
             </motion.div>
           </div>

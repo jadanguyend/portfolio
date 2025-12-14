@@ -1,4 +1,6 @@
 // src/components/Footer.jsx
+import footerImage from "../assets/Footer_Image.png";
+
 export default function Footer() {
   const lastUpdated = import.meta.env.VITE_LAST_UPDATED
     ? new Date(import.meta.env.VITE_LAST_UPDATED).toLocaleDateString("en-US", {
@@ -11,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="px-12 md:px-24 mt-20">
       {/* Black container with rounded top corners */}
-      <div className="bg-black rounded-t-[16px] pt-10 px-6 md:pt-10 md:px-10 pb-4">
+      <div className="bg-black rounded-t-[16px] pt-10 px-6 md:px-10 pb-4">
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-center text-white mb-4">
           <span className="text-sm md:text-base">©2025 Jada Nguyen</span>
@@ -29,7 +31,7 @@ export default function Footer() {
         {/* Bottom image */}
         <div>
           <img
-            src="/Footer_Image.png"
+            src={footerImage}
             alt="Footer illustration"
             className="w-full rounded-md"
           />

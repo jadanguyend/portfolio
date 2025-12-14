@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "1.0.0",
   "main": "index.js",
-  "homepage": "hhttps://jadanguyend.github.io/portfolio/>", 
+  "homepage": "https://jadanguyend.github.io/portfolio", 
   "scripts": {
     "dev": "vite",
     "build": "vite build",

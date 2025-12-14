@@ -71,19 +71,74 @@
    GT Alpina Standard
    ================================ */
 
+/* ================================
+   GT Alpina Standard
+================================ */
+
 @font-face {
   font-family: "GT Alpina Standard";
-  src: url("/src/assets/fonts/GT-Alpina/GT-Alpina-Standard-Thin-Trial.otf") format("opentype");
+  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Thin-Trial.otf")
+    format("opentype");
   font-weight: 100;
   font-style: normal;
 }
+
 @font-face {
   font-family: "GT Alpina Standard";
-  src: url("/src/assets/fonts/GT-Alpina/GT-Alpina-Standard-Thin-Italic-Trial.otf") format("opentype");
+  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Thin-Italic-Trial.otf")
+    format("opentype");
   font-weight: 100;
   font-style: italic;
 }
-/* Repeat all other weights like Light, Regular, Medium, Bold as before */
+
+@font-face {
+  font-family: "GT Alpina Standard";
+  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Regular-Trial.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT Alpina Standard";
+  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Regular-Italic-Trial.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "GT Alpina Standard";
+  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Medium-Trial.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT Alpina Standard";
+  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Medium-Italic-Trial.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "GT Alpina Standard";
+  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Bold-Trial.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT Alpina Standard";
+  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Bold-Italic-Trial.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
 
 body {
   font-family: "Satoshi", sans-serif;
@@ -146,5 +201,7 @@ body {
     font-size: clamp(0.85rem, 1.2vw, 1rem);
   }
 }
+
+
 
 
