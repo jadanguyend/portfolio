@@ -1,45 +1,60 @@
+// src/components/Navbar.jsx
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 export default function Navbar() {
   return (
-    <header className="w-full fixed top-0 left-0 z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo / Name */}
-        <Link to="/" className="text-2xl font-bold text-blue-600">
-          jadanguyend
-        </Link>
+    <>
+      <header className="w-full fixed top-0 left-0 z-50 bg-white">
+        {/* Nav Content */}
+        <div className="max-w-7xl mx-auto px-6 md:px-24 py-6 flex justify-between items-center">
+          {/* Left: Home */}
+          <Link
+            to="/"
+            className="font-satoshi font-medium text-sm uppercase tracking-wide text-black hover:text-[#183ED8] transition-colors"
+          >
+            Home
+          </Link>
 
-        {/* Navigation Links */}
-        <nav className="flex items-center space-x-6">
-          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-            <Link to="/" className="text-gray-700 hover:text-blue-500">
-              Home
-            </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-            <Link to="/work" className="text-gray-700 hover:text-blue-500">
+          {/* Right: Nav Items */}
+          <nav className="flex items-center gap-8">
+            <Link
+              to="/work"
+              className="font-satoshi font-medium text-sm uppercase tracking-wide text-black hover:text-[#183ED8] transition-colors"
+            >
               Work
             </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-            <Link to="/about" className="text-gray-700 hover:text-blue-500">
+
+            <Link
+              to="/play"
+              className="font-satoshi font-medium text-sm uppercase tracking-wide text-black hover:text-[#183ED8] transition-colors"
+            >
+              Play
+            </Link>
+
+            <Link
+              to="/about"
+              className="font-satoshi font-medium text-sm uppercase tracking-wide text-black hover:text-[#183ED8] transition-colors"
+            >
               About
             </Link>
-          </motion.div>
-          {/* Resume Button */}
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="font-satoshi font-medium text-sm uppercase tracking-wide text-black hover:text-[#183ED8] transition-colors"
             >
               Resume
             </a>
-          </motion.div>
-        </nav>
-      </div>
-    </header>
+          </nav>
+        </div>
+
+        {/* Accessibility Divider */}
+        <div className="h-px w-full bg-[#f2f2f2]" />
+      </header>
+
+      {/* Spacer to match navbar height */}
+      <div className="h-16 md:h-12" />
+    </>
   );
 }

@@ -6,7 +6,7 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <div className="pt-24">
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>

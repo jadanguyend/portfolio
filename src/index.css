@@ -142,7 +142,6 @@
 
 body {
   font-family: "Satoshi", sans-serif;
-  cursor: url('./assets/Cursor.png'), auto !important;
 }
 
 /* ----------------------------------------------------
@@ -201,6 +200,103 @@ body {
     font-size: clamp(0.85rem, 1.2vw, 1rem);
   }
 }
+
+/* =========================
+   META PILLS (System UI)
+========================= */
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: #ababab;
+}
+
+.meta-pill svg {
+  color: inherit;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-primary svg {
+  color: inherit;
+}
+
+/* Defined for reuse (not used in Hero yet) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* =========================
+   LINK STYLE
+========================= */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  color: #000000;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+.link svg {
+  color: inherit;
+}
+
 
 
 
