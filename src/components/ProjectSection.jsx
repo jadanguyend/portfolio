@@ -8,19 +8,19 @@ import project3Img from "../assets/project3.png";
 const projects = [
   {
     title: "Nomo",
-    description: "A platform aims to help individuals address food waste...",
+    description: "Helping individuals address food waste by through social accountability and personal ownership",
     tags: ["Redesign", "UI/UX"],
     image: project1Img,
   },
   {
     title: "Beesi",
-    description: "Enabling owners to better promote their business...",
+    description: "Enabling owners to better promote their business and navigate social media algorithms",
     tags: ["B2B Design", "Web App"],
     image: project2Img,
   },
   {
     title: "VietQ",
-    description: "A website for the Vietnamese queer community...",
+    description: "A website for the Vietnamese queer community in Seattle to improve usability",
     tags: ["Mobile App", "Redesign"],
     image: project3Img,
   },
