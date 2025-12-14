@@ -142,7 +142,7 @@
 
 body {
   font-family: "Satoshi", sans-serif;
-  cursor: url('/Cursor.png'), auto !important;
+  cursor: url('./assets/Cursor.png'), auto !important;
 }
 
 /* ----------------------------------------------------
