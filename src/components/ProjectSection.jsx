@@ -34,7 +34,7 @@ export default function ProjectsSection() {
         <motion.div
           key={index}
           className="group grid grid-cols-12 gap-x-10 bg-white rounded-[16px] border border-black p-4 md:p-5 transition-colors duration-300 hover:bg-black"
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ scale: 1.00 }}
         >
           {/* Left side: Text */}
           <div className="col-span-12 md:col-span-4 flex flex-col gap-2">
