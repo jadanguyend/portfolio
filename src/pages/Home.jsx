@@ -1,7 +1,8 @@
+// src/pages/Home.jsx
 import { motion } from "framer-motion";
 import { FiMapPin, FiClock, FiArrowRight } from "react-icons/fi";
 import ProjectsSection from "../components/ProjectSection";
-import Footer from "../components/Footer";
+import Layout from "../components/Layout";
 
 export default function Home() {
   const lastCommit = import.meta.env.VITE_LAST_COMMIT
@@ -13,10 +14,10 @@ export default function Home() {
     : null;
 
   return (
-    <div className="relative">
+    <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[80vh] px-6 md:px-24 py-12 flex flex-col justify-end bg-[#EEF3FF]">
-        {/* Top-left meta pills */}
+        {/* Top-left meta */}
         <div className="absolute top-6 left-6 md:top-8 md:left-24 flex gap-3">
           <div className="meta-pill text-[#ababab] flex items-center gap-1">
             <FiMapPin />
@@ -55,7 +56,6 @@ export default function Home() {
             greater.
           </motion.p>
 
-          {/* Actions */}
           <motion.div
             className="flex items-center gap-6"
             initial={{ opacity: 0, y: 16 }}
@@ -82,9 +82,6 @@ export default function Home() {
 
       {/* Projects Section */}
       <ProjectsSection />
-
-      {/* Footer */}
-      <Footer />
-    </div>
+    </Layout>
   );
 }
