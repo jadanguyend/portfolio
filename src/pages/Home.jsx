@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] px-6 md:px-24 py-12 flex flex-col justify-end bg-[#EEF3FF]">
+      <section className="relative min-h-[80vh] px-6 md:px-24 py-12 flex flex-col justify-end">
         {/* Top-left meta */}
         <div className="absolute top-6 left-6 md:top-8 md:left-24 flex gap-3">
           <div className="meta-pill text-[#ababab] flex items-center gap-1">
