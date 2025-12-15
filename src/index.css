@@ -201,20 +201,22 @@ body {
   }
 }
 
+@layer components {
+  .meta-pill {
+    @apply inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border transition-colors;
+  }
+
+  .nav-link {
+    @apply font-body font-medium text-sm uppercase tracking-wide
+           transition-colors
+           text-black dark:text-gray-100
+           hover:text-[#183ED8] dark:hover:text-blue-400;
+  }
+}
+
 /* =========================
    META PILLS (System UI)
 ========================= */
-.meta-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: #ffffff;
-  border: 1px solid #f2f2f2;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  color: #ababab;
-}
 
 .meta-pill svg {
   color: inherit;
@@ -295,6 +297,11 @@ body {
 
 .link svg {
   color: inherit;
+}
+
+/* Global body defaults */
+body {
+  @apply bg-white text-black dark:bg-darkBg dark:text-darkText;
 }
 
 

@@ -26,29 +26,28 @@ const projects = [
   },
 ];
 
-
 export default function ProjectsSection() {
   return (
     <section className="px-12 md:px-24 py-12 grid gap-6">
       {projects.map((project, index) => (
         <motion.div
           key={index}
-          className="group grid grid-cols-12 gap-x-10 bg-white rounded-[16px] border border-black p-4 md:p-5 transition-colors duration-300 hover:bg-black"
-          whileHover={{ scale: 1.00 }}
+          className="group grid grid-cols-12 gap-x-10 bg-white dark:bg-neutral-900 rounded-[16px] border border-black dark:border-gray-700 p-4 md:p-5 transition-colors duration-300 hover:bg-black dark:hover:bg-gray-800"
+          whileHover={{ scale: 1 }}
         >
           {/* Left side: Text */}
           <div className="col-span-12 md:col-span-4 flex flex-col gap-2">
-            <h2 className="text-2xl font-heading font-medium italic transition-colors duration-300 group-hover:text-white">
+            <h2 className="text-2xl font-heading font-medium italic transition-colors duration-300 text-black dark:text-white group-hover:text-white">
               {project.title}
             </h2>
-            <p className="text-gray-800 text-sm transition-colors duration-300 group-hover:text-white">
+            <p className="text-gray-800 dark:text-gray-300 text-sm transition-colors duration-300 group-hover:text-white">
               {project.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 border border-black rounded-full text-sm transition-colors duration-300 group-hover:border-white group-hover:text-white"
+                  className="px-3 py-1 border border-black dark:border-gray-400 rounded-full text-sm transition-colors duration-300 text-black dark:text-gray-300 group-hover:text-white group-hover:border-white"
                 >
                   {tag}
                 </span>

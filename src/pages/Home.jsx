@@ -15,29 +15,31 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] px-6 md:px-24 py-12 flex flex-col justify-end">
-        {/* Top-left meta */}
-        <div className="absolute top-6 left-6 md:top-8 md:left-24 flex gap-3">
-          <div className="meta-pill text-[#ababab] flex items-center gap-1">
+      {/* Hero */}
+      <section className="relative min-h-[60vh] px-6 md:px-24 py-12 flex flex-col justify-between">
+        {/* Top meta */}
+        <div className="flex gap-3">
+          <div className="meta-pill bg-white text-gray-500 border-gray-200
+                          dark:bg-neutral-900 dark:text-gray-300 dark:border-neutral-700">
             <FiMapPin />
             <span>Seattle, WA</span>
           </div>
 
           {lastCommit && (
-            <div className="meta-pill text-[#ababab] flex items-center gap-1">
+            <div className="meta-pill bg-white text-gray-500 border-gray-200
+                            dark:bg-neutral-900 dark:text-gray-300 dark:border-neutral-700">
               <FiClock />
-              <span className="tracking-wide uppercase">
+              <span className="uppercase tracking-wide">
                 Last Commit · {lastCommit}
               </span>
             </div>
           )}
         </div>
 
-        {/* Bottom-left content */}
-        <div className="flex flex-col max-w-[50%] min-w-[300px] mb-16 md:mb-24">
+        {/* Bottom content */}
+        <div className="flex flex-col max-w-[50%] min-w-[300px] gap-6">
           <motion.h1
-            className="font-heading text-black text-4xl md:text-5xl lg:text-6xl mb-6"
+            className="font-heading text-black dark:text-white text-4xl md:text-5xl lg:text-6xl"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -46,7 +48,7 @@ export default function Home() {
           </motion.h1>
 
           <motion.p
-            className="font-satoshi text-black text-base md:text-lg mb-8"
+            className="font-satoshi text-gray-800 dark:text-gray-300 text-base md:text-lg"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -66,21 +68,21 @@ export default function Home() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary flex items-center gap-2"
+              className="btn-primary dark:bg-white dark:text-black dark:hover:bg-gray-200"
             >
-              Resume
-              <FiArrowRight />
+              Resume <FiArrowRight />
             </a>
 
-            <a href="/readme" className="link flex items-center gap-2">
-              Read.me
-              <FiArrowRight />
+            <a
+              href="/readme"
+              className="link dark:text-gray-300 dark:hover:text-white"
+            >
+              Read.me <FiArrowRight />
             </a>
           </motion.div>
         </div>
       </section>
 
-      {/* Projects Section */}
       <ProjectsSection />
     </Layout>
   );
