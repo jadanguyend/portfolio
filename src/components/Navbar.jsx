@@ -26,9 +26,14 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-white dark:bg-darkBg">
+    <header
+      className="
+        fixed top-0 left-0 z-50 w-full
+        bg-white dark:bg-darkBg
+        will-change-transform
+      "
+    >
       <div className="w-full px-6 md:px-24 py-6 flex justify-between items-center">
-        
         {/* Left */}
         <Link to="/" className="nav-link">
           Home
@@ -47,10 +52,12 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             aria-label="Toggle dark mode"
-            className="p-2 rounded-md 
-                       hover:bg-gray-200 
-                       dark:hover:bg-darkSurface 
-                       transition"
+            className="
+              p-2 rounded-md
+              hover:bg-gray-200
+              dark:hover:bg-darkSurface
+              transition
+            "
           >
             {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
           </button>

@@ -302,6 +302,9 @@ body {
 /* Global body defaults */
 body {
   @apply bg-white text-black dark:bg-darkBg dark:text-darkText;
+  background-color: #183ED8;
+  overscroll-behavior-y: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 

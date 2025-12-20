@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FiMapPin, FiClock, FiArrowRight } from "react-icons/fi";
 import ProjectsSection from "../components/ProjectSection";
 import Layout from "../components/Layout";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const lastCommit = import.meta.env.VITE_LAST_COMMIT
@@ -14,7 +15,7 @@ export default function Home() {
     : null;
 
   return (
-    <Layout>
+    <Layout footer={<Footer />}>
       {/* Hero */}
       <section className="relative min-h-[60vh] px-6 md:px-24 py-12 flex flex-col justify-between">
         {/* Top meta */}
