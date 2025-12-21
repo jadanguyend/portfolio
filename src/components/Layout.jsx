@@ -1,17 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function Layout({ children, footer }) {
   const scrollY = useMotionValue(0);
+  const [docHeight, setDocHeight] = useState(0);
 
   useEffect(() => {
+    setDocHeight(document.body.scrollHeight - window.innerHeight);
+
     const handleScroll = () => scrollY.set(window.scrollY);
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", () => setDocHeight(document.body.scrollHeight - window.innerHeight));
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrollY]);
 
-  const scale = useTransform(scrollY, [0, 1000, 1600], [1, 1, 0.95]);
-  const radius = useTransform(scrollY, [0, 1000, 1600], [0, 0, 32]);
+  // Scroll percentage from 0 to 1
+  const scrollPercent = useTransform(scrollY, [0, docHeight || 1], [0, 1]);
+
+  // Shrink only after 10% scroll, finish at 50% scroll
+  const scale = useTransform(scrollPercent, [0.7, 0.9], [1, 0.95]);
+  const radius = useTransform(scrollPercent, [0.7, 0.9], [0, 32]);
 
   return (
     <div className="relative min-h-screen bg-[#183ED8]">

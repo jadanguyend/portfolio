@@ -11,7 +11,13 @@ export default function Footer() {
     : null;
 
   return (
-    <footer className="px-12 md:px-24 pt-10 pb-16 flex flex-col gap-6 text-white">
+    <footer
+      className="
+        px-12 md:px-24 pt-10 pb-16 flex flex-col gap-6
+        text-[#718DFD] dark:text-[#718DFD]
+      "
+      style={{ fontWeight: 500 }}
+    >
       {/* Top Section */}
       <div className="flex flex-col md:flex-row justify-between items-center">
         <span className="text-sm md:text-base">©2025 Jada Nguyen</span>
@@ -24,9 +30,9 @@ export default function Footer() {
       </div>
 
       {/* Divider */}
-      <hr className="border-white/30" />
+      <hr className="border-current opacity-30" />
 
-      {/* Bottom Section: Full width image */}
+      {/* Bottom Section */}
       <div>
         <img
           src={footerImage}

@@ -11,7 +11,6 @@ import ticktickImg from "../assets/ticktick.png";
 import retroImg from "../assets/retro.png";
 import arcImg from "../assets/arc.png";
 import ondittoImg from "../assets/onditto.png";
-import mercedesImg from "../assets/mercedes.png";
 import wiseImg from "../assets/wise.png";
 import baseImg from "../assets/base.png";
 
@@ -44,10 +43,7 @@ export default function Home() {
         { href: "https://wise.design/", img: wiseImg },
         { href: "https://base.uber.com/6d2425e9f/p/93825b-welcome-to-base", img: baseImg },
       ] },
-    { text: "geeking out over F1 car liveries", 
-      links: [
-        { href: "https://www.mercedesamgf1.com/cars/2023", img: mercedesImg },
-      ] },
+    { text: "geeking out over F1 car liveries", links: [] },
   ];
 
   const [index, setIndex] = useState(0);
@@ -62,7 +58,7 @@ export default function Home() {
   return (
     <Layout footer={<Footer />}>
       {/* Hero */}
-      <section className="relative min-h-[80vh] px-6 md:px-24 py-12 flex flex-col justify-between">
+      <section className="relative min-h-[80vh] px-6 md:px-24 py-4 flex flex-col justify-between">
         {/* Top meta */}
         <div className="flex gap-3">
           <div className="meta-pill bg-white text-gray-500 border-gray-200
@@ -118,7 +114,7 @@ export default function Home() {
             className="text-sm md:text-base text-gray-500 flex items-center gap-1"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           >
             She's probably —{" "}
 

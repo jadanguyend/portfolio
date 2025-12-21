@@ -33,7 +33,7 @@ export default function Navbar() {
         will-change-transform
       "
     >
-      <div className="w-full px-6 md:px-24 py-6 flex justify-between items-center">
+      <div className="w-full px-6 md:px-24 py-3 flex justify-between items-center">
         {/* Left */}
         <Link to="/" className="nav-link">
           Home
