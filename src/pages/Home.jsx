@@ -27,10 +27,7 @@ export default function Home() {
   // ===== Rotating text with optional links =====
   const phrases = [
     {
-      text: "listening to design podcast",
-      links: [
-        { href: "https://open.spotify.com/show/2VRS1IJCTn2Nlkg33ZVfkM", img: nineninepodcastImg },
-      ],
+      text: "building a LEGO set",links: [],
     },
     {
       text: "using her favorite apps and softwares",
@@ -41,6 +38,7 @@ export default function Home() {
         { href: "https://www.onditto.com/list", img: ondittoImg },
       ],
     },
+    { text: "reading behavioral psychology books", links: [] },
     { text: "exploring design systems", 
       links: [
         { href: "https://wise.design/", img: wiseImg },
@@ -50,7 +48,6 @@ export default function Home() {
       links: [
         { href: "https://www.mercedesamgf1.com/cars/2023", img: mercedesImg },
       ] },
-    { text: "reading behavioral psychology books", links: [] },
   ];
 
   const [index, setIndex] = useState(0);
