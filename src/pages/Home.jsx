@@ -5,6 +5,16 @@ import ProjectsSection from "../components/ProjectSection";
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 
+// import images for the apps/podcasts
+import nineninepodcastImg from "../assets/nineninepodcast.png";
+import ticktickImg from "../assets/ticktick.png";
+import retroImg from "../assets/retro.png";
+import arcImg from "../assets/arc.png";
+import ondittoImg from "../assets/onditto.png";
+import mercedesImg from "../assets/mercedes.png";
+import wiseImg from "../assets/wise.png";
+import baseImg from "../assets/base.png";
+
 export default function Home() {
   const lastCommit = import.meta.env.VITE_LAST_COMMIT
     ? new Date(import.meta.env.VITE_LAST_COMMIT).toLocaleDateString("en-US", {
@@ -14,20 +24,41 @@ export default function Home() {
       })
     : null;
 
-  // ===== Rotating text =====
+  // ===== Rotating text with optional links =====
   const phrases = [
-    "a coffeeholic",
-    "a LEGO enthusiast",
-    "a documentary nerd",
-    "obsessed with UI details",
-    "a midnight coder",
+    {
+      text: "listening to design podcast",
+      links: [
+        { href: "https://open.spotify.com/show/2VRS1IJCTn2Nlkg33ZVfkM", img: nineninepodcastImg },
+      ],
+    },
+    {
+      text: "using her favorite apps and softwares",
+      links: [
+        { href: "https://ticktick.com/?language=en_us", img: ticktickImg },
+        { href: "https://retro.app/", img: retroImg },
+        { href: "https://arc.net/", img: arcImg },
+        { href: "https://www.onditto.com/list", img: ondittoImg },
+      ],
+    },
+    { text: "exploring design systems", 
+      links: [
+        { href: "https://wise.design/", img: wiseImg },
+        { href: "https://base.uber.com/6d2425e9f/p/93825b-welcome-to-base", img: baseImg },
+      ] },
+    { text: "geeking out over F1 car liveries", 
+      links: [
+        { href: "https://www.mercedesamgf1.com/cars/2023", img: mercedesImg },
+      ] },
+    { text: "reading behavioral psychology books", links: [] },
   ];
+
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % phrases.length);
-    }, 2500); // rotates every 2.5s
+    }, 2500);
     return () => clearInterval(interval);
   }, []);
 
@@ -72,7 +103,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Product designer <span className="font-heading italic text-[#183ED8]">shaping consumer experiences</span> — aligning systems, visual craft, and thoughtful product decisions that scales.
+            Product designer <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>shaping consumer experiences</span> — aligning systems, visual craft, and thoughtful product decisions that scales.
           </motion.p>
 
           {/* Second line */}
@@ -82,28 +113,30 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Bringing <span className="font-heading italic text-[#183ED8]">delight</span> to consumer apps, enterprise systems, and complex workflows.
+            Bringing <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>delight</span> to consumer apps, enterprise systems, and complex workflows.
           </motion.p>
 
           {/* Rotating third line */}
           <motion.p
-            className="text-base md:text-lg"
+            className="text-sm md:text-base text-gray-500 flex items-center gap-1"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
           >
-            I'm probably{" "}
-            <span
-              style={{
-                fontFamily: "'GT Alpina Standard', serif",
-                fontWeight: 400,       // Regular
-                fontStyle: "italic",   // Italic
-                color: "#183ED8",
-              }}
-            >
-              {phrases[index]}
-            </span>
-            .
+            She's probably —{" "}
+
+              {phrases[index].text}
+
+            {/* Render links if available */}
+            {phrases[index].links.length > 0 && (
+              <span className="flex gap-1 ml-1">
+                {phrases[index].links.map((link, i) => (
+                  <a key={i} href={link.href} target="_blank" rel="noopener noreferrer">
+                    <img src={link.img} alt="" className="w-6 h-6 object-contain" />
+                  </a>
+                ))}
+              </span>
+            )}
           </motion.p>
 
           <motion.div
