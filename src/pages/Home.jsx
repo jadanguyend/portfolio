@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <Layout footer={<Footer />}>
       {/* Hero */}
-      <section className="relative min-h-[80vh] px-6 md:px-24 py-4 flex flex-col justify-between">
+      <section className="relative min-h-[80vh] py-4 flex flex-col justify-between">
         {/* Top meta */}
         <div className="flex gap-3">
           <div className="meta-pill bg-white text-gray-500 border-gray-200
@@ -96,20 +96,10 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Product designer <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>shaping consumer experiences</span> — aligning systems, visual craft, and thoughtful product decisions that scales.
+            Product designer <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>shaping consumer experiences</span> — aligning systems, visual craft, and thoughtful product decisions that scale. Bringing <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>delight</span> to consumer apps, enterprise systems, and complex workflows.
           </motion.p>
 
-          {/* Second line */}
-          <motion.p
-            className="font-satoshi text-gray-800 dark:text-gray-300 text-base md:text-lg"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Bringing <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>delight</span> to consumer apps, enterprise systems, and complex workflows.
-          </motion.p>
-
-          {/* Rotating third line */}
+          {/* Rotating line */}
           <motion.p
             className="text-sm md:text-base text-gray-500 flex items-center gap-1"
             initial={{ opacity: 0, y: 16 }}

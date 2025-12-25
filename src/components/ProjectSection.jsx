@@ -31,7 +31,7 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section className="px-12 md:px-24 py-24 grid gap-6">
+    <section className="py-24 grid gap-6">
       {/* Existing project cards */}
       {projects.map((project, index) => (
         <motion.div

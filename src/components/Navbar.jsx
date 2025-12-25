@@ -5,7 +5,6 @@ import { FiMoon, FiSun } from "react-icons/fi";
 export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
 
-  // Load saved theme
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
@@ -26,14 +25,9 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className="
-        fixed top-0 left-0 z-50 w-full
-        bg-white dark:bg-darkBg
-        will-change-transform
-      "
-    >
-      <div className="w-full px-6 md:px-24 py-3 flex justify-between items-center">
+    <header className="fixed top-0 left-0 z-50 w-full bg-white dark:bg-darkBg">
+      {/* ✅ container instead of px-* */}
+      <div className="container py-3 flex justify-between items-center">
         {/* Left */}
         <Link to="/" className="nav-link">
           Home
@@ -48,16 +42,10 @@ export default function Navbar() {
             Resume
           </a>
 
-          {/* Dark mode toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle dark mode"
-            className="
-              p-2 rounded-md
-              hover:bg-gray-200
-              dark:hover:bg-darkSurface
-              transition
-            "
+            className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-darkSurface transition"
           >
             {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
           </button>

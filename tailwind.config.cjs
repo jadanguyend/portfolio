@@ -1,8 +1,23 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "2rem",  // px-6 mobile
+        md: "3rem",       // px-10 medium and above
+      },
+      // override default max-widths to allow full stretch
+      screens: {
+        sm: "100%", 
+        md: "100%",
+        lg: "100%",
+        xl: "100%",
+        "2xl": "100%",
+      },
+    },
     extend: {
       fontFamily: {
         heading: ['"GT Alpina Standard"', "serif"],
