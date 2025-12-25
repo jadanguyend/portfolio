@@ -5,7 +5,7 @@ import ProjectsSection from "../components/ProjectSection";
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 
-// import images for the apps/podcasts
+// Import images for the apps/podcasts
 import nineninepodcastImg from "../assets/nineninepodcast.png";
 import ticktickImg from "../assets/ticktick.png";
 import retroImg from "../assets/retro.png";
@@ -23,11 +23,8 @@ export default function Home() {
       })
     : null;
 
-  // ===== Rotating text with optional links =====
   const phrases = [
-    {
-      text: "building a LEGO set",links: [],
-    },
+    { text: "building a LEGO set", links: [] },
     {
       text: "using her favorite apps and softwares",
       links: [
@@ -38,11 +35,13 @@ export default function Home() {
       ],
     },
     { text: "reading behavioral psychology books", links: [] },
-    { text: "exploring design systems", 
+    {
+      text: "exploring design systems",
       links: [
         { href: "https://wise.design/", img: wiseImg },
         { href: "https://base.uber.com/6d2425e9f/p/93825b-welcome-to-base", img: baseImg },
-      ] },
+      ],
+    },
     { text: "geeking out over F1 car liveries", links: [] },
   ];
 
@@ -58,9 +57,9 @@ export default function Home() {
   return (
     <Layout footer={<Footer />}>
       {/* Hero */}
-      <section className="relative min-h-[80vh] py-4 flex flex-col justify-between">
+      <section className="container relative min-h-[80vh] py-8 flex flex-col justify-between">
         {/* Top meta */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3 mb-6">
           <div className="meta-pill bg-white text-gray-500 border-gray-200
                           dark:bg-neutral-900 dark:text-gray-300 dark:border-neutral-700">
             <FiMapPin />
@@ -79,7 +78,7 @@ export default function Home() {
         </div>
 
         {/* Bottom content */}
-        <div className="flex flex-col max-w-[50%] min-w-[300px] gap-4">
+        <div className="flex flex-col w-full md:w-1/2 gap-4">
           <motion.h1
             className="font-heading text-black dark:text-white text-4xl md:text-5xl lg:text-6xl mb-4"
             initial={{ opacity: 0, y: 16 }}
@@ -89,30 +88,32 @@ export default function Home() {
             Jada Nguyen
           </motion.h1>
 
-          {/* First paragraph */}
           <motion.p
             className="font-satoshi text-gray-800 dark:text-gray-300 text-base md:text-lg"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Product designer <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>shaping consumer experiences</span> — aligning systems, visual craft, and thoughtful product decisions that scale. Bringing <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>delight</span> to consumer apps, enterprise systems, and complex workflows.
+            Product designer{" "}
+            <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>
+              shaping consumer experiences
+            </span>{" "}
+            — aligning systems, visual craft, and thoughtful product decisions that scale. Bringing{" "}
+            <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>
+              delight
+            </span>{" "}
+            to consumer apps, enterprise systems, and complex workflows.
           </motion.p>
 
-          {/* Rotating line */}
           <motion.p
-            className="text-sm md:text-base text-gray-500 flex items-center gap-1"
+            className="text-sm md:text-base text-gray-500 flex flex-wrap items-center gap-1"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            She's probably —{" "}
-
-              {phrases[index].text}
-
-            {/* Render links if available */}
+            She's probably — {phrases[index].text}
             {phrases[index].links.length > 0 && (
-              <span className="flex gap-1 ml-1">
+              <span className="flex gap-1 ml-1 flex-wrap">
                 {phrases[index].links.map((link, i) => (
                   <a key={i} href={link.href} target="_blank" rel="noopener noreferrer">
                     <img src={link.img} alt="" className="w-6 h-6 object-contain" />
@@ -123,7 +124,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-6 mt-4"
+            className="flex flex-wrap items-center gap-4 md:gap-6 mt-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

@@ -1,4 +1,3 @@
-// src/components/ProjectsSection.jsx
 import { motion } from "framer-motion";
 
 import project1Img from "../assets/project1.png";
@@ -31,27 +30,26 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section className="py-24 grid gap-6">
-      {/* Existing project cards */}
+    <section className="container py-24 grid gap-6 md:gap-10">
       {projects.map((project, index) => (
         <motion.div
           key={index}
-          className="group grid grid-cols-12 gap-x-10 bg-white dark:bg-neutral-900 rounded-[16px] border border-#AAAAAA dark:border-gray-700 p-4 md:p-5 transition-colors duration-300 hover:bg-black dark:hover:bg-gray-800"
+          className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 p-5 bg-white dark:bg-neutral-900 rounded-[16px] border border-[#AAAAAA] dark:border-gray-700 transition-colors duration-300 hover:bg-black dark:hover:bg-gray-800"
           whileHover={{ scale: 1 }}
         >
           {/* Left */}
-          <div className="col-span-12 md:col-span-4 flex flex-col gap-2">
-            <h2 className="text-2xl font-heading font-medium italic transition-colors duration-300 text-black dark:text-white group-hover:text-white">
+          <div className="col-span-1 md:col-span-4 flex flex-col gap-2 w-full">
+            <h2 className="text-2xl md:text-3xl font-heading font-medium italic text-black dark:text-white group-hover:text-white">
               {project.title}
             </h2>
-            <p className="text-gray-800 dark:text-gray-300 text-sm transition-colors duration-300 group-hover:text-white">
+            <p className="text-gray-800 dark:text-gray-300 text-sm md:text-base group-hover:text-white">
               {project.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 border border-black dark:border-gray-400 rounded-full text-sm transition-colors duration-300 text-black dark:text-gray-300 group-hover:text-white group-hover:border-white"
+                  className="px-3 py-1 border border-black dark:border-gray-400 rounded-full text-sm md:text-base text-black dark:text-gray-300 group-hover:text-white group-hover:border-white"
                 >
                   {tag}
                 </span>
@@ -60,11 +58,11 @@ export default function ProjectsSection() {
           </div>
 
           {/* Right */}
-          <div className="col-span-12 md:col-span-8 mt-2 md:mt-0">
+          <div className="col-span-1 md:col-span-8 mt-4 md:mt-0 w-full">
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-72 md:h-96 object-cover rounded-[12px]"
+              className="w-full h-auto md:h-96 object-cover rounded-[12px]"
             />
           </div>
         </motion.div>
@@ -72,55 +70,22 @@ export default function ProjectsSection() {
 
       {/* Empty / CTA Project Card */}
       <motion.div
-        className="
-          group grid grid-cols-12
-          bg-white dark:bg-neutral-900
-          rounded-[16px]
-          border-2 border-dashed border-grey-300 dark:border-gray-700
-          transition-colors duration-300
-          hover:bg-gray-100 dark:hover:bg-neutral-800
-        "
+        className="group grid grid-cols-1 p-6 md:p-8 bg-white dark:bg-neutral-900 rounded-[16px] border-2 border-dashed border-gray-300 dark:border-gray-700 transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-neutral-800"
         whileHover={{ scale: 1 }}
       >
-        <div
-          className="
-            col-span-12
-            flex flex-col items-center justify-center gap-4
-            h-72 md:h-96
-            text-center
-            p-6
-          "
-        >
-
-          {/* Text */}
-          <p
-            className="
-              text-lg md:text-xl
-              font-satoshi
-              text-black dark:text-white
-              transition-colors duration-300
-            "
-          >
+        <div className="flex flex-col items-center justify-center gap-4 h-72 md:h-96 text-center w-full">
+          <p className="text-lg md:text-xl font-satoshi text-black dark:text-white transition-colors duration-300">
             Let’s create something{" "}
-            <span
-              className="font-heading text-[#183ED8]"
-              style={{ fontStyle: "italic", fontWeight: 500 }}
-            >
+            <span className="font-heading text-[#183ED8]" style={{ fontStyle: "italic", fontWeight: 500 }}>
               great
             </span>{" "}
             together!
           </p>
-
-          {/* Reused Button */}
-          <a
-            href="/contact"
-            className="btn-primary"
-          >
+          <a href="/contact" className="btn-primary">
             Connect
           </a>
         </div>
       </motion.div>
-
     </section>
   );
 }

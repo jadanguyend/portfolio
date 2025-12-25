@@ -6,7 +6,7 @@ module.exports = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "2rem",  // px-6 mobile
+        DEFAULT: "1.5rem",  // px-6 mobile
         md: "3rem",       // px-10 medium and above
       },
       // override default max-widths to allow full stretch
