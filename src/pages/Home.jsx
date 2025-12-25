@@ -80,13 +80,14 @@ export default function Home() {
         {/* Bottom content */}
         <div className="flex flex-col w-full md:w-1/2 gap-4">
           <motion.h1
-            className="font-heading text-black dark:text-white text-4xl md:text-5xl lg:text-6xl mb-4"
+            className="font-heading font-medium italic text-black dark:text-white text-4xl md:text-5xl lg:text-6xl mb-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             Jada Nguyen
           </motion.h1>
+
 
           <motion.p
             className="font-satoshi text-gray-800 dark:text-gray-300 text-base md:text-lg"
