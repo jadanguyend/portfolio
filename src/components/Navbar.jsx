@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FiMoon, FiSun, FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
+import { RiMoonFill, RiSunFill } from "react-icons/ri";
 
 export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
@@ -14,14 +15,17 @@ export default function Navbar() {
         setMenuOpen(false);
       }
     };
+
     if (menuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuOpen]);
 
+  // Load stored theme
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
@@ -41,61 +45,72 @@ export default function Navbar() {
     setIsDark(!isDark);
   };
 
+  const navItems = [
+    { label: "Work", path: "/" },
+    { label: "Play", path: "/work" },
+    { label: "About", path: "/play" },
+    { label: "Resume", path: "/about" },
+  ];
+
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-white dark:bg-darkBg shadow-sm">
-      <div className="container py-3 flex justify-between items-center relative">
+    <header className="fixed top-0 left-0 z-50 w-full bg-background-0/30 dark:bg-darkBg/30 backdrop-blur-md shadow-sm">
+      <div className="container py-4 flex justify-between items-center relative">
         {/* Left */}
-        <Link to="/" className="nav-link hover:text-[#183ED8] dark:hover:text-blue-400">
-          Home
+        <Link to="/" className="nav-link">
+          <span className="bracket">[</span>
+          jadanguyend
+          <span className="bracket">]</span>
         </Link>
 
-        {/* Hamburger button for mobile */}
+        {/* Hamburger (mobile) */}
         <button
-          className="md:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-darkSurface transition"
+          className="md:hidden p-2 rounded-md hover:bg-background-50 dark:hover:bg-darkSurface transition"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
         </button>
 
-        {/* Right links */}
+        {/* Right */}
         <nav
           ref={menuRef}
           className={`
-            flex-col md:flex-row md:flex items-center
-            gap-4 md:gap-8
-            absolute md:static top-full left-0 w-full md:w-auto
-            bg-white dark:bg-darkBg md:bg-transparent md:dark:bg-transparent
-            border-b md:border-none border-gray-200 dark:border-gray-700
+            absolute md:static top-full left-0
+            w-full md:w-auto
+            flex flex-col md:flex-row items-center
+            bg-background-0 dark:bg-darkBg md:bg-transparent md:dark:bg-transparent
+            border-b md:border-none border-border-light dark:border-border-dark
             transition-all duration-300
             ${menuOpen ? "flex" : "hidden md:flex"}
           `}
         >
-          {/* Top spacing for mobile */}
+          {/* Top spacing (mobile) */}
           <div className="md:hidden h-2" />
 
-          <Link to="/work" className="nav-link hover:text-[#183ED8] dark:hover:text-blue-400 md:ml-4">
-            Work
-          </Link>
-          <Link to="/play" className="nav-link hover:text-[#183ED8] dark:hover:text-blue-400">Play</Link>
-          <Link to="/about" className="nav-link hover:text-[#183ED8] dark:hover:text-blue-400">About</Link>
-          <a href="/resume.pdf" target="_blank" className="nav-link hover:text-[#183ED8] dark:hover:text-blue-400">
-            Resume
-          </a>
+          <div className="flex flex-col md:flex-row items-center md:gap-6">
+            {navItems.map((item) => (
+              <Link key={item.label} to={item.path} className="nav-link">
+                <span className="bracket">[</span>
+                {item.label}
+                <span className="bracket">]</span>
+              </Link>
+            ))}
 
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle dark mode"
-            className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-darkSurface transition mt-2 md:mt-0 md:ml-4"
-          >
-            {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
-          </button>
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle dark mode"
+              className="ml-2 hover:text-accent dark:hover:text-accent transition transform active:scale-110"
+            >
+              {isDark ? <RiSunFill size={18} /> : <RiMoonFill size={18} />}
+            </button>
+          </div>
 
-          {/* Bottom spacing for mobile */}
+          {/* Bottom spacing (mobile) */}
           <div className="md:hidden h-4" />
         </nav>
       </div>
 
-      <div className="h-px w-full bg-gray-200 dark:bg-gray-700" />
+      {/* Bottom divider */}
+      <div className="h-px w-full bg-border-light dark:bg-border-dark" />
     </header>
   );
 }

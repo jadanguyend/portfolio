@@ -142,10 +142,306 @@
   font-style: italic;
 }
 
+/* ================================
+   PP Neue Montreal
+   ================================ */
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal/NeueMontreal-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal/NeueMontreal-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal/NeueMontreal-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal/NeueMontreal-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal/NeueMontreal-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal/NeueMontreal-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal/NeueMontreal-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal/NeueMontreal-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ================================
+   Messina Sans Mono
+   ================================ */
+
+@font-face {
+  font-family: "Messina Sans Mono";
+  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Book.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Messina Sans Mono";
+  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Messina Sans Mono";
+  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Messina Sans Mono";
+  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Messina Sans Mono";
+  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Messina Sans Mono";
+  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* SF Mono */
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-RegularItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-SemiboldItalic.otf") format("opentype");
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-Heavy.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Mono";
+  src: url("./assets/fonts/SFMono/SFMono-HeavyItalic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* SF Pro Text */
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Ultralight.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-UltralightItalic.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Thin.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-ThinItalic.otf") format("opentype");
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-RegularItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-SemiboldItalic.otf") format("opentype");
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Heavy.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-HeavyItalic.otf") format("opentype");
+  font-weight: 800;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./assets/fonts/SFProText/SFProText-BlackItalic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+
 
 /* ================================
    BASE STYLES
 ================================ */
+
+:root {
+  /* Primary accent */
+  --accent-color: #183ED8;        /* light mode */
+  /* Secondary accent for contrast */
+  --accent-color-2: #728CFE;     /* light mode */
+}
+
+.dark {
+  /* Primary accent */
+  --accent-color: #FF6B41;       /* dark mode */
+  /* Secondary accent for contrast */
+  --accent-color-2: #B52800;     /* dark mode */
+}
+
+
+
 @layer base {
   html {
     font-size: 16px;
@@ -157,7 +453,7 @@
   body {
     margin: 0;
     padding: 0;
-    font-family: "Satoshi", sans-serif;
+    font-family: "SF Pro", sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
     @apply bg-white text-black dark:bg-darkBg dark:text-darkText;
@@ -209,18 +505,48 @@
 }
 
 
+
 @layer components {
   .meta-pill {
-    @apply inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border transition-colors;
+    @apply font-sfmono inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border transition-colors;
   }
 
+
   .nav-link {
-    @apply font-body font-medium text-sm uppercase tracking-wide
-           transition-colors
-           text-black dark:text-gray-100
-           hover:text-[#183ED8] dark:hover:text-blue-400;
+    @apply font-body font-medium text-sm uppercase tracking-wide transition-colors;
+
+    /* Base text color */
+    color: black;
+
+    /* Dark mode text color */
+    .dark & {
+      color: #F2F2F2;
+    }
+
+    /* Hover uses accent variable */
+    &:hover {
+      color: var(--accent-color);
+    }
   }
 }
+
+@keyframes caret-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  animation: caret-blink 1.2s steps(1) infinite;
+  font-weight: 300;
+}
+
+
 
 /* =========================
    META PILLS (System UI)
@@ -234,44 +560,58 @@
 /* =========================
    BUTTONS
 ========================= */
+/* Primary Button */
 .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  background: #000000;
-  color: #ffffff;
-  border-radius: 24px;
-  font-weight: 500;
-  transition: opacity 0.2s ease;
+  @apply inline-flex items-center gap-2.5 px-5 py-3 rounded-[24px] font-medium transition-colors duration-200;
+  background-color: #1F1F1F; /* text primary / dark black */
+  color: #FFFFFF; /* white text */
 }
 
 .btn-primary:hover {
-  opacity: 0.75;
+  background-color: #4D4D4D; /* neutral 700 hover */
 }
 
 .btn-primary svg {
   color: inherit;
 }
 
-/* Defined for reuse (not used in Hero yet) */
+/* Dark mode override */
+.dark .btn-primary {
+  background-color: #F2F2F2; /* background 100 */
+  color: #1F1F1F; /* text primary black */
+}
+
+.dark .btn-primary:hover {
+  background-color: #737373; /* neutral 600 hover */
+}
+
+/* Secondary Button (outline) */
 .btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #000000;
-  border-radius: 24px;
-  font-weight: 500;
-  transition: background 0.2s ease, color 0.2s ease;
+  @apply inline-flex items-center gap-2.5 px-5 py-3 rounded-[24px] font-medium transition-colors duration-200;
+  background-color: #FFFFFF; /* background 0 */
+  color: #1F1F1F; /* text primary black */
+  border: 1px solid #EDEDED; /* border light */
 }
 
 .btn-secondary:hover {
-  background: #000000;
-  color: #ffffff;
+  background-color: #1F1F1F; /* text primary black */
+  color: #FFFFFF; /* white text */
+  border-color: #1F1F1F;
 }
+
+/* Dark mode override */
+.dark .btn-secondary {
+  background-color: #1A1A1A; /* darkSurface */
+  color: #F2F2F2; /* darkText */
+  border-color: #D6D6D6; /* border dark */
+}
+
+.dark .btn-secondary:hover {
+  background-color: #F2F2F2; /* background 100 */
+  color: #1F1F1F;
+  border-color: #737373; /* neutral 600 */
+}
+
 
 /* =========================
    LINK STYLE
@@ -310,10 +650,89 @@
 /* Global body defaults */
 body {
   @apply bg-white text-black dark:bg-darkBg dark:text-darkText;
-  background-color: #183ED8;
+  
+  /* Optional: use accent variable as background */
+  background-color: var(--accent-color);
+
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
 }
+
+.project-card {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+@layer components {
+  /* Project card container */
+  .project-card {
+    @apply grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 p-5 rounded-[16px] border transition-colors duration-300;
+    border-color: #D6D6D6;
+    background-color: #FAFAFA;
+    color: #1F1F1F;
+  }
+
+  .project-card:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+
+  /* Project card left side */
+  .project-card-left {
+    @apply col-span-1 md:col-span-4 flex flex-col gap-2 w-full;
+  }
+
+  /* Project title */
+  .project-card-title {
+    @apply text-2xl md:text-3xl font-heading font-medium italic;
+    color: inherit;
+  }
+
+  /* Project description */
+  .project-card-desc {
+    @apply text-sm md:text-base;
+    color: inherit;
+  }
+
+  /* Project tags */
+  .project-card-tag {
+    @apply px-3 py-1 border rounded-full text-sm md:text-base;
+    border-color: #D6D6D6;
+    color: inherit;
+  }
+
+  /* Project card right side (image wrapper) */
+  .project-card-right {
+    @apply col-span-1 md:col-span-8 mt-4 md:mt-0 w-full;
+  }
+
+  /* Image */
+  .project-card-img {
+    @apply w-full h-auto md:h-96 object-cover rounded-[12px];
+  }
+
+  /* Empty / CTA card overrides */
+  .project-card-cta {
+    @apply flex flex-col items-center justify-center p-6 md:p-8 rounded-[16px] border-2 border-dashed transition-colors duration-300;
+    border-color: #D6D6D6;        /* border dark */
+    background-color: #FAFAFA;    /* background 50 */
+    color: #1F1F1F;
+    grid-template-columns: 1fr;    /* full width content */
+    gap: 0;                        /* no internal gap like project cards */
+  }
+
+  .project-card-cta:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+}
+
+
+
+
+
+
 
 
 

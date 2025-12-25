@@ -60,18 +60,18 @@ export default function Home() {
       <section className="container relative min-h-[80vh] py-8 flex flex-col justify-between">
         {/* Top meta */}
         <div className="flex flex-wrap gap-3 mb-6">
-          <div className="meta-pill bg-white text-gray-500 border-gray-200
-                          dark:bg-neutral-900 dark:text-gray-300 dark:border-neutral-700">
+          <div className="meta-pill bg-background-0 text-text-neutral-600 border-border-light
+                          dark:bg-darkSurface dark:text-darkMuted dark:border-border-dark">
             <FiMapPin />
             <span>Seattle, WA</span>
           </div>
 
           {lastCommit && (
-            <div className="meta-pill bg-white text-gray-500 border-gray-200
-                            dark:bg-neutral-900 dark:text-gray-300 dark:border-neutral-700">
+            <div className="meta-pill bg-background-0 text-text-neutral-600 border-border-light
+                            dark:bg-darkSurface dark:text-darkMuted dark:border-border-dark">
               <FiClock />
-              <span className="uppercase tracking-wide">
-                Last Commit · {lastCommit}
+              <span className="tracking-wide">
+                Last Commit: {lastCommit}
               </span>
             </div>
           )}
@@ -80,7 +80,7 @@ export default function Home() {
         {/* Bottom content */}
         <div className="flex flex-col w-full md:w-1/2 gap-4">
           <motion.h1
-            className="font-heading font-medium italic text-black dark:text-white text-4xl md:text-5xl lg:text-6xl mb-4"
+            className="font-heading font-medium italic text-text-primary dark:text-darkText text-4xl md:text-5xl lg:text-6xl mb-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -88,26 +88,25 @@ export default function Home() {
             Jada Nguyen
           </motion.h1>
 
-
           <motion.p
-            className="font-satoshi text-gray-800 dark:text-gray-300 text-base md:text-lg"
+            className="font-body text-text-neutral-800 dark:text-darkMuted text-base md:text-lg"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
             Product designer{" "}
-            <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>
+            <span className="text-accent" style={{ fontWeight: 500 }}>
               shaping consumer experiences
             </span>{" "}
             — aligning systems, visual craft, and thoughtful product decisions that scale. Bringing{" "}
-            <span className="text-[#183ED8]" style={{ fontWeight: 500 }}>
+            <span className="text-accent" style={{ fontWeight: 500 }}>
               delight
             </span>{" "}
             to consumer apps, enterprise systems, and complex workflows.
           </motion.p>
 
           <motion.p
-            className="text-sm md:text-base text-gray-500 flex flex-wrap items-center gap-1"
+            className="text-sm md:text-base text-text-neutral-600 flex flex-wrap items-center gap-1"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -134,14 +133,14 @@ export default function Home() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary dark:bg-white dark:text-black dark:hover:bg-gray-200"
+              className="btn-primary dark:bg-darkText dark:text-background-0 dark:hover:bg-darkMuted"
             >
               Resume <FiArrowRight />
             </a>
 
             <a
               href="/readme"
-              className="link dark:text-gray-300 dark:hover:text-white"
+              className="link dark:text-darkMuted dark:hover:text-background-0"
             >
               Read.me <FiArrowRight />
             </a>

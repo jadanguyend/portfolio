@@ -29,7 +29,7 @@ export default function Layout({ children, footer }) {
   const radius = useTransform(scrollPercent, [0.7, 0.9], [0, 32]);
 
   return (
-    <div className="relative min-h-screen bg-[#183ED8]">
+    <div className="relative min-h-screen" style={{ backgroundColor: "var(--accent-color)" }}>
       {/* Animated card */}
       <motion.div
         style={{
