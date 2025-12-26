@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
-export default function Layout({ children, footer }) {
+const Layout = forwardRef(function Layout({ children, footer }, ref) {
   const scrollY = useMotionValue(0);
   const [docHeight, setDocHeight] = useState(0);
 
@@ -21,17 +21,15 @@ export default function Layout({ children, footer }) {
     };
   }, [scrollY]);
 
-  // Scroll percentage from 0 → 1
   const scrollPercent = useTransform(scrollY, [0, docHeight || 1], [0, 1]);
-
-  // Card animation
   const scale = useTransform(scrollPercent, [0.7, 0.9], [1, 0.95]);
   const radius = useTransform(scrollPercent, [0.7, 0.9], [0, 32]);
 
   return (
     <div
+      ref={ref}
       className="relative min-h-screen"
-      style={{ backgroundColor: "var(--accent-color)" }} // keep accent color for background/transition
+      style={{ backgroundColor: "var(--accent-color)" }}
     >
       {/* Animated card */}
       <motion.div
@@ -42,15 +40,13 @@ export default function Layout({ children, footer }) {
         }}
         className="relative z-10 bg-grayLight-50 dark:bg-grayDark-50 pt-24"
       >
-        <div className="container">
-          {children}
-        </div>
+        <div className="container">{children}</div>
       </motion.div>
 
       {/* Footer sits outside the card */}
-      <div className="relative z-10">
-        {footer}
-      </div>
+      <div className="relative z-10">{footer}</div>
     </div>
   );
-}
+});
+
+export default Layout;

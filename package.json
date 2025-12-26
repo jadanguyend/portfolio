@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "homepage": "https://jadanguyend.github.io/portfolio", 
+  "homepage": "https://jadanguyend.github.io/portfolio",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/generateLastCommit.js && vite build",
@@ -29,6 +29,7 @@
     "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.3.5",
-    "vite": "^6.4.1"
+    "vite": "^6.4.1",
+    "vite-plugin-svgr": "^4.5.0"
   }
 }
