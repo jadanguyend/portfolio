@@ -5,9 +5,27 @@ import project2Img from "../assets/project2.png";
 import project3Img from "../assets/project3.png";
 
 const projects = [
-  { title: "Nomo", description: "Helping individuals address food waste by through social accountability and personal ownership", tags: ["Redesign", "UI/UX"], image: project1Img },
-  { title: "Beesi", description: "Enabling owners to better promote their business and navigate social media algorithms", tags: ["B2B Design", "Web App"], image: project2Img },
-  { title: "VietQ", description: "A website for the Vietnamese queer community in Seattle to improve usability", tags: ["Mobile App", "Redesign"], image: project3Img },
+  {
+    title: "Nomo",
+    description:
+      "Helping individuals address food waste through social accountability and personal ownership",
+    tags: ["Redesign", "UI/UX"],
+    image: project1Img,
+  },
+  {
+    title: "Beesi",
+    description:
+      "Enabling owners to better promote their business and navigate social media algorithms",
+    tags: ["B2B Design", "Web App"],
+    image: project2Img,
+  },
+  {
+    title: "VietQ",
+    description:
+      "A website for the Vietnamese queer community in Seattle to improve usability",
+    tags: ["Mobile App", "Redesign"],
+    image: project3Img,
+  },
 ];
 
 export default function ProjectsSection() {
@@ -24,23 +42,30 @@ export default function ProjectsSection() {
             <p className="project-card-desc">{project.description}</p>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, i) => (
-                <span key={i} className="project-card-tag">{tag}</span>
+                <span key={i} className="project-card-tag">
+                  {tag}
+                </span>
               ))}
             </div>
           </div>
 
           <div className="project-card-right">
-            <img src={project.image} alt={project.title} className="project-card-img" />
+            <img
+              src={project.image}
+              alt={project.title}
+              className="project-card-img"
+            />
           </div>
         </motion.div>
       ))}
 
+      {/* CTA card */}
       <motion.div
-        className="project-card-cta group"
+        className="project-card-cta group transition-colors duration-300"
         whileHover={{ scale: 1 }}
       >
         <div className="flex flex-col items-center justify-center gap-4 h-72 md:h-96 text-center w-full">
-          <p className="text-lg md:text-xl font-body">
+          <p className="text-lg md:text-xl font-bodyransition-colors duration-300">
             Let’s create something{" "}
             <span
               className="font-heading text-accent"
@@ -55,7 +80,6 @@ export default function ProjectsSection() {
           </a>
         </div>
       </motion.div>
-
     </section>
   );
 }

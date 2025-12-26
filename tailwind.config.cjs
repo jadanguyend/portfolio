@@ -1,3 +1,4 @@
+// tailwind.config.js
 module.exports = {
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -26,26 +27,33 @@ module.exports = {
         accent: "var(--accent-color)",
         accent2: "var(--accent-color-2)",
 
-        /* Grayscale unified for background, text, border */
-        gray: {
-          0: "#FFFFFF",     // background 0
-          50: "#FAFAFA",    // background 50
-          100: "#F2F2F2",   // background 100
-          300: "#BDBDBD",   
-          400: "#A3A3A3",
+        /* ---------------- LIGHT MODE GRAYS ---------------- */
+        grayLight: {
+          50: "#FAFAFA",
+          100: "#F4F4F4",
+          200: "#E4E4E4",
+          300: "#CFCFCF",
+          400: "#A8A8A8",
           500: "#8C8C8C",
-          600: "#737373",
-          700: "#4D4D4D",   // neutral 700
-          800: "#2A2A2A",   // neutral 800
-          light: "#EDEDED", // border light
-          dark: "#D6D6D6",  // border dark
-          text: "#1F1F1F",  // primary text
+          600: "#6E6E6E",
+          700: "#4F4F4F",
+          800: "#333333",
+          900: "#1A1A1A",
         },
 
-        darkBg: "#151515",
-        darkSurface: "#1A1A1A",
-        darkText: "#F2F2F2",
-        darkMuted: "#ABABAB",
+        /* ---------------- DARK MODE GRAYS ---------------- */
+        grayDark: {
+          50: "#1A1A1A",
+          100: "#2C2C2C",
+          200: "#3D3D3D",
+          300: "#555555",
+          400: "#707070",
+          500: "#8A8A8A",
+          600: "#A5A5A5",
+          700: "#C0C0C0",
+          800: "#DADADA",
+          900: "#F0F0F0",
+        },
       },
     },
   },

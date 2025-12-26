@@ -456,7 +456,8 @@
     font-family: "SF Pro", sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
-    @apply bg-white text-black dark:bg-darkBg dark:text-darkText;
+    /* Use neutral gray palette instead of white/black */
+    @apply bg-grayLight-50 text-grayLight-800 dark:bg-grayDark-50 dark:text-grayDark-900;
   }
   main, section {
     @apply container;
@@ -475,7 +476,6 @@
   h4 { font-family: "GT Alpina Standard", serif; font-weight: 500; font-style: italic; line-height: 1.2; font-size: clamp(1.125rem, 2vw, 1.75rem); }
   h5 { font-family: "GT Alpina Standard", serif; font-weight: 400; font-style: italic; line-height: 1.2; font-size: clamp(1rem, 1.5vw, 1.25rem); }
   h6 { font-family: "GT Alpina Standard", serif; font-weight: 400; font-style: italic; line-height: 1.1; font-size: clamp(0.85rem, 1.2vw, 1rem); }
-
 
   p { font-size: clamp(0.875rem, 2vw, 1rem); }
 
@@ -506,21 +506,30 @@
 
 
 
+
 @layer components {
   .meta-pill {
     @apply font-sfmono inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border transition-colors;
-  }
 
+    /* Use gray palette for border in light and dark mode */
+    @apply border-grayLight-200 dark:border-grayDark-200;
+
+    /* Use gray palette for text in light and dark mode */
+    @apply text-grayLight-500 dark:text-grayDark-500;
+
+    /* Optional: background neutral for pill */
+    @apply bg-grayLight-50 dark:bg-grayDark-50;
+  }
 
   .nav-link {
     @apply font-body font-medium text-sm uppercase tracking-wide transition-colors;
 
-    /* Base text color */
-    color: black;
+    /* Base text color from gray palette */
+    @apply text-grayLight-800;
 
     /* Dark mode text color */
     .dark & {
-      color: #F2F2F2;
+      @apply text-grayDark-100;
     }
 
     /* Hover uses accent variable */
@@ -529,6 +538,7 @@
     }
   }
 }
+
 
 @keyframes caret-blink {
   0%,
@@ -560,57 +570,54 @@
 /* =========================
    BUTTONS
 ========================= */
+
 /* Primary Button */
 .btn-primary {
   @apply inline-flex items-center gap-2.5 px-5 py-3 rounded-[24px] font-medium transition-colors duration-200;
-  background-color: #1F1F1F; /* text primary / dark black */
-  color: #FFFFFF; /* white text */
+
+  /* Light mode */
+  @apply bg-grayLight-900 text-grayLight-50;
+
+  svg {
+    @apply text-current;
+  }
 }
 
 .btn-primary:hover {
-  background-color: #4D4D4D; /* neutral 700 hover */
-}
-
-.btn-primary svg {
-  color: inherit;
+  @apply bg-grayLight-700;
 }
 
 /* Dark mode override */
 .dark .btn-primary {
-  background-color: #F2F2F2; /* background 100 */
-  color: #1F1F1F; /* text primary black */
+  @apply bg-grayDark-900 text-grayDark-50;
 }
 
 .dark .btn-primary:hover {
-  background-color: #737373; /* neutral 600 hover */
+  @apply bg-grayDark-700;
 }
+
 
 /* Secondary Button (outline) */
 .btn-secondary {
-  @apply inline-flex items-center gap-2.5 px-5 py-3 rounded-[24px] font-medium transition-colors duration-200;
-  background-color: #FFFFFF; /* background 0 */
-  color: #1F1F1F; /* text primary black */
-  border: 1px solid #EDEDED; /* border light */
+  @apply inline-flex items-center gap-2.5 px-5 py-3 rounded-[24px] font-medium transition-colors duration-200 border;
+
+  /* Light mode */
+  @apply bg-grayLight-50 text-grayLight-900 border-grayLight-200;
 }
 
 .btn-secondary:hover {
-  background-color: #1F1F1F; /* text primary black */
-  color: #FFFFFF; /* white text */
-  border-color: #1F1F1F;
+  @apply bg-grayLight-900 text-grayLight-50 border-grayLight-900;
 }
 
 /* Dark mode override */
 .dark .btn-secondary {
-  background-color: #1A1A1A; /* darkSurface */
-  color: #F2F2F2; /* darkText */
-  border-color: #D6D6D6; /* border dark */
+  @apply bg-grayDark-50 text-grayDark-100 border-grayDark-200;
 }
 
 .dark .btn-secondary:hover {
-  background-color: #F2F2F2; /* background 100 */
-  color: #1F1F1F;
-  border-color: #737373; /* neutral 600 */
+  @apply bg-grayDark-100 text-grayDark-900 border-grayDark-600;
 }
+
 
 
 /* =========================
@@ -621,7 +628,7 @@
   align-items: center;
   gap: 6px;
   font-weight: 500;
-  color: #000000;
+  @apply text-grayLight-800 dark:text-grayDark-800;
   position: relative;
   transition: color 0.2s ease;
 }
@@ -644,89 +651,81 @@
 }
 
 .link svg {
-  color: inherit;
+  @apply text-current;
 }
 
 /* Global body defaults */
 body {
-  @apply bg-white text-black dark:bg-darkBg dark:text-darkText;
-  
-  /* Optional: use accent variable as background */
-  background-color: var(--accent-color);
+  @apply bg-grayLight-50 text-grayLight-800 dark:bg-grayDark-50 dark:text-grayDark-900;
 
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
 }
 
 .project-card {
-  background-color: #f5f5f5;
-  padding: 1rem;
-  border-radius: 1rem;
+  @apply grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 p-5 rounded-[16px] border transition-colors duration-300;
+  @apply border-grayLight-300 dark:border-grayDark-200;
+  @apply bg-grayLight-100 dark:bg-grayDark-50;
 }
 
-@layer components {
-  /* Project card container */
-  .project-card {
-    @apply grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 p-5 rounded-[16px] border transition-colors duration-300;
-    border-color: #D6D6D6;
-    background-color: #FAFAFA;
-    color: #1F1F1F;
-  }
-
-  .project-card:hover {
-    background-color: #000000;
-    color: #FFFFFF;
-  }
-
-  /* Project card left side */
-  .project-card-left {
-    @apply col-span-1 md:col-span-4 flex flex-col gap-2 w-full;
-  }
-
-  /* Project title */
-  .project-card-title {
-    @apply text-2xl md:text-3xl font-heading font-medium italic;
-    color: inherit;
-  }
-
-  /* Project description */
-  .project-card-desc {
-    @apply text-sm md:text-base;
-    color: inherit;
-  }
-
-  /* Project tags */
-  .project-card-tag {
-    @apply px-3 py-1 border rounded-full text-sm md:text-base;
-    border-color: #D6D6D6;
-    color: inherit;
-  }
-
-  /* Project card right side (image wrapper) */
-  .project-card-right {
-    @apply col-span-1 md:col-span-8 mt-4 md:mt-0 w-full;
-  }
-
-  /* Image */
-  .project-card-img {
-    @apply w-full h-auto md:h-96 object-cover rounded-[12px];
-  }
-
-  /* Empty / CTA card overrides */
-  .project-card-cta {
-    @apply flex flex-col items-center justify-center p-6 md:p-8 rounded-[16px] border-2 border-dashed transition-colors duration-300;
-    border-color: #D6D6D6;        /* border dark */
-    background-color: #FAFAFA;    /* background 50 */
-    color: #1F1F1F;
-    grid-template-columns: 1fr;    /* full width content */
-    gap: 0;                        /* no internal gap like project cards */
-  }
-
-  .project-card-cta:hover {
-    background-color: #000000;
-    color: #FFFFFF;
-  }
+.project-card:hover {
+  @apply bg-grayLight-900 dark:bg-grayDark-900;
+  @apply text-grayLight-50 dark:text-grayDark-50;
 }
+
+/* Left side of card */
+.project-card-left {
+  @apply col-span-1 md:col-span-4 flex flex-col gap-2 w-full;
+}
+
+/* Project title */
+.project-card-title {
+  @apply text-2xl md:text-3xl font-heading font-medium italic;
+  @apply text-grayLight-800 dark:text-grayDark-800;
+  @apply group-hover:text-grayLight-100 dark:group-hover:text-grayDark-100;
+}
+
+/* Project description */
+.project-card-desc {
+  @apply text-sm md:text-base;
+  @apply text-grayLight-600 dark:text-grayDark-600;
+  @apply group-hover:text-grayLight-300 dark:group-hover:text-grayDark-300;
+}
+
+/* Project tags */
+.project-card-tag {
+  @apply px-3 py-1 border rounded-full text-sm md:text-base;
+  @apply border-grayLight-300 dark:border-grayDark-300;
+  @apply text-grayLight-600 dark:text-grayDark-600;
+  @apply group-hover:text-grayLight-300 dark:group-hover:text-grayDark-300;
+}
+
+/* Right side (image) */
+.project-card-right {
+  @apply col-span-1 md:col-span-8 mt-4 md:mt-0 w-full;
+}
+
+/* Image styling */
+.project-card-img {
+  @apply w-full h-auto md:h-96 object-cover rounded-[12px];
+}
+
+/* CTA card */
+.project-card-cta {
+  @apply flex flex-col items-center justify-center p-6 md:p-8 rounded-[16px] border-2 border-dashed transition-colors duration-300;
+  @apply border-grayLight-300 dark:border-grayDark-300;
+  @apply bg-grayLight-100 dark:bg-grayDark-50;
+  @apply text-grayLight-900 dark:text-grayDark-900;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.project-card-cta:hover {
+  @apply bg-grayLight-200 dark:bg-grayDark-100;
+  @apply text-grayLight-900 dark:text-grayDark-900;
+}
+
+
 
 
 

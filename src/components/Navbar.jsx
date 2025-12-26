@@ -53,64 +53,98 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-background-0/30 dark:bg-darkBg/30 backdrop-blur-md shadow-sm">
-      <div className="container py-4 flex justify-between items-center relative">
-        {/* Left */}
-        <Link to="/" className="nav-link">
-          <span className="bracket">[</span>
-          jadanguyend
-          <span className="bracket">]</span>
-        </Link>
-
-        {/* Hamburger (mobile) */}
-        <button
-          className="md:hidden p-2 rounded-md hover:bg-background-50 dark:hover:bg-darkSurface transition"
-          onClick={() => setMenuOpen(!menuOpen)}
+    <header className="fixed top-4 left-0 right-0 z-50 pointer-events-none">
+      <div className="container pointer-events-auto">
+        <div
+          className="
+            relative
+            rounded-xl
+            bg-grayLight-50/30 dark:bg-grayDark-50/30
+            backdrop-blur-md
+            border border-grayLight-300/30 dark:border-grayDark-300/30
+            transition-colors
+          "
         >
-          {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
-        </button>
+          <div className="flex items-center justify-between px-6 py-4">
+            {/* Left */}
+            <Link to="/" className="nav-link text-grayLight-900 dark:text-grayDark-900">
+              <span className="bracket">[</span>
+              jadanguyend
+              <span className="bracket">]</span>
+            </Link>
 
-        {/* Right */}
-        <nav
-          ref={menuRef}
-          className={`
-            absolute md:static top-full left-0
-            w-full md:w-auto
-            flex flex-col md:flex-row items-center
-            bg-background-0 dark:bg-darkBg md:bg-transparent md:dark:bg-transparent
-            border-b md:border-none border-border-light dark:border-border-dark
-            transition-all duration-300
-            ${menuOpen ? "flex" : "hidden md:flex"}
-          `}
-        >
-          {/* Top spacing (mobile) */}
-          <div className="md:hidden h-2" />
-
-          <div className="flex flex-col md:flex-row items-center md:gap-6">
-            {navItems.map((item) => (
-              <Link key={item.label} to={item.path} className="nav-link">
-                <span className="bracket">[</span>
-                {item.label}
-                <span className="bracket">]</span>
-              </Link>
-            ))}
-
+            {/* Hamburger (mobile) */}
             <button
-              onClick={toggleTheme}
-              aria-label="Toggle dark mode"
-              className="ml-2 hover:text-accent dark:hover:text-accent transition transform active:scale-110"
+              className="md:hidden p-2 rounded-md hover:bg-grayLight-100/50 dark:hover:bg-grayDark-100/50 transition-colors"
+              onClick={() => setMenuOpen(!menuOpen)}
             >
-              {isDark ? <RiSunFill size={18} /> : <RiMoonFill size={18} />}
+              {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
             </button>
+
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-6">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.path}
+                  className="nav-link text-grayLight-900 dark:text-grayDark-900 hover:text-accent dark:hover:text-accent transition-colors"
+                >
+                  <span className="bracket">[</span>
+                  {item.label}
+                  <span className="bracket">]</span>
+                </Link>
+              ))}
+
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle dark mode"
+                className="hover:text-accent dark:hover:text-accent transition-colors"
+              >
+                {isDark ? <RiSunFill size={18} /> : <RiMoonFill size={18} />}
+              </button>
+            </nav>
           </div>
 
-          {/* Bottom spacing (mobile) */}
-          <div className="md:hidden h-4" />
-        </nav>
-      </div>
+          {/* Mobile Menu */}
+          {menuOpen && (
+            <nav
+              ref={menuRef}
+              className="
+                md:hidden
+                border-t border-grayLight-300 dark:border-grayDark-300
+                bg-grayLight-50/80 dark:bg-grayDark-50/80
+                backdrop-blur-md
+                rounded-b-2xl
+                transition-colors
+              "
+            >
+              <div className="flex flex-col items-center gap-4 py-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.path}
+                    className="nav-link text-grayLight-900 dark:text-grayDark-100 hover:text-accent dark:hover:text-accent transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <span className="bracket">[</span>
+                    {item.label}
+                    <span className="bracket">]</span>
+                  </Link>
+                ))}
 
-      {/* Bottom divider */}
-      <div className="h-px w-full bg-border-light dark:bg-border-dark" />
+                <button
+                  onClick={toggleTheme}
+                  aria-label="Toggle dark mode"
+                  className="hover:text-accent dark:hover:text-accent transition-colors"
+                >
+                  {isDark ? <RiSunFill size={18} /> : <RiMoonFill size={18} />}
+                </button>
+              </div>
+            </nav>
+          )}
+        </div>
+      </div>
     </header>
+
   );
 }

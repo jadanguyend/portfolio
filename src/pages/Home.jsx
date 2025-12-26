@@ -60,15 +60,13 @@ export default function Home() {
       <section className="container relative min-h-[80vh] py-8 flex flex-col justify-between">
         {/* Top meta */}
         <div className="flex flex-wrap gap-3 mb-6">
-          <div className="meta-pill bg-background-0 text-text-neutral-600 border-border-light
-                          dark:bg-darkSurface dark:text-darkMuted dark:border-border-dark">
+          <div className="meta-pill">
             <FiMapPin />
             <span>Seattle, WA</span>
           </div>
 
           {lastCommit && (
-            <div className="meta-pill bg-background-0 text-text-neutral-600 border-border-light
-                            dark:bg-darkSurface dark:text-darkMuted dark:border-border-dark">
+            <div className="meta-pill">
               <FiClock />
               <span className="tracking-wide">
                 Last Commit: {lastCommit}

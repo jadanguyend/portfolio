@@ -29,7 +29,10 @@ export default function Layout({ children, footer }) {
   const radius = useTransform(scrollPercent, [0.7, 0.9], [0, 32]);
 
   return (
-    <div className="relative min-h-screen" style={{ backgroundColor: "var(--accent-color)" }}>
+    <div
+      className="relative min-h-screen"
+      style={{ backgroundColor: "var(--accent-color)" }} // keep accent color for background/transition
+    >
       {/* Animated card */}
       <motion.div
         style={{
@@ -37,9 +40,8 @@ export default function Layout({ children, footer }) {
           borderBottomLeftRadius: radius,
           borderBottomRightRadius: radius,
         }}
-        className="relative z-10 bg-white dark:bg-darkBg pt-24"
+        className="relative z-10 bg-grayLight-50 dark:bg-grayDark-50 pt-24"
       >
-        {/* ✅ THIS IS THE IMPORTANT PART */}
         <div className="container">
           {children}
         </div>
