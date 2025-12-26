@@ -6,6 +6,7 @@ import project3Img from "../assets/project3.png";
 
 const projects = [
   {
+    type: "Mobile App",
     title: "Nomo",
     description:
       "Helping individuals address food waste through social accountability and personal ownership",
@@ -13,6 +14,7 @@ const projects = [
     image: project1Img,
   },
   {
+    type: "Mobile App",
     title: "Beesi",
     description:
       "Enabling owners to better promote their business and navigate social media algorithms",
@@ -20,6 +22,7 @@ const projects = [
     image: project2Img,
   },
   {
+    type: "Website Redesign",
     title: "VietQ",
     description:
       "A website for the Vietnamese queer community in Seattle to improve usability",
@@ -37,10 +40,17 @@ export default function ProjectsSection() {
           className="project-card group"
           whileHover={{ scale: 1 }}
         >
-          <div className="project-card-left">
-            <h2 className="project-card-title">{project.title}</h2>
-            <p className="project-card-desc">{project.description}</p>
-            <div className="flex flex-wrap gap-2">
+          {/* Left side */}
+          <div className="project-card-left flex flex-col justify-between h-full">
+            {/* Top section */}
+            <div className="card-left-top flex flex-col gap-2">
+              <p className="project-card-type">{project.type}</p>
+              <h2 className="project-card-title">{project.title}</h2>
+              <p className="project-card-desc">{project.description}</p>
+            </div>
+
+            {/* Bottom section (tags) */}
+            <div className="card-left-bottom flex flex-wrap gap-2 mt-4">
               {project.tags.map((tag, i) => (
                 <span key={i} className="project-card-tag">
                   {tag}
@@ -49,6 +59,7 @@ export default function ProjectsSection() {
             </div>
           </div>
 
+          {/* Right side (image) */}
           <div className="project-card-right">
             <img
               src={project.image}
@@ -59,27 +70,24 @@ export default function ProjectsSection() {
         </motion.div>
       ))}
 
-      {/* CTA card */}
-      <motion.div
-        className="project-card-cta group transition-colors duration-300"
-        whileHover={{ scale: 1 }}
-      >
-        <div className="flex flex-col items-center justify-center gap-4 h-72 md:h-96 text-center w-full">
-          <p className="text-lg md:text-xl font-bodyransition-colors duration-300">
-            Let’s create something{" "}
-            <span
-              className="font-heading text-accent"
-              style={{ fontStyle: "italic", fontWeight: 500 }}
+        {/* CTA card */}
+        <motion.div
+          className="project-card-cta group transition-colors duration-300"
+          whileHover={{ scale: 1 }}
+        >
+          <div className="flex flex-col items-center justify-center gap-4 h-72 md:h-96 text-center w-full">
+            <p className="text-lg md:text-xl transition-colors duration-300">
+              Let’s create something great together!
+            </p>
+            <a
+              href="/contact"
+              className="btn-primary font-ibm transition-all duration-300 hover:scale-105"
             >
-              great
-            </span>{" "}
-            together!
-          </p>
-          <a href="/contact" className="btn-primary">
-            Connect
-          </a>
-        </div>
-      </motion.div>
+              Connect
+            </a>
+          </div>
+        </motion.div>
+
     </section>
   );
 }

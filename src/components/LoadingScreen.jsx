@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const TEXT = "jadanguyend";
+const TEXT = "[JADANGUYEND]";
 const TYPING_SPEED = 65;      // slightly faster
 const CARET_DELAY = 900;     // pause after typing
 const EXIT_DURATION = 450;   // fade duration
@@ -40,7 +40,7 @@ export default function LoadingScreen({ onComplete }) {
       `}
       style={{ transitionDuration: `${EXIT_DURATION}ms` }}
     >
-      <h1 className="text-4xl md:text-6xl font-heading italic text-black tracking-tight flex items-center">
+      <h1 className="text-4xl md:text-6xl font-heading text-black tracking-tight flex items-center">
         <span>{displayedText}</span>
 
         {showCaret && (

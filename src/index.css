@@ -195,121 +195,6 @@
   font-style: italic;
 }
 
-/* ================================
-   Messina Sans Mono
-   ================================ */
-
-@font-face {
-  font-family: "Messina Sans Mono";
-  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Book.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Messina Sans Mono";
-  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Light.otf") format("opentype");
-  font-weight: 300;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Messina Sans Mono";
-  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Messina Sans Mono";
-  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-SemiBold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Messina Sans Mono";
-  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Messina Sans Mono";
-  src: url("./assets/fonts/MessinaSansMono/MessinaSansMono-Black.otf") format("opentype");
-  font-weight: 900;
-  font-style: normal;
-}
-
-/* SF Mono */
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-RegularItalic.otf") format("opentype");
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-Light.otf") format("opentype");
-  font-weight: 300;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-LightItalic.otf") format("opentype");
-  font-weight: 300;
-  font-style: italic;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-Medium.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-MediumItalic.otf") format("opentype");
-  font-weight: 500;
-  font-style: italic;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-Semibold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-SemiboldItalic.otf") format("opentype");
-  font-weight: 600;
-  font-style: italic;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-Bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-BoldItalic.otf") format("opentype");
-  font-weight: 700;
-  font-style: italic;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-Heavy.otf") format("opentype");
-  font-weight: 900;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Mono";
-  src: url("./assets/fonts/SFMono/SFMono-HeavyItalic.otf") format("opentype");
-  font-weight: 900;
-  font-style: italic;
-}
-
 /* SF Pro Text */
 @font-face {
   font-family: "SF Pro Text";
@@ -420,6 +305,105 @@
   font-style: italic;
 }
 
+/* Thin */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-ThinItalic.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* Extra Light */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-ExtraLightItalic.otf") format("opentype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+/* Light */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Regular */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Medium */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-SemiBoldItalic.otf") format("opentype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* Bold */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM-Plex-Mono/IBMPlexMono-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+
 
 
 /* ================================
@@ -454,7 +438,6 @@
     margin: 0;
     padding: 0;
     font-family: "SF Pro", sans-serif;
-    line-height: 1.6;
     overflow-x: hidden;
     /* Use neutral gray palette instead of white/black */
     @apply bg-grayLight-50 text-grayLight-800 dark:bg-grayDark-50 dark:text-grayDark-900;
@@ -470,12 +453,12 @@
   }
   
   /* Global responsive headings */
-  h1 { font-family: "GT Alpina Standard", serif; font-weight: 500; font-style: italic; line-height: 1.1; font-size: clamp(2.8rem, 6vw, 5rem); }
-  h2 { font-family: "GT Alpina Standard", serif; font-weight: 500; font-style: italic; line-height: 1.15; font-size: clamp(2rem, 4.5vw, 3rem); }
-  h3 { font-family: "GT Alpina Standard", serif; font-weight: 500; font-style: italic; font-size: clamp(1.6rem, 3.5vw, 2rem); }
-  h4 { font-family: "GT Alpina Standard", serif; font-weight: 500; font-style: italic; line-height: 1.2; font-size: clamp(1.125rem, 2vw, 1.75rem); }
-  h5 { font-family: "GT Alpina Standard", serif; font-weight: 400; font-style: italic; line-height: 1.2; font-size: clamp(1rem, 1.5vw, 1.25rem); }
-  h6 { font-family: "GT Alpina Standard", serif; font-weight: 400; font-style: italic; line-height: 1.1; font-size: clamp(0.85rem, 1.2vw, 1rem); }
+  h1 { font-family: "IMP Plex Mono", monospace; font-weight: 600; font-style: normal; line-height: 1.1; font-size: clamp(2.8rem, 6vw, 5rem); }
+  h2 { font-family: "IMP Plex Mono", monospace; font-weight: 500; font-style: normal; line-height: 1.15; font-size: clamp(2rem, 4.5vw, 3rem); }
+  h3 { font-family: "IMP Plex Mono", monospace; font-weight: 500; font-style: normal; font-size: clamp(1.6rem, 3.5vw, 2rem); }
+  h4 { font-family: "IMP Plex Mono", monospace; font-weight: 500; font-style: normal; line-height: 1.2; font-size: clamp(1.125rem, 2vw, 1.75rem); }
+  h5 { font-family: "IMP Plex Mono", monospace; font-weight: 400; font-style: normal; line-height: 1.2; font-size: clamp(1rem, 1.5vw, 1.25rem); }
+  h6 { font-family: "IMP Plex Mono", monospace; font-weight: 400; font-style: normal; line-height: 1.1; font-size: clamp(0.85rem, 1.2vw, 1rem); }
 
   p { font-size: clamp(0.875rem, 2vw, 1rem); }
 
@@ -509,7 +492,7 @@
 
 @layer components {
   .meta-pill {
-    @apply font-sfmono inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border transition-colors;
+    @apply font-mono inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border transition-colors;
 
     /* Use gray palette for border in light and dark mode */
     @apply border-grayLight-200 dark:border-grayDark-200;
@@ -662,6 +645,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ---------------------------
+   Project Card Styles
+---------------------------- */
 .project-card {
   @apply grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 p-5 rounded-[16px] border transition-colors duration-300;
   @apply border-grayLight-300 dark:border-grayDark-200;
@@ -673,31 +659,52 @@ body {
   @apply text-grayLight-50 dark:text-grayDark-50;
 }
 
-/* Left side of card */
+/* Left side */
 .project-card-left {
-  @apply col-span-1 md:col-span-4 flex flex-col gap-2 w-full;
+  @apply col-span-1 md:col-span-4 flex flex-col justify-between w-full;
 }
 
-/* Project title */
+/* Top section */
+.card-left-top {
+  @apply flex flex-col gap-2;
+}
+
+/* Bottom section */
+.card-left-bottom {
+  @apply flex flex-wrap gap-2 mt-4;
+}
+
+/* Project type */
+.project-card-type {
+  @apply text-xs font-mono;
+  @apply text-grayLight-500 dark:text-grayDark-500;
+  @apply group-hover:text-grayLight-300 dark:group-hover:text-grayDark-300;
+}
+
+/* Project title (normal, not italic) */
 .project-card-title {
-  @apply text-2xl md:text-3xl font-heading font-medium italic;
+  @apply text-2xl md:text-3xl font-body font-medium;
+  letter-spacing: -0.05em; /* -5% kerning */
+  line-height: 1.1;
   @apply text-grayLight-800 dark:text-grayDark-800;
   @apply group-hover:text-grayLight-100 dark:group-hover:text-grayDark-100;
 }
 
 /* Project description */
 .project-card-desc {
-  @apply text-sm md:text-base;
+  @apply text-sm md:text-base font-body;
+  line-height: 1.2;
   @apply text-grayLight-600 dark:text-grayDark-600;
   @apply group-hover:text-grayLight-300 dark:group-hover:text-grayDark-300;
 }
 
 /* Project tags */
 .project-card-tag {
-  @apply px-3 py-1 border rounded-full text-sm md:text-base;
-  @apply border-grayLight-300 dark:border-grayDark-300;
+  @apply px-3 py-1 rounded-full text-xs md:text-xs font-mono;
+  @apply border border-grayLight-300 dark:border-grayDark-300; /* explicitly set border */
   @apply text-grayLight-600 dark:text-grayDark-600;
   @apply group-hover:text-grayLight-300 dark:group-hover:text-grayDark-300;
+  background-color: transparent; /* optional: keep background neutral */
 }
 
 /* Right side (image) */
@@ -705,7 +712,7 @@ body {
   @apply col-span-1 md:col-span-8 mt-4 md:mt-0 w-full;
 }
 
-/* Image styling */
+/* Image */
 .project-card-img {
   @apply w-full h-auto md:h-96 object-cover rounded-[12px];
 }
@@ -716,14 +723,22 @@ body {
   @apply border-grayLight-300 dark:border-grayDark-300;
   @apply bg-grayLight-100 dark:bg-grayDark-50;
   @apply text-grayLight-900 dark:text-grayDark-900;
-  grid-template-columns: 1fr;
-  gap: 0;
+  @apply grid grid-cols-1 gap-0;
 }
 
 .project-card-cta:hover {
   @apply bg-grayLight-200 dark:bg-grayDark-100;
   @apply text-grayLight-900 dark:text-grayDark-900;
 }
+
+/* Optional: extra styling for inline code-like text (if you want more control) */
+.code-inline {
+  @apply font-mono bg-grayLight-200 dark:bg-grayDark-100 px-2 py-1 rounded text-accent;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
 
 

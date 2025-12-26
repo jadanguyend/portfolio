@@ -67,7 +67,7 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between px-6 py-4">
             {/* Left */}
-            <Link to="/" className="nav-link text-grayLight-900 dark:text-grayDark-900">
+            <Link to="/" className="nav-link text-grayLight-900 dark:text-grayDark-900 font-mono">
               <span className="bracket">[</span>
               jadanguyend
               <span className="bracket">]</span>
@@ -75,7 +75,7 @@ export default function Navbar() {
 
             {/* Hamburger (mobile) */}
             <button
-              className="md:hidden p-2 rounded-md hover:bg-grayLight-100/50 dark:hover:bg-grayDark-100/50 transition-colors"
+              className="md:hidden p-2 rounded-md hover:bg-grayLight-100/50 dark:hover:bg-grayDark-100/50 transition-colors font-mono"
               onClick={() => setMenuOpen(!menuOpen)}
             >
               {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
@@ -87,7 +87,7 @@ export default function Navbar() {
                 <Link
                   key={item.label}
                   to={item.path}
-                  className="nav-link text-grayLight-900 dark:text-grayDark-900 hover:text-accent dark:hover:text-accent transition-colors"
+                  className="nav-link text-grayLight-900 dark:text-grayDark-900 hover:text-accent dark:hover:text-accent transition-colors font-mono"
                 >
                   <span className="bracket">[</span>
                   {item.label}
@@ -123,7 +123,7 @@ export default function Navbar() {
                   <Link
                     key={item.label}
                     to={item.path}
-                    className="nav-link text-grayLight-900 dark:text-grayDark-100 hover:text-accent dark:hover:text-accent transition-colors"
+                    className="nav-link text-grayLight-900 dark:text-grayDark-100 hover:text-accent dark:hover:text-accent transition-colors font-mono"
                     onClick={() => setMenuOpen(false)}
                   >
                     <span className="bracket">[</span>

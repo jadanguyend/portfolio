@@ -78,16 +78,16 @@ export default function Home() {
         {/* Bottom content */}
         <div className="flex flex-col w-full md:w-1/2 gap-4">
           <motion.h1
-            className="font-heading font-medium italic text-text-primary dark:text-darkText text-4xl md:text-5xl lg:text-6xl mb-4"
+            className="font-heading font-semi-bold text-text-primary dark:text-darkText text-4xl md:text-5xl lg:text-6xl mb-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Jada Nguyen
+            [JADANGUYEND]
           </motion.h1>
 
           <motion.p
-            className="font-body text-text-neutral-800 dark:text-darkMuted text-base md:text-lg"
+            className="text-grayLight-800 dark:text-grayDark-600 text-base md:text-lg"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -104,7 +104,7 @@ export default function Home() {
           </motion.p>
 
           <motion.p
-            className="text-sm md:text-base text-text-neutral-600 flex flex-wrap items-center gap-1"
+            className="text-sm md:text-base text-grayLight-500 dark:text-grayDark-500 flex flex-wrap items-center gap-1"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}

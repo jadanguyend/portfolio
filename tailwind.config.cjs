@@ -19,9 +19,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        heading: ['"GT Alpina Standard"', "serif"],
+        heading: ['"IBM Plex Mono"', "monospace"],
         body: ["SF Pro Text", "sans-serif"],
-        sfmono: ['"Messina Sans Mono"', "monospace"],
+        mono: ['"IBM Plex Mono"', "monospace"],
       },
       colors: {
         accent: "var(--accent-color)",
