@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import LoadingScreen from "./components/LoadingScreen";
+import Nomo from "./pages/case_studies/Nomo";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,6 +15,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/case-studies/nomo" element={<Nomo />} />
       </Routes>
 
       {/* Loading overlay */}
