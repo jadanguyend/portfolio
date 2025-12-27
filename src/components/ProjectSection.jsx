@@ -33,7 +33,7 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section className="container py-24 grid gap-6 md:gap-10">
+    <section className="container py-36 grid gap-6 md:gap-10">
       {projects.map((project, index) => (
         <motion.div
           key={index}
