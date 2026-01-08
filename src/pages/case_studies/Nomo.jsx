@@ -1,6 +1,7 @@
 // src/pages/case_studies/Nomo.jsx
 import CaseStudyLayout from "../../layouts/CaseStudyLayout";
 import Hero from "../../components/case_study_blocks/Hero";
+import OverviewSection from "../../components/case_study_blocks/OverviewSection";
 import ExplainerSection from "../../components/case_study_blocks/explainer/ExplainerSection";
 import HighlightSection from "../../components/case_study_blocks/highlight/HighlightSection";
 import ProcessSection from "../../components/case_study_blocks/process/ProcessSection";
@@ -58,6 +59,16 @@ export default function Nomo() {
           contributors="Annie Chang, James Moy, Tony Ngo, Cristina Villavicencio, Ashley Zhang"
           imageSrc={project1Img}
           imageAlt="Nomo product interface"
+        />
+
+        {/* OVERVIEW */}
+        <OverviewSection
+            sectionLabel="Overview"
+            sectionId="overview"
+            title="Reducing food waste through accountability and visibility"
+            bodyPrimary="NOMO is a mobile application designed to help individuals better understand and manage their food habits through social accountability and behavioral nudges."
+            bodySecondary="By making food consumption more visible and encouraging shared ownership, NOMO aims to reduce everyday food waste while fostering more sustainable routines."
+            buttonLabel="View final design"
         />
 
         {/* EXPLAINER — RESEARCH */}

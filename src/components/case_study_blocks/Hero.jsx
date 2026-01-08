@@ -61,7 +61,7 @@ export default function Hero({
 
       {/* IMAGE */}
       {imageSrc && (
-        <div className="mt-6">
+        <div className="mt-12">
           <img
             src={imageSrc}
             alt={imageAlt}
