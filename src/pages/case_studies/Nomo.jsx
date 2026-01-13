@@ -2,10 +2,13 @@
 import CaseStudyLayout from "../../layouts/CaseStudyLayout";
 import Hero from "../../components/case_study_blocks/Hero";
 import OverviewSection from "../../components/case_study_blocks/OverviewSection";
+import PreviewSection from "../../components/case_study_blocks/PreviewSection";
 import ExplainerSection from "../../components/case_study_blocks/explainer/ExplainerSection";
 import HighlightSection from "../../components/case_study_blocks/highlight/HighlightSection";
 import ProcessSection from "../../components/case_study_blocks/process/ProcessSection";
 import QuoteSection from "../../components/case_study_blocks/QuoteSection";
+import FeatureSection from "../../components/case_study_blocks/feature/FeatureSection";
+import Footer from "../../components/Footer";
 
 // Images
 import project1Img from "../../assets/project1.png";
@@ -14,8 +17,11 @@ import researchImg2 from "../../assets/research2.png";
 import highlightImg1 from "../../assets/highlight1.png";
 import highlightImg2 from "../../assets/highlight2.png";
 import highlightImg3 from "../../assets/highlight3.png";
+import featureImg1 from "../../assets/feature1.png";
+import featureImg2 from "../../assets/feature2.png";
+import featureImg3 from "../../assets/feature3.png";
 
-// Icons from react-icons
+// Icons
 import {
   FiEye,
   FiUsers,
@@ -43,10 +49,33 @@ export default function Nomo() {
     },
   ];
 
+  const features = [
+    {
+      title: "Kitchen visibility",
+      description:
+        "Users can quickly see what food they have at home, reducing forgotten items and encouraging mindful consumption.",
+      imageSrc: featureImg1,
+      imageAlt: "Kitchen inventory feature",
+    },
+    {
+      title: "Shared accountability",
+      description:
+        "Household members can view shared food activity, reinforcing collective ownership over food decisions.",
+      imageSrc: featureImg2,
+      imageAlt: "Shared accountability feature",
+    },
+    {
+      title: "Low-friction logging",
+      description:
+        "Lightweight interactions make tracking food use feel natural rather than burdensome.",
+      imageSrc: featureImg3,
+      imageAlt: "Food logging feature",
+    },
+  ];
+
   return (
     <>
-      {/* GRID-CONSTRAINED CASE STUDY CONTENT */}
-      <CaseStudyLayout>
+      <CaseStudyLayout footer={<Footer />}>
         {/* HERO */}
         <Hero
           title="NOMO"
@@ -63,12 +92,30 @@ export default function Nomo() {
 
         {/* OVERVIEW */}
         <OverviewSection
-            sectionLabel="Overview"
-            sectionId="overview"
-            title="Reducing food waste through accountability and visibility"
-            bodyPrimary="NOMO is a mobile application designed to help individuals better understand and manage their food habits through social accountability and behavioral nudges."
-            bodySecondary="By making food consumption more visible and encouraging shared ownership, NOMO aims to reduce everyday food waste while fostering more sustainable routines."
-            buttonLabel="View final design"
+          sectionLabel="Overview"
+          sectionId="overview"
+          title="Reducing food waste through accountability and visibility"
+          bodyPrimary="NOMO is a mobile application designed to help individuals better understand and manage their food habits through social accountability and behavioral nudges."
+          bodySecondary="By making food consumption more visible and encouraging shared ownership, NOMO aims to reduce everyday food waste while fostering more sustainable routines."
+          buttonLabel="View final design"
+        />
+
+        {/* PREVIEW */}
+        <PreviewSection
+          sectionId="preview"
+          label="Preview"
+          images={[highlightImg1, highlightImg2, highlightImg3]}
+        />
+
+        {/* FEATURE SECTION — FINAL DESIGN */}
+        <FeatureSection
+          sectionId="final-design"
+          label="Final Design"
+          introTitle="Designing for shared ownership"
+          introBody="The final design focuses on making food visibility lightweight and social. By surfacing shared behaviors without adding friction, NOMO encourages accountability while fitting naturally into everyday routines."
+          introImageSrc={project1Img}
+          introImageAlt="Final NOMO design overview"
+          features={features}
         />
 
         {/* EXPLAINER — RESEARCH */}
@@ -119,6 +166,13 @@ export default function Nomo() {
           ]}
         />
 
+        {/* QUOTE */}
+        <QuoteSection
+          sectionId="quote"
+          label="Key Insight"
+          quote="Food waste wasn’t caused by a lack of awareness, but by low visibility and a lack of shared ownership."
+        />
+
         {/* PROCESS */}
         <ProcessSection
           sectionId="process"
@@ -128,13 +182,6 @@ export default function Nomo() {
           variant="three"
         />
       </CaseStudyLayout>
-
-      {/* FULL-BLEED QUOTE SECTION */}
-      <QuoteSection
-        sectionId="quote"
-        label="Key Takeaway"
-        quote="Reducing food waste isn’t about awareness — it’s about designing habits people can actually sustain."
-      />
     </>
   );
 }
