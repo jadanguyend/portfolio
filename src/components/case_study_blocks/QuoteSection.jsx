@@ -1,13 +1,13 @@
-import CaseStudySection from "../case_study_blocks/shared/CaseStudySection";
+import CaseStudySection from "./shared/CaseStudySection";
 
-export default function QuoteSection({ label, quote, sectionId }) {
+export default function QuoteSection({ sectionId, sectionLabel, quote }) {
   return (
-    <CaseStudySection id={sectionId} className="py-24">
+    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
       <div className="grid grid-cols-12 gap-y-6">
         {/* LABEL */}
         <div className="col-span-12">
           <p className="text-sm font-mono uppercase tracking-wide text-grayLight-400 dark:text-grayDark-400">
-            {label}
+            {sectionLabel}
           </p>
         </div>
 

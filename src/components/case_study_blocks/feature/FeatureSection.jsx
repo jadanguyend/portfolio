@@ -1,10 +1,9 @@
-// src/components/case_study_blocks/feature/FeatureSection.jsx
 import CaseStudySection from "../shared/CaseStudySection";
 import FeatureBlock from "./FeatureBlock";
 
 export default function FeatureSection({
   sectionId,
-  label,
+  sectionLabel,
   introTitle,
   introBody,
   introImageSrc,
@@ -12,11 +11,12 @@ export default function FeatureSection({
   features,
 }) {
   return (
-    <CaseStudySection id={sectionId} className="py-24">
-      {/* Section Header */}
+    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
+      
+      {/* Section Label */}
       <div className="col-span-12 mb-16">
-        <p className="text-sm font-mono uppercase tracking-wide text-grayLight-400 dark:text-grayDark-400">
-          {label}
+        <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
+          {sectionLabel}
         </p>
       </div>
 

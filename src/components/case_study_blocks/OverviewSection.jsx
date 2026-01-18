@@ -1,16 +1,18 @@
+import CaseStudySection from "./shared/CaseStudySection";
+
 export default function OverviewSection({
   sectionLabel,
+  sectionId,
   title,
   bodyPrimary,
   bodySecondary,
   buttonLabel = "View final design",
   onButtonClick,
-  sectionId,
 }) {
   return (
-    <section id={sectionId} className="col-span-12">
+    <CaseStudySection id={sectionId} dataSection={sectionLabel}>
       <div className="grid grid-cols-12 gap-y-4 gap-x-6 md:gap-x-8">
-        
+
         {/* SECTION LABEL — 12 COLS */}
         <div className="col-span-12">
           <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
@@ -20,7 +22,7 @@ export default function OverviewSection({
 
         {/* CONTENT */}
         <div className="col-span-12 grid grid-cols-12 gap-x-6 md:gap-x-8">
-          
+
           {/* LEFT — TITLE */}
           <div className="col-span-12 md:col-span-5">
             <h2 className="text-2xl md:text-3xl font-semibold text-grayLight-900 dark:text-grayDark-900 leading-tight">
@@ -67,6 +69,6 @@ export default function OverviewSection({
 
         </div>
       </div>
-    </section>
+    </CaseStudySection>
   );
 }

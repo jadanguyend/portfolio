@@ -1,17 +1,21 @@
 import Layout from "../components/Layout";
+import CaseStudyProgressNav from "../components/navigation/CaseStudyProgressNav";
 
 export default function CaseStudyLayout({ children, footer }) {
   return (
     <Layout footer={footer}>
-      <main className="w-full">
+      {/* Case Study Progress Nav */}
+      <CaseStudyProgressNav />
+
+      <main className="w-full pt-16">
         {/* GRID-CONSTRAINED CONTENT */}
         <div
           className="
             mx-auto
             max-w-[1400px]
             px-6
-            md:px-20
-            lg:px-24
+            md:px-36
+            lg:px-48
             pb-24
           "
         >

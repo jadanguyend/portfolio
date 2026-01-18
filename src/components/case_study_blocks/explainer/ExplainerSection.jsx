@@ -1,19 +1,23 @@
 import CaseStudySection from "../shared/CaseStudySection";
-import SectionHeader from "../shared/SectionHeader";
 import ExplainerImages from "./ExplainerImages";
 
 export default function ExplainerSection({
-  label,
+  sectionId,
+  sectionLabel,
   title,
   body,
-  sectionId,
   imageVariant = "one",
   images = [],
 }) {
   return (
-    <CaseStudySection>
-      {/* Label */}
-      <SectionHeader label={label} id={sectionId} />
+    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
+      
+      {/* Section Label */}
+      <div className="col-span-12 mb-4">
+        <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
+          {sectionLabel}
+        </p>
+      </div>
 
       {/* Top Content */}
       <div className="grid grid-cols-12 gap-x-6 gap-y-4">

@@ -1,16 +1,17 @@
 import CaseStudySection from "./shared/CaseStudySection";
 
-export default function PreviewSection({ sectionId, label, images }) {
+export default function PreviewSection({ sectionId, sectionLabel, images }) {
   // images: [fullWidthImage, halfWidthImage1, halfWidthImage2]
   const [fullWidth, half1, half2] = images;
 
   return (
-    <CaseStudySection id={sectionId} className="py-24">
-      {/* Section Header */}
+    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
+      
+      {/* Section Label */}
       <div className="grid grid-cols-12 gap-y-6 mb-4">
         <div className="col-span-12">
           <p className="text-sm font-mono uppercase tracking-wide text-grayLight-400 dark:text-grayDark-400">
-            {label}
+            {sectionLabel}
           </p>
         </div>
       </div>

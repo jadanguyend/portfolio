@@ -103,14 +103,14 @@ export default function Nomo() {
         {/* PREVIEW */}
         <PreviewSection
           sectionId="preview"
-          label="Preview"
+          sectionLabel="Preview"
           images={[highlightImg1, highlightImg2, highlightImg3]}
         />
 
         {/* FEATURE SECTION — FINAL DESIGN */}
         <FeatureSection
           sectionId="final-design"
-          label="Final Design"
+          sectionLabel="Final Design"
           introTitle="Designing for shared ownership"
           introBody="The final design focuses on making food visibility lightweight and social. By surfacing shared behaviors without adding friction, NOMO encourages accountability while fitting naturally into everyday routines."
           introImageSrc={project1Img}
@@ -120,7 +120,7 @@ export default function Nomo() {
 
         {/* EXPLAINER — RESEARCH */}
         <ExplainerSection
-          label="Research"
+          sectionLabel="Research"
           sectionId="research"
           title="Understanding everyday food waste behaviors"
           body="We conducted interviews and diary studies to understand how people make food decisions at home, where waste occurs most often, and what emotional barriers prevent behavior change."
@@ -134,6 +134,7 @@ export default function Nomo() {
         {/* HIGHLIGHT — IMAGES */}
         <HighlightSection
           sectionLabel="Key Insights"
+          sectionId="key-insights"
           headline="Three patterns in food waste behaviors emerged"
           contentType="images"
           items={[highlightImg1, highlightImg2, highlightImg3]}
@@ -142,6 +143,7 @@ export default function Nomo() {
         {/* HIGHLIGHT — TEXT CARDS */}
         <HighlightSection
           sectionLabel="Design Principles"
+          sectionId="design-principles"
           headline="How we approached reducing food waste"
           contentType="cards"
           items={[
@@ -169,7 +171,7 @@ export default function Nomo() {
         {/* QUOTE */}
         <QuoteSection
           sectionId="quote"
-          label="Key Insight"
+          sectionLabel="Key Insight"
           quote="Food waste wasn’t caused by a lack of awareness, but by low visibility and a lack of shared ownership."
         />
 

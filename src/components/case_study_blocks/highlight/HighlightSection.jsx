@@ -3,6 +3,7 @@ import HighlightImages from "./HighlightImages";
 import HighlightCards from "./HighlightCards";
 
 export default function HighlightSection({
+  sectionId,
   sectionLabel,
   headline,
   contentType = "images",
@@ -10,10 +11,11 @@ export default function HighlightSection({
   imageHeight = "h-72 md:h-80",
 }) {
   return (
-    <CaseStudySection>
+    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
+      
       {/* Section Label */}
-      <div className="mb-4">
-        <p className="text-xs font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
+      <div className="col-span-12 mb-4">
+        <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
           {sectionLabel}
         </p>
       </div>
