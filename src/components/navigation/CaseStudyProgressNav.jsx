@@ -70,7 +70,7 @@ export default function CaseStudyProgressNav() {
         <div className="shrink-0">
           <Link
             to="/"
-            className="flex items-center gap-2 text-sm font-medium text-grayLight-700 dark:text-grayDark-700 hover:opacity-80 transition"
+            className="flex items-center gap-2 text-xs font-mono uppercase font-medium text-grayLight-700 dark:text-grayDark-700 hover:opacity-80 transition"
           >
             <FiArrowLeft />
             <span>Home</span>
@@ -81,12 +81,12 @@ export default function CaseStudyProgressNav() {
         <div className="relative flex items-center gap-1 mx-auto">
           {sections[activeIndex] && (
             <div
-              className="absolute bg-accent rounded-full transition-all duration-300 pointer-events-none"
+              className="absolute bg-grayLight-900 dark:bg-grayDark-900 rounded-[0.5rem] transition-all duration-300 pointer-events-none"
               style={{
                 left: pillStyle.left,
                 width: pillStyle.width,
-                top: "-6px",
-                bottom: "-6px",
+                top: "-0.15rem",
+                bottom: "-0.15rem",
               }}
             />
           )}
@@ -112,7 +112,7 @@ export default function CaseStudyProgressNav() {
             onClick={() =>
               window.scrollTo({ top: 0, behavior: "smooth" })
             }
-            className="flex items-center gap-2 text-sm font-medium text-grayLight-700 dark:text-grayDark-700 hover:opacity-80 transition"
+            className="flex items-center gap-2 text-xs font-mono uppercase font-medium text-grayLight-700 dark:text-grayDark-700 hover:opacity-80 transition"
           >
             <FiArrowUp />
             <span>Back to top</span>
