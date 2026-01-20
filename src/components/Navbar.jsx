@@ -67,7 +67,7 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between px-6 py-4">
             {/* Left */}
-            <Link to="/" className="nav-link text-grayLight-900 dark:text-grayDark-900 font-mono">
+            <Link to="/" className="nav-link text-xs text-grayLight-900 dark:text-grayDark-900 font-mono">
               <span className="bracket">[</span>
               jadanguyend
               <span className="bracket">]</span>
@@ -87,7 +87,7 @@ export default function Navbar() {
                 <Link
                   key={item.label}
                   to={item.path}
-                  className="nav-link text-grayLight-900 dark:text-grayDark-900 hover:text-accent dark:hover:text-accent transition-colors font-mono"
+                  className="nav-link text-xs text-grayLight-900 dark:text-grayDark-900 hover:text-accent dark:hover:text-accent transition-colors font-mono"
                 >
                   <span className="bracket">[</span>
                   {item.label}
@@ -100,7 +100,7 @@ export default function Navbar() {
                 aria-label="Toggle dark mode"
                 className="hover:text-accent dark:hover:text-accent transition-colors"
               >
-                {isDark ? <RiSunFill size={18} /> : <RiMoonFill size={18} />}
+                {isDark ? <RiSunFill size={16} /> : <RiMoonFill size={16} />}
               </button>
             </nav>
           </div>

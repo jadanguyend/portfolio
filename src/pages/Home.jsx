@@ -111,7 +111,7 @@ export default function Home() {
   return (
     <Layout footer={<Footer />}>
       {/* Hero */}
-      <section className="relative min-h-[60vh] py-4 overflow-hidden">
+      <section className="relative min-h-[60vh] py-4 overflow-hidden pt-24">
         {/* Stickers */}
         <div className="absolute inset-0 hidden md:block">
           {stickers.map(
@@ -159,7 +159,7 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="flex flex-col justify-between min-h-[60vh] py-2">
+        <div className="flex flex-col justify-between min-h-[80vh] py-2">
           {/* Top meta */}
           <div className="flex flex-wrap gap-3 mb-6">
             <div className="meta-pill">

@@ -17,6 +17,7 @@ export default function CaseStudyLayout({ children, footer }) {
             md:px-36
             lg:px-48
             pb-24
+            pt-16
           "
         >
           <div className="grid grid-cols-12 gap-y-16 gap-x-6 md:gap-x-8">
