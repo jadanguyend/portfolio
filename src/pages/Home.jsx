@@ -4,16 +4,7 @@ import { FiMapPin, FiClock, FiArrowRight } from "react-icons/fi";
 import ProjectsSection from "../components/ProjectSection";
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
-
-// Stickers (light)
-import Sticker_Specs from "../assets/Sticker_Specs.svg";
-import Sticker_Music from "../assets/Sticker_Music.svg";
-import Sticker_Shake from "../assets/Sticker_Shake.svg";
-
-// Stickers (dark)
-import Sticker_Specs_Dark from "../assets/Sticker_Specs_Dark.svg";
-import Sticker_Music_Dark from "../assets/Sticker_Music_Dark.svg";
-import Sticker_Shake_Dark from "../assets/Sticker_Shake_Dark.svg";
+import AsciiBackground from "../components/AsciiBackground";
 
 // Images for rotating phrase links
 import ticktickImg from "../assets/ticktick.png";
@@ -48,14 +39,16 @@ export default function Home() {
       text: "exploring design systems",
       links: [
         { href: "https://wise.design/", img: wiseImg },
-        { href: "https://base.uber.com/6d2425e9f/p/93825b-welcome-to-base", img: baseImg },
+        {
+          href: "https://base.uber.com/6d2425e9f/p/93825b-welcome-to-base",
+          img: baseImg,
+        },
       ],
     },
     { text: "geeking out over F1 car liveries", links: [] },
   ];
 
   const [index, setIndex] = useState(0);
-  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,102 +57,15 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const updateDark = () =>
-      setIsDark(document.documentElement.classList.contains("dark"));
-    updateDark();
-    const observer = new MutationObserver(updateDark);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, []);
-
-  // Stickers — responsive size, fixed placement, rotation, tooltip on Specs
-  const stickers = [
-    {
-      light: Sticker_Specs,
-      dark: Sticker_Specs_Dark,
-      size: "clamp(100px, 9vw, 144px)",
-      top: "36%",
-      right: "14%",
-      baseRotate: -15,
-      hoverDelta: 18,
-      tooltip: "Built with React, Tailwind and Framer Motion",
-    },
-    {
-      light: Sticker_Music,
-      dark: Sticker_Music_Dark,
-      size: "clamp(100px, 9vw, 144px)",
-      top: "62%",
-      right: "10%",
-      baseRotate: 8,
-      hoverDelta: -20,
-    },
-    {
-      light: Sticker_Shake,
-      dark: Sticker_Shake_Dark,
-      size: "clamp(100px, 9vw, 144px)",
-      top: "54%",
-      right: "22%",
-      baseRotate: -6,
-      hoverDelta: 14,
-    },
-  ];
-
   return (
     <Layout footer={<Footer />}>
       {/* Hero */}
-      <section className="relative min-h-[60vh] py-4 overflow-hidden pt-24">
-        {/* Stickers */}
-        <div className="absolute inset-0 hidden md:block">
-          {stickers.map(
-            ({ light, dark, size, top, right, baseRotate, hoverDelta, tooltip }, i) => (
-              <motion.div
-                key={i}
-                className="absolute"
-                style={{ top, right }}
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-                variants={{
-                  rest: {},
-                  hover: {},
-                }}
-              >
-                {/* Sticker image */}
-                <motion.img
-                  src={isDark ? dark : light}
-                  className="cursor-pointer select-none"
-                  style={{ width: size, rotate: baseRotate }}
-                  variants={{
-                    rest: { scale: 1, rotate: baseRotate },
-                    hover: { scale: 1.15, rotate: baseRotate + hoverDelta },
-                  }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                />
+      <section className="relative min-h-screen overflow-hidden">
+        {/* ASCII background */}
+        <AsciiBackground />
 
-                {/* Tooltip only if defined */}
-                {tooltip && (
-                  <motion.span
-                    className="absolute left-1/2 -translate-x-1/2 -top-10 bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap pointer-events-none"
-                    variants={{
-                      rest: { opacity: 0, y: 6 },
-                      hover: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    {tooltip}
-                  </motion.span>
-                )}
-              </motion.div>
-            )
-          )}
-        </div>
-
-        {/* Content */}
-        <div className="flex flex-col justify-between min-h-[80vh] py-2">
+        {/* Content layer */}
+        <div className="relative z-10 flex flex-col justify-between min-h-screen px-6 pt-24 pb-12">
           {/* Top meta */}
           <div className="flex flex-wrap gap-3 mb-6">
             <div className="meta-pill">
