@@ -2,47 +2,52 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowLeft, FiArrowUp } from "react-icons/fi";
+import { createPortal } from "react-dom";
 
 export default function CaseStudyProgressNav() {
+  const [mounted, setMounted] = useState(false);
   const [sections, setSections] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const buttonsRef = useRef([]);
   const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
 
+  // Mount guard for portal
   useEffect(() => {
-    const allSections = Array.from(
-      document.querySelectorAll("[data-section]")
-    ).map((el) => ({
-      id: el.id,
-      label: el.dataset.section,
-      top: el.offsetTop,
-    }));
+    setMounted(true);
+  }, []);
 
+  useEffect(() => {
+    const collectSections = () =>
+      Array.from(document.querySelectorAll("[data-section]")).map((el) => ({
+        id: el.id,
+        label: el.dataset.section,
+        top: el.offsetTop,
+      }));
+
+    const allSections = collectSections();
     setSections(allSections);
 
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight / 4;
       let currentIndex = 0;
+
       for (let i = 0; i < allSections.length; i++) {
         if (scrollPos >= allSections[i].top) currentIndex = i;
       }
+
       setActiveIndex(currentIndex);
     };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", () => {
-      const updated = Array.from(
-        document.querySelectorAll("[data-section]")
-      ).map((el) => ({
-        id: el.id,
-        label: el.dataset.section,
-        top: el.offsetTop,
-      }));
-      setSections(updated);
+      setSections(collectSections());
     });
 
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const scrollToSection = (id) => {
@@ -61,12 +66,22 @@ export default function CaseStudyProgressNav() {
     }
   }, [activeIndex, sections]);
 
-  return (
-    <nav className="fixed top-4 left-0 right-0 z-50">
+  if (!mounted) return null;
+
+  return createPortal(
+    <nav className="fixed top-4 left-0 right-0 z-[9999] pointer-events-none">
       <div className="container mx-auto px-6 pointer-events-auto">
-        {/* Make this inner div constrained to container */}
-        <div className="relative flex items-center justify-between w-full bg-white/30 dark:bg-black/30 backdrop-blur-md border border-grayLight-200/30 dark:border-grayDark-200/30 rounded-xl py-2 px-6">
-          
+        <div
+          className="
+            relative isolate
+            flex items-center justify-between w-full
+            bg-white/30 dark:bg-black/30
+            backdrop-blur-md
+            border border-grayLight-200/30 dark:border-grayDark-200/30
+            rounded-xl
+            py-2 px-6
+          "
+        >
           {/* LEFT: Home */}
           <div className="shrink-0">
             <Link
@@ -110,9 +125,12 @@ export default function CaseStudyProgressNav() {
                 ref={(el) => (buttonsRef.current[idx] = el)}
                 onClick={() => scrollToSection(section.id)}
                 className={`
-                  relative z-10 flex items-center justify-center
-                  px-3 py-2 font-mono text-xs uppercase
-                  whitespace-nowrap transition-colors
+                  relative z-10
+                  flex items-center justify-center
+                  px-3 py-2
+                  font-mono text-xs uppercase
+                  whitespace-nowrap
+                  transition-colors
                   ${
                     idx === activeIndex
                       ? "text-grayLight-50 dark:text-grayDark-50"
@@ -128,9 +146,7 @@ export default function CaseStudyProgressNav() {
           {/* RIGHT: Back to Top */}
           <div className="shrink-0">
             <button
-              onClick={() =>
-                window.scrollTo({ top: 0, behavior: "smooth" })
-              }
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="
                 flex items-center gap-2
                 font-mono text-xs uppercase
@@ -143,9 +159,9 @@ export default function CaseStudyProgressNav() {
               <span>Back to top</span>
             </button>
           </div>
-
         </div>
       </div>
-    </nav>
+    </nav>,
+    document.body
   );
 }
