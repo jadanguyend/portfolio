@@ -7,7 +7,7 @@ export default function CaseStudyLayout({ children, footer }) {
       {/* Case Study Progress Nav */}
       <CaseStudyProgressNav />
 
-      <main className="w-full pt-16">
+      <main className="w-full">
         {/* GRID-CONSTRAINED CONTENT */}
         <div
           className="

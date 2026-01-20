@@ -1,4 +1,4 @@
-export default function CaseStudySection({ children, py = "py-24", id, dataSection }) {
+export default function CaseStudySection({ children, py = "py-12", id, dataSection }) {
   return (
     <section
       id={id}

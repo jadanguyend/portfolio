@@ -44,7 +44,7 @@ const Layout = forwardRef(function Layout({ children, footer }, ref) {
       </motion.div>
 
       {/* Footer sits outside the card */}
-      <div className="relative z-10">{footer}</div>
+      <div className="relative z-10 ">{footer}</div>
     </div>
   );
 });
