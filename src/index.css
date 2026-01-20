@@ -681,7 +681,7 @@
 
 /* Global body defaults */
 body {
-  @apply bg-grayLight-50 text-grayLight-800 dark:bg-grayDark-50 dark:text-grayDark-900;
+  @apply bg-grayLight-10 text-grayLight-800 dark:bg-grayDark-10 dark:text-grayDark-900;
 
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;

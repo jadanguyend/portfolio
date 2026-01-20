@@ -29,6 +29,7 @@ module.exports = {
 
         /* ---------------- LIGHT MODE GRAYS ---------------- */
         grayLight: {
+          10: "#FDFDFD",
           50: "#FAFAFA",
           100: "#F4F4F4",
           200: "#E4E4E4",
@@ -43,6 +44,7 @@ module.exports = {
 
         /* ---------------- DARK MODE GRAYS ---------------- */
         grayDark: {
+          10: "#101010",
           50: "#1A1A1A",
           100: "#2C2C2C",
           200: "#3D3D3D",
