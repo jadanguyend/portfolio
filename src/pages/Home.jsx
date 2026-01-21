@@ -75,7 +75,7 @@ export default function Home() {
         <AsciiBackground />
 
         {/* Content Layer */}
-        <div className="relative z-10 grid grid-cols-12 min-h-screen px-6 pt-24 pb-12 items-start">
+        <div className="relative z-10 grid grid-cols-12 min-h-screen px-6 pt-28 pb-12 items-start">
           {/* Top Section: Full width name */}
           <motion.h1
             className="col-span-12 font-heading font-semibold text-text-primary text-grayLight-900 dark:text-grayDark-900 leading-none text-center uppercase"
