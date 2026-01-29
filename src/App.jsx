@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Sandbox from "./pages/Sandbox";
 import LoadingScreen from "./components/LoadingScreen";
 import Nomo from "./pages/case_studies/Nomo";
 
@@ -29,6 +31,8 @@ function AppContent({ isLoading, setIsLoading }) {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/sandbox" element={<Sandbox />} />
+        <Route path="/about" element={<About />} />
         <Route path="/case-studies/nomo" element={<Nomo />} />
       </Routes>
 

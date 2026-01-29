@@ -47,9 +47,9 @@ export default function Navbar() {
 
   const navItems = [
     { label: "Work", path: "/" },
-    { label: "Play", path: "/work" },
-    { label: "About", path: "/play" },
-    { label: "Resume", path: "/about" },
+    { label: "Sandbox", path: "/sandbox" },
+    { label: "About", path: "/about" },
+    { label: "Resume", path: "/" },
   ];
 
   return (
