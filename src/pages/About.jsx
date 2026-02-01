@@ -16,6 +16,8 @@ import MeEscape from "../assets/MeEscape.png";
 import MeMuseum from "../assets/MeMuseum.png";
 import MeBirthday from "../assets/MeBirthday.png";
 import MeCapybara from "../assets/MeCapybara.png";
+import MeLitto from "../assets/MeLitto.png";
+import MeMirror from "../assets/MeMirror.png";
 
 // Phrase images
 import ticktickImg from "../assets/ticktick.png";
@@ -75,6 +77,8 @@ export default function About() {
     { id: 9, src: MeMuseum, orientation: "vertical" },
     { id: 10, src: MeBirthday, orientation: "horizontal" },
     { id: 11, src: MeCapybara, orientation: "vertical" },
+    { id: 12, src: MeLitto, orientation: "horizontal" },
+    { id: 13, src: MeMirror, orientation: "vertical" },
   ];
 
   const [cards, setCards] = useState(initialCards);
