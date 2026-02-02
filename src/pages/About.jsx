@@ -3,6 +3,7 @@ import { motion, useMotionValue } from "framer-motion";
 
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
+import AsciiBackground from "../components/AsciiBackground";
 
 // Swipeable images
 import MeBookstore from "../assets/MeBookstore.png";
@@ -20,9 +21,6 @@ import MeLitto from "../assets/MeLitto.png";
 import MeMirror from "../assets/MeMirror.png";
 
 export default function About() {
-  // -----------------------
-  // Swipeable cards
-  // -----------------------
   const initialCards = [
     { id: 1, src: MeBookstore, orientation: "vertical" },
     { id: 2, src: MeBirthday, orientation: "horizontal" },
@@ -41,9 +39,6 @@ export default function About() {
 
   const [cards, setCards] = useState(initialCards);
 
-  // -----------------------
-  // Precompute rotation ±5 or ±2
-  // -----------------------
   const [rotationMap] = useState(() => {
     const map = {};
     let last = null;
@@ -56,18 +51,12 @@ export default function About() {
     return map;
   });
 
-  // -----------------------
-  // Motion values
-  // -----------------------
   const x = useMotionValue(0);
 
   const handleDragEnd = (_, info) => {
-    const offset = info.offset.x;
-    const velocity = info.velocity.x;
-    const swipePower = Math.abs(offset) + Math.abs(velocity);
-
+    const swipePower = Math.abs(info.offset.x) + Math.abs(info.velocity.x);
     if (swipePower > 500) {
-      const direction = offset > 0 ? 1 : -1;
+      const direction = info.offset.x > 0 ? 1 : -1;
       x.set(direction * 600);
 
       setCards((prev) => {
@@ -79,9 +68,6 @@ export default function About() {
     }
   };
 
-  // -----------------------
-  // Card sizes
-  // -----------------------
   const getCardStyle = (card) =>
     card.orientation === "horizontal"
       ? { width: 400, height: 300 }
@@ -97,79 +83,139 @@ export default function About() {
     width: cardStyle.width,
     height: cardStyle.height,
     position: "absolute",
-    top: (maxHeight - cardStyle.height) / 2,
-    left: (maxWidth - cardStyle.width) / 2,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    margin: "auto",
   });
 
-return (
-  <Layout footer={<Footer />}>
-    {/* ---------------- HERO SECTION ---------------- */}
-    <section className="relative min-h-[100svh] pt-32 pb-24 px-6 flex flex-col items-center text-center">
+  return (
+    <Layout footer={<Footer />}>
+      {/* ================= HERO SECTION ================= */}
+      <section className="relative min-h-[100svh] pt-32 pb-24 px-6 overflow-hidden">
+        <AsciiBackground />
 
-      {/* Text */}
-      <p className="font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch]">
-        I design experiences like building Legos — methodical in structure,
-        creative in execution, and thoughtfully connected to build something
-        greater.
-      </p>
+        <div className="relative z-10 text-center flex flex-col items-center">
+          {/* Image Stack */}
+          <div
+            className="relative w-full max-w-[400px] sm:max-w-[350px] md:max-w-[400px] h-auto"
+            style={{ height: maxHeight }}
+          >
+            {/* Back card */}
+            <motion.img
+              key={cards[1].id}
+              src={cards[1].src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="rounded-xl shadow-xl"
+              style={{
+                zIndex: 1,
+                scale: 0.96,
+                rotate: rotationMap[cards[1].id],
+                objectFit: "cover",
+                ...centerStyle(backCardStyle),
+                pointerEvents: "none",
+              }}
+            />
+            {/* Top card */}
+            <motion.img
+              key={cards[0].id}
+              src={cards[0].src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="rounded-xl shadow-xl cursor-grab"
+              style={{
+                zIndex: 2,
+                x,
+                rotate: rotationMap[cards[0].id],
+                objectFit: "cover",
+                ...centerStyle(topCardStyle),
+              }}
+              drag="x"
+              dragElastic={0.25}
+              dragMomentum={false}
+              transition={{ duration: 0.15 }}
+              onDragEnd={handleDragEnd}
+              whileTap={{ cursor: "grabbing" }}
+            />
+          </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="mt-6 text-base md:text-md text-grayLight-800 dark:text-grayDark-800 whitespace-nowrap font-mono text-xs uppercase tracking-tight"
-      >
-        Consistent details matter. Mine’s a{" "}
-        <span style={{ color: "#183ED8" }}>blue hat</span>
-        <span className="ml-1">:)</span>
-      </motion.div>
+          {/* Main text */}
+          <p className="mt-6 font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch] mx-auto mt-16">
+            I design experiences like building Legos — methodical in structure,
+            creative in execution, and thoughtfully connected to build something
+            greater.
+          </p>
 
-      {/* ---------------- IMAGE STACK ---------------- */}
-      <motion.div
-        layout
-        className="relative overflow-visible z-20 mt-20"
-        style={{ width: maxWidth, height: maxHeight }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-      >
-        {/* Back card */}
-        <motion.img
-          key={cards[1].id}
-          src={cards[1].src}
-          alt=""
-          className="rounded-xl shadow-xl"
-          style={{
-            zIndex: 1,
-            scale: 0.96,
-            rotate: rotationMap[cards[1].id],
-            objectFit: "cover",
-            pointerEvents: "none",
-            ...centerStyle(backCardStyle),
-          }}
-        />
+          <motion.div
+            className="mt-4 font-mono text-xs uppercase tracking-tight text-grayLight-800 dark:text-grayDark-800 whitespace-nowrap"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            Consistent details matter. Mine’s a{" "}
+            <span style={{ color: "#183ED8" }}>blue hat</span>
+            <span className="ml-1">:)</span>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Top card */}
-        <motion.img
-          key={cards[0].id}
-          src={cards[0].src}
-          alt=""
-          className="rounded-xl shadow-xl cursor-grab"
-          style={{
-            zIndex: 2,
-            x,
-            rotate: rotationMap[cards[0].id],
-            objectFit: "cover",
-            ...centerStyle(topCardStyle),
-          }}
-          drag="x"
-          dragElastic={0.25}
-          dragMomentum={false}
-          transition={{ duration: 0.15 }}
-          onDragEnd={handleDragEnd}
-          whileTap={{ cursor: "grabbing" }}
-        />
-      </motion.div>
-    </section>
-  </Layout>
-);
+      {/* ================= TOOLS SECTION ================= */}
+      <section className="px-6 py-24 max-w-7xl mx-auto">
+        <div className="grid grid-cols-12 gap-8 text-left">
+          {/* UX/UI Design */}
+          <div className="col-span-12 md:col-span-3">
+            <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500 mb-4">
+              UX / UI Design
+            </p>
+            <ul className="font-body leading-tight space-y-1">
+              <li>Figma</li>
+              <li>Framer</li>
+              <li>Adobe Illustrator</li>
+            </ul>
+          </div>
 
+          {/* Web Development */}
+          <div className="col-span-12 md:col-span-3">
+            <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500 mb-4">
+              Web Development
+            </p>
+            <ul className="font-body leading-tight space-y-1">
+              <li>React</li>
+              <li>JavaScript</li>
+              <li>HTML / CSS / Tailwind</li>
+              <li>Webflow</li>
+              <li>Git / GitHub</li>
+            </ul>
+          </div>
+
+          {/* Data & Analytics */}
+          <div className="col-span-12 md:col-span-3">
+            <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500 mb-4">
+              Data & Analytics
+            </p>
+            <ul className="font-body leading-tight space-y-1">
+              <li>A/B Testing</li>
+              <li>SQL</li>
+              <li>Tableau</li>
+            </ul>
+          </div>
+
+          {/* Currently Exploring */}
+          <div className="col-span-12 md:col-span-3">
+            <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500 mb-4">
+              Currently Exploring
+            </p>
+            <ul className="font-body leading-tight space-y-1">
+              <li>Three.js</li>
+              <li>Framer Motion</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
 }
