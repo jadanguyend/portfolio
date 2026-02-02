@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useMotionValue } from "framer-motion";
+import { useState } from "react";
+import { motion, useMotionValue } from "framer-motion";
 
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
@@ -19,55 +19,13 @@ import MeCapybara from "../assets/MeCapybara.png";
 import MeLitto from "../assets/MeLitto.png";
 import MeMirror from "../assets/MeMirror.png";
 
-// Phrase images
-import ticktickImg from "../assets/ticktick.png";
-import retroImg from "../assets/retro.png";
-import arcImg from "../assets/arc.png";
-import ondittoImg from "../assets/onditto.png";
-import wiseImg from "../assets/wise.png";
-import baseImg from "../assets/base.png";
-
 export default function About() {
-  // -----------------------
-  // Rotating phrases
-  // -----------------------
-  const phrases = [
-    { text: "building a LEGO set", links: [] },
-    {
-      text: "using her favorite apps and softwares",
-      links: [
-        { href: "https://ticktick.com/?language=en_us", img: ticktickImg },
-        { href: "https://retro.app/", img: retroImg },
-        { href: "https://arc.net/", img: arcImg },
-        { href: "https://www.onditto.com/list", img: ondittoImg },
-      ],
-    },
-    { text: "reading behavioral psychology books", links: [] },
-    {
-      text: "exploring design systems",
-      links: [
-        { href: "https://wise.design/", img: wiseImg },
-        { href: "https://base.uber.com/6d2425e9f/p/93825b-welcome-to-base", img: baseImg },
-      ],
-    },
-    { text: "geeking out over F1 car liveries", links: [] },
-  ];
-
-  const [phraseIndex, setPhraseIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPhraseIndex((prev) => (prev + 1) % phrases.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
   // -----------------------
   // Swipeable cards
   // -----------------------
   const initialCards = [
     { id: 1, src: MeBookstore, orientation: "vertical" },
-    { id: 2, src: MeFunbunz, orientation: "horizontal" },
+    { id: 2, src: MeBirthday, orientation: "horizontal" },
     { id: 3, src: MeBalloon, orientation: "vertical" },
     { id: 4, src: MeIUGA, orientation: "horizontal" },
     { id: 5, src: MeFlower, orientation: "vertical" },
@@ -75,7 +33,7 @@ export default function About() {
     { id: 7, src: MePortland, orientation: "vertical" },
     { id: 8, src: MeEscape, orientation: "horizontal" },
     { id: 9, src: MeMuseum, orientation: "vertical" },
-    { id: 10, src: MeBirthday, orientation: "horizontal" },
+    { id: 10, src: MeFunbunz, orientation: "horizontal" },
     { id: 11, src: MeCapybara, orientation: "vertical" },
     { id: 12, src: MeLitto, orientation: "horizontal" },
     { id: 13, src: MeMirror, orientation: "vertical" },
@@ -84,13 +42,13 @@ export default function About() {
   const [cards, setCards] = useState(initialCards);
 
   // -----------------------
-  // Precompute rotation ±5 or ±2, no consecutive repeats
+  // Precompute rotation ±5 or ±2
   // -----------------------
   const [rotationMap] = useState(() => {
     const map = {};
     let last = null;
     initialCards.forEach((card) => {
-      const options = [-5, -2, 2, 5].filter(r => r !== last);
+      const options = [-5, -2, 2, 5].filter((r) => r !== last);
       const rot = options[Math.floor(Math.random() * options.length)];
       map[card.id] = rot;
       last = rot;
@@ -122,22 +80,16 @@ export default function About() {
   };
 
   // -----------------------
-  // Card sizes fixed
+  // Card sizes
   // -----------------------
-  const getCardStyle = (card) => {
-    if (card.orientation === "horizontal") {
-      return { width: 480, height: 360 };
-    } else {
-      return { width: 360, height: 480 };
-    }
-  };
+  const getCardStyle = (card) =>
+    card.orientation === "horizontal"
+      ? { width: 400, height: 300 }
+      : { width: 300, height: 400 };
 
   const topCardStyle = getCardStyle(cards[0]);
   const backCardStyle = getCardStyle(cards[1]);
 
-  // -----------------------
-  // Centering helper
-  // -----------------------
   const maxWidth = Math.max(topCardStyle.width, backCardStyle.width);
   const maxHeight = Math.max(topCardStyle.height, backCardStyle.height);
 
@@ -149,105 +101,75 @@ export default function About() {
     left: (maxWidth - cardStyle.width) / 2,
   });
 
-  return (
-    <Layout footer={<Footer />}>
-      {/* ---------------- HERO SECTION ---------------- */}
-      <section className="relative min-h-screen flex items-center justify-center px-6">
-        <motion.div
-          layout
-          className="relative overflow-visible z-20"
+return (
+  <Layout footer={<Footer />}>
+    {/* ---------------- HERO SECTION ---------------- */}
+    <section className="relative min-h-[100svh] pt-32 pb-24 px-6 flex flex-col items-center text-center">
+
+      {/* Text */}
+      <p className="font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch]">
+        I design experiences like building Legos — methodical in structure,
+        creative in execution, and thoughtfully connected to build something
+        greater.
+      </p>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="mt-6 text-base md:text-md text-grayLight-800 dark:text-grayDark-800 whitespace-nowrap font-mono text-xs uppercase tracking-tight"
+      >
+        Consistent details matter. Mine’s a{" "}
+        <span style={{ color: "#183ED8" }}>blue hat</span>
+        <span className="ml-1">:)</span>
+      </motion.div>
+
+      {/* ---------------- IMAGE STACK ---------------- */}
+      <motion.div
+        layout
+        className="relative overflow-visible z-20 mt-20"
+        style={{ width: maxWidth, height: maxHeight }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+      >
+        {/* Back card */}
+        <motion.img
+          key={cards[1].id}
+          src={cards[1].src}
+          alt=""
+          className="rounded-xl shadow-xl"
           style={{
-            width: maxWidth,
-            height: maxHeight,
+            zIndex: 1,
+            scale: 0.96,
+            rotate: rotationMap[cards[1].id],
+            objectFit: "cover",
+            pointerEvents: "none",
+            ...centerStyle(backCardStyle),
           }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-        >
-          {/* Back card */}
-          <motion.img
-            key={cards[1].id}
-            layout={false}
-            src={cards[1].src}
-            alt=""
-            className="rounded-xl shadow-xl"
-            style={{
-              zIndex: 1,
-              scale: 0.96,
-              y: 0,
-              rotate: rotationMap[cards[1].id],
-              objectFit: "cover", // <-- fill the card
-              ...centerStyle(backCardStyle),
-              pointerEvents: "none",
-            }}
-          />
+        />
 
-          {/* Top card */}
-          <motion.img
-            key={cards[0].id}
-            layout={false}
-            src={cards[0].src}
-            alt=""
-            className="rounded-xl shadow-xl cursor-grab"
-            style={{
-              zIndex: 2,
-              x,
-              rotate: rotationMap[cards[0].id],
-              objectFit: "cover", // <-- fill the card
-              ...centerStyle(topCardStyle),
-            }}
-            drag="x"
-            dragElastic={0.25}
-            dragMomentum={false}
-            transition={{ duration: 0.15 }}
-            onDragEnd={handleDragEnd}
-            whileTap={{ cursor: "grabbing" }}
-          />
-        </motion.div>
-      </section>
+        {/* Top card */}
+        <motion.img
+          key={cards[0].id}
+          src={cards[0].src}
+          alt=""
+          className="rounded-xl shadow-xl cursor-grab"
+          style={{
+            zIndex: 2,
+            x,
+            rotate: rotationMap[cards[0].id],
+            objectFit: "cover",
+            ...centerStyle(topCardStyle),
+          }}
+          drag="x"
+          dragElastic={0.25}
+          dragMomentum={false}
+          transition={{ duration: 0.15 }}
+          onDragEnd={handleDragEnd}
+          whileTap={{ cursor: "grabbing" }}
+        />
+      </motion.div>
+    </section>
+  </Layout>
+);
 
-      {/* ---------------- TEXT SECTION ---------------- */}
-      <section className="relative min-h-screen pt-32 px-6 flex flex-col items-center text-center">
-        <p className="font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch]">
-          I design experiences like building Legos — methodical in structure,
-          creative in execution, and thoughtfully connected to build something
-          greater.
-        </p>
-
-        {/* Rotating phrase */}
-        <div className="mt-6 flex items-center justify-center gap-1 text-base md:text-md text-neutral-600 whitespace-nowrap font-mono tracking-tighter">
-          <span className="mr-1 flex-shrink-0">She's probably —</span>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={phraseIndex}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex items-center gap-1 whitespace-nowrap"
-            >
-              {phrases[phraseIndex].text}
-              {phrases[phraseIndex].links.length > 0 && (
-                <span className="flex items-center gap-1 ml-1">
-                  {phrases[phraseIndex].links.map((link, i) => (
-                    <a
-                      key={i}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex"
-                    >
-                      <img
-                        src={link.img}
-                        alt=""
-                        className="w-5 md:w-6 h-5 md:h-6 object-contain"
-                      />
-                    </a>
-                  ))}
-                </span>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
-    </Layout>
-  );
 }
