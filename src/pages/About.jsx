@@ -144,7 +144,7 @@ export default function About() {
           </div>
 
           {/* Main text */}
-          <p className="mt-6 font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch] mx-auto mt-16">
+          <p className="mt-6 font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch] mx-auto mt-20">
             I design experiences like building Legos — methodical in structure,
             creative in execution, and thoughtfully connected to build something
             greater.
