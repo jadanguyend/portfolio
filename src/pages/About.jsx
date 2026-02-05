@@ -164,7 +164,7 @@ export default function About() {
       <section className="px-6 py-24 max-w-7xl mx-auto">
         <div className="grid grid-cols-12 gap-8 text-left">
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide mb-4">
+            <p className="text-sm font-mono uppercase tracking-wide mb-4 text-grayLight-500 dark:text-grayDark-500">
               UX / UI Design
             </p>
             <ul className="leading-tight space-y-1">
@@ -175,7 +175,7 @@ export default function About() {
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide mb-4">
+            <p className="text-sm font-mono uppercase tracking-wide mb-4 text-grayLight-500 dark:text-grayDark-500">
               Web Development
             </p>
             <ul className="leading-tight space-y-1">
@@ -188,7 +188,7 @@ export default function About() {
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide mb-4">
+            <p className="text-sm font-mono uppercase tracking-wide mb-4 text-grayLight-500 dark:text-grayDark-500">
               Data & Analytics
             </p>
             <ul className="leading-tight space-y-1">
@@ -199,7 +199,7 @@ export default function About() {
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide mb-4">
+            <p className="text-sm font-mono uppercase tracking-wide mb-4 text-grayLight-500 dark:text-grayDark-500">
               Currently Exploring
             </p>
             <ul className="leading-tight space-y-1">
