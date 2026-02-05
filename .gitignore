@@ -1,8 +1,12 @@
 # Node modules
 node_modules/
 
-# Vite cache
+# Build output (Vite)
 dist/
+
+# Environment variables
+.env
+.env.*
 
 # gh-pages cache
 node_modules/.cache/gh-pages/
