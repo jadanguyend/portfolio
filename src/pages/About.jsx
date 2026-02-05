@@ -76,114 +76,109 @@ export default function About() {
   const topCardStyle = getCardStyle(cards[0]);
   const backCardStyle = getCardStyle(cards[1]);
 
-  const maxWidth = Math.max(topCardStyle.width, backCardStyle.width);
   const maxHeight = Math.max(topCardStyle.height, backCardStyle.height);
 
   const centerStyle = (cardStyle) => ({
     width: cardStyle.width,
     height: cardStyle.height,
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    inset: 0,
     margin: "auto",
   });
 
   return (
     <Layout footer={<Footer />}>
       {/* ================= HERO SECTION ================= */}
-      <section className="relative min-h-[100svh] pt-32 pb-24 px-6 overflow-hidden">
-        <AsciiBackground />
+      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
+        {/* ASCII background stays viewport-sized */}
+        <div className="absolute inset-0 h-[100svh]">
+          <AsciiBackground />
+        </div>
 
-        <div className="relative z-10 text-center flex flex-col items-center">
-          {/* Image Stack */}
-          <div
-            className="relative w-full max-w-[400px] sm:max-w-[350px] md:max-w-[400px] h-auto"
-            style={{ height: maxHeight }}
-          >
-            {/* Back card */}
-            <motion.img
-              key={cards[1].id}
-              src={cards[1].src}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              className="rounded-xl shadow-xl"
-              style={{
-                zIndex: 1,
-                scale: 0.96,
-                rotate: rotationMap[cards[1].id],
-                objectFit: "cover",
-                ...centerStyle(backCardStyle),
-                pointerEvents: "none",
-              }}
-            />
-            {/* Top card */}
-            <motion.img
-              key={cards[0].id}
-              src={cards[0].src}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              className="rounded-xl shadow-xl cursor-grab"
-              style={{
-                zIndex: 2,
-                x,
-                rotate: rotationMap[cards[0].id],
-                objectFit: "cover",
-                ...centerStyle(topCardStyle),
-              }}
-              drag="x"
-              dragElastic={0.25}
-              dragMomentum={false}
-              transition={{ duration: 0.15 }}
-              onDragEnd={handleDragEnd}
-              whileTap={{ cursor: "grabbing" }}
-            />
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-12 gap-12 items-center">
+          {/* Left: Main text */}
+          <div className="col-span-12 md:col-span-6 text-left">
+            <p className="font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch]">
+              I design experiences like building Legos — methodical in structure,
+              creative in execution, and thoughtfully connected to build something
+              greater.
+            </p>
+
+            <motion.div
+              className="mt-4 font-mono text-xs uppercase tracking-tight text-grayLight-800 dark:text-grayDark-800 whitespace-nowrap"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              Consistent details matter. Mine’s a{" "}
+              <span style={{ color: "#183ED8" }}>blue hat</span>
+              <span className="ml-1">:)</span>
+            </motion.div>
           </div>
 
-          {/* Main text */}
-          <p className="mt-6 font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch] mx-auto mt-20">
-            I design experiences like building Legos — methodical in structure,
-            creative in execution, and thoughtfully connected to build something
-            greater.
-          </p>
+          {/* Right: Image stack */}
+          <div className="col-span-12 md:col-span-6 flex justify-center">
+            <div
+              className="relative w-full max-w-[400px]"
+              style={{ height: maxHeight }}
+            >
+              <motion.img
+                key={cards[1].id}
+                src={cards[1].src}
+                alt=""
+                className="rounded-xl shadow-xl"
+                style={{
+                  zIndex: 1,
+                  scale: 0.96,
+                  rotate: rotationMap[cards[1].id],
+                  objectFit: "cover",
+                  ...centerStyle(backCardStyle),
+                  pointerEvents: "none",
+                }}
+              />
 
-          <motion.div
-            className="mt-4 font-mono text-xs uppercase tracking-tight text-grayLight-800 dark:text-grayDark-800 whitespace-nowrap"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            Consistent details matter. Mine’s a{" "}
-            <span style={{ color: "#183ED8" }}>blue hat</span>
-            <span className="ml-1">:)</span>
-          </motion.div>
+              <motion.img
+                key={cards[0].id}
+                src={cards[0].src}
+                alt=""
+                className="rounded-xl shadow-xl cursor-grab"
+                style={{
+                  zIndex: 2,
+                  x,
+                  rotate: rotationMap[cards[0].id],
+                  objectFit: "cover",
+                  ...centerStyle(topCardStyle),
+                }}
+                drag="x"
+                dragElastic={0.25}
+                dragMomentum={false}
+                onDragEnd={handleDragEnd}
+                whileTap={{ cursor: "grabbing" }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ================= TOOLS SECTION ================= */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
         <div className="grid grid-cols-12 gap-8 text-left">
-          {/* UX/UI Design */}
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500 mb-4">
+            <p className="text-sm font-mono uppercase tracking-wide mb-4">
               UX / UI Design
             </p>
-            <ul className="font-body leading-tight space-y-1">
+            <ul className="leading-tight space-y-1">
               <li>Figma</li>
               <li>Framer</li>
               <li>Adobe Illustrator</li>
             </ul>
           </div>
 
-          {/* Web Development */}
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500 mb-4">
+            <p className="text-sm font-mono uppercase tracking-wide mb-4">
               Web Development
             </p>
-            <ul className="font-body leading-tight space-y-1">
+            <ul className="leading-tight space-y-1">
               <li>React</li>
               <li>JavaScript</li>
               <li>HTML / CSS / Tailwind</li>
@@ -192,24 +187,22 @@ export default function About() {
             </ul>
           </div>
 
-          {/* Data & Analytics */}
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500 mb-4">
+            <p className="text-sm font-mono uppercase tracking-wide mb-4">
               Data & Analytics
             </p>
-            <ul className="font-body leading-tight space-y-1">
+            <ul className="leading-tight space-y-1">
               <li>A/B Testing</li>
               <li>SQL</li>
               <li>Tableau</li>
             </ul>
           </div>
 
-          {/* Currently Exploring */}
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500 mb-4">
+            <p className="text-sm font-mono uppercase tracking-wide mb-4">
               Currently Exploring
             </p>
-            <ul className="font-body leading-tight space-y-1">
+            <ul className="leading-tight space-y-1">
               <li>Three.js</li>
               <li>Framer Motion</li>
             </ul>
