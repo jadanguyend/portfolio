@@ -109,23 +109,23 @@ export default function About() {
 
 /* ================= EVERYDAY OBJECTS ================= */
   const everydayItems = [
-    { id: 1, src: ItemMe, desc: "Designing, tinkering, overthinking", x: "2%", y: "10%", rotation: -3 },
-    { id: 2, src: ItemHandcream, desc: "Always nearby", x: "28%", y: "6%", rotation: 2 },
-    { id: 3, src: ItemFragrance, desc: "Daily ritual", x: "52%", y: "8%", rotation: -1 },
-    { id: 4, src: ItemCandle, desc: "Background focus energy", x: "72%", y: "12%", rotation: 3 },
+    { id: 1, src: ItemMe, desc: "Designing, tinkering, overthinking", x: "1%", y: "60%", rotation: -5 },
+    { id: 2, src: ItemHandcream, desc: "Always nearby", x: "29%", y: "6%", rotation: -10 },
+    { id: 3, src: ItemFragrance, desc: "Daily ritual", x: "54%", y: "18%", rotation: 4 },
+    { id: 4, src: ItemCandle, desc: "Background focus energy", x: "83%", y: "7%", rotation: -5 },
 
-    { id: 5, src: ItemHat, desc: "Yes, the blue one", x: "12%", y: "20%", rotation: -4 },
-    { id: 6, src: ItemLaptop, desc: "Where everything happens", x: "34%", y: "30%", rotation: 1 },
-    { id: 7, src: ItemRamen, desc: "Comfort food", x: "58%", y: "32%", rotation: -2 },
-    { id: 8, src: ItemCar, desc: "Thinking space", x: "78%", y: "36%", rotation: 4 },
+    { id: 5, src: ItemHat, desc: "Yes, the blue one", x: "16%", y: "20%", rotation: -8 },
+    { id: 6, src: ItemLaptop, desc: "Where everything happens", x: "34%", y: "44%", rotation: -8 },
+    { id: 7, src: ItemRamen, desc: "Comfort food", x: "68%", y: "15%", rotation: 12 },
+    { id: 8, src: ItemCar, desc: "Thinking space", x: "84%", y: "48%", rotation: 4 },
 
-    { id: 9, src: ItemCoffee, desc: "Fuel", x: "4%", y: "58%", rotation: 2 },
-    { id: 10, src: ItemKeyboard, desc: "Clicky on purpose", x: "26%", y: "54%", rotation: -3 },
-    { id: 11, src: ItemPlant, desc: "Trying my best", x: "46%", y: "58%", rotation: 1 },
-    { id: 12, src: ItemSmiski, desc: "Tiny joy", x: "66%", y: "54%", rotation: -1 },
+    { id: 9, src: ItemCoffee, desc: "Fuel", x: "2%", y: "10%", rotation: -5 },
+    { id: 10, src: ItemKeyboard, desc: "Clicky on purpose", x: "30%", y: "72%", rotation: -3 },
+    { id: 11, src: ItemPlant, desc: "Trying my best", x: "14%", y: "58%", rotation: 1 },
+    { id: 12, src: ItemSmiski, desc: "Tiny joy", x: "68%", y: "54%", rotation: 2 },
 
-    { id: 13, src: ItemBag, desc: "Carries everything", x: "14%", y: "76%", rotation: 3 },
-    { id: 14, src: ItemLunchbox, desc: "Midday reset", x: "42%", y: "78%", rotation: -2 },
+    { id: 13, src: ItemBag, desc: "Carries everything", x: "42%", y: "6%", rotation: 3 },
+    { id: 14, src: ItemLunchbox, desc: "Midday reset", x: "52%", y: "62%", rotation: -2 },
     { id: 15, src: ItemPen, desc: "Still sketch first", x: "82%", y: "76%", rotation: 2 },
   ];
 
@@ -240,7 +240,7 @@ export default function About() {
         </div>
 
         <div ref={constraintsRef}
-          className="relative w-full h-[520px] border border-dashed rounded-xl overflow-hidden mt-12"
+          className="relative w-full h-[520px] border border-dashed rounded-xl overflow-hidden mt-16"
         >
           {everydayItems.map((item) => (
             <motion.div
@@ -253,8 +253,7 @@ export default function About() {
               dragTransition={{ power: 0 }}
               whileHover={{ scale: 1.08 }}
               whileTap={{ cursor: "grabbing" }}
-              style={{ left: item.x, top: item.y }}
-              initial={{ rotate: item.rotation }}
+              style={{ left: item.x, top: item.y, rotate: item.rotation, }}
             >
               <div className="group relative cursor-grab">
                 <img
