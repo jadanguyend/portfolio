@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, useMotionValue } from "framer-motion";
 
 import Layout from "../components/Layout";
@@ -20,7 +20,27 @@ import MeCapybara from "../assets/MeCapybara.png";
 import MeLitto from "../assets/MeLitto.png";
 import MeMirror from "../assets/MeMirror.png";
 
+// Everyday items
+import ItemMe from "../assets/ItemMe.png";
+import ItemHandcream from "../assets/ItemHandcream.png";
+import ItemFragrance from "../assets/ItemFragrance.png";
+import ItemCandle from "../assets/ItemCandle.png";
+import ItemHat from "../assets/ItemHat.png";
+import ItemLaptop from "../assets/ItemLaptop.png";
+import ItemRamen from "../assets/ItemRamen.png";
+import ItemCar from "../assets/ItemCar.png";
+import ItemCoffee from "../assets/ItemCoffee.png";
+import ItemKeyboard from "../assets/ItemKeyboard.png";
+import ItemPlant from "../assets/ItemPlant.png";
+import ItemSmiski from "../assets/ItemSmiski.png";
+import ItemBag from "../assets/ItemBag.png";
+import ItemLunchbox from "../assets/ItemLunchbox.png";
+import ItemPen from "../assets/ItemPen.png";
+
 export default function About() {
+  const constraintsRef = useRef(null);
+
+  /* ================= IMAGE STACK ================= */
   const initialCards = [
     { id: 1, src: MeBookstore, orientation: "vertical" },
     { id: 2, src: MeBirthday, orientation: "horizontal" },
@@ -75,7 +95,6 @@ export default function About() {
 
   const topCardStyle = getCardStyle(cards[0]);
   const backCardStyle = getCardStyle(cards[1]);
-
   const maxHeight = Math.max(topCardStyle.height, backCardStyle.height);
 
   const centerStyle = (cardStyle) => ({
@@ -86,18 +105,40 @@ export default function About() {
     margin: "auto",
   });
 
+  /* ================= EVERYDAY OBJECTS ================= */
+
+/* ================= EVERYDAY OBJECTS ================= */
+  const everydayItems = [
+    { id: 1, src: ItemMe, desc: "Designing, tinkering, overthinking", x: "2%", y: "10%", rotation: -3 },
+    { id: 2, src: ItemHandcream, desc: "Always nearby", x: "28%", y: "6%", rotation: 2 },
+    { id: 3, src: ItemFragrance, desc: "Daily ritual", x: "52%", y: "8%", rotation: -1 },
+    { id: 4, src: ItemCandle, desc: "Background focus energy", x: "72%", y: "12%", rotation: 3 },
+
+    { id: 5, src: ItemHat, desc: "Yes, the blue one", x: "12%", y: "20%", rotation: -4 },
+    { id: 6, src: ItemLaptop, desc: "Where everything happens", x: "34%", y: "30%", rotation: 1 },
+    { id: 7, src: ItemRamen, desc: "Comfort food", x: "58%", y: "32%", rotation: -2 },
+    { id: 8, src: ItemCar, desc: "Thinking space", x: "78%", y: "36%", rotation: 4 },
+
+    { id: 9, src: ItemCoffee, desc: "Fuel", x: "4%", y: "58%", rotation: 2 },
+    { id: 10, src: ItemKeyboard, desc: "Clicky on purpose", x: "26%", y: "54%", rotation: -3 },
+    { id: 11, src: ItemPlant, desc: "Trying my best", x: "46%", y: "58%", rotation: 1 },
+    { id: 12, src: ItemSmiski, desc: "Tiny joy", x: "66%", y: "54%", rotation: -1 },
+
+    { id: 13, src: ItemBag, desc: "Carries everything", x: "14%", y: "76%", rotation: 3 },
+    { id: 14, src: ItemLunchbox, desc: "Midday reset", x: "42%", y: "78%", rotation: -2 },
+    { id: 15, src: ItemPen, desc: "Still sketch first", x: "82%", y: "76%", rotation: 2 },
+  ];
+
   return (
     <Layout footer={<Footer />}>
-      {/* ================= HERO SECTION ================= */}
+      {/* ================= HERO ================= */}
       <section className="relative pt-32 pb-24 px-6 overflow-hidden">
-        {/* ASCII background stays viewport-sized */}
         <div className="absolute inset-0 h-[100svh]">
           <AsciiBackground />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-12 gap-12 items-center">
-          {/* Left: Main text */}
-          <div className="col-span-12 md:col-span-6 text-left">
+          <div className="col-span-12 md:col-span-6">
             <p className="font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch]">
               I design experiences like building Legos — methodical in structure,
               creative in execution, and thoughtfully connected to build something
@@ -105,48 +146,35 @@ export default function About() {
             </p>
 
             <motion.div
-              className="mt-4 font-mono text-xs uppercase tracking-tight text-grayLight-800 dark:text-grayDark-800 whitespace-nowrap"
+              className="mt-4 font-mono text-xs uppercase tracking-tight"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
             >
               Consistent details matter. Mine’s a{" "}
-              <span style={{ color: "#183ED8" }}>blue hat</span>
-              <span className="ml-1">:)</span>
+              <span style={{ color: "#183ED8" }}>blue hat</span> :)
             </motion.div>
           </div>
 
-          {/* Right: Image stack */}
-          <div className="col-span-12 md:col-span-6 flex justify-center">
-            <div
-              className="relative w-full max-w-[400px]"
-              style={{ height: maxHeight }}
-            >
+                    <div className="col-span-12 md:col-span-6 flex justify-center">
+            <div className="relative w-full max-w-[400px]" style={{ height: maxHeight }}>
               <motion.img
-                key={cards[1].id}
                 src={cards[1].src}
-                alt=""
                 className="rounded-xl shadow-xl"
                 style={{
                   zIndex: 1,
                   scale: 0.96,
                   rotate: rotationMap[cards[1].id],
-                  objectFit: "cover",
                   ...centerStyle(backCardStyle),
-                  pointerEvents: "none",
                 }}
               />
 
               <motion.img
-                key={cards[0].id}
                 src={cards[0].src}
-                alt=""
                 className="rounded-xl shadow-xl cursor-grab"
                 style={{
                   zIndex: 2,
                   x,
                   rotate: rotationMap[cards[0].id],
-                  objectFit: "cover",
                   ...centerStyle(topCardStyle),
                 }}
                 drag="x"
@@ -157,58 +185,94 @@ export default function About() {
               />
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* ================= TOOLS SECTION ================= */}
+            {/* ================= TOOLS ================= */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
-        <div className="grid grid-cols-12 gap-8 text-left">
+        <h2 className="mb-12">My Building Blocks —</h2>
+
+        <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide mb-4 text-grayLight-500 dark:text-grayDark-500">
-              UX / UI Design
-            </p>
-            <ul className="leading-tight space-y-1">
-              <li>Figma</li>
-              <li>Framer</li>
-              <li>Adobe Illustrator</li>
+            <p className="font-mono uppercase mb-4">Design & UX</p>
+            <ul>
+              <li>Information Architecture</li>
+              <li>Wireframing & User Flows</li>
+              <li>Interaction Design</li>
+              <li>Design Systems</li>
+              <li>Accessibility</li>
+              <li>Web & Responsive Design</li>
             </ul>
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide mb-4 text-grayLight-500 dark:text-grayDark-500">
-              Web Development
-            </p>
-            <ul className="leading-tight space-y-1">
-              <li>React</li>
-              <li>JavaScript</li>
-              <li>HTML / CSS / Tailwind</li>
-              <li>Webflow</li>
-              <li>Git / GitHub</li>
-            </ul>
-          </div>
-
-          <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide mb-4 text-grayLight-500 dark:text-grayDark-500">
-              Data & Analytics
-            </p>
-            <ul className="leading-tight space-y-1">
+            <p className="font-mono uppercase mb-4">Research & Analytics</p>
+            <ul>
               <li>A/B Testing</li>
-              <li>SQL</li>
-              <li>Tableau</li>
+              <li>User Behavior Analysis</li>
+              <li>Usability Testing</li>
+              <li>Data Visualization</li>
+              <li>Research Synthesis</li>
             </ul>
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <p className="text-sm font-mono uppercase tracking-wide mb-4 text-grayLight-500 dark:text-grayDark-500">
-              Currently Exploring
-            </p>
-            <ul className="leading-tight space-y-1">
-              <li>Three.js</li>
-              <li>Framer Motion</li>
+            <p className="font-mono uppercase mb-4">Product & Growth</p>
+            <ul>
+              <li>Value Proposition</li>
+              <li>Conversion & Funnel Design</li>
+              <li>Marketing Flow</li>
+              <li>Customer Journey Mapping</li>
             </ul>
           </div>
+
+          <div className="col-span-12 md:col-span-3">
+            <p className="font-mono uppercase mb-4">Currently Exploring</p>
+            <ul>
+              <li>Frontend Development</li>
+              <li>Animation & Motion Design</li>
+              <li>3D Design</li>
+              <li>0-to-1 Product Launch</li>
+              <li>AI-native workflows</li>
+            </ul>
+          </div>
+        </div>
+
+        <div ref={constraintsRef}
+          className="relative w-full h-[520px] border border-dashed rounded-xl overflow-hidden mt-12"
+        >
+          {everydayItems.map((item) => (
+            <motion.div
+              key={item.id}
+              className="absolute"
+              drag
+              dragConstraints={constraintsRef}
+              dragElastic={0.2}
+              dragMomentum={false}
+              dragTransition={{ power: 0 }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ cursor: "grabbing" }}
+              style={{ left: item.x, top: item.y }}
+              initial={{ rotate: item.rotation }}
+            >
+              <div className="group relative cursor-grab">
+                <img
+                  src={item.src}
+                  className="w-40 h-40 object-contain select-none pointer-events-none"
+                  draggable={false}
+                />
+
+                <div className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-md bg-black text-white text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition">
+                  {item.desc}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
     </Layout>
   );
 }
+
+
