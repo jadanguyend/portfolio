@@ -37,6 +37,12 @@ import ItemBag from "../assets/ItemBag.png";
 import ItemLunchbox from "../assets/ItemLunchbox.png";
 import ItemPen from "../assets/ItemPen.png";
 
+// Everyday items
+import PixelComputer from "../assets/pixelComputer.png";
+import PixelMusic from "../assets/pixelMusic.png";
+import PixelMix from "../assets/pixelMix.png";
+import PixelBook from "../assets/pixelBook.png";
+
 export default function About() {
   const constraintsRef = useRef(null);
 
@@ -105,34 +111,72 @@ export default function About() {
     margin: "auto",
   });
 
+  const [activeCard, setActiveCard] = useState(0);
+
+  // Inside your About component (or above return)
+  const buildCards = [
+    {
+      label: "Intentional",
+      shortDesc: "Choose pieces with purpose.",
+      longDesc: "I carefully select each element to ensure everything fits together logically and beautifully."
+    },
+    {
+      label: "Tenacious",
+      shortDesc: "Explore and iterate until everything clicks.",
+      longDesc: "I keep experimenting, refining, and iterating until the design is seamless and complete."
+    },
+    {
+      label: "Reliable",
+      shortDesc: "The structure stands the test of use.",
+      longDesc: "Every system I build is robust, scalable, and designed to withstand real-world use."
+    },
+    {
+      label: "Delightful",
+      shortDesc: "The finished build sparks joy.",
+      longDesc: "I aim to surprise and delight users with thoughtful touches and intuitive design."
+    },
+  ];
+
+
+  // Map each card label to its image
+  const iconMap = {
+    Reliable: PixelComputer,
+    Delightful: PixelMusic,
+    Tenacious: PixelMix,
+    Intentional: PixelBook,
+  };
+
+
+
   /* ================= EVERYDAY OBJECTS ================= */
   const everydayItems = [
-    { id: 1, src: ItemMe, desc: "Designing, tinkering, overthinking", x: "1%", y: "60%", rotation: -5 },
-    { id: 2, src: ItemHandcream, desc: "Always nearby", x: "29%", y: "6%", rotation: -10 },
-    { id: 3, src: ItemFragrance, desc: "Daily ritual", x: "54%", y: "18%", rotation: 4 },
-    { id: 4, src: ItemCandle, desc: "Background focus energy", x: "83%", y: "7%", rotation: -5 },
-    { id: 5, src: ItemHat, desc: "Yes, the blue one", x: "16%", y: "20%", rotation: -8 },
-    { id: 6, src: ItemLaptop, desc: "Where everything happens", x: "34%", y: "44%", rotation: -8 },
-    { id: 7, src: ItemRamen, desc: "Comfort food", x: "68%", y: "15%", rotation: 12 },
-    { id: 8, src: ItemCar, desc: "Thinking space", x: "84%", y: "48%", rotation: 4 },
-    { id: 9, src: ItemCoffee, desc: "Fuel", x: "2%", y: "10%", rotation: -5 },
-    { id: 10, src: ItemKeyboard, desc: "Clicky on purpose", x: "30%", y: "72%", rotation: -3 },
+    { id: 1, src: ItemMe, desc: "ISTJ, through and through", x: "1%", y: "60%", rotation: -5 },
+    { id: 2, src: ItemHandcream, desc: "Always nearby, always handy ;)", x: "29%", y: "6%", rotation: -10 },
+    { id: 3, src: ItemFragrance, desc: "Favorite layering scent", x: "54%", y: "18%", rotation: 4 },
+    { id: 4, src: ItemCandle, desc: "Always in the background", x: "83%", y: "7%", rotation: -5 },
+    { id: 5, src: ItemHat, desc: "Yes, that blue hat", x: "16%", y: "20%", rotation: -8 },
+    { id: 6, src: ItemLaptop, desc: "Heavy, but everything happens here", x: "34%", y: "44%", rotation: -8 },
+    { id: 7, src: ItemRamen, desc: "Comfort food for rainy days", x: "68%", y: "15%", rotation: 12 },
+    { id: 8, src: ItemCar, desc: "Porsche 911, favorite LEGO build", x: "84%", y: "52%", rotation: 4 },
+    { id: 9, src: ItemCoffee, desc: "Vietnamese coffee, every morning", x: "2%", y: "10%", rotation: -5 },
+    { id: 10, src: ItemKeyboard, desc: "Creamy and clean", x: "30%", y: "78%", rotation: -3 },
     { id: 11, src: ItemPlant, desc: "Trying my best", x: "14%", y: "58%", rotation: 1 },
-    { id: 12, src: ItemSmiski, desc: "Tiny joy", x: "68%", y: "54%", rotation: 2 },
-    { id: 13, src: ItemBag, desc: "Carries everything", x: "42%", y: "6%", rotation: 3 },
-    { id: 14, src: ItemLunchbox, desc: "Midday reset", x: "52%", y: "62%", rotation: -2 },
-    { id: 15, src: ItemPen, desc: "Still sketch first", x: "82%", y: "76%", rotation: 2 },
+    { id: 12, src: ItemSmiski, desc: "Tiny joy around my space", x: "68%", y: "54%", rotation: 2 },
+    { id: 13, src: ItemBag, desc: "Finally found the right bag", x: "42%", y: "6%", rotation: 3 },
+    { id: 14, src: ItemLunchbox, desc: "Keeps me fed", x: "52%", y: "62%", rotation: -2 },
+    { id: 15, src: ItemPen, desc: "Fountain pen > everything else", x: "82%", y: "84%", rotation: 2 },
   ];
+  
 
   return (
     <Layout footer={<Footer />}>
       {/* ================= HERO ================= */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
+      <section className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 h-[100svh]">
           <AsciiBackground />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-12 gap-12 items-center">
+        <div className="relative z-10 grid grid-cols-12 gap-12 items-center">
           <div className="col-span-12 md:col-span-6">
             <p className="font-body font-semibold leading-[1.2] text-[clamp(1.875rem,5vw,3rem)] tracking-[-0.05em] max-w-[42ch]">
               I design experiences like building Legos — methodical in structure,
@@ -184,11 +228,15 @@ export default function About() {
       </section>
 
       {/* ================= TOOLS / OBJECTS ================= */}
-      <section className="px-6 py-6 max-w-7xl mx-auto">
+      <section className="py-6 mt-16">
+        {/* Constrained content container */}
         <h2 className="mb-12">My Building Blocks —</h2>
-                <div className="grid grid-cols-12 gap-8">
+
+        <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-3">
-            <p className="font-mono uppercase mb-4">Design & UX</p>
+            <p className="font-mono text-grayLight-500 dark:text-grayDark-500 text-sm uppercase mb-4">
+              Design & UX
+            </p>
             <ul>
               <li>Information Architecture</li>
               <li>Wireframing & User Flows</li>
@@ -200,7 +248,9 @@ export default function About() {
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <p className="font-mono uppercase mb-4">Research & Analytics</p>
+            <p className="font-mono text-grayLight-500 dark:text-grayDark-500 uppercase text-sm mb-4">
+              Research & Analytics
+            </p>
             <ul>
               <li>A/B Testing</li>
               <li>User Behavior Analysis</li>
@@ -211,7 +261,9 @@ export default function About() {
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <p className="font-mono uppercase mb-4">Product & Growth</p>
+            <p className="font-mono text-grayLight-500 dark:text-grayDark-500 uppercase text-sm mb-4">
+              Product & Growth
+            </p>
             <ul>
               <li>Value Proposition</li>
               <li>Conversion & Funnel Design</li>
@@ -221,7 +273,9 @@ export default function About() {
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <p className="font-mono uppercase mb-4">Currently Exploring</p>
+            <p className="font-mono text-grayLight-500 dark:text-grayDark-500 uppercase text-sm mb-4">
+              Currently Exploring
+            </p>
             <ul>
               <li>Frontend Development</li>
               <li>Animation & Motion Design</li>
@@ -232,6 +286,7 @@ export default function About() {
           </div>
         </div>
 
+        {/* Draggable objects area */}
         <div
           ref={constraintsRef}
           className="relative w-full h-[520px] border border-dashed rounded-xl overflow-visible mt-16"
@@ -250,31 +305,122 @@ export default function About() {
               <div className="group relative cursor-grab">
                 <motion.img
                   src={item.src}
-                  className="w-40 h-40 object-contain select-none pointer-events-none"
+                  className="w-40 max-h-40 object-contain select-none pointer-events-none"
                   draggable={false}
                   style={{ rotate: item.rotation }}
                 />
 
                 <div
                   className="pointer-events-none absolute left-1/2 bottom-full mb-3
-                             -translate-x-1/2 rounded-md bg-black text-white text-xs
-                             px-3 py-1 opacity-0 group-hover:opacity-100 transition
-                             whitespace-nowrap"
+                            -translate-x-1/2 rounded-md bg-black text-white text-xs
+                            px-3 py-1 opacity-0 group-hover:opacity-100 transition
+                            whitespace-nowrap font-mono leading-tighter"
                 >
                   {item.desc}
 
-                <span
-                  className="absolute left-1/2 top-full -translate-x-1/2 w-0 h-0
-                            border-l-[6px] border-r-[6px] border-t-[6px]
-                            border-l-transparent border-r-transparent border-t-black"
-                />
-
+                  <span
+                    className="absolute left-1/2 top-full -translate-x-1/2 w-0 h-0
+                              border-l-[6px] border-r-[6px] border-t-[6px]
+                              border-l-transparent border-r-transparent border-t-black"
+                  />
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </section>
+
+
+
+      {/* ================= HOW I BUILD ================= */}
+      <section className="py-12 mt-16">
+        {/* Constrained content container */}
+        <div className="grid grid-cols-12 gap-12 items-start">
+          
+          {/* Left side: H2 */}
+          <div className="col-span-12 md:col-span-6">
+            <h2 className="mb-6">
+              How I Build —
+            </h2>
+          </div>
+
+          {/* Right side: stacked cards */}
+          <div className="col-span-12 md:col-span-6 flex flex-col gap-4 h-full relative">
+            {buildCards.map((item, index) => {
+              const iconSrc = iconMap[item.label];
+              const isActive = activeCard === index;
+
+              return (
+                <div
+                  key={index}
+                  className={`relative border-grayLight-300 dark:border-grayDark-300 
+                              bg-grayLight-100 dark:bg-grayDark-50 
+                              text-grayLight-800 dark:text-grayDark-800
+                              rounded-md overflow-hidden transition-all duration-300 cursor-pointer`}
+                  style={{
+                    height: isActive
+                      ? "clamp(140px, 20vw, 250px)" // expanded height
+                      : "clamp(70px, 9vw, 90px)",   // collapsed height
+                  }}
+                  onMouseEnter={() => setActiveCard(index)}
+                  onMouseLeave={() => setActiveCard(null)}
+                >
+                  {/* Label + short description (always visible) */}
+                  <div className="px-4 pt-4 font-mono text-xs uppercase text-grayLight-400 dark:text-grayDark-400">
+                    {item.label}
+                  </div>
+
+                  <div className="px-4 text-base md:text-lg font-semibold text-grayLight-800 dark:text-grayDark-800">
+                    {item.shortDesc}
+                  </div>
+
+                  {/* Long description + icon (only on hover) */}
+                  {isActive && (
+                    <>
+                      <div className="px-4 pb-2 mt-2 text-sm md:text-base font-medium text-grayLight-800 dark:text-grayDark-800">
+                        {item.longDesc}
+                      </div>
+
+                      <img
+                        src={iconSrc}
+                        alt={item.label}
+                        className="absolute bottom-2 right-2 object-contain pointer-events-none select-none"
+                        style={{
+                          width: "clamp(60px, 12vw, 120px)",
+                          height: "clamp(60px, 12vw, 120px)",
+                        }}
+                      />
+                    </>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* ================= CTA ================= */}
+      <section className="py-12 mt-16">
+        <motion.div
+          className="project-card-cta group transition-colors duration-300"
+          whileHover={{ scale: 1 }}
+        >
+          <div className="flex flex-col items-center justify-center gap-4 h-72 md:h-96 text-center w-full">
+            <p className="text-lg md:text-xl transition-colors duration-300">
+              Let’s create something great together!
+            </p>
+            <a
+              href="/contact"
+              className="btn-primary font-ibm transition-all duration-300 hover:scale-105"
+            >
+              Connect
+            </a>
+          </div>
+        </motion.div>
+      </section>
+
     </Layout>
   );
 }
