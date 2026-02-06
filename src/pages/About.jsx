@@ -106,24 +106,19 @@ export default function About() {
   });
 
   /* ================= EVERYDAY OBJECTS ================= */
-
-/* ================= EVERYDAY OBJECTS ================= */
   const everydayItems = [
     { id: 1, src: ItemMe, desc: "Designing, tinkering, overthinking", x: "1%", y: "60%", rotation: -5 },
     { id: 2, src: ItemHandcream, desc: "Always nearby", x: "29%", y: "6%", rotation: -10 },
     { id: 3, src: ItemFragrance, desc: "Daily ritual", x: "54%", y: "18%", rotation: 4 },
     { id: 4, src: ItemCandle, desc: "Background focus energy", x: "83%", y: "7%", rotation: -5 },
-
     { id: 5, src: ItemHat, desc: "Yes, the blue one", x: "16%", y: "20%", rotation: -8 },
     { id: 6, src: ItemLaptop, desc: "Where everything happens", x: "34%", y: "44%", rotation: -8 },
     { id: 7, src: ItemRamen, desc: "Comfort food", x: "68%", y: "15%", rotation: 12 },
     { id: 8, src: ItemCar, desc: "Thinking space", x: "84%", y: "48%", rotation: 4 },
-
     { id: 9, src: ItemCoffee, desc: "Fuel", x: "2%", y: "10%", rotation: -5 },
     { id: 10, src: ItemKeyboard, desc: "Clicky on purpose", x: "30%", y: "72%", rotation: -3 },
     { id: 11, src: ItemPlant, desc: "Trying my best", x: "14%", y: "58%", rotation: 1 },
     { id: 12, src: ItemSmiski, desc: "Tiny joy", x: "68%", y: "54%", rotation: 2 },
-
     { id: 13, src: ItemBag, desc: "Carries everything", x: "42%", y: "6%", rotation: 3 },
     { id: 14, src: ItemLunchbox, desc: "Midday reset", x: "52%", y: "62%", rotation: -2 },
     { id: 15, src: ItemPen, desc: "Still sketch first", x: "82%", y: "76%", rotation: 2 },
@@ -155,7 +150,7 @@ export default function About() {
             </motion.div>
           </div>
 
-                    <div className="col-span-12 md:col-span-6 flex justify-center">
+          <div className="col-span-12 md:col-span-6 flex justify-center">
             <div className="relative w-full max-w-[400px]" style={{ height: maxHeight }}>
               <motion.img
                 src={cards[1].src}
@@ -185,15 +180,13 @@ export default function About() {
               />
             </div>
           </div>
-
         </div>
       </section>
 
-            {/* ================= TOOLS ================= */}
-      <section className="px-6 py-24 max-w-7xl mx-auto">
+      {/* ================= TOOLS / OBJECTS ================= */}
+      <section className="px-6 py-6 max-w-7xl mx-auto">
         <h2 className="mb-12">My Building Blocks —</h2>
-
-        <div className="grid grid-cols-12 gap-8">
+                <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-3">
             <p className="font-mono uppercase mb-4">Design & UX</p>
             <ul>
@@ -239,8 +232,9 @@ export default function About() {
           </div>
         </div>
 
-        <div ref={constraintsRef}
-          className="relative w-full h-[520px] border border-dashed rounded-xl overflow-hidden mt-16"
+        <div
+          ref={constraintsRef}
+          className="relative w-full h-[520px] border border-dashed rounded-xl overflow-visible mt-16"
         >
           {everydayItems.map((item) => (
             <motion.div
@@ -250,20 +244,31 @@ export default function About() {
               dragConstraints={constraintsRef}
               dragElastic={0.2}
               dragMomentum={false}
-              dragTransition={{ power: 0 }}
               whileHover={{ scale: 1.08 }}
-              whileTap={{ cursor: "grabbing" }}
-              style={{ left: item.x, top: item.y, rotate: item.rotation, }}
+              style={{ left: item.x, top: item.y }}
             >
               <div className="group relative cursor-grab">
-                <img
+                <motion.img
                   src={item.src}
                   className="w-40 h-40 object-contain select-none pointer-events-none"
                   draggable={false}
+                  style={{ rotate: item.rotation }}
                 />
 
-                <div className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-md bg-black text-white text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition">
+                <div
+                  className="pointer-events-none absolute left-1/2 bottom-full mb-3
+                             -translate-x-1/2 rounded-md bg-black text-white text-xs
+                             px-3 py-1 opacity-0 group-hover:opacity-100 transition
+                             whitespace-nowrap"
+                >
                   {item.desc}
+
+                <span
+                  className="absolute left-1/2 top-full -translate-x-1/2 w-0 h-0
+                            border-l-[6px] border-r-[6px] border-t-[6px]
+                            border-l-transparent border-r-transparent border-t-black"
+                />
+
                 </div>
               </div>
             </motion.div>
@@ -273,5 +278,3 @@ export default function About() {
     </Layout>
   );
 }
-
-
