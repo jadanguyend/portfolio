@@ -6,13 +6,19 @@ import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 import AsciiBackground from "../components/AsciiBackground";
 
-import miniMe from "../assets/miniMe.png";
-import miniBeekeeper from "../assets/miniBeekeeper.png";
-import miniHiker from "../assets/miniHiker.png";
 import miniDetective from "../assets/miniDetective.png";
+import miniBeekeeper from "../assets/miniBeekeeper.png";
+import miniHotdog from "../assets/miniHotdog.png";
+import miniKendo from "../assets/miniKendo.png";
+import miniMe from "../assets/miniMe.png";
+import miniRacer from "../assets/miniRacer.png";
+import miniSprinter from "../assets/miniSprinter.png";
+import miniHiker from "../assets/miniHiker.png";
 import miniAstronaut from "../assets/miniAstronaut.png";
 
-// Typing phrases
+
+/* ---------- Typing phrases ---------- */
+
 const PHRASES = [
   "building a LEGO set",
   "using her favorite apps and softwares",
@@ -21,9 +27,231 @@ const PHRASES = [
   "geeking out over F1 car liveries",
 ];
 
-const TYPING_SPEED = 65; // ms per char
-const PAUSE_AFTER_TYPING = 900; // pause at end of phrase
+const TYPING_SPEED = 65;
+const PAUSE_AFTER_TYPING = 900;
 const PAUSE_AFTER_DELETING = 400;
+
+/* ---------- Resize Handle ---------- */
+
+function Handle({ className, onPointerDown }) {
+  return (
+    <div
+      onPointerDown={onPointerDown}
+      className={`absolute w-2.5 h-2.5 bg-white ${className}`}
+      style={{
+        border: "1px solid var(--accent-color)",
+      }}
+    />
+  );
+}
+
+/* ---------- Selectable Minifig ---------- */
+
+function SelectableMinifig({
+  item,
+  selectedId,
+  setSelectedId,
+  constraintsRef,
+}) {
+  const isSelected = selectedId === item.id;
+
+  const wrapperRef = useRef(null);
+  const resizeSession = useRef(null);
+  const rotateSession = useRef(null);
+
+  const [isRotating, setIsRotating] = useState(false);
+
+  const MIN_SCALE =
+    typeof window !== "undefined" && window.innerWidth < 768 ? 0.7 : 0.5;
+
+  const [transform, setTransform] = useState({
+    x: item.x,
+    y: item.y,
+    scale: 0.6,
+    rotation: item.r,
+  });
+
+  const [size, setSize] = useState({ w: 0, h: 0 });
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      const rect = wrapperRef.current.getBoundingClientRect();
+      setSize({
+        w: Math.round(rect.width),
+        h: Math.round(rect.height),
+      });
+    }
+  }, [transform.scale, isSelected]);
+
+  /* ---------- Resize ---------- */
+
+  function startResize(e) {
+    e.stopPropagation();
+
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    resizeSession.current = {
+      startScale: transform.scale,
+      startDistance: Math.hypot(e.clientX - cx, e.clientY - cy),
+      centerX: cx,
+      centerY: cy,
+    };
+
+    window.addEventListener("pointermove", onResize);
+    window.addEventListener("pointerup", stopResize);
+  }
+
+  function onResize(e) {
+    const s = resizeSession.current;
+    if (!s) return;
+
+    const dist = Math.hypot(
+      e.clientX - s.centerX,
+      e.clientY - s.centerY
+    );
+
+    const nextScale = s.startScale * (dist / s.startDistance);
+
+    setTransform((t) => ({
+      ...t,
+      scale: Math.min(3, Math.max(MIN_SCALE, nextScale)),
+    }));
+  }
+
+  function stopResize() {
+    resizeSession.current = null;
+    window.removeEventListener("pointermove", onResize);
+    window.removeEventListener("pointerup", stopResize);
+  }
+
+  /* ---------- Rotation ---------- */
+
+  function startRotate(e) {
+    e.stopPropagation();
+    setIsRotating(true);
+
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    rotateSession.current = {
+      centerX: cx,
+      centerY: cy,
+      startAngle: Math.atan2(e.clientY - cy, e.clientX - cx),
+      startRotation: transform.rotation,
+    };
+
+    window.addEventListener("pointermove", onRotate);
+    window.addEventListener("pointerup", stopRotate);
+  }
+
+  function onRotate(e) {
+    const s = rotateSession.current;
+    if (!s) return;
+
+    const angle = Math.atan2(
+      e.clientY - s.centerY,
+      e.clientX - s.centerX
+    );
+
+    const deg =
+      s.startRotation + ((angle - s.startAngle) * 180) / Math.PI;
+
+    setTransform((t) => ({ ...t, rotation: deg }));
+  }
+
+  function stopRotate() {
+    rotateSession.current = null;
+    setIsRotating(false);
+    window.removeEventListener("pointermove", onRotate);
+    window.removeEventListener("pointerup", stopRotate);
+  }
+
+  return (
+    <motion.div
+      className="absolute"
+      drag={!isRotating}
+      dragConstraints={constraintsRef}
+      dragElastic={0.25}
+      dragMomentum={false}
+      style={{ left: transform.x, top: transform.y }}
+      onDragEnd={(e, info) => {
+        setTransform((t) => ({
+          ...t,
+          x: t.x + info.offset.x,
+          y: t.y + info.offset.y,
+        }));
+      }}
+      onPointerDown={(e) => {
+        e.stopPropagation();
+        setSelectedId(item.id);
+      }}
+    >
+      <div
+        ref={wrapperRef}
+        className="relative cursor-grab"
+        style={{
+          transform: `scale(${transform.scale}) rotate(${transform.rotation}deg)`,
+          transformOrigin: "50% 50%",
+        }}
+      >
+        <img
+          src={item.src}
+          draggable={false}
+          className="w-28 md:w-32 select-none drop-shadow-xl pointer-events-none"
+        />
+
+        {isSelected && (
+          <>
+            {/* Bounding box */}
+            <div
+              className="absolute inset-0 border-2 pointer-events-none"
+              style={{ borderColor: "var(--accent-color)" }}
+            />
+
+            {/* Resize handles (8) */}
+            <Handle className="-top-1 -left-1" onPointerDown={startResize} />
+            <Handle className="-top-1 -right-1" onPointerDown={startResize} />
+            <Handle className="-bottom-1 -left-1" onPointerDown={startResize} />
+            <Handle className="-bottom-1 -right-1" onPointerDown={startResize} />
+
+            <Handle className="top-1/2 -left-1 -translate-y-1/2" onPointerDown={startResize} />
+            <Handle className="top-1/2 -right-1 -translate-y-1/2" onPointerDown={startResize} />
+            <Handle className="-top-1 left-1/2 -translate-x-1/2" onPointerDown={startResize} />
+            <Handle className="-bottom-1 left-1/2 -translate-x-1/2" onPointerDown={startResize} />
+
+            {/* Rotation handle */}
+            <div
+              onPointerDown={startRotate}
+              className="absolute -top-10 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full flex items-center justify-center text-sm cursor-grab bg-white"
+              style={{
+                border: "1px solid var(--accent-color)",
+                color: "var(--accent-color)",
+              }}
+            >
+              ↻
+            </div>
+
+            {/* Dimension label */}
+            <div
+              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-xs font-mono px-2 py-0.5 rounded whitespace-nowrap"
+              style={{
+                background: "var(--accent-color)",
+                color: "#fff",
+              }}
+            >
+              {size.w} × {size.h}
+            </div>
+          </>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+/* ---------- Home ---------- */
 
 export default function Home() {
   const lastCommit = import.meta.env.VITE_LAST_COMMIT
@@ -35,41 +263,33 @@ export default function Home() {
     : null;
 
   const heroConstraintsRef = useRef(null);
+  const [selectedId, setSelectedId] = useState(null);
 
-// Initial scattered positions (x/y as percentages)
-  const initialMinis = [
-    { id: 1, src: miniHiker, label: "Hiker", left: "20%", top: "40%", r: 15 },
-    { id: 2, src: miniDetective, label: "Detective", left: "30%", top: "55%", r: -10 },
-    { id: 3, src: miniMe, label: "Me", left: "45%", top: "35%", r: 5 },
-    { id: 4, src: miniAstronaut, label: "Astronaut", left: "60%", top: "45%", r: -20 },
-    { id: 5, src: miniBeekeeper, label: "Beekeeper", left: "70%", top: "55%", r: 10 },
+  const heroMinis = [
+    { id: 1, src: miniDetective, x: "23%", y: "23%", r: -5 },
+    { id: 2, src: miniBeekeeper, x: "32%", y: "23%", r: -5 },
+    { id: 3, src: miniHotdog, x: "60%", y: "15%", r: 0 },
+    { id: 4, src: miniKendo, x: "90%", y: "17%", r: 12 },
+    { id: 5, src: miniMe, x: "80%", y: "17%", r: 12 },
+    { id: 6, src: miniRacer, x: "70%", y: "17%", r: 12 },
+    { id: 7, src: miniSprinter, x: "60%", y: "17%", r: 12 },
+    { id: 8, src: miniHiker, x: "50%", y: "17%", r: 12 },
+    { id: 9, src: miniAstronaut, x: "40%", y: "17%", r: 12 },
   ];
 
-  // Organized positions
-  const organizedMinis = [
-    { id: 1, left: "25%", top: "50%", r: 0 },
-    { id: 2, left: "35%", top: "50%", r: 0 },
-    { id: 3, left: "45%", top: "50%", r: 0 },
-    { id: 4, left: "55%", top: "50%", r: 0 },
-    { id: 5, left: "65%", top: "50%", r: 0 },
-  ];
+  /* ---------- Typing effect ---------- */
 
-  const [heroMinis, setHeroMinis] = useState(initialMinis);
-
-  // Typing effect state
   const [displayedText, setDisplayedText] = useState("Currently ");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const [showCaret, setShowCaret] = useState(true);
 
-  // Caret blink
   useEffect(() => {
-    const interval = setInterval(() => setShowCaret((prev) => !prev), 500);
+    const interval = setInterval(() => setShowCaret((p) => !p), 500);
     return () => clearInterval(interval);
   }, []);
 
-  // Typing effect
   useEffect(() => {
     const fullPhrase = "Currently " + PHRASES[phraseIndex];
     let timeout;
@@ -77,19 +297,19 @@ export default function Home() {
     if (!deleting && charIndex < fullPhrase.length) {
       timeout = setTimeout(() => {
         setDisplayedText(fullPhrase.slice(0, charIndex + 1));
-        setCharIndex((prev) => prev + 1);
+        setCharIndex((p) => p + 1);
       }, TYPING_SPEED);
     } else if (!deleting && charIndex === fullPhrase.length) {
       timeout = setTimeout(() => setDeleting(true), PAUSE_AFTER_TYPING);
     } else if (deleting && charIndex > 9) {
       timeout = setTimeout(() => {
         setDisplayedText(fullPhrase.slice(0, charIndex - 1));
-        setCharIndex((prev) => prev - 1);
+        setCharIndex((p) => p - 1);
       }, TYPING_SPEED);
     } else if (deleting && charIndex === 9) {
       timeout = setTimeout(() => {
         setDeleting(false);
-        setPhraseIndex((prev) => (prev + 1) % PHRASES.length);
+        setPhraseIndex((p) => (p + 1) % PHRASES.length);
       }, PAUSE_AFTER_DELETING);
     }
 
@@ -98,129 +318,69 @@ export default function Home() {
 
   return (
     <Layout footer={<Footer />}>
-      {/* Hero Section */}
-      <section className="relative min-h-screen overflow-hidden">
-        {/* ASCII Background */}
+      <section
+        className="relative min-h-screen overflow-hidden"
+        onPointerDown={() => setSelectedId(null)}
+      >
         <AsciiBackground />
-
-        {/* Constraint layer for dragging */}
         <div ref={heroConstraintsRef} className="absolute inset-0 z-[15]" />
 
-        {/* Floating Draggable Minis Layer */}
-        <div className="absolute inset-0 z-[20] flex justify-center items-center">
+        <div className="absolute inset-0 z-[20]">
           {heroMinis.map((item) => (
-        <motion.div
-          key={item.id}
-          className="absolute"
-          drag
-          dragConstraints={heroConstraintsRef}
-          dragElastic={0.25}
-          dragMomentum={false}
-          whileHover={{ scale: 1.12 }}
-          whileDrag={{ scale: 1.18, zIndex: 30 }}
-          style={{
-            left: item.left, // CSS percent
-            top: item.top,   // CSS percent
-            rotate: item.r,
-          }}
-          animate={{
-            rotate: item.r,
-            transition: { type: "spring", stiffness: 120, damping: 20 },
-          }}
-        >
-              <div className="group relative cursor-grab">
-                <motion.img
-                  src={item.src}
-                  draggable={false}
-                  className="w-28 md:w-32 select-none drop-shadow-xl"
-                  style={{ rotate: item.r }}
-                />
-
-                {/* Tooltip */}
-                <div
-                  className="pointer-events-none absolute left-1/2 bottom-full mb-3
-                            -translate-x-1/2 rounded-md bg-black text-white text-xs
-                            px-3 py-1 opacity-0 group-hover:opacity-100 transition
-                            whitespace-nowrap font-mono uppercase tracking-tight"
-                >
-                  {item.label}
-                  <span
-                    className="absolute left-1/2 top-full -translate-x-1/2 w-0 h-0
-                              border-l-[6px] border-r-[6px] border-t-[6px]
-                              border-l-transparent border-r-transparent border-t-black"
-                  />
-                </div>
-              </div>
-            </motion.div>
+            <SelectableMinifig
+              key={item.id}
+              item={item}
+              selectedId={selectedId}
+              setSelectedId={setSelectedId}
+              constraintsRef={heroConstraintsRef}
+            />
           ))}
         </div>
 
-        {/* Content Layer */}
-        <div className="relative z-30 grid grid-cols-12 min-h-screen px-6 pt-28 pb-12 items-start">
-          {/* Top Section: Full width name */}
-          <motion.h1
-            className="col-span-12 font-heading font-semibold text-text-primary text-grayLight-900 dark:text-grayDark-900 leading-none text-center uppercase"
-            style={{ fontSize: "clamp(6vw, 12vw, 15rem)", letterSpacing: "-0.05em" }}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <span className="inline-block w-full">{`[JADANGUYEND]`}</span>
-          </motion.h1>
+        {/* Content unchanged */}
+        <div className="relative z-10 grid grid-cols-12 min-h-screen px-6 py-24 items-center">
+          <div className="col-span-12 flex flex-col items-center text-center">
+            <motion.h1
+              className="font-heading font-semibold uppercase leading-none"
+              style={{
+                fontSize: "clamp(6vw, 12vw, 15rem)",
+                letterSpacing: "-0.05em",
+              }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              [JADANGUYEND]
+            </motion.h1>
 
-          {/* Bottom Section */}
-          <div className="col-span-12 mt-[40vh] grid grid-cols-12 gap-4">
-            {/* Pills */}
-            <div className="col-span-12 flex justify-center gap-3 relative z-[40]">
-              <div className="meta-pill flex items-center gap-1">
-                <FiMapPin /> Seattle, WA
-              </div>
-              {lastCommit && (
+            <div className="mt-12 grid grid-cols-12 gap-4 w-full">
+              <div className="col-span-12 flex justify-center gap-3">
                 <div className="meta-pill flex items-center gap-1">
-                  <FiClock /> Last Commit: {lastCommit}
+                  <FiMapPin /> Seattle, WA
                 </div>
-              )}
-              {/* Organize Button */}
-              <button
-                className="meta-pill cursor-pointer"
-                onClick={() =>
-                  setHeroMinis((prev) =>
-                    prev.map((mini) => {
-                      const target = organizedMinis.find((o) => o.id === mini.id);
-                      return target ? { ...mini, ...target } : mini;
-                    })
-                  )
-                }
-              >
-                Organize Minis
-              </button>
+                {lastCommit && (
+                  <div className="meta-pill flex items-center gap-1">
+                    <FiClock /> Last Commit: {lastCommit}
+                  </div>
+                )}
+              </div>
+
+              <p className="col-start-3 col-span-8 text-center text-grayLight-500 dark:text-grayDark-500 text-base md:text-lg font-normal">
+                Product designer shaping consumer experiences — aligning systems,
+                visual craft, and thoughtful product decisions that scale. Bringing
+                delight to consumer apps, enterprise systems, and complex workflows.
+              </p>
+
+              <div className="col-start-4 col-span-6 font-mono text-xs uppercase">
+                {displayedText}
+                <span
+                  className={`inline-block ml-1 w-[1ch] bg-current ${
+                    showCaret ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  &nbsp;
+                </span>
+              </div>
             </div>
-
-            {/* Main Phrase */}
-            <motion.p
-              className="col-start-3 col-span-8 text-center text-grayLight-500 dark:text-grayDark-500 text-base md:text-lg font-normal"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              Product designer shaping consumer experiences — aligning systems,
-              visual craft, and thoughtful product decisions that scale. Bringing
-              delight to consumer apps, enterprise systems, and complex workflows.
-            </motion.p>
-
-            {/* Typing Phrase */}
-            <motion.div
-              className="col-start-4 col-span-6 text-center font-mono text-xs uppercase"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              {displayedText}
-              <span
-                className={`inline-block ml-1 w-[1ch] bg-current ${
-                  showCaret ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                &nbsp;
-              </span>
-            </motion.div>
           </div>
         </div>
       </section>
