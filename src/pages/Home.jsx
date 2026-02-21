@@ -6,11 +6,11 @@ import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 import AsciiBackground from "../components/AsciiBackground";
 
-import miniHazmat from "../assets/miniHazmat.png";
-import miniMusketeer from "../assets/miniMusketeer.png";
+import miniMe from "../assets/miniMe.png";
 import miniBeekeeper from "../assets/miniBeekeeper.png";
-import miniHotdog from "../assets/miniHotdog.png";
-import miniKendo from "../assets/miniKendo.png";
+import miniHiker from "../assets/miniHiker.png";
+import miniDetective from "../assets/miniDetective.png";
+import miniAstronaut from "../assets/miniAstronaut.png";
 
 // Typing phrases
 const PHRASES = [
@@ -36,13 +36,25 @@ export default function Home() {
 
   const heroConstraintsRef = useRef(null);
 
-  const heroMinis = [
-    { id: 1, src: miniHazmat, label: "Hazmat", x: "2%", y: "16%", r: -10 },
-    { id: 2, src: miniBeekeeper, label: "Beekeeper", x: "32%", y: "23%", r: -5 },
-    { id: 3, src: miniHotdog, label: "Hotdog", x: "60%", y: "15%", r: 0 },
-    { id: 4, src: miniKendo, label: "Kendo", x: "90%", y: "17%", r: 12 },
+// Initial scattered positions (x/y as percentages)
+  const initialMinis = [
+    { id: 1, src: miniHiker, label: "Hiker", left: "20%", top: "40%", r: 15 },
+    { id: 2, src: miniDetective, label: "Detective", left: "30%", top: "55%", r: -10 },
+    { id: 3, src: miniMe, label: "Me", left: "45%", top: "35%", r: 5 },
+    { id: 4, src: miniAstronaut, label: "Astronaut", left: "60%", top: "45%", r: -20 },
+    { id: 5, src: miniBeekeeper, label: "Beekeeper", left: "70%", top: "55%", r: 10 },
   ];
 
+  // Organized positions
+  const organizedMinis = [
+    { id: 1, left: "25%", top: "50%", r: 0 },
+    { id: 2, left: "35%", top: "50%", r: 0 },
+    { id: 3, left: "45%", top: "50%", r: 0 },
+    { id: 4, left: "55%", top: "50%", r: 0 },
+    { id: 5, left: "65%", top: "50%", r: 0 },
+  ];
+
+  const [heroMinis, setHeroMinis] = useState(initialMinis);
 
   // Typing effect state
   const [displayedText, setDisplayedText] = useState("Currently ");
@@ -94,23 +106,28 @@ export default function Home() {
         {/* Constraint layer for dragging */}
         <div ref={heroConstraintsRef} className="absolute inset-0 z-[15]" />
 
-        {/* Floating Draggable Minis Layer (ON TOP) */}
-        <div className="absolute inset-0 z-[20]">
+        {/* Floating Draggable Minis Layer */}
+        <div className="absolute inset-0 z-[20] flex justify-center items-center">
           {heroMinis.map((item) => (
-            <motion.div
-              key={item.id}
-              className="absolute"
-              drag
-              dragConstraints={heroConstraintsRef}
-              dragElastic={0.25}
-              dragMomentum={false}
-              whileHover={{ scale: 1.12 }}
-              whileDrag={{ scale: 1.18, zIndex: 30 }}
-              style={{
-                left: item.x,
-                top: item.y,
-              }}
-            >
+        <motion.div
+          key={item.id}
+          className="absolute"
+          drag
+          dragConstraints={heroConstraintsRef}
+          dragElastic={0.25}
+          dragMomentum={false}
+          whileHover={{ scale: 1.12 }}
+          whileDrag={{ scale: 1.18, zIndex: 30 }}
+          style={{
+            left: item.left, // CSS percent
+            top: item.top,   // CSS percent
+            rotate: item.r,
+          }}
+          animate={{
+            rotate: item.r,
+            transition: { type: "spring", stiffness: 120, damping: 20 },
+          }}
+        >
               <div className="group relative cursor-grab">
                 <motion.img
                   src={item.src}
@@ -127,7 +144,6 @@ export default function Home() {
                             whitespace-nowrap font-mono uppercase tracking-tight"
                 >
                   {item.label}
-
                   <span
                     className="absolute left-1/2 top-full -translate-x-1/2 w-0 h-0
                               border-l-[6px] border-r-[6px] border-t-[6px]
@@ -140,14 +156,11 @@ export default function Home() {
         </div>
 
         {/* Content Layer */}
-        <div className="relative z-10 grid grid-cols-12 min-h-screen px-6 pt-28 pb-12 items-start">
+        <div className="relative z-30 grid grid-cols-12 min-h-screen px-6 pt-28 pb-12 items-start">
           {/* Top Section: Full width name */}
           <motion.h1
             className="col-span-12 font-heading font-semibold text-text-primary text-grayLight-900 dark:text-grayDark-900 leading-none text-center uppercase"
-            style={{
-              fontSize: "clamp(6vw, 12vw, 15rem)",
-              letterSpacing: "-0.05em",
-            }}
+            style={{ fontSize: "clamp(6vw, 12vw, 15rem)", letterSpacing: "-0.05em" }}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -157,7 +170,7 @@ export default function Home() {
           {/* Bottom Section */}
           <div className="col-span-12 mt-[40vh] grid grid-cols-12 gap-4">
             {/* Pills */}
-            <div className="col-span-12 flex justify-center gap-3">
+            <div className="col-span-12 flex justify-center gap-3 relative z-[40]">
               <div className="meta-pill flex items-center gap-1">
                 <FiMapPin /> Seattle, WA
               </div>
@@ -166,6 +179,20 @@ export default function Home() {
                   <FiClock /> Last Commit: {lastCommit}
                 </div>
               )}
+              {/* Organize Button */}
+              <button
+                className="meta-pill cursor-pointer"
+                onClick={() =>
+                  setHeroMinis((prev) =>
+                    prev.map((mini) => {
+                      const target = organizedMinis.find((o) => o.id === mini.id);
+                      return target ? { ...mini, ...target } : mini;
+                    })
+                  )
+                }
+              >
+                Organize Minis
+              </button>
             </div>
 
             {/* Main Phrase */}
@@ -197,8 +224,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
 
       <ProjectsSection />
     </Layout>
