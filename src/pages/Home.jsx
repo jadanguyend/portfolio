@@ -13,6 +13,11 @@ import miniBeekeeper from "../assets/miniBeekeeper.png";
 import miniHotdog from "../assets/miniHotdog.png";
 import miniKendo from "../assets/miniKendo.png";
 import miniMe from "../assets/miniMe.png";
+import miniSkateboard from "../assets/miniSkateboard.png";
+import miniRead from "../assets/miniRead.png";
+import miniDog from "../assets/miniDog.png";
+import miniMagnify from "../assets/miniMagnify.png";
+import miniFixer from "../assets/miniFixer.png";
 import miniRacer from "../assets/miniRacer.png";
 import miniSprinter from "../assets/miniSprinter.png";
 import miniHiker from "../assets/miniHiker.png";
@@ -274,15 +279,12 @@ export default function Home() {
   const [selectedId, setSelectedId] = useState(null);
 
   const heroMinis = [
-    { id: 1, src: miniDetective, x: "35%", y: "73%", r: 5, name: "Film Noir Detective", series: "Minifigures | Series 25" },
-    { id: 2, src: miniBeekeeper, x: "67%", y: "82%", r: -5, name: "Beekeeper", series: "Minifigures | Series 21" },
-    { id: 3, src: miniHotdog, x: "21%", y: "15%", r: -5, name: "Hot Dog Man", series: "Minifigures | Series 13" },
-    { id: 4, src: miniKendo, x: "92%", y: "71%", r: 6, name: "Kendo Fighter", series: "Minifigures | Series 15" },
-    { id: 5, src: miniMe, x: "42%", y: "34%", r: 6, name: "Jada Nguyen", series: "Custom | Made with DALL·E 3" },
-    { id: 6, src: miniRacer, x: "10%", y: "79%", r: -4, name: "Lewis Hamilton", series: "Speed Champions | Mercedes-AMG W12" },
-    { id: 7, src: miniSprinter, x: "85%", y: "42%", r: 0, name: "Sprinter", series: "Minifigures | Series 25" },
-    { id: 8, src: miniHiker, x: "2%", y: "45%", r: 2, name: "Hiker", series: "Minifigures | Series 16" },
-    { id: 9, src: miniAstronaut, x: "67%", y: "13%", r: -1, name: "Mae Jamison", series: "Women of NASA" },
+    { id: 1, src: miniDog, x: "16%", y: "20%", r: 0, name: "The Wanderer", series: "Moves with curiosity and independence" },
+    { id: 2, src: miniSkateboard, x: "50%", y: "21%", r: -5, name: "The Playful", series: "Bold, playful, and always moving forward" },
+    { id: 3, src: miniMagnify, x: "64%", y: "37%", r: -5, name: "The Analyst", series: "Precision-driven and observant" },
+    { id: 4, src: miniRead, x: "86%", y: "26%", r: 6, name: "The Archivist", series: "Gathers knowledge and stories" },
+    { id: 5, src: miniMe, x: "38%", y: "36%", r: 0, name: "The Original", series: "Powered by caffeine" },
+    { id: 6, src: miniFixer, x: "3%", y: "38%", r: -6, name: "The Tinkerer", series: "Learn by doing" },
   ];
 
   const [displayedText, setDisplayedText] = useState("Currently ");
