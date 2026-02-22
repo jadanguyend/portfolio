@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { FiMapPin, FiClock } from "react-icons/fi";
 import ProjectsSection from "../components/ProjectSection";
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 import AsciiBackground from "../components/AsciiBackground";
+import { FiX } from "react-icons/fi";
 
 import miniDetective from "../assets/miniDetective.png";
 import miniBeekeeper from "../assets/miniBeekeeper.png";
@@ -15,7 +17,6 @@ import miniRacer from "../assets/miniRacer.png";
 import miniSprinter from "../assets/miniSprinter.png";
 import miniHiker from "../assets/miniHiker.png";
 import miniAstronaut from "../assets/miniAstronaut.png";
-
 
 /* ---------- Typing phrases ---------- */
 
@@ -31,20 +32,6 @@ const TYPING_SPEED = 65;
 const PAUSE_AFTER_TYPING = 900;
 const PAUSE_AFTER_DELETING = 400;
 
-/* ---------- Resize Handle ---------- */
-
-function Handle({ className, onPointerDown }) {
-  return (
-    <div
-      onPointerDown={onPointerDown}
-      className={`absolute w-2.5 h-2.5 bg-white ${className}`}
-      style={{
-        border: "1px solid var(--accent-color)",
-      }}
-    />
-  );
-}
-
 /* ---------- Selectable Minifig ---------- */
 
 function SelectableMinifig({
@@ -55,48 +42,40 @@ function SelectableMinifig({
 }) {
   const isSelected = selectedId === item.id;
 
-  const wrapperRef = useRef(null);
-  const resizeSession = useRef(null);
-  const rotateSession = useRef(null);
+  const resizeRef = useRef(null);
+  const rotateRef = useRef(null);
+  const elementRef = useRef(null);
 
-  const [isRotating, setIsRotating] = useState(false);
 
-  const MIN_SCALE =
-    typeof window !== "undefined" && window.innerWidth < 768 ? 0.7 : 0.5;
 
-  const [transform, setTransform] = useState({
-    x: item.x,
-    y: item.y,
-    scale: 0.6,
-    rotation: item.r,
-  });
+  const [rotation, setRotation] = useState(item.r);
 
-  const [size, setSize] = useState({ w: 0, h: 0 });
+  /* ---------- Start with same HEIGHT for all ---------- */
 
-  useEffect(() => {
-    if (wrapperRef.current) {
-      const rect = wrapperRef.current.getBoundingClientRect();
-      setSize({
-        w: Math.round(rect.width),
-        h: Math.round(rect.height),
-      });
-    }
-  }, [transform.scale, isSelected]);
+  const BASE_HEIGHT = 120;
+
+  const [aspectRatio, setAspectRatio] = useState(1);
+  const [width, setWidth] = useState(BASE_HEIGHT);
+  const height = width / aspectRatio;
+
+  /* ---------- Load image ratio ---------- */
+
+  function handleImageLoad(e) {
+    const img = e.target;
+    const ratio = img.naturalWidth / img.naturalHeight;
+    setAspectRatio(ratio);
+    setWidth(BASE_HEIGHT * ratio);
+  }
 
   /* ---------- Resize ---------- */
 
-  function startResize(e) {
+  function startResize(e, direction) {
     e.stopPropagation();
 
-    const rect = wrapperRef.current.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-
-    resizeSession.current = {
-      startScale: transform.scale,
-      startDistance: Math.hypot(e.clientX - cx, e.clientY - cy),
-      centerX: cx,
-      centerY: cy,
+    resizeRef.current = {
+      startX: e.clientX,
+      startWidth: width,
+      direction,
     };
 
     window.addEventListener("pointermove", onResize);
@@ -104,150 +83,179 @@ function SelectableMinifig({
   }
 
   function onResize(e) {
-    const s = resizeSession.current;
+    const s = resizeRef.current;
     if (!s) return;
 
-    const dist = Math.hypot(
-      e.clientX - s.centerX,
-      e.clientY - s.centerY
-    );
+    const dx = e.clientX - s.startX;
+    let newWidth = s.startWidth;
 
-    const nextScale = s.startScale * (dist / s.startDistance);
+    if (s.direction.includes("right")) newWidth += dx;
+    if (s.direction.includes("left")) newWidth -= dx;
 
-    setTransform((t) => ({
-      ...t,
-      scale: Math.min(3, Math.max(MIN_SCALE, nextScale)),
-    }));
+    newWidth = Math.max(40, newWidth);
+    setWidth(newWidth);
   }
 
   function stopResize() {
-    resizeSession.current = null;
+    resizeRef.current = null;
     window.removeEventListener("pointermove", onResize);
     window.removeEventListener("pointerup", stopResize);
   }
 
   /* ---------- Rotation ---------- */
 
-  function startRotate(e) {
-    e.stopPropagation();
-    setIsRotating(true);
+function startRotate(e) {
+  e.stopPropagation();
 
-    const rect = wrapperRef.current.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
+  const rect = elementRef.current.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
 
-    rotateSession.current = {
-      centerX: cx,
-      centerY: cy,
-      startAngle: Math.atan2(e.clientY - cy, e.clientX - cx),
-      startRotation: transform.rotation,
-    };
+  const startAngle = Math.atan2(
+    e.clientY - centerY,
+    e.clientX - centerX
+  );
 
-    window.addEventListener("pointermove", onRotate);
-    window.addEventListener("pointerup", stopRotate);
-  }
+  rotateRef.current = {
+    centerX,
+    centerY,
+    startAngle,
+    startRotation: rotation,
+  };
 
-  function onRotate(e) {
-    const s = rotateSession.current;
-    if (!s) return;
+  window.addEventListener("pointermove", onRotate);
+  window.addEventListener("pointerup", stopRotate);
+}
 
-    const angle = Math.atan2(
-      e.clientY - s.centerY,
-      e.clientX - s.centerX
-    );
+function onRotate(e) {
+  const s = rotateRef.current;
+  if (!s) return;
 
-    const deg =
-      s.startRotation + ((angle - s.startAngle) * 180) / Math.PI;
+  const currentAngle = Math.atan2(
+    e.clientY - s.centerY,
+    e.clientX - s.centerX
+  );
 
-    setTransform((t) => ({ ...t, rotation: deg }));
-  }
+  const delta = currentAngle - s.startAngle;
+
+  const newRotation =
+    s.startRotation + (delta * 180) / Math.PI;
+
+  setRotation(newRotation);
+}
 
   function stopRotate() {
-    rotateSession.current = null;
-    setIsRotating(false);
+    rotateRef.current = null;
     window.removeEventListener("pointermove", onRotate);
     window.removeEventListener("pointerup", stopRotate);
   }
 
+  const handleBase =
+    "absolute w-2 h-2 bg-white cursor-pointer";
+
   return (
     <motion.div
+      ref={elementRef}
+      data-minifig
       className="absolute"
-      drag={!isRotating}
+      drag={!rotateRef.current && !resizeRef.current} // disable drag while rotating
       dragConstraints={constraintsRef}
-      dragElastic={0.25}
       dragMomentum={false}
-      style={{ left: transform.x, top: transform.y }}
-      onDragEnd={(e, info) => {
-        setTransform((t) => ({
-          ...t,
-          x: t.x + info.offset.x,
-          y: t.y + info.offset.y,
-        }));
+      style={{
+        width,
+        height,
+        left: item.x,  // <-- initial horizontal position
+        top: item.y,  
+        rotate: rotation,
+        transformOrigin: "center center", // ensures rotation is around its own center
       }}
+
       onPointerDown={(e) => {
         e.stopPropagation();
         setSelectedId(item.id);
       }}
     >
-      <div
-        ref={wrapperRef}
-        className="relative cursor-grab"
+      <img
+        src={item.src}
+        onLoad={handleImageLoad}
+        draggable={false}
         style={{
-          transform: `scale(${transform.scale}) rotate(${transform.rotation}deg)`,
-          transformOrigin: "50% 50%",
+          width: "100%",
+          height: "100%",
+          display: "block",
+          pointerEvents: "none",
+          userSelect: "none",
         }}
-      >
-        <img
-          src={item.src}
-          draggable={false}
-          className="w-28 md:w-32 select-none drop-shadow-xl pointer-events-none"
-        />
+      />
 
-        {isSelected && (
-          <>
-            {/* Bounding box */}
-            <div
-              className="absolute inset-0 border-2 pointer-events-none"
-              style={{ borderColor: "var(--accent-color)" }}
-            />
+      {isSelected && (
+        <>
+          {/* Bounding Box */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              border: "2px solid var(--accent-color)",
+            }}
+          />
 
-            {/* Resize handles (8) */}
-            <Handle className="-top-1 -left-1" onPointerDown={startResize} />
-            <Handle className="-top-1 -right-1" onPointerDown={startResize} />
-            <Handle className="-bottom-1 -left-1" onPointerDown={startResize} />
-            <Handle className="-bottom-1 -right-1" onPointerDown={startResize} />
+          {/* Resize Handles */}
+          <div onPointerDown={(e) => startResize(e, "top-left")} className={`${handleBase} -top-1 -left-1`} style={{ border: "1px solid var(--accent-color)" }} />
+          <div onPointerDown={(e) => startResize(e, "top-right")} className={`${handleBase} -top-1 -right-1`} style={{ border: "1px solid var(--accent-color)" }} />
+          <div onPointerDown={(e) => startResize(e, "bottom-left")} className={`${handleBase} -bottom-1 -left-1`} style={{ border: "1px solid var(--accent-color)" }} />
+          <div onPointerDown={(e) => startResize(e, "bottom-right")} className={`${handleBase} -bottom-1 -right-1`} style={{ border: "1px solid var(--accent-color)" }} />
 
-            <Handle className="top-1/2 -left-1 -translate-y-1/2" onPointerDown={startResize} />
-            <Handle className="top-1/2 -right-1 -translate-y-1/2" onPointerDown={startResize} />
-            <Handle className="-top-1 left-1/2 -translate-x-1/2" onPointerDown={startResize} />
-            <Handle className="-bottom-1 left-1/2 -translate-x-1/2" onPointerDown={startResize} />
+          <div onPointerDown={(e) => startResize(e, "left")} className={`${handleBase} left-0 top-1/2 -translate-y-1/2 -translate-x-1/2`} style={{ border: "1px solid var(--accent-color)" }} />
+          <div onPointerDown={(e) => startResize(e, "right")} className={`${handleBase} right-0 top-1/2 -translate-y-1/2 translate-x-1/2`} style={{ border: "1px solid var(--accent-color)" }} />
 
-            {/* Rotation handle */}
-            <div
-              onPointerDown={startRotate}
-              className="absolute -top-10 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full flex items-center justify-center text-sm cursor-grab bg-white"
-              style={{
-                border: "1px solid var(--accent-color)",
-                color: "var(--accent-color)",
-              }}
-            >
-              ↻
-            </div>
+          {/* Rotation Handle */}
+          <div
+            onPointerDown={startRotate}
+            className="absolute -top-10 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white flex items-center justify-center cursor-grab"
+            style={{
+              border: "1px solid var(--accent-color)",
+              color: "var(--accent-color)",
+            }}
+          >
+            ↻
+          </div>
 
-            {/* Dimension label */}
-            <div
-              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-xs font-mono px-2 py-0.5 rounded whitespace-nowrap"
-              style={{
-                background: "var(--accent-color)",
-                color: "#fff",
-              }}
-            >
-              {size.w} × {size.h}
-            </div>
-          </>
-        )}
-      </div>
+          {/* Dimension Label */}
+          <div
+            className="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-xs font-mono px-2 py-1 rounded whitespace-nowrap"
+            style={{
+              background: "var(--accent-color)",
+              color: "#fff",
+            }}
+          >
+            {Math.round(width)} × {Math.round(height)}
+          </div>
+        </>
+      )}
     </motion.div>
+  );
+}
+
+function MinifigPopup({ minifig, onClose }) {
+  if (!minifig) return null;
+
+  return createPortal(
+    <div
+      className="fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-between bg-grayLight-900 dark:bg-grayDark-900 text-grayLight-50 dark:text-grayDark-50 px-6 py-4 rounded-[16px] shadow-lg"
+      style={{ minWidth: "360px", maxWidth: "360px", zIndex: 9999 }}
+    >
+      <div className="truncate text-left">
+        <div className="font-semibold">{minifig.name}</div>
+        <div className="text-xs text-grayLight-400 dark:text-grayDark-400">{minifig.series}</div>
+      </div>
+
+      <button
+        onClick={onClose}
+        className="ml-4 w-8 h-8 flex items-center justify-center rounded-[6px] bg-grayLight-700 dark:bg-grayDark-700 hover:bg-grayLight-600 hover:dark:bg-grayDark-900"
+      >
+        <FiX className="w-4 h-4" />
+      </button>
+    </div>,
+    document.body
   );
 }
 
@@ -266,18 +274,16 @@ export default function Home() {
   const [selectedId, setSelectedId] = useState(null);
 
   const heroMinis = [
-    { id: 1, src: miniDetective, x: "23%", y: "23%", r: -5 },
-    { id: 2, src: miniBeekeeper, x: "32%", y: "23%", r: -5 },
-    { id: 3, src: miniHotdog, x: "60%", y: "15%", r: 0 },
-    { id: 4, src: miniKendo, x: "90%", y: "17%", r: 12 },
-    { id: 5, src: miniMe, x: "80%", y: "17%", r: 12 },
-    { id: 6, src: miniRacer, x: "70%", y: "17%", r: 12 },
-    { id: 7, src: miniSprinter, x: "60%", y: "17%", r: 12 },
-    { id: 8, src: miniHiker, x: "50%", y: "17%", r: 12 },
-    { id: 9, src: miniAstronaut, x: "40%", y: "17%", r: 12 },
+    { id: 1, src: miniDetective, x: "35%", y: "73%", r: 5, name: "Film Noir Detective", series: "Minifigures | Series 25" },
+    { id: 2, src: miniBeekeeper, x: "67%", y: "82%", r: -5, name: "Beekeeper", series: "Minifigures | Series 21" },
+    { id: 3, src: miniHotdog, x: "21%", y: "15%", r: -5, name: "Hot Dog Man", series: "Minifigures | Series 13" },
+    { id: 4, src: miniKendo, x: "92%", y: "71%", r: 6, name: "Kendo Fighter", series: "Minifigures | Series 15" },
+    { id: 5, src: miniMe, x: "42%", y: "34%", r: 6, name: "Jada Nguyen", series: "Custom | Made with DALL·E 3" },
+    { id: 6, src: miniRacer, x: "10%", y: "79%", r: -4, name: "Lewis Hamilton", series: "Speed Champions | Mercedes-AMG W12" },
+    { id: 7, src: miniSprinter, x: "85%", y: "42%", r: 0, name: "Sprinter", series: "Minifigures | Series 25" },
+    { id: 8, src: miniHiker, x: "2%", y: "45%", r: 2, name: "Hiker", series: "Minifigures | Series 16" },
+    { id: 9, src: miniAstronaut, x: "67%", y: "13%", r: -1, name: "Mae Jamison", series: "Women of NASA" },
   ];
-
-  /* ---------- Typing effect ---------- */
 
   const [displayedText, setDisplayedText] = useState("Currently ");
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -316,6 +322,21 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [charIndex, deleting, phraseIndex]);
 
+  useEffect(() => {
+  function handleClickOutside(e) {
+    // If the click is NOT on a minifig element, deselect
+    // We can check if any ancestor has a data attribute like data-minifig
+    if (!e.target.closest("[data-minifig]")) {
+      setSelectedId(null);
+    }
+  }
+
+  document.addEventListener("pointerdown", handleClickOutside);
+  return () => {
+    document.removeEventListener("pointerdown", handleClickOutside);
+  };
+}, []);
+
   return (
     <Layout footer={<Footer />}>
       <section
@@ -337,11 +358,12 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Content unchanged */}
+
+
         <div className="relative z-10 grid grid-cols-12 min-h-screen px-6 py-24 items-center">
           <div className="col-span-12 flex flex-col items-center text-center">
             <motion.h1
-              className="font-heading font-semibold uppercase leading-none"
+              className="font-heading font-semibold uppercase leading-none text-grayLight-900 dark:text-grayDark-900"
               style={{
                 fontSize: "clamp(6vw, 12vw, 15rem)",
                 letterSpacing: "-0.05em",
@@ -352,7 +374,7 @@ export default function Home() {
               [JADANGUYEND]
             </motion.h1>
 
-            <div className="mt-12 grid grid-cols-12 gap-4 w-full">
+            <div className="mt-16 grid grid-cols-12 gap-4 w-full">
               <div className="col-span-12 flex justify-center gap-3">
                 <div className="meta-pill flex items-center gap-1">
                   <FiMapPin /> Seattle, WA
@@ -366,8 +388,8 @@ export default function Home() {
 
               <p className="col-start-3 col-span-8 text-center text-grayLight-500 dark:text-grayDark-500 text-base md:text-lg font-normal">
                 Product designer shaping consumer experiences — aligning systems,
-                visual craft, and thoughtful product decisions that scale. Bringing
-                delight to consumer apps, enterprise systems, and complex workflows.
+                visual craft, and thoughtful product decisions that scale.
+                Bringing delight to consumer apps, enterprise systems, and complex workflows.
               </p>
 
               <div className="col-start-4 col-span-6 font-mono text-xs uppercase">
@@ -386,6 +408,8 @@ export default function Home() {
       </section>
 
       <ProjectsSection />
+              {/* Popup at the bottom */}
+      <MinifigPopup minifig={heroMinis.find((m) => m.id === selectedId)} />
     </Layout>
   );
 }
