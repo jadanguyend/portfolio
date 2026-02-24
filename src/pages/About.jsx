@@ -1,11 +1,14 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
+import { createPortal } from "react-dom";
+import { FiX } from "react-icons/fi";
 
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 import AsciiBackground from "../components/AsciiBackground";
 
-// Swipeable images
+/* ================= Swipeable Images ================= */
+
 import MeBookstore from "../assets/MeBookstore.png";
 import MeFunbunz from "../assets/MeFunbunz.png";
 import MeBalloon from "../assets/MeBalloon.png";
@@ -20,7 +23,8 @@ import MeCapybara from "../assets/MeCapybara.png";
 import MeLitto from "../assets/MeLitto.png";
 import MeMirror from "../assets/MeMirror.png";
 
-// Everyday items
+/* ================= Everyday Items ================= */
+
 import ItemMe from "../assets/ItemMe.png";
 import ItemHandcream from "../assets/ItemHandcream.png";
 import ItemFragrance from "../assets/ItemFragrance.png";
@@ -37,16 +41,230 @@ import ItemBag from "../assets/ItemBag.png";
 import ItemLunchbox from "../assets/ItemLunchbox.png";
 import ItemPen from "../assets/ItemPen.png";
 
-// Everyday items
+/* ================= Pixel Icons ================= */
+
 import PixelComputer from "../assets/pixelComputer.png";
 import PixelMusic from "../assets/pixelMusic.png";
 import PixelMix from "../assets/pixelMix.png";
 import PixelBook from "../assets/pixelBook.png";
 
+/* ===================================================== */
+/* ================= SELECTABLE ITEM ================= */
+/* ===================================================== */
+
+function SelectableItem({
+  item,
+  selectedId,
+  setSelectedId,
+  setActiveItem,
+  constraintsRef
+}) {
+  const isSelected = selectedId === item.id;
+
+  const resizeRef = useRef(null);
+  const rotateRef = useRef(null);
+  const elementRef = useRef(null);
+
+  const [rotation, setRotation] = useState(item.r);
+  const BASE_HEIGHT = 120;
+
+  const [aspectRatio, setAspectRatio] = useState(1);
+  const [width, setWidth] = useState(BASE_HEIGHT);
+  const height = width / aspectRatio;
+
+  function handleImageLoad(e) {
+    const img = e.target;
+    const ratio = img.naturalWidth / img.naturalHeight;
+    setAspectRatio(ratio);
+    setWidth(BASE_HEIGHT * ratio);
+  }
+
+  function startResize(e, direction) {
+    e.stopPropagation();
+    resizeRef.current = { startX: e.clientX, startWidth: width, direction };
+    window.addEventListener("pointermove", onResize);
+    window.addEventListener("pointerup", stopResize);
+  }
+
+  function onResize(e) {
+    const s = resizeRef.current;
+    if (!s) return;
+    const dx = e.clientX - s.startX;
+    let newWidth = s.startWidth;
+    if (s.direction.includes("right")) newWidth += dx;
+    if (s.direction.includes("left")) newWidth -= dx;
+    newWidth = Math.max(40, newWidth);
+    setWidth(newWidth);
+  }
+
+  function stopResize() {
+    resizeRef.current = null;
+    window.removeEventListener("pointermove", onResize);
+    window.removeEventListener("pointerup", stopResize);
+  }
+
+  function startRotate(e) {
+    e.stopPropagation();
+    const rect = elementRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+
+    rotateRef.current = {
+      centerX,
+      centerY,
+      startAngle,
+      startRotation: rotation,
+    };
+
+    window.addEventListener("pointermove", onRotate);
+    window.addEventListener("pointerup", stopRotate);
+  }
+
+  function onRotate(e) {
+    const s = rotateRef.current;
+    if (!s) return;
+
+    const currentAngle = Math.atan2(e.clientY - s.centerY, e.clientX - s.centerX);
+    const delta = currentAngle - s.startAngle;
+    const newRotation = s.startRotation + (delta * 180) / Math.PI;
+
+    setRotation(newRotation);
+  }
+
+  function stopRotate() {
+    rotateRef.current = null;
+    window.removeEventListener("pointermove", onRotate);
+    window.removeEventListener("pointerup", stopRotate);
+  }
+
+  const handleBase = "absolute w-2 h-2 bg-white cursor-pointer";
+
+  return (
+    <motion.div
+      ref={elementRef}
+      data-item
+      className="absolute"
+      drag={!rotateRef.current && !resizeRef.current}
+      dragConstraints={constraintsRef}
+      dragMomentum={false}
+      style={{
+        width,
+        height,
+        left: item.x,
+        top: item.y,
+        rotate: rotation,
+        transformOrigin: "center center",
+      }}
+      onPointerDown={(e) => {
+        e.stopPropagation();
+        setSelectedId(item.id);
+        setActiveItem(item);
+      }}
+    >
+      <img
+        src={item.src}
+        onLoad={handleImageLoad}
+        draggable={false}
+        style={{
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      />
+
+      {isSelected && (
+        <>
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ border: "2px solid var(--accent-color)" }}
+          />
+
+          <div onPointerDown={(e) => startResize(e, "top-left")} className={`${handleBase} -top-1 -left-1`} style={{ border: "1px solid var(--accent-color)" }} />
+          <div onPointerDown={(e) => startResize(e, "top-right")} className={`${handleBase} -top-1 -right-1`} style={{ border: "1px solid var(--accent-color)" }} />
+          <div onPointerDown={(e) => startResize(e, "bottom-left")} className={`${handleBase} -bottom-1 -left-1`} style={{ border: "1px solid var(--accent-color)" }} />
+          <div onPointerDown={(e) => startResize(e, "bottom-right")} className={`${handleBase} -bottom-1 -right-1`} style={{ border: "1px solid var(--accent-color)" }} />
+
+          <div onPointerDown={(e) => startResize(e, "left")} className={`${handleBase} left-0 top-1/2 -translate-y-1/2 -translate-x-1/2`} style={{ border: "1px solid var(--accent-color)" }} />
+          <div onPointerDown={(e) => startResize(e, "right")} className={`${handleBase} right-0 top-1/2 -translate-y-1/2 translate-x-1/2`} style={{ border: "1px solid var(--accent-color)" }} />
+
+          <div
+            onPointerDown={startRotate}
+            className="absolute -top-10 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white flex items-center justify-center cursor-grab"
+            style={{
+              border: "1px solid var(--accent-color)",
+              color: "var(--accent-color)",
+            }}
+          >
+            ↻
+          </div>
+
+          <div
+            className="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-xs font-mono px-2 py-1 rounded whitespace-nowrap"
+            style={{
+              background: "var(--accent-color)",
+              color: "#fff",
+            }}
+          >
+            {Math.round(width)} × {Math.round(height)}
+          </div>
+        </>
+      )}
+    </motion.div>
+  );
+}
+
+function ItemPopup({ item, onClose }) {
+  if (!item) return null;
+
+  return createPortal(
+    <div
+      className="fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-between bg-grayLight-900 dark:bg-grayDark-900 text-grayLight-50 dark:text-grayDark-50 px-6 py-4 rounded-[16px] shadow-lg"
+      style={{ minWidth: "360px", maxWidth: "360px", zIndex: 9999 }}
+    >
+      <div className="truncate text-left">
+        <div className="font-semibold">{item.name}</div>
+        <div className="text-xs text-grayLight-400 dark:text-grayDark-400">
+          {item.description}
+        </div>
+      </div>
+
+      <button
+        onClick={onClose}
+        className="ml-4 w-8 h-8 flex items-center justify-center rounded-[6px] bg-grayLight-700 dark:bg-grayDark-700 hover:bg-grayLight-600 hover:dark:bg-grayDark-900"
+      >
+        <FiX className="w-4 h-4" />
+      </button>
+    </div>,
+    document.body
+  );
+}
+
+/* ===================================================== */
+/* ======================= ABOUT ======================== */
+/* ===================================================== */
+
 export default function About() {
   const constraintsRef = useRef(null);
+  const [selectedId, setSelectedId] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
 
-  /* ================= IMAGE STACK ================= */
+  useEffect(() => {
+  function handleClickOutside(e) {
+    if (!e.target.closest("[data-item]")) {
+      setSelectedId(null);
+      setActiveItem(null);
+    }
+  }
+    document.addEventListener("pointerdown", handleClickOutside);
+    return () =>
+      document.removeEventListener("pointerdown", handleClickOutside);
+  }, []);
+
+  /* ================= Hero Image Stack ================= */
+
   const initialCards = [
     { id: 1, src: MeBookstore, orientation: "vertical" },
     { id: 2, src: MeBirthday, orientation: "horizontal" },
@@ -111,34 +329,55 @@ export default function About() {
     margin: "auto",
   });
 
-  const [activeCard, setActiveCard] = useState(0);
+  /* ================= Everyday Items ================= */
 
-  // Inside your About component (or above return)
+  const everydayItems = [
+    { id: 1, src: ItemMe, x: "1%", y: "60%", r: -5, name: "Jada Nguyen",description: "The builder behind the scenes" },
+    { id: 2, src: ItemHandcream, x: "29%", y: "6%", r: -10, name: "L'Occitane Shea Butter Hand Cream",description: "Always near by. Always handy ;)" },
+    { id: 3, src: ItemFragrance, x: "54%", y: "18%", r: 4, name: "Le Labo Another 13",description: "Favorite layoring scent" },
+    { id: 4, src: ItemCandle, x: "83%", y: "7%", r: -5, name: "Me",description: "The builder behind the scenes." },
+    { id: 5, src: ItemHat, x: "16%", y: "20%", r: 82, name: "Blue Hat",description: "Yes, that blue hat" },
+    { id: 6, src: ItemLaptop, x: "34%", y: "44%", r: 82, name: "MacBook Pro M4",description: "Heavy, but everything happens here" },
+    { id: 7, src: ItemRamen, x: "68%", y: "15%", r: 112, name: "Shio Ramen",description: "Comfort food for rainy days" },
+    { id: 8, src: ItemCar, x: "84%", y: "52%", r: 4, name: "LEGO Porsche 911",description: "Favorite LEGO build" },
+    { id: 9, src: ItemCoffee, x: "2%", y: "10%", r: -5, name: "Vietnamese Coffee",description: "Every morning" },
+    { id: 10, src: ItemKeyboard, x: "30%", y: "78%", r: 87, name: "Lofree Flow84",description: "Creamy and clean" },
+    { id: 11, src: ItemPlant, x: "14%", y: "58%", r: 1, name: "Me",description: "The builder behind the scenes." },
+    { id: 12, src: ItemSmiski, x: "68%", y: "54%", r: 2, name: "SMISKI Skatboarding",description: "Tiny joy around my space" },
+    { id: 13, src: ItemBag, x: "42%", y: "6%", r: 3, name: "Sage Bag",description: "The builder behind the scenes." },
+    { id: 14, src: ItemLunchbox, x: "52%", y: "62%", r: -2, name: "Bellroy Cooler Caddy",description: "Keeps me fed" },
+    { id: 15, src: ItemPen, x: "82%", y: "80%", r: 92, name: "LAMY Safari Fountain Pen",description: "The builder behind the scenes." },
+  ];
+
+  /* ================= Build Cards ================= */
+
   const buildCards = [
     {
       label: "Intentional",
       shortDesc: "Choose pieces with purpose.",
-      longDesc: "I carefully select each element to ensure everything fits together logically and beautifully."
+      longDesc:
+        "I carefully select each element to ensure everything fits together logically and beautifully.",
     },
     {
       label: "Tenacious",
       shortDesc: "Explore and iterate until everything clicks.",
-      longDesc: "I keep experimenting, refining, and iterating until the design is seamless and complete."
+      longDesc:
+        "I keep experimenting, refining, and iterating until the design is seamless and complete.",
     },
     {
       label: "Reliable",
       shortDesc: "The structure stands the test of use.",
-      longDesc: "Every system I build is robust, scalable, and designed to withstand real-world use."
+      longDesc:
+        "Every system I build is robust, scalable, and designed to withstand real-world use.",
     },
     {
       label: "Delightful",
       shortDesc: "The finished build sparks joy.",
-      longDesc: "I aim to surprise and delight users with thoughtful touches and intuitive design."
+      longDesc:
+        "I aim to surprise and delight users with thoughtful touches and intuitive design.",
     },
   ];
 
-
-  // Map each card label to its image
   const iconMap = {
     Reliable: PixelComputer,
     Delightful: PixelMusic,
@@ -146,27 +385,7 @@ export default function About() {
     Intentional: PixelBook,
   };
 
-
-
-  /* ================= EVERYDAY OBJECTS ================= */
-  const everydayItems = [
-    { id: 1, src: ItemMe, desc: "ISTJ, through and through", x: "1%", y: "60%", rotation: -5 },
-    { id: 2, src: ItemHandcream, desc: "Always nearby, always handy ;)", x: "29%", y: "6%", rotation: -10 },
-    { id: 3, src: ItemFragrance, desc: "Favorite layering scent", x: "54%", y: "18%", rotation: 4 },
-    { id: 4, src: ItemCandle, desc: "Always in the background", x: "83%", y: "7%", rotation: -5 },
-    { id: 5, src: ItemHat, desc: "Yes, that blue hat", x: "16%", y: "20%", rotation: -8 },
-    { id: 6, src: ItemLaptop, desc: "Heavy, but everything happens here", x: "34%", y: "44%", rotation: -8 },
-    { id: 7, src: ItemRamen, desc: "Comfort food for rainy days", x: "68%", y: "15%", rotation: 12 },
-    { id: 8, src: ItemCar, desc: "Porsche 911, favorite LEGO build", x: "84%", y: "52%", rotation: 4 },
-    { id: 9, src: ItemCoffee, desc: "Vietnamese coffee, every morning", x: "2%", y: "10%", rotation: -5 },
-    { id: 10, src: ItemKeyboard, desc: "Creamy and clean", x: "30%", y: "78%", rotation: -3 },
-    { id: 11, src: ItemPlant, desc: "Trying my best", x: "14%", y: "58%", rotation: 1 },
-    { id: 12, src: ItemSmiski, desc: "Tiny joy around my space", x: "68%", y: "54%", rotation: 2 },
-    { id: 13, src: ItemBag, desc: "Finally found the right bag", x: "42%", y: "6%", rotation: 3 },
-    { id: 14, src: ItemLunchbox, desc: "Keeps me fed", x: "52%", y: "62%", rotation: -2 },
-    { id: 15, src: ItemPen, desc: "Fountain pen > everything else", x: "82%", y: "84%", rotation: 2 },
-  ];
-  
+  const [activeCard, setActiveCard] = useState(null);
 
   return (
     <Layout footer={<Footer />}>
@@ -227,7 +446,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ================= TOOLS / OBJECTS ================= */}
+      {/* ================= BUILDING BLOCKS ================= */}
       <section className="py-6 mt-16">
         {/* Constrained content container */}
         <h2 className="mb-12">My Building Blocks —</h2>
@@ -286,109 +505,65 @@ export default function About() {
           </div>
         </div>
 
-        {/* Draggable objects area */}
+        {/* Everyday Objects */}
         <div
           ref={constraintsRef}
-          className="relative w-full h-[520px] border border-dashed rounded-xl overflow-visible mt-16"
+          className="relative w-full h-[520px] border border-dashed rounded-xl overflow-hidden mt-16"
+          onPointerDown={() => setSelectedId(null)}
         >
           {everydayItems.map((item) => (
-            <motion.div
-              key={item.id}
-              className="absolute"
-              drag
-              dragConstraints={constraintsRef}
-              dragElastic={0.2}
-              dragMomentum={false}
-              whileHover={{ scale: 1.08 }}
-              style={{ left: item.x, top: item.y }}
-            >
-              <div className="group relative cursor-grab">
-                <motion.img
-                  src={item.src}
-                  className="w-40 max-h-40 object-contain select-none pointer-events-none"
-                  draggable={false}
-                  style={{ rotate: item.rotation }}
-                />
-
-                <div
-                  className="pointer-events-none absolute left-1/2 bottom-full mb-3
-                            -translate-x-1/2 rounded-md bg-black text-white text-xs
-                            px-3 py-1 opacity-0 group-hover:opacity-100 transition
-                            whitespace-nowrap font-mono leading-tighter"
-                >
-                  {item.desc}
-
-                  <span
-                    className="absolute left-1/2 top-full -translate-x-1/2 w-0 h-0
-                              border-l-[6px] border-r-[6px] border-t-[6px]
-                              border-l-transparent border-r-transparent border-t-black"
-                  />
-                </div>
-              </div>
-            </motion.div>
+          <SelectableItem
+            key={item.id}
+            item={item}
+            selectedId={selectedId}
+            setSelectedId={setSelectedId}
+            setActiveItem={setActiveItem}
+            constraintsRef={constraintsRef}
+          />
           ))}
         </div>
       </section>
 
-
-
       {/* ================= HOW I BUILD ================= */}
       <section className="py-12 mt-16">
-        {/* Constrained content container */}
-        <div className="grid grid-cols-12 gap-12 items-start">
-          
-          {/* Left side: H2 */}
+        <div className="grid grid-cols-12 gap-12">
           <div className="col-span-12 md:col-span-6">
-            <h2 className="mb-6">
-              How I Build —
-            </h2>
+            <h2 className="mb-6">How I Build —</h2>
           </div>
 
-          {/* Right side: stacked cards */}
-          <div className="col-span-12 md:col-span-6 flex flex-col gap-4 h-full relative">
+          <div className="col-span-12 md:col-span-6 flex flex-col gap-4">
             {buildCards.map((item, index) => {
-              const iconSrc = iconMap[item.label];
               const isActive = activeCard === index;
+              const iconSrc = iconMap[item.label];
 
               return (
                 <div
                   key={index}
-                  className={`relative border-grayLight-300 dark:border-grayDark-300 
-                              bg-grayLight-100 dark:bg-grayDark-50 
-                              text-grayLight-800 dark:text-grayDark-800
-                              rounded-md overflow-hidden transition-all duration-300 cursor-pointer`}
+                  className="relative rounded-md overflow-hidden cursor-pointer transition-all duration-300 bg-grayLight-100 dark:bg-grayDark-50"
                   style={{
-                    height: isActive
-                      ? "clamp(140px, 20vw, 250px)" // expanded height
-                      : "clamp(70px, 9vw, 90px)",   // collapsed height
+                    height: isActive ? "220px" : "80px",
                   }}
                   onMouseEnter={() => setActiveCard(index)}
                   onMouseLeave={() => setActiveCard(null)}
                 >
-                  {/* Label + short description (always visible) */}
-                  <div className="px-4 pt-4 font-mono text-xs uppercase text-grayLight-400 dark:text-grayDark-400">
+                  <div className="px-4 pt-4 font-mono text-xs uppercase">
                     {item.label}
                   </div>
 
-                  <div className="px-4 text-base md:text-lg font-semibold text-grayLight-800 dark:text-grayDark-800">
+                  <div className="px-4 text-lg font-semibold">
                     {item.shortDesc}
                   </div>
 
-                  {/* Long description + icon (only on hover) */}
                   {isActive && (
                     <>
-                      <div className="px-4 pb-2 mt-2 text-sm md:text-base font-medium text-grayLight-800 dark:text-grayDark-800">
+                      <div className="px-4 mt-2 text-sm">
                         {item.longDesc}
                       </div>
 
                       <img
                         src={iconSrc}
                         alt={item.label}
-                        className="absolute bottom-2 right-2 object-contain pointer-events-none select-none"
-                        style={{
-                          width: "clamp(60px, 12vw, 120px)",
-                          height: "clamp(60px, 12vw, 120px)",
-                        }}
+                        className="absolute bottom-2 right-2 w-20 h-20 object-contain pointer-events-none"
                       />
                     </>
                   )}
@@ -396,31 +571,12 @@ export default function About() {
               );
             })}
           </div>
-
         </div>
       </section>
-
-
-      {/* ================= CTA ================= */}
-      <section className="py-12 mt-16">
-        <motion.div
-          className="project-card-cta group transition-colors duration-300"
-          whileHover={{ scale: 1 }}
-        >
-          <div className="flex flex-col items-center justify-center gap-4 h-72 md:h-96 text-center w-full">
-            <p className="text-lg md:text-xl transition-colors duration-300">
-              Let’s create something great together!
-            </p>
-            <a
-              href="/contact"
-              className="btn-primary font-ibm transition-all duration-300 hover:scale-105"
-            >
-              Connect
-            </a>
-          </div>
-        </motion.div>
-      </section>
-
+      <ItemPopup
+        item={activeItem}
+        onClose={() => setActiveItem(null)}
+      />
     </Layout>
   );
 }

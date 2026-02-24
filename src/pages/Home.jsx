@@ -264,6 +264,7 @@ function MinifigPopup({ minifig, onClose }) {
   );
 }
 
+
 /* ---------- Home ---------- */
 
 export default function Home() {
@@ -410,7 +411,7 @@ export default function Home() {
       </section>
 
       <ProjectsSection />
-              {/* Popup at the bottom */}
+      {/* Popup at the bottom */}
       <MinifigPopup minifig={heroMinis.find((m) => m.id === selectedId)} />
     </Layout>
   );
