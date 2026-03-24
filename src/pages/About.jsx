@@ -391,9 +391,6 @@ export default function About() {
     <Layout footer={<Footer />}>
       {/* ================= HERO ================= */}
       <section className="relative pt-32 pb-24 overflow-hidden">
-        <div className="absolute inset-0 h-[100svh]">
-          <AsciiBackground />
-        </div>
 
         <div className="relative z-10 grid grid-cols-12 gap-12 items-center">
           <div className="col-span-12 md:col-span-6">
