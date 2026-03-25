@@ -10,7 +10,7 @@ import AsciiBackground from "../components/AsciiBackground";
 /* ================= Swipeable Images ================= */
 
 import MeBookstore from "../assets/MeBookstore.png";
-import MeFunbunz from "../assets/MeFunbunz.png";
+import MeFunbunz from "../assets/MeFunBunz.png";
 import MeBalloon from "../assets/MeBalloon.png";
 import MeIUGA from "../assets/MeIUGA.png";
 import MeFlower from "../assets/MeFlower.png";
