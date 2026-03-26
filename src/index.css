@@ -3,223 +3,10 @@
 @tailwind utilities;
 
 /* ================================
-   FONTS
+   FONTS (USED)
 ================================ */
 
-/* SATOSHI */
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-Light.otf") format("opentype");
-  font-weight: 300;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-LightItalic.otf") format("opentype");
-  font-weight: 300;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-Italic.otf") format("opentype");
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-Medium.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-MediumItalic.otf") format("opentype");
-  font-weight: 500;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-Bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-BoldItalic.otf") format("opentype");
-  font-weight: 700;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-Black.otf") format("opentype");
-  font-weight: 900;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./assets/fonts/Satoshi/Satoshi-BlackItalic.otf") format("opentype");
-  font-weight: 900;
-  font-style: italic;
-}
-
-/* ================================
-   GT ALPINA STANDARD
-   ================================ */
-
-/* Thin */
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Thin-Trial.otf") format("opentype");
-  font-weight: 100;
-  font-style: normal;
-}
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Thin-Italic-Trial.otf") format("opentype");
-  font-weight: 100;
-  font-style: italic;
-}
-
-/* Light */
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Light-Trial.otf") format("opentype");
-  font-weight: 300;
-  font-style: normal;
-}
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Light-Italic-Trial.otf") format("opentype");
-  font-weight: 300;
-  font-style: italic;
-}
-
-/* Regular */
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Regular-Trial.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Regular-Italic-Trial.otf") format("opentype");
-  font-weight: 400;
-  font-style: italic;
-}
-
-/* Medium */
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Medium-Trial.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Medium-Italic-Trial.otf") format("opentype");
-  font-weight: 500;
-  font-style: italic;
-}
-
-/* Bold */
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Bold-Trial.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: "GT Alpina Standard";
-  src: url("./assets/fonts/GT-Alpina/GT-Alpina-Standard-Bold-Italic-Trial.otf") format("opentype");
-  font-weight: 700;
-  font-style: italic;
-}
-
-/* ================================
-   PP Neue Montreal
-   ================================ */
-
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("./assets/fonts/PP Neue Montreal/Neue Montreal Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("./assets/fonts/PP Neue Montreal/Neue Montreal Italic.otf") format("opentype");
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("./assets/fonts/PP Neue Montreal/Neue Montreal Light.otf") format("opentype");
-  font-weight: 300;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("./assets/fonts/PP Neue Montreal/Neue Montreal Light Italic.otf") format("opentype");
-  font-weight: 300;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("./assets/fonts/PP Neue Montreal/Neue Montreal Medium.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("./assets/fonts/PP Neue Montreal/Neue Montreal Medium Italic.otf") format("opentype");
-  font-weight: 500;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("./assets/fonts/PP Neue Montreal/Neue Montreal Bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("./assets/fonts/PP Neue Montreal/Neue Montreal Bold Italic.otf") format("opentype");
-  font-weight: 700;
-  font-style: italic;
-}
-
 /* SF Pro Text */
-@font-face {
-  font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoLight.otf") format("opentype");
-  font-weight: 100;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoLightItalic.otf") format("opentype");
-  font-weight: 100;
-  font-style: italic;
-}
-@font-face {
-  font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoLight.otf") format("opentype");
-  font-weight: 200;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoLightItalic.otf") format("opentype");
-  font-weight: 200;
-  font-style: italic;
-}
 @font-face {
   font-family: "SF Pro Text";
   src: url("./assets/fonts/SF Mono/SFMonoLight.otf") format("opentype");
@@ -292,20 +79,8 @@
   font-weight: 800;
   font-style: italic;
 }
-@font-face {
-  font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoHeavy.otf") format("opentype");
-  font-weight: 900;
-  font-style: normal;
-}
-@font-face {
-  font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoHeavyItalic.otf") format("opentype");
-  font-weight: 900;
-  font-style: italic;
-}
 
-/* Thin */
+/* IBM Plex Mono */
 @font-face {
   font-family: "IBM Plex Mono";
   src: url("./assets/fonts/IBM Plex Mono/IBMPlexMono-Thin.ttf") format("truetype");
@@ -437,7 +212,7 @@
   body {
     margin: 0;
     padding: 0;
-    font-family: "SF Pro", sans-serif;
+    font-family: "SF Pro Text", sans-serif;
     overflow-x: hidden;
     /* Use neutral gray palette instead of white/black */
     @apply bg-grayLight-50 text-grayLight-800 dark:bg-grayDark-50 dark:text-grayDark-900;
@@ -547,7 +322,7 @@
   }
 
   .nav-link {
-    @apply font-body font-medium text-sm uppercase tracking-wide transition-colors;
+    @apply font-mono font-medium text-sm uppercase tracking-wide transition-colors;
     @apply text-grayLight-800 dark:text-grayDark-100;
   }
 
@@ -771,9 +546,6 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-
-
-
 
 
 

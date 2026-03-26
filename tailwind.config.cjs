@@ -19,7 +19,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        heading: ['"IBM Plex Mono"', "monospace"],
+        heading: ["SF Pro Text", "sans-serif"],
         body: ["SF Pro Text", "sans-serif"],
         mono: ['"IBM Plex Mono"', "monospace"],
       },
