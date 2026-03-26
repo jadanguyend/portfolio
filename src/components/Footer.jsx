@@ -43,7 +43,7 @@ export default function Footer() {
       {/* Bottom Section */}
       <div className="flex justify-between items-center mt-6">
         {/* Left */}
-        <span className="text-sm md:text-base">©2025 Jada Nguyen</span>
+        <span className="text-sm md:text-base">©2026 Jada Nguyen</span>
 
         {/* Right Links */}
         <div className="flex gap-8">

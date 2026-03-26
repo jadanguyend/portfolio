@@ -9,73 +9,73 @@
 /* SF Pro Text */
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoLight.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-Light.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoLightItalic.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-LightItalic.otf") format("opentype");
   font-weight: 300;
   font-style: italic;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoRegular.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoRegularItalic.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-RegularItalic.otf") format("opentype");
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoMedium.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-Medium.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoMediumItalic.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-MediumItalic.otf") format("opentype");
   font-weight: 500;
   font-style: italic;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoSemibold.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-Semibold.otf") format("opentype");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoSemiboldItalic.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-SemiboldItalic.otf") format("opentype");
   font-weight: 600;
   font-style: italic;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoBold.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-Bold.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoBoldItalic.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-BoldItalic.otf") format("opentype");
   font-weight: 700;
   font-style: italic;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoHeavy.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-Heavy.otf") format("opentype");
   font-weight: 800;
   font-style: normal;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("./assets/fonts/SF Mono/SFMonoHeavyItalic.otf") format("opentype");
+  src: url("./assets/fonts/SF Pro/SF-Pro-Text-HeavyItalic.otf") format("opentype");
   font-weight: 800;
   font-style: italic;
 }
@@ -215,7 +215,7 @@
     font-family: "SF Pro Text", sans-serif;
     overflow-x: hidden;
     /* Use neutral gray palette instead of white/black */
-    @apply bg-grayLight-50 text-grayLight-800 dark:bg-grayDark-50 dark:text-grayDark-900;
+    @apply bg-grayLight-10 text-grayLight-900 dark:bg-grayDark-10 dark:text-grayDark-900;
   }
   main, section {
     @apply container;

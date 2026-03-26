@@ -35,7 +35,7 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section className="container py-12 grid gap-6 md:gap-10">
+    <section className="container px-16 py-12 grid gap-6 md:gap-10">
       {projects.map((project, index) => {
         const Card = (
           <motion.div
@@ -80,23 +80,7 @@ export default function ProjectsSection() {
         );
       })}
 
-      {/* CTA card */}
-      <motion.div
-        className="project-card-cta group transition-colors duration-300"
-        whileHover={{ scale: 1 }}
-      >
-        <div className="flex flex-col items-center justify-center gap-4 h-72 md:h-96 text-center w-full">
-          <p className="text-lg md:text-xl transition-colors duration-300">
-            Let’s create something great together!
-          </p>
-          <a
-            href="/contact"
-            className="btn-primary font-ibm transition-all duration-300 hover:scale-105"
-          >
-            Connect
-          </a>
-        </div>
-      </motion.div>
+
     </section>
   );
 }
