@@ -9,6 +9,9 @@ import ProjectsSection from "../components/ProjectSection";
 
 import miniMe from "../assets/miniMe.png";
 import MeBookstore from "../assets/MeBookstore.png";
+import mewGif from "../assets/mew.gif";
+import kirbySwordGif from "../assets/kirbySword.gif";
+import kirbyGif from "../assets/kirby.gif";
 
 /* ===== How I Build images ===== */
 import howPlanner from "../assets/howPlanner.png";
@@ -130,6 +133,7 @@ export default function Home() {
       {/* ================= HERO ================= */}
       <section className="relative min-h-screen flex flex-col justify-between px-6 py-24 text-center">
 
+      <div className="relative flex justify-center">
         {/* Name */}
         <motion.h1
           className="font-mono font-semibold uppercase leading-none cursor-pointer flex justify-center items-center"
@@ -161,6 +165,7 @@ export default function Home() {
 
           <span className={hoverName ? "text-grayLight-200 dark:text-grayDark-200" : "text-grayLight-900 dark:text-grayDark-900"}>]</span>
         </motion.h1>
+      </div>
 
         {/* Bottom content */}
         <div className="flex flex-col items-center gap-6">
@@ -169,8 +174,17 @@ export default function Home() {
               <FiMapPin /> SEATTLE, WA
             </div>
             {lastCommit && (
-              <div className="meta-pill flex items-center gap-1 uppercase">
+              <div className="relative inline-flex meta-pill flex items-center gap-1 uppercase">
                 <FiClock /> LAST COMMIT: {lastCommit}
+
+                {/* Kirby Sword GIF on top */}
+                <motion.img
+                  src={mewGif}
+                  alt="Kirby Sword"
+                  className="absolute -top-10 right-[-20px] w-16 md:w-20 pointer-events-none"
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
               </div>
             )}
           </div>
@@ -212,142 +226,141 @@ export default function Home() {
 
 
       {/* ================= ABOUT ================= */}
-{/* ================= ABOUT ================= */}
-<section className="relative py-12 px-16">
-  <div className="grid grid-cols-12">
-    
-    {/* Left */}
-    <div className="col-span-12 md:col-span-4">
-      <h1 className="font-mono uppercase md:sticky md:top-36 text-grayLight-900 dark:text-grayDark-900">
-        [JADA]
-      </h1>
-    </div>
+      <section className="relative py-12 px-16">
+        <div className="grid grid-cols-12">
+          
+          {/* Left */}
+          <div className="col-span-12 md:col-span-4">
+            <h1 className="font-mono uppercase md:sticky md:top-36 text-grayLight-900 dark:text-grayDark-900">
+              [JADA]
+            </h1>
+          </div>
 
-    {/* Spacer (1 col) */}
-    <div className="hidden md:block md:col-span-1" />
+          {/* Spacer (1 col) */}
+          <div className="hidden md:block md:col-span-1" />
 
-    {/* Right */}
-    <div className="col-span-12 md:col-span-7 flex flex-col gap-6">
-      
-      {/* H2 */}
-      <h2 className="text-grayLight-900 dark:text-grayDark-900">
-        I’m a multi-disciplinary designer with background in product design and brand strategy.
-      </h2>
+          {/* Right */}
+          <div className="col-span-12 md:col-span-7 flex flex-col gap-6">
+            
+            {/* H2 */}
+            <h2 className="text-grayLight-900 dark:text-grayDark-900">
+              I’m a multi-disciplinary designer with background in product design and brand strategy.
+            </h2>
 
-      {/* Paragraph 1 */}
-      <p className="text-grayLight-900 dark:text-grayDark-900">
-        I’m a Chinese <span className="text-accent">(碧玉)</span>–Vietnamese{" "}
-        <span className="text-accent">(Bích Ngọc)</span> designer based in Seattle. Before I knew 
-        product design was a field, I was drawn to design—starting with childhood dreams of becoming 
-        an architect. That curiosity has stayed with me, shaping how I see and approach the world. 
-        I keep up with what’s happening in tech and love exploring new products—lately diving into 
-        [apps you’re exploring].
-      </p>
+            {/* Paragraph 1 */}
+            <p className="text-grayLight-900 dark:text-grayDark-900">
+              I’m a Chinese <span className="text-accent">(碧玉)</span>–Vietnamese{" "}
+              <span className="text-accent">(Bích Ngọc)</span> designer based in Seattle. Before I knew 
+              product design was a field, I was drawn to design—starting with childhood dreams of becoming 
+              an architect. That curiosity has stayed with me, shaping how I see and approach the world. 
+              I keep up with what’s happening in tech and love exploring new products—lately diving into 
+              [apps you’re exploring].
+            </p>
 
-      {/* Paragraph 2 */}
-      <p className="text-grayLight-900 dark:text-grayDark-900">
-        As a designer, I thrive in playful, collaborative environments, especially alongside people 
-        who share a strong sense of care and curiosity. I bring a blend of product thinking and brand 
-        sensitivity into my work, supported by tools and skills like...
-      </p>
+            {/* Paragraph 2 */}
+            <p className="text-grayLight-900 dark:text-grayDark-900">
+              As a designer, I thrive in playful, collaborative environments, especially alongside people 
+              who share a strong sense of care and curiosity. I bring a blend of product thinking and brand 
+              sensitivity into my work, supported by tools and skills like...
+            </p>
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 font-mono text-xs uppercase">
-        {[
-          "figma",
-          "photoshop",
-          "illustrator",
-          "prototyping",
-          "wireframing",
-          "user research",
-          "design systems",
-        ].map((tag) => (
-          <span
-            key={tag}
-            className="px-3 py-1 rounded-full border border-accent text-accent"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 font-mono text-xs uppercase">
+              {[
+                "figma",
+                "photoshop",
+                "illustrator",
+                "prototyping",
+                "wireframing",
+                "user research",
+                "design systems",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 rounded-full border border-accent text-accent"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
 
-      {/* LEGO statement */}
-      <h4 className="mt-12 max-w-3xl mx-auto text-grayLight-900 dark:text-grayDark-900">
-        I design experiences like building LEGO — methodical in structure,
-        creative in execution, and thoughtfully connected to build something greater.
-      </h4>
+            {/* LEGO statement */}
+            <h4 className="mt-12 max-w-3xl mx-auto text-grayLight-900 dark:text-grayDark-900">
+              I design experiences like building LEGO — methodical in structure,
+              creative in execution, and thoughtfully connected to build something greater.
+            </h4>
 
-      {/* Philosophy */}
-      <motion.div className="font-mono text-xs uppercase tracking-tight mb-4 text-grayLight-900 dark:text-grayDark-900">
-        Learn about my <span className="text-accent">design philosophy and values</span> :)
-      </motion.div>
+            {/* Philosophy */}
+            <motion.div className="font-mono text-xs uppercase tracking-tight mb-4 text-grayLight-900 dark:text-grayDark-900">
+              Learn about my <span className="text-accent">design philosophy and values</span> :)
+            </motion.div>
 
-      {/* Minifigure box */}
-      <div className="border border-dashed border-grayLight-400 dark:border-grayDark-600 bg-grayLight-100/40 dark:bg-grayDark-800/40 rounded-lg px-6 py-4">
-        <div className="flex items-center justify-between">
-          {howItems.map((item, index) => {
-            const isActive = currentIndex === index;
-            return (
-              <img
-                key={item.id}
-                src={item.src}
-                className="w-16 sm:w-20 md:w-24 lg:w-28 cursor-pointer transition-all duration-300"
-                style={{
-                  filter: isActive ? "saturate(1)" : "saturate(0)",
-                  transform: isActive ? "scale(1.08)" : "scale(1)",
-                }}
-                onMouseEnter={() => setHoverIndex(index)}
-                onMouseLeave={() => setHoverIndex(null)}
-                onClick={() => setActiveIndex(index)}
-              />
-            );
-          })}
+            {/* Minifigure box */}
+            <div className="border border-dashed border-grayLight-400 dark:border-grayDark-600 bg-grayLight-100/40 dark:bg-grayDark-800/40 rounded-lg px-6 py-4">
+              <div className="flex items-center justify-between">
+                {howItems.map((item, index) => {
+                  const isActive = currentIndex === index;
+                  return (
+                    <img
+                      key={item.id}
+                      src={item.src}
+                      className="w-16 sm:w-20 md:w-24 lg:w-28 cursor-pointer transition-all duration-300"
+                      style={{
+                        filter: isActive ? "saturate(1)" : "saturate(0)",
+                        transform: isActive ? "scale(1.08)" : "scale(1)",
+                      }}
+                      onMouseEnter={() => setHoverIndex(index)}
+                      onMouseLeave={() => setHoverIndex(null)}
+                      onClick={() => setActiveIndex(index)}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="text-sm md:text-base text-grayLight-900 dark:text-grayDark-900 transition-all duration-300">
+              {howItems[currentIndex].desc}
+            </div>
+
+            {/* ================= DELIGHT ================= */}
+            <div className="mt-12">
+
+              {/* Heading */}
+              <h4 className="mb-6 text-grayLight-900 dark:text-grayDark-900">
+                Little things that brings me <span className="text-accent">delight</span> when I’m not designing...
+              </h4>
+
+              {/* List */}
+              <div className="flex flex-col">
+                {[
+                  { label: "Project Hail Mary by Andy Weir", href: "https://hardcover.app/books/project-hail-mary" },
+                  { label: "Detective Conan Series", href: "https://www.crunchyroll.com/series/G6JQVM3ER/detective-conan?srsltid=AfmBOooOvIBTa7Ljw7_kEFYjb5lm6rcD9IWITcGbL6XSTk1G_hrDQNC8" },
+                  { label: "Cup of Bac Xiu", href: "https://www.aroomcoffee.com/" },
+                  { label: "REPLICA Lazy Sunday Morning by Maison Margiela", href: "https://www.maisonmargiela-fragrances.us/fragrances/replica-eau-de-toilette/replica-lazy-sunday-morning/MM009.html?srsltid=AfmBOoo73C9uyueE6D9l1AchD0165Ne8WrSDEjs_1RYyy_UuD61TSP2C" },
+                  { label: "Super Mario Odyssey", href: "https://www.nintendo.com/us/store/products/super-mario-odyssey-switch/?srsltid=AfmBOoqRZTnd0KbSi_CmXCDIbr5tN3guw_IC6p7JaZvd_1YuoW048mM_" },
+                ].map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between py-1 cursor-pointer relative"
+                  >
+                    {/* Left text with underline animation */}
+                    <span className="relative inline-block text-grayLight-900 dark:text-grayDark-900 transition-colors duration-300 group-hover:text-accent">
+                      {item.label}
+                      <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+
+                    {/* Arrow */}
+                    <FiArrowUpRight className="opacity-70 transition-all duration-300 group-hover:rotate-45 group-hover:text-accent" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="text-sm md:text-base text-grayLight-900 dark:text-grayDark-900 transition-all duration-300">
-        {howItems[currentIndex].desc}
-      </div>
-
-      {/* ================= DELIGHT ================= */}
-      <div className="mt-12">
-
-        {/* Heading */}
-        <h4 className="mb-6 text-grayLight-900 dark:text-grayDark-900">
-          Little things that brings me <span className="text-accent">delight</span> when I’m not designing...
-        </h4>
-
-        {/* List */}
-        <div className="flex flex-col">
-          {[
-            { label: "Project Hail Mary by Andy Weir", href: "https://hardcover.app/books/project-hail-mary" },
-            { label: "Detective Conan Series", href: "https://www.crunchyroll.com/series/G6JQVM3ER/detective-conan?srsltid=AfmBOooOvIBTa7Ljw7_kEFYjb5lm6rcD9IWITcGbL6XSTk1G_hrDQNC8" },
-            { label: "Cup of Bac Xiu", href: "https://www.aroomcoffee.com/" },
-            { label: "REPLICA Lazy Sunday Morning by Maison Margiela", href: "https://www.maisonmargiela-fragrances.us/fragrances/replica-eau-de-toilette/replica-lazy-sunday-morning/MM009.html?srsltid=AfmBOoo73C9uyueE6D9l1AchD0165Ne8WrSDEjs_1RYyy_UuD61TSP2C" },
-            { label: "Super Mario Odyssey", href: "https://www.nintendo.com/us/store/products/super-mario-odyssey-switch/?srsltid=AfmBOoqRZTnd0KbSi_CmXCDIbr5tN3guw_IC6p7JaZvd_1YuoW048mM_" },
-          ].map((item, index) => (
-            <a
-              key={index}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between py-1 cursor-pointer relative"
-            >
-              {/* Left text with underline animation */}
-              <span className="relative inline-block text-grayLight-900 dark:text-grayDark-900 transition-colors duration-300 group-hover:text-accent">
-                {item.label}
-                <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-accent transition-all duration-300 group-hover:w-full"></span>
-              </span>
-
-              {/* Arrow */}
-              <FiArrowUpRight className="opacity-70 transition-all duration-300 group-hover:rotate-45 group-hover:text-accent" />
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
     </Layout>
   );
 }
