@@ -9,9 +9,7 @@ import ProjectsSection from "../components/ProjectSection";
 
 import miniMe from "../assets/miniMe.png";
 import MeBookstore from "../assets/MeBookstore.png";
-import mewGif from "../assets/mew.gif";
-import kirbySwordGif from "../assets/kirbySword.gif";
-import kirbyGif from "../assets/kirby.gif";
+import skateboardGif from "../assets/skateboarder.gif";
 
 /* ===== How I Build images ===== */
 import howPlanner from "../assets/howPlanner.png";
@@ -170,22 +168,23 @@ export default function Home() {
         {/* Bottom content */}
         <div className="flex flex-col items-center gap-6">
           <div className="flex flex-wrap justify-center gap-3">
-            <div className="meta-pill flex items-center gap-1">
+            <div className="relative inline-flex meta-pill flex items-center gap-1">
               <FiMapPin /> SEATTLE, WA
+
+              {/* Skateboard GIF */}
+              <motion.img
+                src={skateboardGif}
+                alt="Skateboarder"
+                className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none"
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
             </div>
             {lastCommit && (
               <div className="relative inline-flex meta-pill flex items-center gap-1 uppercase">
                 <FiClock /> LAST COMMIT: {lastCommit}
-
                 {/* Kirby Sword GIF on top */}
-                <motion.img
-                  src={mewGif}
-                  alt="Kirby Sword"
-                  className="absolute -top-10 right-[-20px] w-16 md:w-20 pointer-events-none"
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
               </div>
+
             )}
           </div>
 
