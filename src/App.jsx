@@ -20,13 +20,10 @@ export default function App() {
 
 function AppContent({ isLoading, setIsLoading }) {
   const location = useLocation();
-
-  // Hide global navbar for all case study pages
   const isCaseStudy = location.pathname.startsWith("/case-studies");
 
   return (
-    <>
-      {/* Show Navbar only if NOT a case study */}
+    <div className="min-h-screen bg-grayLight-10 dark:bg-grayDark-10">
       {!isCaseStudy && <Navbar />}
 
       <Routes>
@@ -36,10 +33,9 @@ function AppContent({ isLoading, setIsLoading }) {
         <Route path="/case-studies/nomo" element={<Nomo />} />
       </Routes>
 
-      {/* Loading overlay */}
       {isLoading && (
         <LoadingScreen onComplete={() => setIsLoading(false)} />
       )}
-    </>
+    </div>
   );
 }

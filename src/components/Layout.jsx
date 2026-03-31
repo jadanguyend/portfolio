@@ -87,7 +87,7 @@ const Layout = forwardRef(function Layout({ children, footer }, ref) {
           borderBottomRightRadius: radius,
           transformOrigin: "top center",
         }}
-        className="relative z-10 bg-grayLight-50 dark:bg-grayDark-50"
+        className="relative z-10 bg-grayLight-10 dark:bg-grayDark-10"
       >
         <div className="container">{children}</div>
       </motion.div>

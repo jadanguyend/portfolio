@@ -9,7 +9,8 @@ import ProjectsSection from "../components/ProjectSection";
 
 import miniMe from "../assets/miniMe.png";
 import MeBookstore from "../assets/MeBookstore.png";
-import skateboardGif from "../assets/skateboarder.gif";
+import skateboarderGif from "../assets/skateboarder.gif";
+import skateboarderDarkGif from "../assets/skateboarderDark.gif";
 
 /* ===== How I Build images ===== */
 import howPlanner from "../assets/howPlanner.png";
@@ -153,7 +154,7 @@ export default function Home() {
         >
           <span className={hoverName ? "text-grayLight-200 dark:text-grayDark-200" : "text-grayLight-900 dark:text-grayDark-900"}>[</span>
 
-          <span className={hoverName ? "text-accent dark:text-accent2" : "text-grayLight-900 dark:text-grayDark-900"}>
+          <span className={hoverName ? "text-accent" : "text-grayLight-900 dark:text-grayDark-900"}>
             JADA{" "}
           </span>
 
@@ -171,11 +172,21 @@ export default function Home() {
             <div className="relative inline-flex meta-pill flex items-center gap-1">
               <FiMapPin /> SEATTLE, WA
 
-              {/* Skateboard GIF */}
+              {/* Light mode */}
               <motion.img
-                src={skateboardGif}
+                src={skateboarderGif}
                 alt="Skateboarder"
-                className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none"
+                className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none block dark:hidden"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* Dark mode */}
+              <motion.img
+                src={skateboarderDarkGif}
+                alt="Skateboarder dark"
+                className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none hidden dark:block"
+                animate={{ x: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>

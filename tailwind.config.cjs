@@ -24,8 +24,12 @@ module.exports = {
         mono: ['"IBM Plex Mono"', "monospace"],
       },
       colors: {
-        accent: "var(--accent-color)",
-        accent2: "var(--accent-color-2)",
+        accent: "var(--accent-color)",   // Light mode uses --accent-color
+        accent2: "var(--accent-color-2)", // Light mode secondary
+
+        /* Optional: explicit dark variants (can be used if you want different classes) */
+        "accent-dark": "var(--accent-color)", // Will be overridden by .dark automatically
+        "accent2-dark": "var(--accent-color-2)",
 
         /* ---------------- LIGHT MODE GRAYS ---------------- */
         grayLight: {

@@ -215,7 +215,7 @@
     font-family: "SF Pro Text", sans-serif;
     overflow-x: hidden;
     /* Use neutral gray palette instead of white/black */
-    @apply bg-grayLight-10 text-grayLight-900 dark:bg-grayDark-10 dark:text-grayDark-900;
+    @apply bg-grayLight-10 text-grayLight-900 dark:bg-grayDark-10 dark:text-grayDark-900 !important;
   }
   main, section {
     @apply container;
@@ -318,7 +318,7 @@
     @apply text-grayLight-500 dark:text-grayDark-500;
 
     /* Optional: background neutral for pill */
-    @apply bg-grayLight-50 dark:bg-grayDark-50;
+    @apply bg-grayLight-10 dark:bg-grayDark-10;
   }
 
   .nav-link {
@@ -394,7 +394,7 @@
   @apply inline-flex items-center gap-2.5 px-5 py-3 rounded-[24px] font-medium transition-colors duration-200 border;
 
   /* Light mode */
-  @apply bg-grayLight-50 text-grayLight-900 border-grayLight-200;
+  @apply bg-grayLight-10 text-grayLight-900 border-grayLight-200;
 }
 
 .btn-secondary:hover {
@@ -403,7 +403,7 @@
 
 /* Dark mode override */
 .dark .btn-secondary {
-  @apply bg-grayDark-50 text-grayDark-100 border-grayDark-200;
+  @apply bg-grayDark-10 text-grayDark-100 border-grayDark-200;
 }
 
 .dark .btn-secondary:hover {
@@ -448,7 +448,6 @@
 
 /* Global body defaults */
 body {
-  @apply bg-grayLight-10 text-grayLight-800 dark:bg-grayDark-10 dark:text-grayDark-900;
 
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
@@ -460,7 +459,7 @@ body {
 .project-card {
   @apply grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 p-5 rounded-[16px] border transition-colors duration-300;
   @apply border-grayLight-300 dark:border-grayDark-200;
-  @apply bg-grayLight-100 dark:bg-grayDark-50;
+  @apply bg-grayLight-50 dark:bg-grayDark-50;
 }
 
 .project-card:hover {
@@ -530,7 +529,7 @@ body {
 .project-card-cta {
   @apply flex flex-col items-center justify-center p-6 md:p-8 rounded-[16px] border-2 border-dashed transition-colors duration-300;
   @apply border-grayLight-300 dark:border-grayDark-300;
-  @apply bg-grayLight-100 dark:bg-grayDark-50;
+  @apply bg-grayLight-50 dark:bg-grayDark-50;
   @apply text-grayLight-900 dark:text-grayDark-900;
   @apply grid grid-cols-1 gap-0;
 }
