@@ -199,6 +199,19 @@
   --accent-color-2: #B52800;     /* dark mode */
 }
 
+/* Soft grey dots with fade toward bottom */
+.bg-dots-mask {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 16px 16px; /* adjust spacing */
+  color: theme('colors.grayLight.200'); /* lighter gray for light mode */
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+}
+
+.dark .bg-dots-mask {
+  color: theme('colors.grayDark.100'); /* softer gray for dark mode */
+}
+
 
 
 @layer base {
