@@ -40,7 +40,7 @@ export default function LoadingScreen({ onComplete }) {
       `}
       style={{ transitionDuration: `${EXIT_DURATION}ms` }}
     >
-      <h1 className="text-4xl md:text-6xl font-heading text-black tracking-tight flex items-center">
+      <h1 className="text-4xl md:text-6xl font-mono text-black tracking-tight flex items-center">
         <span>{displayedText}</span>
 
         {showCaret && (
