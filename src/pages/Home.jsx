@@ -129,103 +129,105 @@ export default function Home() {
 
   return (
     <Layout footer={<Footer />}>
-{/* ================= HERO ================= */}
-<section className="relative min-h-screen flex flex-col justify-between px-6 py-24 text-center">
+      {/* ================= HERO ================= */}
+      <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 py-24 text-center">
 
-  {/* ===== DOTTED BACKGROUND ===== */}
-  <div className="absolute inset-0 pointer-events-none">
-    <div className="absolute inset-0 bg-dots-mask"></div>
-  </div>
-
-  {/* ===== HERO NAME ===== */}
-  <div className="relative flex justify-center z-10">
-    <motion.h1
-      className="font-mono font-semibold uppercase leading-none cursor-pointer flex justify-center items-center"
-      style={{
-        fontSize: "clamp(6vw, 12vw, 15rem)",
-        letterSpacing: "-0.05em",
-      }}
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      onMouseEnter={() => {
-        setShowHoverImage(true);
-        setHoverName(true);
-      }}
-      onMouseLeave={() => {
-        setShowHoverImage(false);
-        setHoverName(false);
-      }}
-      onMouseMove={handleMouseMove}
-    >
-      <span className={hoverName ? "text-grayLight-200 dark:text-grayDark-200" : "text-grayLight-900 dark:text-grayDark-900"}>[</span>
-      <span className={hoverName ? "text-accent" : "text-grayLight-900 dark:text-grayDark-900"}>JADA </span>
-      <span className={hoverName ? "text-grayLight-200 dark:text-grayDark-200" : "text-grayLight-900 dark:text-grayDark-900"}>NGUYEND</span>
-      <span className={hoverName ? "text-grayLight-200 dark:text-grayDark-200" : "text-grayLight-900 dark:text-grayDark-900"}>]</span>
-    </motion.h1>
-  </div>
-
-  {/* ===== HERO META / LOCATION / COMMIT ===== */}
-  <div className="relative flex flex-col items-center gap-6 z-10">
-    <div className="flex flex-wrap justify-center gap-3">
-      <div className="relative inline-flex meta-pill flex items-center gap-1">
-        <FiMapPin /> SEATTLE, WA
-
-        {/* Light mode animation */}
-        <motion.img
-          src={skateboarderGif}
-          alt="Skateboarder"
-          className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none block dark:hidden"
-          animate={{ x: [0, 4, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Dark mode animation */}
-        <motion.img
-          src={skateboarderDarkGif}
-          alt="Skateboarder dark"
-          className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none hidden dark:block"
-          animate={{ x: [0, 4, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
-      {lastCommit && (
-        <div className="relative inline-flex meta-pill flex items-center gap-1 uppercase">
-          <FiClock /> LAST COMMIT: {lastCommit}
+        {/* ===== DOTTED BACKGROUND ===== */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-dots-mask"></div>
         </div>
-      )}
-    </div>
 
-    {/* ===== HERO DESCRIPTION ===== */}
-    <div className="grid grid-cols-12">
-      <h3 className="col-span-12 md:col-span-10 md:col-start-2 font-medium text-center">
-        Product designer shaping consumer experiences — aligning systems, visual craft, and thoughtful product decisions that scale. Bringing delight to consumer apps, enterprise systems, and complex workflows.
-      </h3>
-    </div>
+        {/* ===== HERO NAME ===== */}
+        <div className="relative flex justify-center z-10">
+          <motion.h1
+            className="font-mono font-semibold uppercase leading-none cursor-pointer flex justify-center items-center"
+            style={{
+              fontSize: "clamp(6vw, 12vw, 15rem)",
+              letterSpacing: "-0.05em",
+            }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            onMouseEnter={() => {
+              setShowHoverImage(true);
+              setHoverName(true);
+            }}
+            onMouseLeave={() => {
+              setShowHoverImage(false);
+              setHoverName(false);
+            }}
+            onMouseMove={handleMouseMove}
+          >
+            <span className={hoverName ? "text-grayLight-200 dark:text-grayDark-200" : "text-grayLight-900 dark:text-grayDark-900"}>[</span>
+            <span className={hoverName ? "text-accent" : "text-grayLight-900 dark:text-grayDark-900"}>JADA </span>
+            <span className={hoverName ? "text-grayLight-200 dark:text-grayDark-200" : "text-grayLight-900 dark:text-grayDark-900"}>NGUYEND</span>
+            <span className={hoverName ? "text-grayLight-200 dark:text-grayDark-200" : "text-grayLight-900 dark:text-grayDark-900"}>]</span>
+          </motion.h1>
+        </div>
 
-    {/* ===== MINI BLUE HAT STATEMENT ===== */}
-    <motion.div className="font-mono text-xs uppercase tracking-tight">
-      Consistent details matter. Mine’s a <span className="text-accent">blue hat</span> :)
-    </motion.div>
-  </div>
+        {/* ===== HERO META / LOCATION / COMMIT ===== */}
+        <div className="relative flex flex-col items-center gap-6 z-10">
+          <div className="flex flex-wrap justify-center gap-3">
+            <div className="relative inline-flex meta-pill flex items-center gap-1">
+              <FiMapPin /> SEATTLE, WA
 
-  {/* ===== HOVER IMAGE ===== */}
-  <AnimatePresence>
-    {showHoverImage && (
-      <motion.img
-        src={miniMe}
-        className="pointer-events-none fixed top-0 left-0 z-[9999] w-24 md:w-32"
-        style={{ x: smoothX, y: smoothY }}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-      />
-    )}
-  </AnimatePresence>
-</section>
+              {/* Light mode animation */}
+              <motion.img
+                src={skateboarderGif}
+                alt="Skateboarder"
+                className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none block dark:hidden"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* Dark mode animation */}
+              <motion.img
+                src={skateboarderDarkGif}
+                alt="Skateboarder dark"
+                className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none hidden dark:block"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
+
+            {lastCommit && (
+              <div className="relative inline-flex meta-pill flex items-center gap-1 uppercase">
+                <FiClock /> LAST COMMIT: {lastCommit}
+              </div>
+            )}
+          </div>
+
+          {/* ===== HERO DESCRIPTION ===== */}
+          <div className="grid grid-cols-12">
+            <h3 className="col-span-12 md:col-span-10 md:col-start-2 font-medium text-center">
+              Product designer shaping consumer experiences — aligning systems, visual craft, and thoughtful product decisions that scale. Bringing delight to consumer apps, enterprise systems, and complex workflows.
+            </h3>
+          </div>
+
+          {/* ===== MINI BLUE HAT STATEMENT ===== */}
+          <motion.div className="font-mono text-xs uppercase tracking-tight">
+            Consistent details matter. Mine’s a <span className="text-accent">blue hat</span> :)
+          </motion.div>
+        </div>
+
+        {/* ===== HOVER IMAGE ===== */}
+        <AnimatePresence>
+          {showHoverImage && (
+            <motion.img
+              src={miniMe}
+              className="pointer-events-none fixed top-0 left-0 z-[9999] w-24 md:w-32"
+              style={{ x: smoothX, y: smoothY }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+            />
+          )}
+        </AnimatePresence>
+      </section>
 
       {/* ================= PROJECTS ================= */}
-      <ProjectsSection />
+      <div id="work">
+        <ProjectsSection />
+      </div>
 
       {/* Horizontal line */}
       <div className="px-12 my-16">
@@ -234,7 +236,7 @@ export default function Home() {
 
 
       {/* ================= ABOUT ================= */}
-      <section className="relative py-12 px-16">
+      <section id="about" className="relative py-12 px-16">
         <div className="grid grid-cols-12">
           
           {/* Left */}

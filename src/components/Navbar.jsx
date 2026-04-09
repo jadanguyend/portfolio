@@ -1,12 +1,84 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
 
 export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const menuRef = useRef(null);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // ===== Smooth scroll helper =====
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const yOffset = -100;
+      const y =
+        el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // ===== Scroll or navigate depending on current page =====
+  const handleNavClick = (item) => {
+    if (item.type === "scroll") {
+      if (location.pathname === "/") {
+        scrollToSection(item.target);
+      } else {
+        // navigate to home, then scroll after short delay
+        navigate("/");
+        setTimeout(() => scrollToSection(item.target), 100);
+      }
+      setMenuOpen(false);
+    } else if (item.type === "route") {
+      navigate(item.path);
+      setMenuOpen(false);
+    } else if (item.type === "external") {
+      window.open(item.href, "_blank");
+      setMenuOpen(false);
+    }
+  };
+
+  // ===== Detect active section (IntersectionObserver) =====
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setActiveSection("hero"); // default on home
+
+      const sections = ["hero", "work", "about"];
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(entry.target.id);
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: "-40% 0px -50% 0px",
+          threshold: 0,
+        }
+      );
+
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+
+      return () => observer.disconnect();
+    } else if (location.pathname === "/sandbox") {
+      setActiveSection("sandbox");
+    }
+  }, [location.pathname]);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -16,13 +88,8 @@ export default function Navbar() {
       }
     };
 
-    if (menuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    if (menuOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
   // Load stored theme
@@ -46,11 +113,25 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { label: "Work", path: "/" },
-    { label: "Sandbox", path: "/sandbox" },
-    { label: "About", path: "/about" },
-    { label: "Resume", path: "/" },
+    { label: "Work", type: "scroll", target: "work" },
+    { label: "About", type: "scroll", target: "about" },
+    { label: "Sandbox", type: "route", path: "/sandbox" },
+    { label: "Resume", type: "external", href: "/resume.pdf" },
   ];
+
+  const getNavClass = (isActive) =>
+    `nav-link text-xs font-mono transition-colors ${
+      isActive
+        ? "text-accent"
+        : "text-grayLight-900 dark:text-grayDark-900 hover:text-accent dark:hover:text-accent"
+    }`;
+
+  const getMobileNavClass = (isActive) =>
+    `nav-link font-mono transition-colors ${
+      isActive
+        ? "text-accent"
+        : "text-grayLight-900 dark:text-grayDark-100 hover:text-accent dark:hover:text-accent"
+    }`;
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 pointer-events-none">
@@ -66,14 +147,17 @@ export default function Navbar() {
           "
         >
           <div className="flex items-center justify-between px-6 py-4">
-            {/* Left */}
-            <Link to="/" className="nav-link text-xs text-grayLight-900 dark:text-grayDark-900 font-mono">
+            {/* Logo */}
+            <button
+              onClick={() => handleNavClick({ type: "scroll", target: "hero" })}
+              className={getNavClass(activeSection === "hero")}
+            >
               <span className="bracket">[</span>
               jadanguyend
               <span className="bracket">]</span>
-            </Link>
+            </button>
 
-            {/* Hamburger (mobile) */}
+            {/* Hamburger */}
             <button
               className="md:hidden p-2 rounded-md hover:bg-grayLight-100/50 dark:hover:bg-grayDark-100/50 transition-colors font-mono"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -83,17 +167,21 @@ export default function Navbar() {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.path}
-                  className="nav-link text-xs text-grayLight-900 dark:text-grayDark-900 hover:text-accent dark:hover:text-accent transition-colors font-mono"
-                >
-                  <span className="bracket">[</span>
-                  {item.label}
-                  <span className="bracket">]</span>
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive =
+                  item.type === "scroll" && activeSection === item.target;
+                return (
+                  <button
+                    key={item.label}
+                    onClick={() => handleNavClick(item)}
+                    className={getNavClass(isActive)}
+                  >
+                    <span className="bracket">[</span>
+                    {item.label}
+                    <span className="bracket">]</span>
+                  </button>
+                );
+              })}
 
               <button
                 onClick={toggleTheme}
@@ -119,18 +207,21 @@ export default function Navbar() {
               "
             >
               <div className="flex flex-col items-center gap-4 py-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.path}
-                    className="nav-link text-grayLight-900 dark:text-grayDark-100 hover:text-accent dark:hover:text-accent transition-colors font-mono"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <span className="bracket">[</span>
-                    {item.label}
-                    <span className="bracket">]</span>
-                  </Link>
-                ))}
+                {navItems.map((item) => {
+                  const isActive =
+                    item.type === "scroll" && activeSection === item.target;
+                  return (
+                    <button
+                      key={item.label}
+                      onClick={() => handleNavClick(item)}
+                      className={getMobileNavClass(isActive)}
+                    >
+                      <span className="bracket">[</span>
+                      {item.label}
+                      <span className="bracket">]</span>
+                    </button>
+                  );
+                })}
 
                 <button
                   onClick={toggleTheme}
@@ -145,6 +236,5 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-
   );
 }

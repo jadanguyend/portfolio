@@ -81,7 +81,7 @@ export default function Footer() {
           <p className="font-mono font-semibold">BUILD</p>
           <div className="font-body font-normal tracking-tight">
             <div>REACT + TAILWIND</div>
-            <div>LAST UPDATED: 3.26.26</div>
+            <div>VERCEL</div>
           </div>
         </div>
 
