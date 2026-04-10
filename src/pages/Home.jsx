@@ -4,6 +4,7 @@ import { FiMapPin, FiClock, FiArrowUpRight } from "react-icons/fi";
 
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
+import DayCalendar from "../components/DayCalendar";
 import Ascii from "../components/AsciiBackground";
 import ProjectsSection from "../components/ProjectSection";
 
@@ -369,6 +370,15 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* ===== FULL-WIDTH CALENDAR ===== */}
+        <div className="mt-12">
+          <div className="mb-4 font-mono text-xs uppercase text-grayLight-400 dark:text-grayDark-500">
+            A delightful day in my life
+          </div>
+
+          <DayCalendar />
         </div>
       </section>
     </Layout>
