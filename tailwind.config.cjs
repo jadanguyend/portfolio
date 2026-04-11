@@ -26,6 +26,7 @@ module.exports = {
       colors: {
         accent: "var(--accent-color)",   // Light mode uses --accent-color
         accent2: "var(--accent-color-2)", // Light mode secondary
+        accentSoft: "var(--accent-soft)",
 
         /* Optional: explicit dark variants (can be used if you want different classes) */
         "accent-dark": "var(--accent-color)", // Will be overridden by .dark automatically

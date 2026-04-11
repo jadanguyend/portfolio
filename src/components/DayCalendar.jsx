@@ -86,13 +86,13 @@ export default function DayCalendar() {
       {/* TOOLTIP */}
       {hoveredEvent && (
         <div
-          className="absolute z-50 pointer-events-none px-3 py-2 rounded-lg border bg-white dark:bg-gray-900 shadow-lg text-xs font-mono max-w-[220px]"
+          className="absolute z-50 pointer-events-none px-3 py-2 rounded-lg border bg-grayLight-10 dark:bg-grayDark-10 shadow-lg text-xs max-w-[220px]"
           style={{
             left: hoverPos.x + TOOLTIP_OFFSET,
             top: hoverPos.y + TOOLTIP_OFFSET,
           }}
         >
-          <div className="font-semibold text-sm text-gray-900 dark:text-gray-100">
+          <div className="font-semibold text-sm text-grayLight-900 dark:text-grayDark-900">
             {hoveredEvent.title}
           </div>
 
@@ -113,7 +113,7 @@ export default function DayCalendar() {
               className="absolute top-0 bottom-0 border-l border-gray-200 dark:border-gray-700"
               style={{ left: hour * HOUR_WIDTH }}
             >
-              <span className="absolute top-2 left-2 text-xs font-mono text-gray-400 dark:text-gray-500">
+              <span className="absolute top-2 left-2 text-xs text-gray-400 dark:text-gray-500">
                 {String(hour).padStart(2, "0")}:00
               </span>
             </div>
@@ -122,7 +122,7 @@ export default function DayCalendar() {
           {/* NOW LINE */}
           <div className="absolute top-0 bottom-0 z-30" style={{ left: nowX }}>
             <div className="h-full w-[2px] bg-red-400 opacity-80" />
-            <div className="absolute -top-6 -left-6 text-[10px] font-mono text-red-400">
+            <div className="absolute -top-6 -left-6 text-[10px] text-red-400">
               NOW
             </div>
           </div>
@@ -135,15 +135,15 @@ export default function DayCalendar() {
             return (
               <div
                 key={i}
-                className="
-                  absolute top-10 h-20 rounded-md border px-2 py-1 text-xs font-mono cursor-pointer
-                  bg-blue-100 text-blue-700 border-blue-200
-                  hover:bg-blue-700 hover:text-blue-100
-                  transition-colors duration-150
-                "
+                    className="
+                    absolute top-10 h-20 rounded-md px-2 py-1 text-xs  cursor-pointer
+                    bg-accentSoft text-accent 
+                    hover:bg-accent hover:text-white
+                    transition-colors duration-150
+                    "
                 style={{
-                  left: start * HOUR_WIDTH,
-                  width: (end - start) * HOUR_WIDTH,
+                  left: start * HOUR_WIDTH + 2,
+                  width: (end - start) * HOUR_WIDTH - 4,
                 }}
                 onMouseEnter={() => setHoveredEvent(event)}
                 onMouseMove={(e) => {

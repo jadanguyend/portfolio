@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
-import { FiMapPin, FiClock, FiArrowUpRight } from "react-icons/fi";
+import { FiMapPin, FiClock, FiArrowUpRight, FiInfo } from "react-icons/fi";
 
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 import DayCalendar from "../components/DayCalendar";
+import Postcard from "../components/Postcard";
 import Ascii from "../components/AsciiBackground";
 import ProjectsSection from "../components/ProjectSection";
 
@@ -199,7 +200,7 @@ export default function Home() {
 
           {/* ===== HERO DESCRIPTION ===== */}
           <div className="grid grid-cols-12">
-            <h3 className="col-span-12 md:col-span-10 md:col-start-2 font-medium text-center">
+            <h3 className="col-span-12 md:col-span-12 font-medium text-center">
               Product designer shaping consumer experiences — aligning systems, visual craft, and thoughtful product decisions that scale. Bringing delight to consumer apps, enterprise systems, and complex workflows.
             </h3>
           </div>
@@ -344,11 +345,10 @@ export default function Home() {
               {/* List */}
               <div className="flex flex-col">
                 {[
-                  { label: "Project Hail Mary by Andy Weir", href: "https://hardcover.app/books/project-hail-mary" },
-                  { label: "Detective Conan Series", href: "https://www.crunchyroll.com/series/G6JQVM3ER/detective-conan?srsltid=AfmBOooOvIBTa7Ljw7_kEFYjb5lm6rcD9IWITcGbL6XSTk1G_hrDQNC8" },
-                  { label: "Cup of Bac Xiu", href: "https://www.aroomcoffee.com/" },
-                  { label: "REPLICA Lazy Sunday Morning by Maison Margiela", href: "https://www.maisonmargiela-fragrances.us/fragrances/replica-eau-de-toilette/replica-lazy-sunday-morning/MM009.html?srsltid=AfmBOoo73C9uyueE6D9l1AchD0165Ne8WrSDEjs_1RYyy_UuD61TSP2C" },
-                  { label: "Super Mario Odyssey", href: "https://www.nintendo.com/us/store/products/super-mario-odyssey-switch/?srsltid=AfmBOoqRZTnd0KbSi_CmXCDIbr5tN3guw_IC6p7JaZvd_1YuoW048mM_" },
+                  { label: "What is Claude? Anthropic Doesn't Know, Either", href: "https://www.newyorker.com/magazine/2026/02/16/what-is-claude-anthropic-doesnt-know-either" },
+                  { label: "What Google Learned From Its Quest to Build the Perfect Team", href: "https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html" },
+                  { label: "Hooked: How to Build Habit-Forming Products", href: "https://www.goodreads.com/book/show/22668729-hooked" },
+                  { label: "How Pokémon Go is giving delivery robots an inch-perfect view of the world", href: "https://www.technologyreview.com/2026/03/10/1134099/how-pokemon-go-is-helping-robots-deliver-pizza-on-time/" },
                 ].map((item, index) => (
                   <a
                     key={index}
@@ -372,15 +372,32 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ===== FULL-WIDTH CALENDAR ===== */}
+        {/* ===== DAY CALENDAR ===== */}
         <div className="mt-12">
-          <div className="mb-4 font-mono text-xs uppercase text-grayLight-400 dark:text-grayDark-500">
-            A delightful day in my life
+          <div className="relative mb-4 flex items-center justify-between">
+            <div className="font-mono text-sm uppercase text-grayLight-400 dark:text-grayDark-500">
+              A delightful day in my life
+            </div>
+
+            <div className="group relative z-50">
+              <FiInfo className="h-4 w-4 text-grayLight-400 dark:text-grayDark-500 cursor-pointer" />
+
+              <div className="pointer-events-none absolute right-0 top-6 z-50 w-64 rounded-md bg-black text-white text-xs leading-relaxed p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                A great way to get to know someone is to see how they spend their time.
+                Here is how I would spend my day when I’m not designing... or sleeping in :)
+              </div>
+            </div>
           </div>
 
           <DayCalendar />
         </div>
       </section>
+
+      {/* ===== POSTCARD ===== */}
+      <div className="mb-6">
+        <Postcard />
+      </div>
+      
     </Layout>
   );
 }

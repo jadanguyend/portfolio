@@ -190,6 +190,7 @@
   --accent-color: #183ED8;        /* light mode */
   /* Secondary accent for contrast */
   --accent-color-2: #728CFE;     /* light mode */
+  --accent-soft: #DAE1FF;
 }
 
 .dark {
@@ -197,6 +198,7 @@
   --accent-color: #FF6B41;       /* dark mode */
   /* Secondary accent for contrast */
   --accent-color-2: #B52800;     /* dark mode */
+  --accent-soft: #FFE1D8;
 }
 
 /* Soft grey dots with fade toward bottom */
