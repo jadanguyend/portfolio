@@ -334,7 +334,7 @@ export default function Home() {
 
               {/* Heading */}
               <h4 className="mb-6 text-grayLight-900 dark:text-grayDark-900">
-                Little things that brings me <span className="text-accent">delight</span> when I’m not designing...
+                Writing and conversations that keep me grounded in how design and tech are evolving...
               </h4>
 
               {/* List */}
