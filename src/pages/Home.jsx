@@ -132,7 +132,7 @@ export default function Home() {
   return (
     <Layout footer={<Footer />}>
       {/* ================= HERO ================= */}
-      <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 pt-24 pb-12 text-center">
+      <section id="hero" className="relative min-h-screen flex flex-col justify-between px-16 pt-24 pb-12 text-center">
 
         {/* ===== DOTTED BACKGROUND ===== */}
         <div className="absolute inset-0 pointer-events-none">
