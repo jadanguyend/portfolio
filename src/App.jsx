@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -22,6 +22,10 @@ export default function App() {
 function AppContent({ isLoading, setIsLoading }) {
   const location = useLocation();
   const isCaseStudy = location.pathname.startsWith("/case-studies");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-grayLight-10 dark:bg-grayDark-10">
