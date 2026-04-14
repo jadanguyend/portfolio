@@ -132,7 +132,7 @@ export default function Home() {
   return (
     <Layout footer={<Footer />}>
       {/* ================= HERO ================= */}
-      <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 py-24 text-center">
+      <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 py-12 text-center">
 
         {/* ===== DOTTED BACKGROUND ===== */}
         <div className="absolute inset-0 pointer-events-none">
@@ -231,14 +231,9 @@ export default function Home() {
         <ProjectsSection />
       </div>
 
-      {/* Horizontal line */}
-      <div className="px-12 my-16">
-        <div className="border-t border-grayLight-200 dark:border-grayDark-200"></div>
-      </div>
-
 
       {/* ================= ABOUT ================= */}
-      <section id="about" className="relative py-12 px-16">
+      <section id="about" className="relative py-12 px-16 pb-24">
         <div className="grid grid-cols-12">
           
           {/* Left */}
@@ -393,11 +388,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== POSTCARD ===== */}
-      <div className="mb-6">
+      {/* ================= CTA ================= */}
+      <div className="px-6 md:px-16 pt-12 pb-24">
+        <h2 className="mb-6 text-grayLight-900 dark:text-grayDark-900">
+          Let’s <span className="text-accent">build</span> something together!
+        </h2>
+
         <Postcard />
       </div>
-      
+
+
     </Layout>
   );
 }

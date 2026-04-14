@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FiSend } from "react-icons/fi";
+import stamp from "../assets/Stamp.png";
 
 export default function Postcard() {
   const formRef = useRef();
@@ -16,7 +17,7 @@ export default function Postcard() {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      // 1. Send to YOU
+      // SEND TO YOU
       await emailjs.sendForm(
         serviceId,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID_INBOX,
@@ -24,7 +25,7 @@ export default function Postcard() {
         publicKey
       );
 
-      // 2. Auto-reply to VISITOR
+      // AUTO REPLY TO USER
       await emailjs.sendForm(
         serviceId,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID_AUTOREPLY,
@@ -43,77 +44,103 @@ export default function Postcard() {
   };
 
   return (
-    <section className="relative py-12 px-16">
-      {/* SAME SYSTEM AS ABOUT SECTION */}
-      <div className="grid grid-cols-12">
+    <div className="w-full">
 
-        {/* MATCHES YOUR ABOUT RIGHT COLUMN WIDTH */}
-        <div className="col-span-12">
+      {/* POSTCARD */}
+      <div className="relative w-full aspect-[16/6] border border-dashed border-grayLight-300 dark:border-grayDark-300 bg-grayLight-50 dark:bg-grayDark-50 rounded-lg overflow-hidden shadow-sm">
 
-          {/* POSTCARD */}
-          <div className="relative w-full aspect-[16/9] mb-24 border border-dashed border-grayLight-300 dark:border-grayDark-600 bg-grayLight-100/40 dark:bg-grayDark-800/40 rounded-lg overflow-hidden shadow-sm">
+{/* STAMP */}
+<img
+  src={stamp}
+  alt="stamp"
+  className="absolute top-4 right-4 w-20 opacity-90 pointer-events-none select-none drop-shadow-[1px_2px_1px_rgba(0,0,0,0.14)]"
+/>
 
-            {/* STAMP */}
-            <div className="absolute top-6 right-6 w-12 h-12 border border-grayLight-400 dark:border-grayDark-500 rotate-12 opacity-60" />
+        <form
+          ref={formRef}
+          onSubmit={sendEmail}
+          className="h-full grid grid-cols-12"
+        >
 
-            <form ref={formRef} onSubmit={sendEmail} className="h-full grid grid-cols-12">
+          {/* ================= LEFT ================= */}
+          <div className="col-span-8 p-8 border-r border-grayLight-300 dark:border-grayDark-300 flex flex-col">
+            <textarea
+              name="message"
+              required
+              placeholder="Hi Jada! I’ve got an idea I’d love to build together…"
+              className="flex-1 w-full bg-transparent outline-none resize-none text-base leading-relaxed"
+            />
+          </div>
 
-              {/* ================= LEFT ================= */}
-              <div className="col-span-8 p-10 border-r border-grayLight-200 dark:border-grayDark-700 flex flex-col">
-                <textarea
-                  name="message"
-                  required
-                  placeholder="Hi Jada! Let’s build together!"
-                  className="flex-1 w-full bg-transparent outline-none resize-none text-base leading-relaxed placeholder:opacity-40"
-                />
-              </div>
+          {/* ================= RIGHT ================= */}
+          <div className="col-span-4 p-6 flex flex-col h-full">
 
-              {/* ================= RIGHT ================= */}
-              <div className="col-span-4 p-8 flex flex-col justify-end gap-5">
+            {/* ================= TO (TOP) ================= */}
+            <div className="flex flex-col mb-6">
+              <span className="text-xs font-mono uppercase text-grayLight-500 dark:text-grayDark-600">
+                To
+              </span>
+              <span className="text-sm text-grayLight-900 dark:text-grayDark-900">
+                jadanguyend@gmail.com
+              </span>
+            </div>
 
+            {/* pushes bottom section down */}
+            <div className="flex-1" />
+
+            {/* ================= FROM (BOTTOM) ================= */}
+            <div className="flex flex-col gap-4">
+
+              {/* NAME */}
+              <div className="flex flex-col">
+                <span className="text-xs font-mono uppercase text-grayLight-500 dark:text-grayDark-600">
+                  From Name
+                </span>
                 <input
                   name="from_name"
                   required
-                  placeholder="Your Name"
                   className="bg-transparent border-b border-grayLight-300 dark:border-grayDark-600 outline-none py-1 text-sm"
                 />
+              </div>
 
+              {/* EMAIL */}
+              <div className="flex flex-col">
+                <span className="text-xs font-mono uppercase text-grayLight-500 dark:text-grayDark-600">
+                  From Email
+                </span>
                 <input
                   name="reply_to"
                   required
-                  placeholder="Your Email"
                   className="bg-transparent border-b border-grayLight-300 dark:border-grayDark-600 outline-none py-1 text-sm"
                 />
-
-                <button
-                  type="submit"
-                  disabled={sending}
-                  className="mt-2 flex items-center justify-center gap-2 border border-grayLight-400 dark:border-grayDark-500 py-2 text-sm hover:bg-grayLight-200 dark:hover:bg-grayDark-700 transition disabled:opacity-50"
-                >
-                  {sending ? "Sending..." : "Send"}
-                  <FiSend />
-                </button>
-
-                <div className="text-xs font-mono text-grayLight-400 dark:text-grayDark-500">
-                  {sent ? "Delivered ✉️" : "Ready to send"}
-                </div>
-
               </div>
-            </form>
 
-            {/* SUCCESS OVERLAY */}
-            {sent && (
-              <div className="absolute inset-0 flex items-center justify-center bg-grayLight-100/80 dark:bg-grayDark-900/80 backdrop-blur-sm">
-                <p className="font-mono text-sm uppercase">
-                  Message sent ✨
-                </p>
-              </div>
-            )}
+              {/* BUTTON */}
+              <button
+                type="submit"
+                disabled={sending}
+                className="mt-2 flex items-center justify-center gap-2 border border-grayLight-400 dark:border-grayDark-500 py-2 text-sm hover:bg-grayLight-200 dark:hover:bg-grayDark-700 transition disabled:opacity-50"
+              >
+                {sending ? "Sending..." : "Send"}
+                <FiSend />
+              </button>
 
+
+            </div>
           </div>
 
-        </div>
+        </form>
+
+        {/* SUCCESS OVERLAY */}
+        {sent && (
+          <div className="absolute inset-0 flex items-center justify-center bg-grayLight-100/80 dark:bg-grayDark-900/80 backdrop-blur-sm">
+            <p className="font-mono text-sm uppercase">
+              Message sent ✨
+            </p>
+          </div>
+        )}
+
       </div>
-    </section>
+    </div>
   );
 }
