@@ -90,98 +90,45 @@ export default function Nomo() {
           imageAlt="Nomo product interface"
         />
 
-        {/* OVERVIEW */}
-        <OverviewSection
-          sectionLabel="Overview"
-          sectionId="overview"
-          title="Reducing food waste through accountability and visibility"
-          bodyPrimary="NOMO is a mobile application designed to help individuals better understand and manage their food habits through social accountability and behavioral nudges."
-          bodySecondary="By making food consumption more visible and encouraging shared ownership, NOMO aims to reduce everyday food waste while fostering more sustainable routines."
-          buttonLabel="View final design"
-        />
-
-        {/* PREVIEW */}
-        <PreviewSection
-          sectionId="preview"
-          sectionLabel="Preview"
-          images={[highlightImg1, highlightImg2, highlightImg3]}
-        />
-
-        {/* FEATURE SECTION — FINAL DESIGN */}
-        <FeatureSection
-          sectionId="final-design"
-          sectionLabel="Final Design"
-          introTitle="Designing for shared ownership"
-          introBody="The final design focuses on making food visibility lightweight and social. By surfacing shared behaviors without adding friction, NOMO encourages accountability while fitting naturally into everyday routines."
-          introImageSrc={project1Img}
-          introImageAlt="Final NOMO design overview"
-          features={features}
-        />
-
-        {/* EXPLAINER — RESEARCH */}
         <ExplainerSection
-          sectionLabel="Research"
-          sectionId="research"
-          title="Understanding everyday food waste behaviors"
-          body="We conducted interviews and diary studies to understand how people make food decisions at home, where waste occurs most often, and what emotional barriers prevent behavior change."
-          imageVariant="two"
+          sectionLabel="Problem"
+          sectionId="problem"
+          title="People already understand that food waste is bad. Yet waste still happen. Why?"
+          body={
+            <>
+              <p className="mb-4">
+                Food waste is often framed as a knowledge or motivation issue. But our research quickly showed something different.
+              </p>
+
+              <p className="mb-4">
+                Because food decisions happen in moments like:
+              </p>
+
+              <ul className="mb-4 list-disc pl-5 space-y-2">
+                <li>Rushing to cook after a long day</li>
+                <li>Forgetting what’s already in the fridge</li>
+                <li>Buying “just in case” groceries</li>
+              </ul>
+
+              <p className="mb-4">
+                These are not moments of intention—they’re moments of cognitive overload. The problem wasn’t convincing users to care. It was supporting them when they weren’t thinking about it.
+              </p>
+            </>
+          }
+          imageVariant="one"
           images={[
             { src: researchImg1, alt: "Interview notes" },
-            { src: researchImg2, alt: "Affinity mapping" },
           ]}
         />
 
         {/* HIGHLIGHT — IMAGES */}
         <HighlightSection
-          sectionLabel="Key Insights"
-          sectionId="key-insights"
-          headline="Three patterns in food waste behaviors emerged"
+          sectionLabel="Research & Discovery"
+          sectionId="research-discovery"
+          headline="Good intentions don’t survive busy lives"
+          description="Across 13 interviews and 100+ surveys, a clear pattern emerged: The busier someone was, the more food they wasted."
           contentType="images"
           items={[highlightImg1, highlightImg2, highlightImg3]}
-        />
-
-        {/* HIGHLIGHT — TEXT CARDS */}
-        <HighlightSection
-          sectionLabel="Design Principles"
-          sectionId="design-principles"
-          headline="How we approached reducing food waste"
-          contentType="cards"
-          items={[
-            {
-              icon: FiEye,
-              title: "Make it visible",
-              description:
-                "Highlight food items in users' kitchens to encourage mindful consumption.",
-            },
-            {
-              icon: FiUsers,
-              title: "Encourage ownership",
-              description:
-                "Use social accountability to promote consistent behavior change.",
-            },
-            {
-              icon: FiCheckCircle,
-              title: "Reduce friction",
-              description:
-                "Simplify meal planning and tracking to make sustainable habits easy.",
-            },
-          ]}
-        />
-
-        {/* QUOTE */}
-        <QuoteSection
-          sectionId="quote"
-          sectionLabel="Key Insight"
-          quote="Food waste wasn’t caused by a lack of awareness, but by low visibility and a lack of shared ownership."
-        />
-
-        {/* PROCESS */}
-        <ProcessSection
-          sectionId="process"
-          sectionLabel="Process"
-          title="How we approached the problem"
-          steps={processSteps}
-          variant="three"
         />
       </CaseStudyLayout>
     </>

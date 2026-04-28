@@ -89,56 +89,100 @@ export default function Radar() {
           imageSrc={project1Img}
           imageAlt="Nomo product interface"
         />
-        {/* TEMP PROJECT INFO */}
-        <section className="col-span-12">
 
-        {/* GOALS */}
-        <div className="py-6">
-            <h2 className="text-2xl font-semibold mb-4">Goals</h2>
-            <p> Our goal for this project is to integrate AI into existing tools to support real-world enterprise adoption 
-                by transforming complex regulations into actionable engineering workflows, 
-                ultimately reducing manual effort and improving compliance efficiency and traceability.</p>
-            <p className="italic mt-4 text-gray-600">
-            I want to design intuitive interfaces that make compliance data understandable and actionable, and ensure dashboards support decision-making for different user roles.
-            </p>
-        </div>
+        {/* OVERVIEW */}
+        <OverviewSection
+          sectionLabel="Overview"
+          sectionId="overview"
+          title="Reducing food waste through accountability and visibility"
+          bodyPrimary="VietQ is a mobile application designed to help individuals better understand and manage their food habits through social accountability and behavioral nudges."
+          bodySecondary="By making food consumption more visible and encouraging shared ownership, VietQ aims to reduce everyday food waste while fostering more sustainable routines."
+          buttonLabel="View final design"
+        />
+
+        {/* PREVIEW */}
+        <PreviewSection
+          sectionId="preview"
+          sectionLabel="Preview"
+          images={[highlightImg1, highlightImg2, highlightImg3]}
+        />
+
+        {/* FEATURE SECTION — FINAL DESIGN */}
+        <FeatureSection
+          sectionId="final-design"
+          sectionLabel="Final Design"
+          introTitle="Designing for shared ownership"
+          introBody="The final design focuses on making food visibility lightweight and social. By surfacing shared behaviors without adding friction, VietQ encourages accountability while fitting naturally into everyday routines."
+          introImageSrc={project1Img}
+          introImageAlt="Final NOMO design overview"
+          features={features}
+        />
+
+        {/* EXPLAINER — RESEARCH */}
+        <ExplainerSection
+          sectionLabel="Research"
+          sectionId="research"
+          title="Understanding everyday food waste behaviors"
+          body="We conducted interviews and diary studies to understand how people make food decisions at home, where waste occurs most often, and what emotional barriers prevent behavior change."
+          imageVariant="two"
+          images={[
+            { src: researchImg1, alt: "Interview notes" },
+            { src: researchImg2, alt: "Affinity mapping" },
+          ]}
+        />
+
+        {/* HIGHLIGHT — IMAGES */}
+        <HighlightSection
+          sectionLabel="Key Insights"
+          sectionId="key-insights"
+          headline="Three patterns in food waste behaviors emerged"
+          contentType="images"
+          items={[highlightImg1, highlightImg2, highlightImg3]}
+        />
+
+        {/* HIGHLIGHT — TEXT CARDS */}
+        <HighlightSection
+          sectionLabel="Design Principles"
+          sectionId="design-principles"
+          headline="How we approached reducing food waste"
+          contentType="cards"
+          items={[
+            {
+              icon: FiEye,
+              title: "Make it visible",
+              description:
+                "Highlight food items in users' kitchens to encourage mindful consumption.",
+            },
+            {
+              icon: FiUsers,
+              title: "Encourage ownership",
+              description:
+                "Use social accountability to promote consistent behavior change.",
+            },
+            {
+              icon: FiCheckCircle,
+              title: "Reduce friction",
+              description:
+                "Simplify meal planning and tracking to make sustainable habits easy.",
+            },
+          ]}
+        />
+
+        {/* QUOTE */}
+        <QuoteSection
+          sectionId="quote"
+          sectionLabel="Key Insight"
+          quote="Food waste wasn’t caused by a lack of awareness, but by low visibility and a lack of shared ownership."
+        />
 
         {/* PROCESS */}
-        <div className="py-6">
-            <h2 className="text-2xl font-semibold mb-4">Process</h2>
-            <p>
-                We conducted stakeholder interviews to understand key pain points and synthesized our findings into clear opportunity areas. In collaboration with our partner team (TASAH), we defined the end-to-end system flow to ensure alignment between AI outputs and engineering workflows. We then iterated on workflow structures within Azure DevOps and validated our concepts through user feedback to ensure clarity, usability, and real-world applicability.
-            </p>
-            <p className="italic mt-4 text-gray-600">
-            I designed dashboard wireframes and high-fidelity prototypes, translated complex compliance data into clear, user-friendly visualizations, and iterated on designs based on feedback to improve usability and clarity.
-            </p>
-        </div>
-
-        {/* TAKEAWAYS */}
-        <div className="py-6">
-            <h2 className="text-2xl font-semibold mb-4">Takeaways</h2>
-            <p>
-                Clear, actionable outputs are critical for adoption in compliance workflows, as users need to immediately understand what steps to take. Simplicity and seamless integration into existing tools are key drivers of real-world usage, ensuring the system fits naturally into established processes. Additionally, building trust in AI requires transparency in how outputs are generated, along with meaningful human oversight to validate decisions in regulated environments.
-            </p>
-            <p className="italic mt-4 text-gray-600">
-            I learned to design within ambiguity, especially when requirements and systems were still evolving, and recognized the importance of documentation for aligning cross-functional teams and ensuring continuity.
-            </p>
-        </div>
-
-        {/* NEXT STEPS */}
-        <div className="py-6">
-            <h2 className="text-2xl font-semibold mb-4">Next Steps</h2>
-            <ul className="list-disc pl-5 space-y-2">
-            <li>Integrate systems into a unified platform</li>
-            <li>Refine workflows and expand dashboard capabilities</li>
-            <li>Pilot with real users to measure impact</li>
-            </ul>
-            <p className="italic mt-4 text-gray-600">
-            I will further refine dashboard designs based on real usage and feedback, improve documentation and design systems for scalability, and continue developing skills in enterprise UX and AI-integrated products.
-            </p>
-        </div>
-
-        </section>
+        <ProcessSection
+          sectionId="process"
+          sectionLabel="Process"
+          title="How we approached the problem"
+          steps={processSteps}
+          variant="three"
+        />
       </CaseStudyLayout>
     </>
   );

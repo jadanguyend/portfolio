@@ -6,6 +6,7 @@ export default function HighlightSection({
   sectionId,
   sectionLabel,
   headline,
+  description,
   contentType = "images",
   items = [],
   imageHeight = "h-72 md:h-80",
@@ -22,9 +23,15 @@ export default function HighlightSection({
 
       {/* Headline */}
       <div className="mb-8">
-        <h2 className="text-3xl md:text-4xl font-semibold text-grayLight-900 dark:text-grayDark-900">
+        <h2 className="font-semibold text-grayLight-900 dark:text-grayDark-900">
           {headline}
         </h2>
+
+        {description && (
+          <p className="mt-4 text-base">
+            {description}
+          </p>
+        )}
       </div>
 
       {/* Content */}

@@ -23,7 +23,7 @@ export default function ExplainerSection({
       <div className="grid grid-cols-12 gap-x-6 gap-y-4">
         {/* Left: H2 */}
         <div className="col-span-12 md:col-span-5">
-          <h2 className="text-2xl md:text-3xl font-semibold text-grayLight-900 dark:text-grayDark-900 leading-tight">
+          <h2 className="font-semibold text-grayLight-900 dark:text-grayDark-900 leading-tight">
             {title}
           </h2>
         </div>
@@ -33,7 +33,7 @@ export default function ExplainerSection({
 
         {/* Right: Body */}
         <div className="col-span-12 md:col-span-6">
-          <p className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
+          <p className="text-base text-grayLight-900 dark:text-grayDark-900">
             {body}
           </p>
         </div>
