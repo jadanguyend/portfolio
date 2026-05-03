@@ -11,15 +11,7 @@ import FeatureSection from "../../components/case_study_blocks/feature/FeatureSe
 import Footer from "../../components/Footer";
 
 // Images
-import project1Img from "../../assets/project1.png";
-import researchImg1 from "../../assets/research1.png";
-import researchImg2 from "../../assets/research2.png";
-import highlightImg1 from "../../assets/highlight1.png";
-import highlightImg2 from "../../assets/highlight2.png";
-import highlightImg3 from "../../assets/highlight3.png";
-import featureImg1 from "../../assets/feature1.png";
-import featureImg2 from "../../assets/feature2.png";
-import featureImg3 from "../../assets/feature3.png";
+import placeholderImg from "../../assets/placeholderImg.png";
 
 // Icons
 import {
@@ -49,30 +41,6 @@ export default function Nomo() {
     },
   ];
 
-  const features = [
-    {
-      title: "Kitchen visibility",
-      description:
-        "Users can quickly see what food they have at home, reducing forgotten items and encouraging mindful consumption.",
-      imageSrc: featureImg1,
-      imageAlt: "Kitchen inventory feature",
-    },
-    {
-      title: "Shared accountability",
-      description:
-        "Household members can view shared food activity, reinforcing collective ownership over food decisions.",
-      imageSrc: featureImg2,
-      imageAlt: "Shared accountability feature",
-    },
-    {
-      title: "Low-friction logging",
-      description:
-        "Lightweight interactions make tracking food use feel natural rather than burdensome.",
-      imageSrc: featureImg3,
-      imageAlt: "Food logging feature",
-    },
-  ];
-
   return (
     <>
       <CaseStudyLayout footer={<Footer />}>
@@ -86,7 +54,7 @@ export default function Nomo() {
           timeline="October 2024 – May 2025"
           tools="Figma, FigJam"
           contributors="Annie Chang, James Moy, Tony Ngo, Cristina Villavicencio, Ashley Zhang"
-          imageSrc={project1Img}
+          imageSrc={placeholderImg}
           imageAlt="Nomo product interface"
         />
 
@@ -117,18 +85,113 @@ export default function Nomo() {
           }
           imageVariant="one"
           images={[
-            { src: researchImg1, alt: "Interview notes" },
+            { src: placeholderImg, alt: "Interview notes" },
           ]}
         />
 
         {/* HIGHLIGHT — IMAGES */}
         <HighlightSection
-          sectionLabel="Research & Discovery"
+          sectionLabel="Discovery"
           sectionId="research-discovery"
           headline="Good intentions don’t survive busy lives"
-          description="Across 13 interviews and 100+ surveys, a clear pattern emerged: The busier someone was, the more food they wasted."
+          description="Across 13 interviews and 100+ survey responses, a clear pattern emerged: The busier someone was, the more food they wasted."
           contentType="images"
-          items={[highlightImg1, highlightImg2, highlightImg3]}
+          items={[placeholderImg, placeholderImg, placeholderImg]}
+        />
+
+        {/* QUOTE */}
+        <QuoteSection
+          sectionId="quote"
+          sectionLabel="Insight"
+          quote="Food waste wasn’t a knowledge gap. It was a behavior gap driven by time pressure and convenience."
+          description="Users cared about sustainability but that concern rarely translated into daily behavior. This reframed the problem from an education challenge to a behavior and attention design challenge"
+        />
+
+        {/* HIGHLIGHT — TEXT CARDS */}
+        <HighlightSection
+          sectionLabel="Design Principles"
+          sectionId="design-principles"
+          headline="Designing for real behavior, not ideal behavior"
+          contentType="cards"
+          items={[
+            {
+              icon: FiEye,
+              title: "Visibility over memory",
+              description:
+                "Users forget what they own so information must be visible without effort.",
+            },
+            {
+              icon: FiUsers,
+              title: "Low friction over completeness",
+              description:
+                "Users avoid effort-heavy systems so input must feel lightweight and optional.",
+            },
+            {
+              icon: FiCheckCircle,
+              title: "Support over control",
+              description:
+                "Users resist micromanagement so the system should guide, not demand.",
+            },
+          ]}
+        />
+
+        <ExplainerSection
+          sectionLabel="Initial Solution"
+          sectionId="Our Initial Approach"
+          title="I tried to track everything"
+          body={
+            <>
+              <p className="mb-4">
+                Because other product features (financial insights, streaks, community comparisons) depended on detailed data, I initially optimized for completeness.
+              </p>
+
+              <p className="mb-4">
+                I assumed more data = better product experience
+              </p>
+            </>
+          }
+          imageVariant="three"
+          images={[
+            { src: placeholderImg, alt: "Interview notes" },
+            { src: placeholderImg, alt: "Interview notes" },
+            { src: placeholderImg, alt: "Interview notes" },
+          ]}
+        />
+
+        {/* HIGHLIGHT — IMAGES */}
+        <HighlightSection
+          sectionLabel="Testing"
+          sectionId="Testing"
+          headline="Friction showed up instantly. The issue wasn’t confusion but resistance. The system felt like work."
+          contentType="images"
+          items={[placeholderImg]}
+        />
+
+
+        <ExplainerSection
+          sectionLabel="Pivot"
+          sectionId="Pivot"
+          title="I had been designing for an ideal user"
+          body={
+            <>
+              <p className="mb-4">
+                The process I designed constant input, sustained attention, and perfect compliance.
+              </p>
+
+              <p className="mb-4">
+                 Real life doesn’t work that way. The more we asked from users, the less they engaged.
+              </p>
+
+              <p className="mb-4 font-bold">
+                 Am I designing for data or behavior change?
+              </p>
+            </>
+          }
+          imageVariant="two"
+          images={[
+            { src: placeholderImg, alt: "Interview notes" },
+            { src: placeholderImg, alt: "Interview notes" },
+          ]}
         />
       </CaseStudyLayout>
     </>

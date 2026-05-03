@@ -17,7 +17,7 @@ export default function HighlightCards({ cards = [] }) {
         return (
           <div
             key={index}
-            className={`col-span-12 ${colClassMap[cards.length]} p-6 border rounded-lg shadow-sm flex flex-col gap-3`}
+            className={`col-span-12 ${colClassMap[cards.length]} p-6 border rounded-lg flex flex-col gap-3`}
           >
             {IconComponent && (
               <div className="text-primary w-6 h-6 mb-2">

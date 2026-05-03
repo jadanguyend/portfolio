@@ -1,6 +1,11 @@
 import CaseStudySection from "./shared/CaseStudySection";
 
-export default function QuoteSection({ sectionId, sectionLabel, quote }) {
+export default function QuoteSection({
+  sectionId,
+  sectionLabel,
+  quote,
+  description,
+}) {
   return (
     <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
       <div className="grid grid-cols-12 gap-y-6">
@@ -12,10 +17,16 @@ export default function QuoteSection({ sectionId, sectionLabel, quote }) {
         </div>
 
         {/* QUOTE */}
-        <div className="col-span-12 md:col-span-10">
-          <h2 className="text-2xl md:text-3xl leading-tight text-grayLight-900 dark:text-grayDark-900">
+        <div className="col-span-12">
+          <h2 className="leading-tight text-grayLight-900 dark:text-grayDark-900">
             {quote}
           </h2>
+
+          {description && (
+            <p className="mt-4 text-base text-grayLight-600 dark:text-grayDark-500">
+              {description}
+            </p>
+          )}
         </div>
       </div>
     </CaseStudySection>

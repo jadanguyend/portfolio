@@ -24,7 +24,7 @@ export default function FeatureSection({
       <div className="col-span-12 grid grid-cols-12 gap-y-8 gap-x-6 mb-24">
         {/* Row 1 — Text */}
         <div className="col-span-12 md:col-span-5">
-          <h2 className="text-2xl md:text-3xl font-semibold leading-tight text-grayLight-900 dark:text-grayDark-900">
+          <h2 className="leading-tight text-grayLight-900 dark:text-grayDark-900">
             {introTitle}
           </h2>
         </div>

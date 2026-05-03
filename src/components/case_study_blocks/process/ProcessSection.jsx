@@ -22,7 +22,7 @@ export default function ProcessSection({
       <div className="grid grid-cols-12 gap-x-6 gap-y-4 mt-4">
         {/* LEFT: H2 */}
         <div className="col-span-12 md:col-span-5">
-          <h2 className="text-2xl md:text-3xl font-semibold text-grayLight-900 dark:text-grayDark-900 leading-tight">
+          <h2 className="leading-tight text-grayLight-900 dark:text-grayDark-900">
             {title}
           </h2>
         </div>

@@ -23,7 +23,7 @@ export default function HighlightSection({
 
       {/* Headline */}
       <div className="mb-8">
-        <h2 className="font-semibold text-grayLight-900 dark:text-grayDark-900">
+        <h2 className="leading-tight text-grayLight-900 dark:text-grayDark-900">
           {headline}
         </h2>
 

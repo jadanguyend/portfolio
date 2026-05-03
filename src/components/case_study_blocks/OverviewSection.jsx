@@ -25,7 +25,7 @@ export default function OverviewSection({
 
           {/* LEFT — TITLE */}
           <div className="col-span-12 md:col-span-5">
-            <h2 className="text-2xl md:text-3xl font-semibold text-grayLight-900 dark:text-grayDark-900 leading-tight">
+            <h2 className="leading-tight text-grayLight-900 dark:text-grayDark-900">
               {title}
             </h2>
           </div>
