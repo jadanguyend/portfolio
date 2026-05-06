@@ -41,6 +41,65 @@ export default function Nomo() {
     },
   ];
 
+const features = [
+  {
+    title: "Actions without context switching",
+    description: (
+      <>
+        <p className="mb-3">
+          I prioritize in-context actions over full flows because users often interact in short bursts while multitasking, 
+          so the system needed to support immediate action without breaking context.   
+        </p>
+        <p>
+          The bottom sheet enables users to make updates instantly where the decision happens, without navigating away or losing momentum.
+        </p>
+      </>
+    ),
+    imageSrc: placeholderImg,
+    imageAlt: "Kitchen inventory feature",
+  },
+  {
+    title: "Balancing automation and intent",
+    description: (
+      <>
+        <p className="mb-3">
+          Full automation removes awareness, while full manual input creates friction and can lead to abandonment.
+        </p>
+        <p className="mb-3">
+          Instead, I designed an system where: 
+        </p>
+        <ul className="list-disc pl-5 space-y-2 mb-3">
+          <li>Repetitive or low-value actions are automated,</li>
+          <li>Meaningful updates require lightweight user confirmation</li>
+        </ul>
+        <p className="mb-3">
+          This keeps interaction effort aligned with cognitive value.
+        </p>
+      </>
+    ),
+    imageSrc: placeholderImg,
+    imageAlt: "Shared accountability feature",
+  },
+  {
+    title: "Reflection-based feedback loop",
+    description: (
+      <>
+        <p className="mb-3">
+          Instead of treating all food interactions as equal logs, I reframed outputs into two modes: action and reflection.
+        </p>
+        <p className="mb-3">
+          Food consumption is designed to be quick and low-friction. Food waste or expiry introduces a slightly longer interaction that prompts reflection.
+        </p>
+        <p className="mb-3">
+          This turns waste events into moments of awareness, helping users recognize patterns without requiring constant attention.
+        </p>
+      </>
+    ),
+    imageSrc: placeholderImg,
+    imageAlt: "Food logging feature",
+  },
+];
+
   return (
     <>
       <CaseStudyLayout footer={<Footer />}>
@@ -209,6 +268,60 @@ export default function Nomo() {
             { src: placeholderImg, alt: "Interview notes" },
             { src: placeholderImg, alt: "Interview notes" },
           ]}
+        />
+
+        {/* HIGHLIGHT — TEXT CARDS */}
+        <HighlightSection
+          sectionLabel="Design Principles"
+          sectionId="design-principles"
+          headline="I should be designing for real behavior, not ideal behavior"
+          contentType="cards"
+          items={[
+            {
+              icon: FiEye,
+              title: "Visibility over memory",
+              description:
+                "Users forget what they own so information must be visible without effort.",
+            },
+            {
+              icon: FiUsers,
+              title: "Low friction over completeness",
+              description:
+                "Users avoid effort-heavy systems so input must feel lightweight and optional.",
+            },
+            {
+              icon: FiCheckCircle,
+              title: "Support over control",
+              description:
+                "Users resist micromanagement so the system should guide, not demand.",
+            },
+          ]}
+        />
+
+        {/* FEATURE SECTION — FINAL DESIGN */}
+        <FeatureSection
+          sectionId="final-design"
+          sectionLabel="Final Design"
+          introTitle="Designing My Kitchen as an awareness layer"
+          introBody={
+            <>
+              <p className="mb-4">
+                “My Kitchen” became a behavioral interface centered around three simple questions:
+              </p>
+              <ul className="mb-4 list-disc pl-5 space-y-2">
+                <li>What do I have?</li>
+                <li>What’s happening to it?</li>
+                <li>What needs my attention?</li>
+              </ul>
+
+              <p className="mb-4">
+                Instead of acting as a control dashboard, it became a lightweight awareness layer.              
+              </p>
+            </>
+          }
+          introImageSrc={placeholderImg}
+          introImageAlt="Final NOMO design overview"
+          features={features}
         />
       </CaseStudyLayout>
     </>

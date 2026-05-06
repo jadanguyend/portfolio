@@ -14,7 +14,7 @@ export default function FeatureSection({
     <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
       
       {/* Section Label */}
-      <div className="col-span-12 mb-16">
+      <div className="col-span-12 mb-4">
         <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
           {sectionLabel}
         </p>
@@ -34,9 +34,9 @@ export default function FeatureSection({
 
         {/* Right Paragraph */}
         <div className="col-span-12 md:col-span-6">
-          <p className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
+          <div className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed space-y-4">
             {introBody}
-          </p>
+          </div>
         </div>
 
         {/* Row 2 — Image */}

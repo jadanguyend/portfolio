@@ -13,9 +13,25 @@ export default function FeatureBlock({
         <h3 className="text-2xl md:text-3xl font-semibold leading-tight text-grayLight-900 dark:text-grayDark-900 mb-4">
           {title}
         </h3>
-        <p className="text-base md:text-lg text-grayLight-700 dark:text-grayDark-400">
-          {description}
-        </p>
+
+        {/* ✅ FIXED TYPOGRAPHY WRAPPER */}
+<div
+  className="
+    text-base md:text-lg leading-relaxed
+    text-grayLight-700 dark:text-grayDark-400
+
+    [&_p]:text-inherit
+    [&_ul]:text-inherit
+    [&_li]:text-inherit
+
+    [&_ul]:list-disc
+    [&_ul]:pl-5
+
+    [&_li]:leading-relaxed
+  "
+>
+  {description}
+</div>
       </div>
 
       {/* Gap */}
