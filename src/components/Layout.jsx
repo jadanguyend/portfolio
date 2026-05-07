@@ -28,7 +28,10 @@ const Layout = forwardRef(function Layout({ children, footer }, ref) {
   useEffect(() => {
     if (!cardRef.current) return;
 
-    const updateCardHeight = () => setCardHeight(cardRef.current.offsetHeight);
+    const updateCardHeight = () => {
+      if (!cardRef.current) return;
+      setCardHeight(cardRef.current.offsetHeight);
+    };
     updateCardHeight();
 
     const observer = new ResizeObserver(updateCardHeight);
@@ -61,7 +64,9 @@ const Layout = forwardRef(function Layout({ children, footer }, ref) {
     updateFooterOffset();
 
     // Update on scale changes
-    const unsubscribe = scaleSpring.onChange(() => updateFooterOffset());
+    const unsubscribe = scaleSpring.on("change", () => {
+      updateFooterOffset();
+    });
 
     // Update on window resize
     window.addEventListener("resize", updateFooterOffset);

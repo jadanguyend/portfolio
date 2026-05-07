@@ -1,4 +1,7 @@
 // src/pages/case_studies/Nomo.jsx
+
+import { useState } from "react";
+
 import CaseStudyLayout from "../../layouts/CaseStudyLayout";
 import Hero from "../../components/case_study_blocks/Hero";
 import OverviewSection from "../../components/case_study_blocks/OverviewSection";
@@ -31,6 +34,11 @@ import {
 } from "react-icons/fi";
 
 export default function Radar() {
+  const [password, setPassword] = useState("");
+  const [unlocked, setUnlocked] = useState(false);
+
+  const correctPassword = "radar2026";
+
   const processSteps = [
     {
       icon: FiUser,
@@ -72,6 +80,43 @@ export default function Radar() {
       imageAlt: "Food logging feature",
     },
   ];
+
+if (!unlocked) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-grayLight-10 dark:bg-grayDark-10 px-6">
+      <div className="w-full max-w-sm">
+        <p className="font-mono text-sm mb-2 uppercase text-grayLight-400 dark:text-grayLight-400">
+          Protected Case Study
+        </p>
+
+        <h3 className="text-grayLight-900 dark:text-grayDark-900 mb-2">
+          Enter Access Code
+        </h3>
+
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Access Code"
+          className="w-full bg-grayLight-10 dark:bg-grayDark-10 border border-grayLight-200 dark:border-grayDark-200 bg-grayLight-10 px-4 py-3 rounded-xl mb-6 outline-none text-sm text-grayLight-600 dark:text-grayLight-600"
+        />
+
+        <button
+          onClick={() => {
+            if (password === correctPassword) {
+              setUnlocked(true);
+            } else {
+              alert("Incorrect password");
+            }
+          }}
+          className="w-full bg-accent text-grayLight-10 dark:text-grayLight-10 py-3 rounded-xl font-medium transition hover:opacity-90"
+        >
+          View Case Study
+        </button>
+      </div>
+    </div>
+  );
+}
 
   return (
     <>

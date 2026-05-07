@@ -27,9 +27,9 @@ export default function HighlightSection({
         </h2>
 
         {description && (
-          <p className="mt-4 text-base">
+          <div className="mt-4 text-base">
             {description}
-          </p>
+          </div>
         )}
       </div>
 
