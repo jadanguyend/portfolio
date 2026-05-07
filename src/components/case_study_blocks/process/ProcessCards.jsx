@@ -11,17 +11,30 @@ export default function ProcessCards({ steps = [] }) {
         return (
           <div
             key={index}
-            className="flex gap-6 p-6 border rounded-lg shadow-sm items-start"
+            className="flex gap-6 p-6 border rounded-lg shadow-sm"
           >
+            {/* ICON */}
             {IconComponent && (
-              <div className="w-6 h-6 flex-shrink-0 text-primary">
+              <div className="w-6 h-6 flex-shrink-0 text-accent opacity-80 mt-[2px]">
                 <IconComponent className="w-full h-full" />
               </div>
             )}
 
-            <p className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
-              {step.description}
-            </p>
+            {/* TEXT */}
+            <div className="flex flex-col gap-1">
+              
+              {/* TITLE + ICON ALIGNMENT TARGET */}
+              {step.title && (
+                <h3 className="text-lg font-semibold">
+                  {step.title}
+                </h3>
+              )}
+
+              {/* DESCRIPTION */}
+              <div className="text-base text-grayLight-700 dark:text-grayDark-400 leading-relaxed">
+                {step.description}
+              </div>
+            </div>
           </div>
         );
       })}

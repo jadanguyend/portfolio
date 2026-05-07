@@ -1,6 +1,7 @@
 // src/pages/case_studies/Nomo.jsx
 import CaseStudyLayout from "../../layouts/CaseStudyLayout";
 import Hero from "../../components/case_study_blocks/Hero";
+import TLDRSection from "../../components/case_study_blocks/TLDRSection";
 import OverviewSection from "../../components/case_study_blocks/OverviewSection";
 import PreviewSection from "../../components/case_study_blocks/PreviewSection";
 import ExplainerSection from "../../components/case_study_blocks/explainer/ExplainerSection";
@@ -8,10 +9,16 @@ import HighlightSection from "../../components/case_study_blocks/highlight/Highl
 import ProcessSection from "../../components/case_study_blocks/process/ProcessSection";
 import QuoteSection from "../../components/case_study_blocks/QuoteSection";
 import FeatureSection from "../../components/case_study_blocks/feature/FeatureSection";
+import ReflectionSection from "../../components/case_study_blocks/reflection/ReflectionSection";
+import ImageCaptionSection from "../../components/case_study_blocks/ImageCaptionSection";
 import Footer from "../../components/Footer";
 
 // Images
 import placeholderImg from "../../assets/placeholderImg.png";
+import nomo_thumbnail from "../../assets/nomo_thumbnail.png";
+import nomo_problem from "../../assets/nomo_problem.png";
+import nomo_preview_1 from "../../assets/nomo_preview_1.png";
+import nomo_discovery from "../../assets/nomo_discovery.png";
 
 // Icons
 import {
@@ -20,6 +27,9 @@ import {
   FiCheckCircle,
   FiUser,
   FiClipboard,
+  FiTrendingDown,
+  FiDatabase,
+  FiRefreshCw,
 } from "react-icons/fi";
 
 export default function Nomo() {
@@ -41,289 +51,327 @@ export default function Nomo() {
     },
   ];
 
-const features = [
-  {
-    title: "Actions without context switching",
-    description: (
-      <>
-        <p className="mb-3">
-          I prioritize in-context actions over full flows because users often interact in short bursts while multitasking, 
-          so the system needed to support immediate action without breaking context.   
-        </p>
-        <p>
-          The bottom sheet enables users to make updates instantly where the decision happens, without navigating away or losing momentum.
-        </p>
-      </>
-    ),
-    imageSrc: placeholderImg,
-    imageAlt: "Kitchen inventory feature",
-  },
-  {
-    title: "Balancing automation and intent",
-    description: (
-      <>
-        <p className="mb-3">
-          Full automation removes awareness, while full manual input creates friction and can lead to abandonment.
-        </p>
-        <p className="mb-3">
-          Instead, I designed an system where: 
-        </p>
-        <ul className="list-disc pl-5 space-y-2 mb-3">
-          <li>Repetitive or low-value actions are automated,</li>
-          <li>Meaningful updates require lightweight user confirmation</li>
-        </ul>
-        <p className="mb-3">
-          This keeps interaction effort aligned with cognitive value.
-        </p>
-      </>
-    ),
-    imageSrc: placeholderImg,
-    imageAlt: "Shared accountability feature",
-  },
-  {
-    title: "Reflection-based feedback loop",
-    description: (
-      <>
-        <p className="mb-3">
-          Instead of treating all food interactions as equal logs, I reframed outputs into two modes: action and reflection.
-        </p>
-        <p className="mb-3">
-          Food consumption is designed to be quick and low-friction. Food waste or expiry introduces a slightly longer interaction that prompts reflection.
-        </p>
-        <p className="mb-3">
-          This turns waste events into moments of awareness, helping users recognize patterns without requiring constant attention.
-        </p>
-      </>
-    ),
-    imageSrc: placeholderImg,
-    imageAlt: "Food logging feature",
-  },
-];
+  const features = [
+    {
+      title: "Actions without context switching",
+      description: (
+        <>
+          <p className="mb-3">
+            I prioritize in-context actions over full flows because users often interact in short bursts while multitasking, 
+            so the system needed to support immediate action without breaking context.   
+          </p>
+          <p>
+            The bottom sheet enables users to make updates instantly where the decision happens, without navigating away or losing momentum.
+          </p>
+        </>
+      ),
+      imageSrc: placeholderImg,
+      imageAlt: "Kitchen inventory feature",
+    },
+    {
+      title: "Balancing automation and intent",
+      description: (
+        <>
+          <p className="mb-3">
+            Full automation removes awareness, while full manual input creates friction and can lead to abandonment.
+          </p>
+          <p className="mb-3">
+            Instead, I designed a system where: 
+          </p>
+          <ul className="list-disc pl-5 space-y-2 mb-3">
+            <li>Repetitive or low-value actions are automated,</li>
+            <li>Meaningful updates require lightweight user confirmation</li>
+          </ul>
+          <p className="mb-3">
+            This keeps interaction effort aligned with cognitive value.
+          </p>
+        </>
+      ),
+      imageSrc: placeholderImg,
+      imageAlt: "Shared accountability feature",
+    },
+    {
+      title: "Reflection-based feedback loop",
+      description: (
+        <>
+          <p className="mb-3">
+            Instead of treating all food interactions as equal logs, I reframed outputs into two modes: action and reflection.
+          </p>
+          <p className="mb-3">
+            Food consumption is designed to be quick and low-friction. Food waste or expiry introduces a slightly longer interaction that prompts reflection.
+          </p>
+          <p className="mb-3">
+            This turns waste events into moments of awareness, helping users recognize patterns without requiring constant attention.
+          </p>
+        </>
+      ),
+      imageSrc: placeholderImg,
+      imageAlt: "Food logging feature",
+    },
+  ];
+
+  const takeaways = [
+    {
+      icon: FiTrendingDown,
+      title: "Effort is the breaking point",
+      description:
+        "Even valuable systems fail if they demand too much from users.",
+    },
+    {
+      icon: FiDatabase,
+      title: "Data isn’t the product",
+      description:
+        "Better data has no impact if users disengage.",
+    },
+    {
+      icon: FiEye,
+      title: "Awareness over control",
+      description:
+        "People don’t need to be managed. They need timely, contextual reminders.",
+    },
+    {
+      icon: FiRefreshCw,
+      title: "Design for real life",
+      description:
+        "Systems succeed when they fit into existing routines, reduce effort, and provide immediate value.",
+    },
+  ];
 
   return (
-    <>
-      <CaseStudyLayout footer={<Footer />}>
-        {/* HERO */}
-        <Hero
-          title="NOMO"
-          tag="Case Study"
-          readTime="6 min read"
-          brief="An app that encourages users to take ownership of their food habits while reducing waste through community engagement."
-          role="UX Researcher & Designer"
-          timeline="October 2024 – May 2025"
-          tools="Figma, FigJam"
-          contributors="Annie Chang, James Moy, Tony Ngo, Cristina Villavicencio, Ashley Zhang"
-          imageSrc={placeholderImg}
-          imageAlt="Nomo product interface"
-        />
+    <CaseStudyLayout footer={<Footer />}>
+      <Hero
+        title="NOMO"
+        tag="Case Study"
+        readTime="6 min read"
+        brief="An app that supports users in reducing waste by making their consumption patterns more visible and actionable."
+        role="UX Researcher & Designer"
+        timeline="October 2024 – May 2025"
+        tools="Figma, FigJam"
+        contributors="Annie Chang, James Moy, Tony Ngo, Cristina Villavicencio, Ashley Zhang"
 
-        {/* OVERVIEW */}
-        <OverviewSection
-          sectionLabel="Overview"
-          sectionId="overview"
-          title="Insert heading here"
-          bodyPrimary="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
-          bodySecondary="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
-          buttonLabel="View final design"
-        />
+        imageSrc={nomo_thumbnail}
+        imageAlt="Nomo product interface"
 
-        {/* PREVIEW */}
-        <PreviewSection
-          sectionId="preview"
-          sectionLabel="Preview"
-          images={[placeholderImg, placeholderImg, placeholderImg]}
-        />
+        learnMoreContent={
+          <>
+            <p>NOMO is a conceptual UX design project exploring behavior change in everyday food habits. It is not a shipped product and was created as a design exercise focused on system thinking, interaction design, and behavioral research. </p>
+          </>
+        }
+      />
 
-        <ExplainerSection
-          sectionLabel="Problem"
-          sectionId="problem"
-          title="People already understand that food waste is bad. Yet waste still happen. Why?"
-          body={
-            <>
-              <p className="mb-4">
-                Food waste is often framed as a knowledge or motivation issue. But our research quickly showed something different.
-              </p>
+      <OverviewSection
+        sectionLabel="Overview"
+        sectionId="overview"
+        title="Designing for behavior change in everyday food habits"
+        bodyPrimary="Busy young adults often care about reducing food waste but struggle to act on that intention in everyday life due to time pressure and cognitive load.
+                      NOMO explores how behavioral design can support these moments through lightweight, awareness-driven interactions."
+        bodySecondary="I led the design of the “My Kitchen” feature, translating behavioral research into a system that supports visibility, reflection, and everyday decision-making around food."
+        buttonLabel="View final design"
+      />
 
-              <p className="mb-4">
-                Because food decisions happen in moments like:
-              </p>
+      <PreviewSection
+        sectionId="preview"
+        sectionLabel="Preview"
+        images={[nomo_preview_1, placeholderImg, placeholderImg]}
+      />
 
-              <ul className="mb-4 list-disc pl-5 space-y-2">
-                <li>Rushing to cook after a long day</li>
-                <li>Forgetting what’s already in the fridge</li>
-                <li>Buying “just in case” groceries</li>
-              </ul>
+      <ExplainerSection
+        sectionLabel="Problem"
+        sectionId="problem"
+        title="People already understand that food waste is bad. Yet waste still happen. Why?"
+        body={
+          <>
+            <p className="mb-4">
+              Food waste is often framed as a knowledge or motivation issue. But our research quickly showed something different.
+            </p>
 
-              <p className="mb-4">
-                These are not moments of intention—they’re moments of cognitive overload. The problem wasn’t convincing users to care. It was supporting them when they weren’t thinking about it.
-              </p>
-            </>
-          }
-          imageVariant="one"
-          images={[
-            { src: placeholderImg, alt: "Interview notes" },
-          ]}
-        />
+            <p className="mb-4">
+              Because food decisions happen in moments like:
+            </p>
 
-        {/* HIGHLIGHT — IMAGES */}
-        <HighlightSection
-          sectionLabel="Discovery"
-          sectionId="research-discovery"
-          headline="Good intentions don’t survive busy lives"
-          description="Across 13 interviews and 100+ survey responses, a clear pattern emerged: The busier someone was, the more food they wasted."
-          contentType="images"
-          items={[placeholderImg, placeholderImg, placeholderImg]}
-        />
+            <ul className="mb-4 list-disc pl-5 space-y-2">
+              <li>Rushing to cook after a long day</li>
+              <li>Forgetting what’s already in the fridge</li>
+              <li>Buying “just in case” groceries</li>
+            </ul>
 
-        {/* QUOTE */}
-        <QuoteSection
-          sectionId="quote"
-          sectionLabel="Insight"
-          quote="Food waste wasn’t a knowledge gap. It was a behavior gap driven by time pressure and convenience."
-          description="Users cared about sustainability but that concern rarely translated into daily behavior. This reframed the problem from an education challenge to a behavior and attention design challenge"
-        />
+            <p className="mb-4">
+              These are not moments of intention, they’re moments of cognitive overload. The problem wasn’t convincing users to care. It was supporting them when they weren’t thinking about it.
+            </p>
+          </>
+        }
+        imageVariant="one"
+        images={[{ src: nomo_problem, alt: "Interview notes" }]}
+      />
 
-        {/* HIGHLIGHT — TEXT CARDS */}
-        <HighlightSection
-          sectionLabel="Design Principles"
-          sectionId="design-principles"
-          headline="Designing for real behavior, not ideal behavior"
-          contentType="cards"
-          items={[
-            {
-              icon: FiEye,
-              title: "Visibility over memory",
-              description:
-                "Users forget what they own so information must be visible without effort.",
-            },
-            {
-              icon: FiUsers,
-              title: "Low friction over completeness",
-              description:
-                "Users avoid effort-heavy systems so input must feel lightweight and optional.",
-            },
-            {
-              icon: FiCheckCircle,
-              title: "Support over control",
-              description:
-                "Users resist micromanagement so the system should guide, not demand.",
-            },
-          ]}
-        />
+      <HighlightSection
+        sectionLabel="Discovery"
+        sectionId="research-discovery"
+        headline="Good intentions don’t survive busy lives"
+        description= {
+          <>
+            <p className="mb-4">
+              Across 13 interviews and 100+ survey responses, a clear pattern emerged: The busier someone was, the more food they wasted. 
+            </p>
+            <p className="mb-4">
+              When asked what makes reducing food waste most difficult, 69% of respondents identified forgetfulness as a primary barrier. To understand this breakdown, I dug deeper into what causes people to forget food they already own.
+            </p>
+          </>
+        }
+        contentType="images"
+        items={[nomo_discovery]}
+      />
 
-        <ExplainerSection
-          sectionLabel="Initial Solution"
-          sectionId="Our Initial Approach"
-          title="I tried to track everything"
-          body={
-            <>
-              <p className="mb-4">
-                Because other product features (financial insights, streaks, community comparisons) depended on detailed data, I initially optimized for completeness.
-              </p>
+      <QuoteSection
+        sectionId="quote"
+        sectionLabel="Insight"
+        quote="Food waste wasn’t a knowledge gap. It was a behavior gap driven by time pressure and convenience."
+        description="Users cared about sustainability but that concern rarely translated into daily behavior. This reframed the problem from an education challenge to a behavior and attention design challenge"
+      />
 
-              <p className="mb-4">
-                I assumed more data = better product experience
-              </p>
-            </>
-          }
-          imageVariant="three"
-          images={[
-            { src: placeholderImg, alt: "Interview notes" },
-            { src: placeholderImg, alt: "Interview notes" },
-            { src: placeholderImg, alt: "Interview notes" },
-          ]}
-        />
+      <ExplainerSection
+        sectionLabel="Initial Solution"
+        sectionId="initial-approach"
+        title="I tried to track everything"
+        body={
+          <>
+            <p className="mb-4">
+              Because other product features depended on detailed data, I initially optimized for completeness.
+            </p>
+            <p className="mb-4">
+              I assumed more data = better product experience
+            </p>
+          </>
+        }
+        imageVariant="three"
+        images={[
+          { src: placeholderImg, alt: "Interview notes" },
+          { src: placeholderImg, alt: "Interview notes" },
+          { src: placeholderImg, alt: "Interview notes" },
+        ]}
+      />
 
-        {/* HIGHLIGHT — IMAGES */}
-        <HighlightSection
-          sectionLabel="Testing"
-          sectionId="Testing"
-          headline="Friction showed up instantly. The issue wasn’t confusion but resistance. The system felt like work."
-          contentType="images"
-          items={[placeholderImg]}
-        />
+      <HighlightSection
+        sectionLabel="Testing"
+        sectionId="testing"
+        headline="Friction showed up instantly. The issue wasn’t confusion but resistance. The system felt like work."
+        contentType="images"
+        items={[placeholderImg]}
+      />
 
+      <ExplainerSection
+        sectionLabel="Pivot"
+        sectionId="pivot"
+        title="I had been designing for an ideal user"
+        body={
+          <>
+            <p className="mb-4">
+              The process required constant input, sustained attention, and perfect compliance.
+            </p>
+            <p className="mb-4">
+              Real life doesn’t work that way. The more we asked from users, the less they engaged.
+            </p>
+            <p className="mb-4 font-bold">
+              Am I designing for data or behavior change?
+            </p>
+          </>
+        }
+        imageVariant="two"
+        images={[
+          { src: placeholderImg, alt: "Interview notes" },
+          { src: placeholderImg, alt: "Interview notes" },
+        ]}
+      />
 
-        <ExplainerSection
-          sectionLabel="Pivot"
-          sectionId="Pivot"
-          title="I had been designing for an ideal user"
-          body={
-            <>
-              <p className="mb-4">
-                The process I designed constant input, sustained attention, and perfect compliance.
-              </p>
+      <HighlightSection
+        sectionLabel="Design Principles"
+        sectionId="design-principles"
+        headline="Designing for real behavior, not ideal behavior"
+        contentType="cards"
+        items={[
+          {
+            icon: FiEye,
+            title: "Visibility over memory",
+            description: "Users forget what they own so information must be visible without effort.",
+          },
+          {
+            icon: FiUsers,
+            title: "Low friction over completeness",
+            description: "Users avoid effort-heavy systems so input must feel lightweight.",
+          },
+          {
+            icon: FiCheckCircle,
+            title: "Support over control",
+            description: "Users resist micromanagement so the system should guide, not demand.",
+          },
+        ]}
+      />
 
-              <p className="mb-4">
-                 Real life doesn’t work that way. The more we asked from users, the less they engaged.
-              </p>
+      <FeatureSection
+        sectionId="final-design"
+        sectionLabel="Final Design"
+        introTitle="Designing My Kitchen as an awareness layer"
+        introBody={
+          <>
+            <p className="mb-4">
+              “My Kitchen” became a behavioral interface centered around:
+            </p>
+            <ul className="mb-4 list-disc pl-5 space-y-2">
+              <li>What do I have?</li>
+              <li>What’s happening to it?</li>
+              <li>What needs my attention?</li>
+            </ul>
+          </>
+        }
+        introImageSrc={placeholderImg}
+        introImageAlt="Final NOMO design overview"
+        features={features}
+      />
 
-              <p className="mb-4 font-bold">
-                 Am I designing for data or behavior change?
-              </p>
-            </>
-          }
-          imageVariant="two"
-          images={[
-            { src: placeholderImg, alt: "Interview notes" },
-            { src: placeholderImg, alt: "Interview notes" },
-          ]}
-        />
+      <ImageCaptionSection
+        sectionId="screens"
+        sectionLabel="Final Screens"
+        layout="horizontal"
+        items={[
+          { src: placeholderImg, caption: "Add caption here" },
+          { src: placeholderImg, caption: "Add caption here" },
+          { src: placeholderImg, caption: "Add caption here" },
+        ]}
+      />
+      <ReflectionSection
+        sectionLabel="Tradeoffs"
+        sectionId="tradeoffs-reflection"
+        headline="Less precision, more sustained engagement"
+        description={
+          <>
+            <p className="mb-4">
+              We shifted from optimizing for data accuracy to designing for long-term usability in real-world conditions.
+            </p>
 
-        {/* HIGHLIGHT — TEXT CARDS */}
-        <HighlightSection
-          sectionLabel="Design Principles"
-          sectionId="design-principles"
-          headline="I should be designing for real behavior, not ideal behavior"
-          contentType="cards"
-          items={[
-            {
-              icon: FiEye,
-              title: "Visibility over memory",
-              description:
-                "Users forget what they own so information must be visible without effort.",
-            },
-            {
-              icon: FiUsers,
-              title: "Low friction over completeness",
-              description:
-                "Users avoid effort-heavy systems so input must feel lightweight and optional.",
-            },
-            {
-              icon: FiCheckCircle,
-              title: "Support over control",
-              description:
-                "Users resist micromanagement so the system should guide, not demand.",
-            },
-          ]}
-        />
+            <p className="mb-4">
+              This introduced intentional tradeoffs:
+            </p>
 
-        {/* FEATURE SECTION — FINAL DESIGN */}
-        <FeatureSection
-          sectionId="final-design"
-          sectionLabel="Final Design"
-          introTitle="Designing My Kitchen as an awareness layer"
-          introBody={
-            <>
-              <p className="mb-4">
-                “My Kitchen” became a behavioral interface centered around three simple questions:
-              </p>
-              <ul className="mb-4 list-disc pl-5 space-y-2">
-                <li>What do I have?</li>
-                <li>What’s happening to it?</li>
-                <li>What needs my attention?</li>
-              </ul>
+            <ul className="list-disc pl-5 space-y-2">
+              <li>Financial insights became more approximate, but still meaningful</li>
+              <li>Streaks reflected consistency, not perfection</li>
+            </ul>
 
-              <p className="mb-4">
-                Instead of acting as a control dashboard, it became a lightweight awareness layer.              
-              </p>
-            </>
-          }
-          introImageSrc={placeholderImg}
-          introImageAlt="Final NOMO design overview"
-          features={features}
-        />
-      </CaseStudyLayout>
-    </>
+            <p className="mt-4">
+              The goal was no longer precision — it was sustained engagement in real usage contexts.
+            </p>
+          </>
+        }        
+        items={[placeholderImg,placeholderImg]}
+      />
+
+      <ProcessSection
+        sectionId="reflection"
+        sectionLabel="Reflection"
+        title="What this project taught me"
+        steps={takeaways}
+        variant="three"
+      />
+    </CaseStudyLayout>
   );
 }

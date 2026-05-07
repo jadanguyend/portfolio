@@ -14,7 +14,7 @@ export default function ExplainerImages({ images = [], variant = "one", height =
           <img
             src={img.src}
             alt={img.alt || ""}
-            className={`w-full object-cover rounded-2xl ${height}`} // dynamic height
+            className={`w-full object-cover border border-dashed border-grayLight-200 dark:border-grayDark-200 rounded-2xl ${height}`} // dynamic height
           />
         </div>
       ))}

@@ -9,7 +9,6 @@ export default function HighlightSection({
   description,
   contentType = "images",
   items = [],
-  imageHeight = "h-72 md:h-80",
 }) {
   return (
     <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
@@ -36,7 +35,7 @@ export default function HighlightSection({
 
       {/* Content */}
       {contentType === "images" ? (
-        <HighlightImages images={items} height={imageHeight} />
+        <HighlightImages images={items} />
       ) : (
         <HighlightCards cards={items} />
       )}

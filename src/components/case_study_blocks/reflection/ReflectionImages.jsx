@@ -1,0 +1,19 @@
+export default function ReflectionImages({ items = [] }) {
+  if (!items.length) return null;
+
+  return (
+    <div className="grid gap-4 h-full auto-rows-fr">
+
+      {items.slice(0, 3).map((src, i) => (
+        <div key={i} className="relative h-full overflow-hidden rounded-lg">
+          <img
+            src={src}
+            alt={`Reflection ${i + 1}`}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+      ))}
+
+    </div>
+  );
+}

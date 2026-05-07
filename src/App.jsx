@@ -7,7 +7,7 @@ import Sandbox from "./pages/Sandbox";
 import LoadingScreen from "./components/LoadingScreen";
 import Nomo from "./pages/case_studies/Nomo";
 import Radar from "./pages/case_studies/Radar";
-import VietQ from "./pages/case_studies/VietQ";
+import Event from "./pages/case_studies/Event";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +38,7 @@ function AppContent({ isLoading, setIsLoading }) {
         <Route path="/about" element={<About />} />
         <Route path="/case-studies/nomo" element={<Nomo />} />
         <Route path="/case-studies/radar" element={<Radar />} />
-        <Route path="/case-studies/vietq" element={<VietQ />} />
+        <Route path="/case-studies/event" element={<Event />} />
       </Routes>
 
       {isLoading && (

@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
+import radar_thumbnail from "../assets/radar_thumbnail.png";
+import nomo_thumbnail from "../assets/nomo_thumbnail.png";
+import event_thumbnail from "../assets/event_thumbnail.png";
 import project0Img from "../assets/project0.png";
 import project1Img from "../assets/project1.png";
 import project2Img from "../assets/project2.png";
@@ -13,34 +16,28 @@ const projects = [
     description:
       "Streamlining enterprise compliance by turning complex regulations into actionable tasks within Teams, Azure DevOps, and Power BI.",
     tags: ["B2B", "Workflow Automation", "AI Integration", "Dashboard Design"],
-    image: project0Img,
+    image: radar_thumbnail,
     href: "/case-studies/radar",
   },
   {
     type: "NOMO | Mobile App",
-    title: "Reducing Food Waste Through Social Accountability",
+    title: "Reducing Food Waste Through Behavior Design",
     description:
       "Helping individuals tackle food waste by fostering personal ownership and social accountability.",
     tags: ["Branding", "Design System", "Social Impact"],
-    image: project1Img,
+    image: nomo_thumbnail,
     href: "/case-studies/nomo",
   },
   {
-    type: "BEESI | Mobile App",
-    title: "Social Media Made Simple for Businesses",
+    type: "University of Washington | Web Design",
+    title: "Redesigning for Scalable Campus Event Services",
     description:
-      "Enables business owners to promote their brand effectively while navigating social media algorithms.",
-    tags: ["B2B Tools", "Multi-sided platform"],
-    image: project2Img,
+      "Helping individuals tackle food waste by fostering personal ownership and social accountability.",
+    tags: ["Information Architecture", "Web Development"],
+    image: event_thumbnail,
+    href: "/case-studies/Event",
   },
-  {
-    type: "VietQ | Website",
-    title: "Digital Space for Seattle’s Vietnamese LGBTQ+ Community",
-    description:
-      "A platform to improve usability and engagement for Seattle’s Vietnamese queer community.",
-    tags: ["Community Platform", "Branding"],
-    image: project3Img,
-  },
+
 ];
 
 export default function ProjectsSection() {
