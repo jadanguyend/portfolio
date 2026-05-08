@@ -4,6 +4,11 @@
   "type": "module",
   "main": "index.js",
   "homepage": "https://jadanguyend.github.io/portfolio",
+
+  "engines": {
+    "node": "20.x"
+  },
+
   "scripts": {
     "dev": "vite",
     "build": "node scripts/generateLastCommit.js && vite build",
@@ -11,10 +16,12 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@react-three/drei": "^10.7.7",
@@ -27,6 +34,7 @@
     "react-scroll": "^1.9.3",
     "three": "^0.183.2"
   },
+
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.22",
