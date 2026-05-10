@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "homepage": "https://jadanguyend.github.io/portfolio",
+  "homepage": "https://jadanguyend.com",
   "engines": {
     "node": "20.x"
   },
