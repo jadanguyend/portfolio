@@ -115,7 +115,7 @@ export default function Navbar() {
   const navItems = [
     { label: "Work", type: "scroll", target: "work" },
     { label: "About", type: "scroll", target: "about" },
-    { label: "Sandbox", type: "route", path: "/sandbox" },
+    /* { label: "Sandbox", type: "route", path: "/sandbox" }, */
     { label: "Resume", type: "external", href: "/resume.pdf" },
   ];
 

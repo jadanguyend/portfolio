@@ -12,13 +12,13 @@ export default function NotFound() {
         className="max-w-xl w-full text-center"
       >
         {/* LABEL */}
-        <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-grayLight-400 dark:text-grayDark-400">
+        <p className="mb-4 font-mono text-xs uppercase leading-tight text-grayLight-400 dark:text-grayDark-400">
           404 — Page Not Found
         </p>
 
         {/* TITLE */}
-        <h1 className="text-4xl md:text-6xl leading-tight text-grayLight-900 dark:text-grayDark-900 mb-6">
-          Looks like this page wandered off.
+        <h1 className="text-6xl whitespace-nowrap leading-tight text-grayLight-900 dark:text-grayDark-900 mb-6">
+        Well… this is awkward...
         </h1>
 
         {/* DESCRIPTION */}
