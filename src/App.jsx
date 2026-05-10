@@ -8,6 +8,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import Nomo from "./pages/case_studies/Nomo";
 import Radar from "./pages/case_studies/Radar";
 import Event from "./pages/case_studies/Event";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +40,8 @@ function AppContent({ isLoading, setIsLoading }) {
         <Route path="/case-studies/nomo" element={<Nomo />} />
         <Route path="/case-studies/radar" element={<Radar />} />
         <Route path="/case-studies/event" element={<Event />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       {isLoading && (
