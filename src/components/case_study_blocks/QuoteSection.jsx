@@ -7,8 +7,13 @@ export default function QuoteSection({
   description,
 }) {
   return (
-    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
+    <CaseStudySection
+      id={sectionId}
+      dataSection={sectionLabel}
+      className="py-24"
+    >
       <div className="grid grid-cols-12 gap-y-6">
+        
         {/* LABEL */}
         <div className="col-span-12">
           <p className="text-sm font-mono uppercase tracking-wide text-grayLight-400 dark:text-grayDark-400">
@@ -23,9 +28,9 @@ export default function QuoteSection({
           </h2>
 
           {description && (
-            <p className="mt-4 text-base text-grayLight-600 dark:text-grayDark-500">
+            <div className="mt-4 text-base text-grayLight-600 dark:text-grayDark-500">
               {description}
-            </p>
+            </div>
           )}
         </div>
       </div>

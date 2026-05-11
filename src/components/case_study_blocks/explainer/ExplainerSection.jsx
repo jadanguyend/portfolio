@@ -7,11 +7,15 @@ export default function ExplainerSection({
   title,
   body,
   imageVariant = "one",
+  imageLayout = "horizontal", // NEW
   images = [],
 }) {
   return (
-    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
-      
+    <CaseStudySection
+      id={sectionId}
+      dataSection={sectionLabel}
+      className="py-24"
+    >
       {/* Section Label */}
       <div className="col-span-12 mb-4">
         <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
@@ -42,7 +46,11 @@ export default function ExplainerSection({
       {/* Visuals */}
       {images.length > 0 && (
         <div className="mt-6">
-          <ExplainerImages variant={imageVariant} images={images} />
+          <ExplainerImages
+            variant={imageVariant}
+            layout={imageLayout}
+            images={images}
+          />
         </div>
       )}
     </CaseStudySection>

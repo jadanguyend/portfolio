@@ -18,7 +18,12 @@ import placeholderImg from "../../assets/placeholderImg.png";
 import nomo_thumbnail from "../../assets/nomo_thumbnail.png";
 import nomo_problem from "../../assets/nomo_problem.png";
 import nomo_preview_1 from "../../assets/nomo_preview_1.png";
+import nomo_preview_2 from "../../assets/nomo_preview_2.png";
+import nomo_preview_3 from "../../assets/nomo_preview_3.png";
 import nomo_discovery from "../../assets/nomo_discovery.png";
+import nomo_attempt_manual_input from "../../assets/nomo_attempt_manual_input.png";
+import nomo_attempt_granular_tracking from "../../assets/nomo_attempt_granular_tracking.png";
+import nomo_initial_feedback from "../../assets/nomo_initial_feedback.png";
 
 // Icons
 import {
@@ -172,7 +177,7 @@ export default function Nomo() {
       <PreviewSection
         sectionId="preview"
         sectionLabel="Preview"
-        images={[nomo_preview_1, placeholderImg, placeholderImg]}
+        images={[nomo_preview_1, nomo_preview_2, nomo_preview_3]}
       />
 
       <ExplainerSection
@@ -196,7 +201,7 @@ export default function Nomo() {
             </ul>
 
             <p className="mb-4">
-              These are not moments of intention, they’re moments of cognitive overload. The problem wasn’t convincing users to care. It was supporting them when they weren’t thinking about it.
+              These are not moments of intention, they’re <strong> moments of cognitive overload </strong>. The problem wasn’t convincing users to care. It was supporting them when they weren’t thinking about it.
             </p>
           </>
         }
@@ -211,10 +216,10 @@ export default function Nomo() {
         description= {
           <>
             <p className="mb-4">
-              Across 13 interviews and 100+ survey responses, a clear pattern emerged: The busier someone was, the more food they wasted. 
+              Across 13 interviews and 100+ survey responses, a clear pattern emerged: <strong> The busier someone was, the more food they wasted. </strong> 
             </p>
             <p className="mb-4">
-              When asked what makes reducing food waste most difficult, 69% of respondents identified forgetfulness as a primary barrier. To understand this breakdown, I dug deeper into what causes people to forget food they already own.
+              When asked what makes reducing food waste most difficult, <strong> 69% of respondents identified forgetfulness as a primary barrier </strong>. To understand this breakdown, I dug deeper into what causes people to forget food they already own.
             </p>
           </>
         }
@@ -225,7 +230,21 @@ export default function Nomo() {
       <QuoteSection
         sectionId="quote"
         sectionLabel="Insight"
-        quote="Food waste wasn’t a knowledge gap. It was a behavior gap driven by time pressure and convenience."
+        quote={
+          <>
+            Food waste wasn’t a knowledge gap. It was {" "}
+            <span
+              className="
+                px-1
+                rounded-[2px]
+                bg-[#D9E992]
+                text-grayLight-900
+              "
+            >
+              a behavior gap driven by time pressure and convenience.
+            </span>
+          </>
+        }
         description="Users cared about sustainability but that concern rarely translated into daily behavior. This reframed the problem from an education challenge to a behavior and attention design challenge"
       />
 
@@ -236,18 +255,28 @@ export default function Nomo() {
         body={
           <>
             <p className="mb-4">
-              Because other product features depended on detailed data, I initially optimized for completeness.
+              Because other product features depended on detailed data,
+              I initially optimized for completeness.
             </p>
+
             <p className="mb-4">
               I assumed more data = better product experience
             </p>
           </>
         }
         imageVariant="three"
+        imageLayout="vertical"
         images={[
-          { src: placeholderImg, alt: "Interview notes" },
-          { src: placeholderImg, alt: "Interview notes" },
-          { src: placeholderImg, alt: "Interview notes" },
+          {
+            src: nomo_attempt_manual_input,
+            alt: "Tracking flow",
+            caption: "The original flow prioritized complete data capture.",
+          },
+          {
+            src: nomo_attempt_granular_tracking,
+            alt: "Inventory logging",
+            caption: "Users were expected to manually maintain inventory.",
+          },
         ]}
       />
 
@@ -256,7 +285,7 @@ export default function Nomo() {
         sectionId="testing"
         headline="Friction showed up instantly. The issue wasn’t confusion but resistance. The system felt like work."
         contentType="images"
-        items={[placeholderImg]}
+        items={[nomo_initial_feedback]}
       />
 
       <ExplainerSection

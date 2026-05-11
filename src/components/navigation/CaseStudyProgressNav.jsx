@@ -64,11 +64,12 @@ export default function CaseStudyProgressNav() {
           className="
             relative isolate
             flex items-center justify-between w-full
-            bg-white/30 dark:bg-black/30
+            bg-grayLight-50/30 dark:bg-grayDark-50/30
             backdrop-blur-md
-            border border-grayLight-200/30 dark:border-grayDark-200/30
+            border border-grayLight-300/30 dark:border-grayDark-300/30
             rounded-xl
             py-2 px-6
+            transition-colors
           "
         >
           {/* LEFT: Home */}
@@ -78,7 +79,7 @@ export default function CaseStudyProgressNav() {
               className="
                 flex items-center gap-2
                 font-mono text-xs uppercase
-                text-grayLight-600 dark:text-grayDark-600
+                text-grayLight-900 dark:text-grayDark-900
                 hover:text-accent
                 transition-colors
               "
@@ -121,7 +122,7 @@ export default function CaseStudyProgressNav() {
               className="
                 flex items-center gap-2
                 font-mono text-xs uppercase
-                text-grayLight-600 dark:text-grayDark-600
+                text-grayLight-900 dark:text-grayDark-900
                 hover:text-accent
                 transition-colors
               "
