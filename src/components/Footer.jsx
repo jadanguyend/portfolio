@@ -93,6 +93,7 @@ export default function Footer() {
           src={isDark ? footerDark : footerLight}
           alt="Footer illustration"
           className="w-full rounded-md"
+          loading="lazy"
         />
       </div>
 

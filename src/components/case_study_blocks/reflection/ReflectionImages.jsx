@@ -10,6 +10,7 @@ export default function ReflectionImages({ items = [] }) {
             src={src}
             alt={`Reflection ${i + 1}`}
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
       ))}

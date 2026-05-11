@@ -17,6 +17,7 @@ export default function HighlightImages({ images = [], height = "h-72 md:h-80" }
             src={src}
             alt={`Highlight ${index + 1}`}
             className={`w-full h-auto rounded-lg border border-dashed border-grayLight-200 dark:border-grayDark-200`}
+            loading="lazy"
           />
         </div>
       ))}

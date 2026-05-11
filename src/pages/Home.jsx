@@ -311,6 +311,7 @@ export default function Home() {
                     <img
                       key={item.id}
                       src={item.src}
+                      loading="lazy"
                       className="w-16 sm:w-20 md:w-24 lg:w-28 cursor-pointer transition-all duration-300"
                       style={{
                         filter: isActive ? "saturate(1)" : "saturate(0)",

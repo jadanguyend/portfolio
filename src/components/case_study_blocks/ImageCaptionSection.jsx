@@ -43,6 +43,7 @@ export default function ImageCaptionSection({
                     src={item.src}
                     alt={item.alt || ""}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
 
@@ -66,6 +67,7 @@ export default function ImageCaptionSection({
                     src={item.src}
                     alt={item.alt || ""}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
 

@@ -24,6 +24,7 @@ export default function PreviewSection({ sectionId, sectionLabel, images }) {
             src={fullWidth}
             alt="Preview full-width"
             className="w-full h-auto object-cover rounded-xl"
+            loading="lazy"
           />
         </div>
 
@@ -33,6 +34,7 @@ export default function PreviewSection({ sectionId, sectionLabel, images }) {
             src={half1}
             alt="Preview half 1"
             className="w-full h-full object-cover rounded-xl"
+            loading="lazy"
           />
         </div>
         <div className="col-span-12 md:col-span-6">
@@ -40,6 +42,7 @@ export default function PreviewSection({ sectionId, sectionLabel, images }) {
             src={half2}
             alt="Preview half 2"
             className="w-full h-full object-cover rounded-xl"
+            loading="lazy"
           />
         </div>
       </div>

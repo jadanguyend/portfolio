@@ -38,6 +38,7 @@ export default function ExplainerImages({
           <img
             src={img.src}
             alt={img.alt || ""}
+            loading="lazy"
             className="
               w-full
               h-auto
@@ -45,6 +46,7 @@ export default function ExplainerImages({
               border-dashed
               border-grayLight-200 dark:border-grayDark-200
               rounded-2xl
+              
             "
           />
 

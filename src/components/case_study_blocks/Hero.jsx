@@ -27,6 +27,7 @@ export default function Hero({
               src={imageSrc}
               alt={imageAlt}
               className="w-full h-[50vh] md:h-[60vh] object-cover"
+              loading="lazy"
             />
           </div>
         </div>

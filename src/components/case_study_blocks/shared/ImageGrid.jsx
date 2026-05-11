@@ -30,6 +30,7 @@ export default function ImageGrid({
             src={img.src}
             alt={img.alt || ""}
             className="w-full rounded-2xl object-cover"
+            loading="lazy"
           />
         </div>
       ))}
