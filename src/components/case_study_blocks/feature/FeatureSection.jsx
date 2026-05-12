@@ -52,13 +52,14 @@ export default function FeatureSection({
       {/* Feature Blocks */}
       <div className="col-span-12 grid grid-cols-12 gap-y-24 gap-x-6">
         {features.map((feature, index) => (
-          <FeatureBlock
-            key={index}
-            title={feature.title}
-            description={feature.description}
-            imageSrc={feature.imageSrc}
-            imageAlt={feature.imageAlt}
-          />
+        <FeatureBlock
+          key={index}
+          title={feature.title}
+          description={feature.description}
+          imageSrc={feature.imageSrc}
+          imageAlt={feature.imageAlt}
+          mediaType={feature.mediaType}
+        />
         ))}
       </div>
     </CaseStudySection>

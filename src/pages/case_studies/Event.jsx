@@ -82,7 +82,7 @@ export default function VietQ() {
           title="UW Event Services"
           tag="Case Study"
           readTime="6 min read"
-          brief="An app that encourages users to take ownership of their food habits while reducing waste through community engagement."
+          brief="Redesigning policy architecture and reusable web systems for UW Event Services as campus operations expanded across new spaces."
           role="Web Content Designer"
           timeline="June 2025 – June 2026"
           tools="Figma, Figjam, Wordpress"

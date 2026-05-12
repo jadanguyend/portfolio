@@ -24,6 +24,9 @@ import nomo_discovery from "../../assets/nomo_discovery.png";
 import nomo_attempt_manual_input from "../../assets/nomo_attempt_manual_input.png";
 import nomo_attempt_granular_tracking from "../../assets/nomo_attempt_granular_tracking.png";
 import nomo_initial_feedback from "../../assets/nomo_initial_feedback.png";
+import nomo_feature from "../../assets/nomo_feature.png";
+import nomo_bottom_sheet from "../../assets/nomo_bottom_sheet.mp4";
+import nomo_discard from "../../assets/nomo_discard.mp4";
 
 // Icons
 import {
@@ -57,22 +60,23 @@ export default function Nomo() {
   ];
 
   const features = [
-    {
-      title: "Actions without context switching",
-      description: (
-        <>
-          <p className="mb-3">
-            I prioritize in-context actions over full flows because users often interact in short bursts while multitasking, 
-            so the system needed to support immediate action without breaking context.   
-          </p>
-          <p>
-            The bottom sheet enables users to make updates instantly where the decision happens, without navigating away or losing momentum.
-          </p>
-        </>
-      ),
-      imageSrc: placeholderImg,
-      imageAlt: "Kitchen inventory feature",
-    },
+{
+  title: "Actions without context switching",
+  description: (
+    <>
+      <p className="mb-3">
+        I prioritize in-context actions over full flows because users often interact in short bursts while multitasking,
+        so the system needed to support immediate action without breaking context.
+      </p>
+      <p>
+        The bottom sheet enables users to make updates instantly where the decision happens, without navigating away or losing momentum.
+      </p>
+    </>
+  ),
+  imageSrc: nomo_bottom_sheet,
+  imageAlt: "Bottom sheet interaction showing quick food status updates",
+  mediaType: "video",
+},
     {
       title: "Balancing automation and intent",
       description: (
@@ -110,8 +114,9 @@ export default function Nomo() {
           </p>
         </>
       ),
-      imageSrc: placeholderImg,
+      imageSrc: nomo_discard,
       imageAlt: "Food logging feature",
+      mediaType: "video",
     },
   ];
 
@@ -352,7 +357,7 @@ export default function Nomo() {
             </ul>
           </>
         }
-        introImageSrc={placeholderImg}
+        introImageSrc={nomo_feature}
         introImageAlt="Final NOMO design overview"
         features={features}
       />
