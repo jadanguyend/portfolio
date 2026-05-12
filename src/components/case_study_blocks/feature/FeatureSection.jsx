@@ -50,16 +50,18 @@ export default function FeatureSection({
       </div>
 
       {/* Feature Blocks */}
-      <div className="col-span-12 grid grid-cols-12 gap-y-24 gap-x-6">
+      <div className="col-span-12 flex flex-col gap-32 ">
         {features.map((feature, index) => (
-        <FeatureBlock
-          key={index}
-          title={feature.title}
-          description={feature.description}
-          imageSrc={feature.imageSrc}
-          imageAlt={feature.imageAlt}
-          mediaType={feature.mediaType}
-        />
+          <FeatureBlock
+            key={index}
+            title={feature.title}
+            description={feature.description}
+            imageSrc={feature.imageSrc}
+            imageAlt={feature.imageAlt}
+            caption={feature.caption}
+            mediaType={feature.mediaType}
+            layout={feature.layout}
+          />
         ))}
       </div>
     </CaseStudySection>

@@ -8,6 +8,7 @@ export default function OverviewSection({
   bodySecondary,
   buttonLabel = "View final design",
   onButtonClick,
+  buttonHref,
 }) {
   return (
     <CaseStudySection id={sectionId} dataSection={sectionLabel}>
@@ -44,7 +45,18 @@ export default function OverviewSection({
             </p>
 
             <button
-              onClick={onButtonClick}
+              onClick={() => {
+                if (buttonHref) {
+                  const element = document.querySelector(buttonHref);
+
+                  if (element) {
+                    element.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }
+                }
+              }}
               className="
                 inline-flex
                 items-center

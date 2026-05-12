@@ -27,6 +27,7 @@ import nomo_initial_feedback from "../../assets/nomo_initial_feedback.png";
 import nomo_feature from "../../assets/nomo_feature.png";
 import nomo_bottom_sheet from "../../assets/nomo_bottom_sheet.mp4";
 import nomo_discard from "../../assets/nomo_discard.mp4";
+import nomo_input from "../../assets/nomo_input.mp4";
 
 // Icons
 import {
@@ -59,66 +60,82 @@ export default function Nomo() {
     },
   ];
 
-  const features = [
-{
-  title: "Actions without context switching",
-  description: (
-    <>
-      <p className="mb-3">
-        I prioritize in-context actions over full flows because users often interact in short bursts while multitasking,
-        so the system needed to support immediate action without breaking context.
-      </p>
-      <p>
-        The bottom sheet enables users to make updates instantly where the decision happens, without navigating away or losing momentum.
-      </p>
-    </>
-  ),
-  imageSrc: nomo_bottom_sheet,
-  imageAlt: "Bottom sheet interaction showing quick food status updates",
-  mediaType: "video",
-},
-    {
-      title: "Balancing automation and intent",
-      description: (
-        <>
-          <p className="mb-3">
-            Full automation removes awareness, while full manual input creates friction and can lead to abandonment.
-          </p>
-          <p className="mb-3">
-            Instead, I designed a system where: 
-          </p>
-          <ul className="list-disc pl-5 space-y-2 mb-3">
-            <li>Repetitive or low-value actions are automated,</li>
-            <li>Meaningful updates require lightweight user confirmation</li>
-          </ul>
-          <p className="mb-3">
-            This keeps interaction effort aligned with cognitive value.
-          </p>
-        </>
-      ),
-      imageSrc: placeholderImg,
-      imageAlt: "Shared accountability feature",
-    },
-    {
-      title: "Reflection-based feedback loop",
-      description: (
-        <>
-          <p className="mb-3">
-            Instead of treating all food interactions as equal logs, I reframed outputs into two modes: action and reflection.
-          </p>
-          <p className="mb-3">
-            Food consumption is designed to be quick and low-friction. Food waste or expiry introduces a slightly longer interaction that prompts reflection.
-          </p>
-          <p className="mb-3">
-            This turns waste events into moments of awareness, helping users recognize patterns without requiring constant attention.
-          </p>
-        </>
-      ),
-      imageSrc: nomo_discard,
-      imageAlt: "Food logging feature",
-      mediaType: "video",
-    },
-  ];
+const features = [
+  {
+    title: "Actions without context switching",
+    description: (
+      <>
+        <p className="mb-3">
+          I prioritize in-context actions over full flows because users often interact in short bursts while multitasking,
+          so the system needed to support immediate action without breaking context.
+        </p>
+        <p>
+          The bottom sheet enables users to make updates instantly where the decision happens, without navigating away or losing momentum.
+        </p>
+      </>
+    ),
+    imageSrc: nomo_bottom_sheet,
+    imageAlt: "Bottom sheet interaction showing quick food status updates",
+    caption: "A bottom sheet keeps updates lightweight and in-context.",
+    mediaType: "video",
+    layout: "horizontal",
+  },
+
+  {
+    title: "Balancing automation and intent",
+    description: (
+      <>
+        <p className="mb-3">
+          Full automation removes awareness, while full manual input creates friction and can lead to abandonment.
+        </p>
+
+        <p className="mb-3">
+          Instead, I designed a system where:
+        </p>
+
+        <ul className="list-disc pl-5 space-y-2 mb-3">
+          <li>Repetitive or low-value actions are automated,</li>
+          <li>Meaningful updates require lightweight user confirmation</li>
+        </ul>
+
+        <p className="mb-3">
+          This keeps interaction effort aligned with cognitive value.
+        </p>
+      </>
+    ),
+    imageSrc: nomo_input,
+    imageAlt: "Food input interaction",
+    caption:
+      "Automation reduces repetitive effort while preserving user awareness.",
+    mediaType: "video",
+    layout: "horizontal",
+  },
+
+  {
+    title: "Reflection-based feedback loop",
+    description: (
+      <>
+        <p className="mb-3">
+          Instead of treating all food interactions as equal logs, I reframed outputs into two modes: action and reflection.
+        </p>
+
+        <p className="mb-3">
+          Food consumption is designed to be quick and low-friction. Food waste or expiry introduces a slightly longer interaction that prompts reflection.
+        </p>
+
+        <p className="mb-3">
+          This turns waste events into moments of awareness, helping users recognize patterns without requiring constant attention.
+        </p>
+      </>
+    ),
+    imageSrc: nomo_discard,
+    imageAlt: "Discard reflection interaction",
+    caption:
+      "Waste events intentionally slow the interaction to encourage reflection.",
+    mediaType: "video",
+    layout: "horizontal",
+  },
+];
 
   const takeaways = [
     {
@@ -177,6 +194,7 @@ export default function Nomo() {
                       NOMO explores how behavioral design can support these moments through lightweight, awareness-driven interactions."
         bodySecondary="I led the design of the “My Kitchen” feature, translating behavioral research into a system that supports visibility, reflection, and everyday decision-making around food."
         buttonLabel="View final design"
+        buttonHref="#final-design"
       />
 
       <PreviewSection
