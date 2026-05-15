@@ -7,19 +7,26 @@ export default function ReflectionSection({
   headline,
   description,
   items = [],
+  imageVariant = "two", // "one" | "two"
 }) {
-  return (
-    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
+  const visibleItems =
+    imageVariant === "one"
+      ? items.slice(0, 1)
+      : items.slice(0, 2);
 
+  return (
+    <CaseStudySection
+      id={sectionId}
+      dataSection={sectionLabel}
+      className="py-24"
+    >
       <div className="col-span-12 mb-4">
         <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
           {sectionLabel}
         </p>
       </div>
 
-      {/* KEY: shared height container */}
       <div className="grid grid-cols-12 gap-10">
-        
         {/* LEFT TEXT */}
         <div className="col-span-12 md:col-span-6">
           <div className="flex flex-col justify-start">
@@ -37,9 +44,8 @@ export default function ReflectionSection({
 
         {/* RIGHT IMAGES */}
         <div className="col-span-12 md:col-span-6">
-          <ReflectionImages items={items} />
+          <ReflectionImages items={visibleItems} />
         </div>
-
       </div>
     </CaseStudySection>
   );

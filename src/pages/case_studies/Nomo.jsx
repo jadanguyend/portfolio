@@ -28,6 +28,9 @@ import nomo_feature from "../../assets/nomo_feature.png";
 import nomo_bottom_sheet from "../../assets/nomo_bottom_sheet.mp4";
 import nomo_discard from "../../assets/nomo_discard.mp4";
 import nomo_input from "../../assets/nomo_input.mp4";
+import nomo_tradeoff_1 from "../../assets/nomo_tradeoff_1.png";
+import nomo_pivot from "../../assets/nomo_pivot.png";
+
 
 // Icons
 import {
@@ -328,10 +331,9 @@ const features = [
             </p>
           </>
         }
-        imageVariant="two"
+        imageVariant="one"
         images={[
-          { src: placeholderImg, alt: "Interview notes" },
-          { src: placeholderImg, alt: "Interview notes" },
+          { src: nomo_pivot, alt: "Interview notes" },
         ]}
       />
 
@@ -414,7 +416,8 @@ const features = [
             </p>
           </>
         }        
-        items={[placeholderImg,placeholderImg]}
+        imageVariant="one"
+        items={[nomo_tradeoff_1,placeholderImg]}
       />
 
       <ProcessSection
@@ -423,6 +426,7 @@ const features = [
         title="What this project taught me"
         steps={takeaways}
         variant="three"
+        iconColor="text-[#000000]"
       />
     </CaseStudyLayout>
   );

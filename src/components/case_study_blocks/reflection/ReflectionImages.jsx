@@ -3,9 +3,16 @@ export default function ReflectionImages({ items = [] }) {
 
   return (
     <div className="grid gap-4 h-full auto-rows-fr">
-
       {items.slice(0, 3).map((src, i) => (
-        <div key={i} className="relative h-full overflow-hidden rounded-lg">
+        <div
+          key={i}
+          className="
+            relative h-full overflow-hidden
+            rounded-2xl
+            border border-dashed
+            border-grayLight-200 dark:border-grayDark-200
+          "
+        >
           <img
             src={src}
             alt={`Reflection ${i + 1}`}
@@ -14,7 +21,6 @@ export default function ReflectionImages({ items = [] }) {
           />
         </div>
       ))}
-
     </div>
   );
 }

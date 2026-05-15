@@ -7,6 +7,7 @@ export default function ProcessSection({
   title,
   steps = [],
   variant = "three",
+  iconColor = "text-accent",
 }) {
   return (
     <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
