@@ -47,9 +47,9 @@ const Layout = forwardRef(function Layout({ children, footer }, ref) {
 
   // Card scale animation based on scroll
   const scrollPercent = useTransform(scrollY, [0, docHeight || 1], [0, 1]);
-  const scale = useTransform(scrollPercent, [0.7, 0.9], [1, 0.95]);
+  const scale = useTransform(scrollPercent, [0.85, 0.96], [1, 0.95]);
   const scaleSpring = useSpring(scale, { stiffness: 200, damping: 30 });
-  const radius = useTransform(scrollPercent, [0.7, 0.9], [0, 32]);
+  const radius = useTransform(scrollPercent, [0.82, 0.96], [0, 32]);
 
   // Track scaled card height for footer offset
   const [footerOffset, setFooterOffset] = useState(0);

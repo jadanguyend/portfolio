@@ -11,7 +11,7 @@ export default function FeatureSection({
   features,
 }) {
   return (
-    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
+    <CaseStudySection id={sectionId} dataSection={sectionLabel} className="pt-6 py-24">
       
       {/* Section Label */}
       <div className="col-span-12 mb-4">

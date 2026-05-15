@@ -1,6 +1,9 @@
 import React from "react";
 
-export default function HighlightCards({ cards = [] }) {
+export default function HighlightCards({
+  cards = [],
+  iconColor = "var(--accent-color)",
+}) {
   if (!cards.length) return null;
 
   const colClassMap = {
@@ -17,15 +20,31 @@ export default function HighlightCards({ cards = [] }) {
         return (
           <div
             key={index}
-            className={`col-span-12 ${colClassMap[cards.length]} p-6 border rounded-lg flex flex-col gap-3`}
+            className={`
+              col-span-12
+              ${colClassMap[cards.length]}
+              p-6 bg-grayLight-0
+              border border-grayLight-200 dark:border-grayDark-200
+              rounded-2xl
+              flex flex-col gap-3
+            `}
           >
             {IconComponent && (
-              <div className="text-primary w-6 h-6 mb-2">
+              <div
+                className="w-6 h-6 mb-2 opacity-80"
+                style={{ color: iconColor }}
+              >
                 <IconComponent className="w-full h-full" />
               </div>
             )}
-            <h3 className="text-lg font-semibold">{card.title}</h3>
-            <p className="text-base text-gray-600">{card.description}</p>
+
+            <h3 className="text-lg font-semibold text-grayLight-900 dark:text-grayDark-900">
+              {card.title}
+            </h3>
+
+            <p className="text-base text-grayLight-700 dark:text-grayDark-400 leading-relaxed">
+              {card.description}
+            </p>
           </div>
         );
       })}

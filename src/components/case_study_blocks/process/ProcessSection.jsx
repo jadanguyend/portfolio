@@ -7,7 +7,7 @@ export default function ProcessSection({
   title,
   steps = [],
   variant = "three",
-  iconColor = "text-accent",
+  iconColor = "var(--accent-color)",
 }) {
   return (
     <CaseStudySection id={sectionId} dataSection={sectionLabel} className="py-24">
@@ -33,7 +33,10 @@ export default function ProcessSection({
 
         {/* RIGHT: Process Cards */}
         <div className="col-span-12 md:col-span-6">
-          <ProcessCards steps={steps} variant={variant} />
+          <ProcessCards 
+            steps={steps} 
+            variant={variant} 
+            iconColor={iconColor}/>
         </div>
       </div>
     </CaseStudySection>

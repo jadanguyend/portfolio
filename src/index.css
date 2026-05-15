@@ -566,6 +566,25 @@ body {
   font-style: normal;
 }
 
+@keyframes carousel-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-carousel {
+  animation-name: carousel-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+
+
 
 
 

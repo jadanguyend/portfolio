@@ -98,36 +98,46 @@ export default function Home() {
     {
       id: 0,
       src: howPlanner,
-      desc: "I carefully select each element so everything fits together clearly, logically, and with intention.",
+      desc: "I carefully shape each piece so the experience feels clear, intentional, and thoughtfully connected while balancing structure, usability, and visual clarity throughout the process.",
     },
     {
       id: 1,
       src: howTinkerer,
-      desc: "I keep experimenting, refining, and iterating until the experience feels seamless and complete.",
+      desc: "I constantly experiment, refine, and iterate until the experience feels seamless and intuitive, paying close attention to the small interactions that shape how people engage with a product.",
     },
     {
       id: 2,
       src: howBuilder,
-      desc: "I build systems that are robust, scalable, and ready for real-world use — not just polished screens.",
+      desc: "I build systems that are scalable, practical, and designed for real-world use by creating foundations that support consistency, flexibility, and long-term growth beyond polished visuals alone.",
     },
     {
       id: 3,
       src: howPainter,
-      desc: "I add thoughtful details that make the experience intuitive, memorable, and genuinely enjoyable.",
+      desc: "I add thoughtful details that make experiences feel memorable, delightful, and genuinely human. I bring personality and warmth into moments that might otherwise feel purely functional.",
     },
   ];
 
+  const exploringItems = [
+    {
+      label: "Retro.app",
+      href: "https://retro.app",
+    },
+    {
+      label: "Claude",
+      href: "https://claude.ai",
+    },
+    {
+      label: "GSAP",
+      href: "https://gsap.com",
+    },
+    {
+      label: "Three.js",
+      href: "https://threejs.org",
+    },
+  ];
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(null);
   const currentIndex = hoverIndex ?? activeIndex;
-
-  const delightItems = [
-    "Project Hail Mary by Andy Weir",
-    "Detective Conan Series",
-    "Cup of Bac Xiu",
-    "REPLICA Lazy Sunday Morning by Maison Margiela",
-    "Super Mario Odyssey",
-  ];
 
   return (
     <Layout footer={<Footer />}>
@@ -257,29 +267,54 @@ export default function Home() {
             {/* Paragraph 1 */}
             <p className="text-grayLight-900 dark:text-grayDark-900">
               I’m a Chinese <span className="text-accent">(碧玉)</span>–Vietnamese{" "}
-              <span className="text-accent">(Bích Ngọc)</span> designer based in Seattle. Before I knew 
-              product design was a field, I was drawn to design—starting with childhood dreams of becoming 
-              an architect. That curiosity has stayed with me, shaping how I see and approach the world. 
-              I keep up with what’s happening in tech and love exploring new products—lately diving into 
-              [apps you’re exploring].
+              <span className="text-accent">(Bích Ngọc)</span> designer based in Seattle. 
+              Before I knew product design was a field, I have long been drawn to design — 
+              starting with childhood dreams of becoming an architect. 
+              That curiosity still shapes how I think, explore, and design today.
             </p>
+
+<p className="text-grayLight-900 dark:text-grayDark-900">
+  I keep up with what’s happening in tech and love exploring new
+  products and tools, lately diving into{" "}
+
+  {exploringItems.map((item, index) => (
+    <span key={item.label}>
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative inline text-accent"
+      >
+        <span className="relative inline-block">
+          {item.label}
+          <span className="absolute left-0 bottom-0 h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-full"></span>
+        </span>
+      </a>
+
+      {index < exploringItems.length - 1 && ", "}
+    </span>
+  ))}.
+</p>
 
             {/* Paragraph 2 */}
             <p className="text-grayLight-900 dark:text-grayDark-900">
-              As a designer, I thrive in playful, collaborative environments, especially alongside people 
-              who share a strong sense of care and curiosity. I bring a blend of product thinking and brand 
-              sensitivity into my work, supported by tools and skills like...
+              I thrive in playful, collaborative environments, especially alongside people who share a 
+              strong sense of care and curiosity. As <span className="text-accent">a designer who wears many hats</span> (literally), 
+              I enjoy working across product, brand, and front-end experiences, blending systems thinking 
+              with visual craft through tools and skills like...
             </p>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 font-mono text-xs uppercase">
               {[
                 "figma",
-                "photoshop",
+                "jitter",
+                "spline",
                 "illustrator",
-                "prototyping",
-                "wireframing",
+                "react",
                 "user research",
+                "prototyping",
+                "interaction design",
                 "design systems",
               ].map((tag) => (
                 <span
@@ -292,18 +327,18 @@ export default function Home() {
             </div>
 
             {/* LEGO statement */}
-            <h4 className="mt-12 max-w-3xl mx-auto text-grayLight-900 dark:text-grayDark-900">
+            <h4 className="mt-16 max-w-3xl mx-auto text-grayLight-900 dark:text-grayDark-900">
               I design experiences like building LEGO — methodical in structure,
               creative in execution, and thoughtfully connected to build something greater.
             </h4>
 
             {/* Philosophy */}
-            <motion.div className="font-mono text-xs uppercase tracking-tight mb-4 text-grayLight-900 dark:text-grayDark-900">
-              Learn about my <span className="text-accent">design philosophy and values</span> :)
+            <motion.div className="font-mono text-sm uppercase tracking-tight mb-4 text-grayLight-900 dark:text-grayDark-900">
+              Learn more about my <span className="text-accent">design philosophy and values</span> ↓
             </motion.div>
 
             {/* Minifigure box */}
-            <div className="border border-dashed border-grayLight-400 dark:border-grayDark-600 bg-grayLight-100/40 dark:bg-grayDark-800/40 rounded-lg px-6 py-4">
+            <div className="border border-dashed border-grayLight-200 dark:border-grayDark-200 bg-grayLight-100/40 dark:bg-grayDark-800/40 rounded-lg px-6 py-4">
               <div className="flex items-center justify-between">
                 {howItems.map((item, index) => {
                   const isActive = currentIndex === index;
@@ -326,66 +361,30 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="text-sm md:text-base text-grayLight-900 dark:text-grayDark-900 transition-all duration-300">
+            <div className="text-grayLight-700 dark:text-grayDark-700 transition-all duration-300 text-xs font-mono leading-tight">
               {howItems[currentIndex].desc}
             </div>
 
-            {/* ================= DELIGHT ================= */}
-            <div className="mt-12">
+            {/* ===== DAY CALENDAR ===== */}
+            <div className="mt-16">
+              <div className="relative mb-4 flex items-center justify-between">
+                <div className="font-mono text-sm uppercase text-grayLight-900 dark:text-grayDark-900">
+                  How do I spend my time when I’m not designing?
+                </div>
 
-              {/* Heading */}
-              <h4 className="mb-6 text-grayLight-900 dark:text-grayDark-900">
-                Writing and conversations that keep me grounded in how design and tech are evolving...
-              </h4>
+                <div className="group relative z-50">
+                  <FiInfo className="h-4 w-4 text-grayLight-400 dark:text-grayDark-500 cursor-pointer" />
 
-              {/* List */}
-              <div className="flex flex-col">
-                {[
-                  { label: "What is Claude? Anthropic Doesn't Know, Either", href: "https://www.newyorker.com/magazine/2026/02/16/what-is-claude-anthropic-doesnt-know-either" },
-                  { label: "What Google Learned From Its Quest to Build the Perfect Team", href: "https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html" },
-                  { label: "Hooked: How to Build Habit-Forming Products", href: "https://www.goodreads.com/book/show/22668729-hooked" },
-                  { label: "How Pokémon Go is giving delivery robots an inch-perfect view of the world", href: "https://www.technologyreview.com/2026/03/10/1134099/how-pokemon-go-is-helping-robots-deliver-pizza-on-time/" },
-                ].map((item, index) => (
-                  <a
-                    key={index}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-between py-1 cursor-pointer relative"
-                  >
-                    {/* Left text with underline animation */}
-                    <span className="relative inline-block text-grayLight-900 dark:text-grayDark-900 transition-colors duration-300 group-hover:text-accent">
-                      {item.label}
-                      <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                    </span>
-
-                    {/* Arrow */}
-                    <FiArrowUpRight className="opacity-70 transition-all duration-300 group-hover:rotate-45 group-hover:text-accent" />
-                  </a>
-                ))}
+                  <div className="pointer-events-none absolute right-0 top-6 z-50 w-64 rounded-md bg-black text-white text-xs leading-relaxed p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    I believe a great way to get to know someone is to see how they spend their time.
+                    Here is how I would spend mine... when I'm not designing :)
+                  </div>
+                </div>
               </div>
+
+              <DayCalendar />
             </div>
           </div>
-        </div>
-
-        {/* ===== DAY CALENDAR ===== */}
-        <div className="mt-12">
-          <div className="relative mb-4 flex items-center justify-between">
-            <div className="font-mono text-sm uppercase text-grayLight-400 dark:text-grayDark-500">
-              A delightful day in my life
-            </div>
-
-            <div className="group relative z-50">
-              <FiInfo className="h-4 w-4 text-grayLight-400 dark:text-grayDark-500 cursor-pointer" />
-
-              <div className="pointer-events-none absolute right-0 top-6 z-50 w-64 rounded-md bg-black text-white text-xs leading-relaxed p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                A great way to get to know someone is to see how they spend their time.
-                Here is how I would spend my day when I’m not designing... or sleeping in :)
-              </div>
-            </div>
-          </div>
-
-          <DayCalendar />
         </div>
       </section>
 

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { FiCopy, FiCheck } from "react-icons/fi";
+
 import footerLight from "../assets/Footer_Image.png";
 import footerDark from "../assets/Footer_Image_Dark.png";
 
 export default function Footer() {
   const [isDark, setIsDark] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const html = document.documentElement;
@@ -12,6 +15,7 @@ export default function Footer() {
 
     const observer = new MutationObserver(() => checkDark());
     observer.observe(html, { attributes: true, attributeFilter: ["class"] });
+
     return () => observer.disconnect();
   }, []);
 
@@ -20,9 +24,21 @@ export default function Footer() {
   };
 
   const contactLinks = [
-    { label: "Email", href: "mailto:jadanguyend@email.com" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/jadanguyend" },
-    { label: "Twitter", href: "https://twitter.com/jadanguyend" },
+    {
+      label: "EMAIL",
+      value: "jadanguyend@gmail.com",
+      type: "copy",
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/jadanguyend",
+      type: "link",
+    },
+    {
+      label: "X (Twitter)",
+      href: "https://twitter.com/jadanguyend",
+      type: "link",
+    },
   ];
 
   return (
@@ -34,42 +50,85 @@ export default function Footer() {
         {/* Column 1 */}
         <div className="flex flex-col gap-1.5">
           <p className="font-mono font-semibold">JADA NGUYEN</p>
-          <div className="font-body font-normal tracking-tight">
-            <div>PRODUCT DESIGN</div>
-            <div>BRAND STRATEGY</div>
+
+          <div className="font-body font-normal text-sm tracking-tight">
+            <div>PRODUCT DESIGNER</div>
+            <div>BRAND STRATEGIST</div>
+            <div>LEGO BUILDER</div>
+            <div>FRAGRANCE ENTHUSIAST</div>
           </div>
         </div>
 
         {/* Column 2 */}
         <div className="flex flex-col gap-1.5">
           <p className="font-mono font-semibold">CONTACT</p>
-          <div className="font-body font-normal flex flex-col gap-1 leading-tight">
-            {contactLinks.map((link, i) => (
-              <a
-                key={i}
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="group relative inline-flex items-center gap-1"
-              >
-                <span className="relative">
-                  {link.label}
-                  {/* Underline animation */}
-                  <span className="absolute left-0 bottom-0 h-[1px] w-0 bg-current transition-all duration-300 group-hover:w-full"></span>
-                </span>
-                {/* Arrow animation: rotate 45° + move right */}
-                <span className="transition-transform duration-300 transform group-hover:translate-x-1 group-hover:rotate-45">
-                  ↗
-                </span>
-              </a>
-            ))}
+
+          <div className="font-body font-normal text-sm flex flex-col gap-1 leading-tight">
+            {contactLinks.map((link, i) => {
+              if (link.type === "copy") {
+                return (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      navigator.clipboard.writeText(link.value);
+
+                      setCopied(true);
+
+                      setTimeout(() => {
+                        setCopied(false);
+                      }, 2000);
+                    }}
+                    className="group relative inline-flex items-center gap-1 text-left"
+                  >
+                    <span className="relative">
+                      {link.label}
+
+                      {/* Underline animation */}
+                      <span className="absolute left-0 bottom-0 h-[1px] w-0 bg-current transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+
+                    {/* Copy icon */}
+                    <span className="transition-all duration-300 group-hover:translate-x-0.5">
+                      {copied ? (
+                        <FiCheck size={12} />
+                      ) : (
+                        <FiCopy size={12} />
+                      )}
+                    </span>
+                  </button>
+                );
+              }
+
+              return (
+                <a
+                  key={i}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center gap-1"
+                >
+                  <span className="relative">
+                    {link.label}
+
+                    {/* Underline animation */}
+                    <span className="absolute left-0 bottom-0 h-[1px] w-0 bg-current transition-all duration-300 group-hover:w-full"></span>
+                  </span>
+
+                  {/* Arrow animation */}
+                  <span className="transition-transform duration-300 transform group-hover:translate-x-1 group-hover:rotate-45">
+                    ↗
+                  </span>
+                </a>
+              );
+            })}
           </div>
         </div>
 
         {/* Column 3 */}
         <div className="flex flex-col gap-1.5">
           <p className="font-mono font-semibold">SYSTEM</p>
-          <div className="font-body font-normal tracking-tight">
+
+          <div className="font-body font-normal text-sm tracking-tight">
             <div>SF PRO TEXT</div>
             <div>IBM PLEX MONO</div>
             <div>FEATHER ICONS</div>
@@ -79,8 +138,11 @@ export default function Footer() {
         {/* Column 4 */}
         <div className="flex flex-col gap-1.5">
           <p className="font-mono font-semibold">BUILD</p>
-          <div className="font-body font-normal tracking-tight">
-            <div>REACT + TAILWIND</div>
+
+          <div className="font-body font-normal text-sm tracking-tight">
+            <div>REACT + VITE</div>
+            <div>TAILWIND + FRAMER MOTION</div>
+            <div>CLAUDE + CHATGPT</div>
             <div>VERCEL</div>
           </div>
         </div>
@@ -111,6 +173,7 @@ export default function Footer() {
           <span className="flex items-center gap-1">
             BACK TO TOP <span>↑</span>
           </span>
+
           {/* Underline spanning entire button */}
           <span className="absolute left-0 bottom-0 h-[1px] w-0 bg-current transition-all duration-300 group-hover:w-full"></span>
         </button>

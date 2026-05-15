@@ -12,6 +12,8 @@ import FeatureSection from "../../components/case_study_blocks/feature/FeatureSe
 import ReflectionSection from "../../components/case_study_blocks/reflection/ReflectionSection";
 import ImageCaptionSection from "../../components/case_study_blocks/ImageCaptionSection";
 import Footer from "../../components/Footer";
+import NextProject from "../../components/case_study_blocks/NextProject";
+import Carousel from "../../components/case_study_blocks/Carousel";
 
 // Images
 import placeholderImg from "../../assets/placeholderImg.png";
@@ -30,6 +32,12 @@ import nomo_discard from "../../assets/nomo_discard.mp4";
 import nomo_input from "../../assets/nomo_input.mp4";
 import nomo_tradeoff_1 from "../../assets/nomo_tradeoff_1.png";
 import nomo_pivot from "../../assets/nomo_pivot.png";
+import nomo_expo_1 from "../../assets/nomo_expo_1.png";
+import nomo_brainstorm_1 from "../../assets/nomo_brainstorm_1.png";
+import nomo_brainstorm_2 from "../../assets/nomo_brainstorm_2.png";
+import nomo_sketch_1 from "../../assets/nomo_sketch_1.png";
+import nomo_sketch_2 from "../../assets/nomo_sketch_2.png";
+import event_thumbnail from "../../assets/event_thumbnail.png";
 
 
 // Icons
@@ -342,21 +350,25 @@ const features = [
         sectionId="design-principles"
         headline="Designing for real behavior, not ideal behavior"
         contentType="cards"
+        iconColor="#A6C853"
         items={[
           {
             icon: FiEye,
             title: "Visibility over memory",
-            description: "Users forget what they own so information must be visible without effort.",
+            description:
+              "Users forget what they own so information must be visible without effort.",
           },
           {
             icon: FiUsers,
             title: "Low friction over completeness",
-            description: "Users avoid effort-heavy systems so input must feel lightweight.",
+            description:
+              "Users avoid effort-heavy systems so input must feel lightweight.",
           },
           {
             icon: FiCheckCircle,
             title: "Support over control",
-            description: "Users resist micromanagement so the system should guide, not demand.",
+            description:
+              "Users resist micromanagement so the system should guide, not demand.",
           },
         ]}
       />
@@ -382,16 +394,6 @@ const features = [
         features={features}
       />
 
-      <ImageCaptionSection
-        sectionId="screens"
-        sectionLabel="Final Screens"
-        layout="horizontal"
-        items={[
-          { src: placeholderImg, caption: "Add caption here" },
-          { src: placeholderImg, caption: "Add caption here" },
-          { src: placeholderImg, caption: "Add caption here" },
-        ]}
-      />
       <ReflectionSection
         sectionLabel="Tradeoffs"
         sectionId="tradeoffs-reflection"
@@ -426,7 +428,40 @@ const features = [
         title="What this project taught me"
         steps={takeaways}
         variant="three"
-        iconColor="text-[#000000]"
+        iconColor="#A6C853"
+      />
+
+      {/* <ImageCaptionSection
+        sectionId="screens"
+        sectionLabel="Final Screens"
+        layout="horizontal"
+        items={[
+          { src: placeholderImg, caption: "Add caption here" },
+          { src: placeholderImg, caption: "Add caption here" },
+          { src: placeholderImg, caption: "Add caption here" },
+        ]}
+      /> */}
+
+      <Carousel
+        sectionId="bts"
+        sectionLabel="Behind the Scenes"
+        duration={45}
+        caption="Some of the most valuable moments happened away from the screens, through critique sessions, whiteboards, and collaborative problem solving. A lot of this project came from constantly learning from and building alongside my incredible team. #FunBunz"
+        images={[
+          { src: nomo_expo_1, alt: "Iteration 1" },
+          { src: nomo_brainstorm_1, alt: "Iteration 2" },
+          { src: nomo_sketch_1, alt: "Iteration 3" },
+          { src: nomo_brainstorm_2, alt: "Iteration 4" },
+          { src: nomo_sketch_2, alt: "Iteration 5" },
+        ]}
+      />
+
+      <NextProject
+        title="Event Services at UW"
+        description="Redesigning information architecture and scalable policy systems for university event planning."
+        imageSrc={event_thumbnail}
+        imageAlt="Event Services preview"
+        projectLink="/case-studies/event"
       />
     </CaseStudyLayout>
   );

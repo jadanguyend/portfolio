@@ -22,7 +22,7 @@ export default function ExplainerImages({
     <div
       className={
         layout === "vertical"
-          ? "flex flex-col gap-4"
+          ? "flex flex-col gap-12"
           : "grid grid-cols-12 gap-4"
       }
     >
@@ -46,14 +46,19 @@ export default function ExplainerImages({
               border-dashed
               border-grayLight-200 dark:border-grayDark-200
               rounded-2xl
-              
             "
           />
 
           {img.caption && (
-            <p className="mt-2 text-sm text-grayLight-500 dark:text-grayDark-500">
-              {img.caption}
-            </p>
+            <div className="mt-4 flex items-start gap-4 py-2">
+              {/* ACCENT BAR */}
+              <div className="w-[4px] flex-shrink-0 self-stretch self-stretch -my-1 bg-accent" />
+
+              {/* TEXT */}
+              <p className="text-sm font-mono leading-tight text-grayLight-600 dark:text-grayDark-600">
+                {img.caption}
+              </p>
+            </div>
           )}
         </div>
       ))}
