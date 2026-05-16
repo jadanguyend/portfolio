@@ -1,15 +1,9 @@
+// src/components/HomeHero.jsx
 import { useState, useEffect } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  AnimatePresence,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { FiMapPin, FiClock } from "react-icons/fi";
 
-import miniMe from "../../assets/miniMe.png";
-import skateboarderGif from "../../assets/skateboarder.gif";
-import skateboarderDarkGif from "../../assets/skateboarderDark.gif";
+import HeroCursorFlow from "./HeroCursorFlow";
 
 const PHRASES = [
   "building a LEGO set",
@@ -37,22 +31,19 @@ export default function HomeHero() {
   const [charIndex, setCharIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const [showCaret, setShowCaret] = useState(true);
-
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  const smoothX = useSpring(cursorX, { stiffness: 200, damping: 25 });
-  const smoothY = useSpring(cursorY, { stiffness: 200, damping: 25 });
-
-  const [showHoverImage, setShowHoverImage] = useState(false);
   const [hoverName, setHoverName] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => setShowCaret((prev) => !prev), 500);
+    const interval = setInterval(() => {
+      setShowCaret((prev) => !prev);
+    }, 500);
+
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     const fullPhrase = "Currently " + PHRASES[phraseIndex];
+
     let timeout;
 
     if (!deleting && charIndex < fullPhrase.length) {
@@ -61,7 +52,9 @@ export default function HomeHero() {
         setCharIndex((prev) => prev + 1);
       }, TYPING_SPEED);
     } else if (!deleting && charIndex === fullPhrase.length) {
-      timeout = setTimeout(() => setDeleting(true), PAUSE_AFTER_TYPING);
+      timeout = setTimeout(() => {
+        setDeleting(true);
+      }, PAUSE_AFTER_TYPING);
     } else if (deleting && charIndex > 9) {
       timeout = setTimeout(() => {
         setDisplayedText(fullPhrase.slice(0, charIndex - 1));
@@ -77,64 +70,86 @@ export default function HomeHero() {
     return () => clearTimeout(timeout);
   }, [charIndex, deleting, phraseIndex]);
 
-  const handleMouseMove = (e) => {
-    cursorX.set(e.clientX + 16);
-    cursorY.set(e.clientY + 16);
-  };
-
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-between px-16 pt-24 pb-12 text-center"
+      className="
+        relative
+        min-h-screen
+        flex
+        flex-col
+        justify-between
+        px-16
+        pt-24
+        pb-12
+        text-center
+        overflow-hidden
+        bg-grayLight-10
+        dark:bg-grayDark-10
+      "
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-dots-mask" />
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-auto">
+        <HeroCursorFlow />
+        <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-transparent via-transparent to-grayLight-10 dark:to-grayDark-10" />
       </div>
 
-      <div className="relative flex justify-center z-10">
+      <div className="relative z-10 flex justify-center pointer-events-none">
         <motion.h1
-          className="font-mono font-semibold uppercase leading-none cursor-pointer flex justify-center items-center"
+          className="
+            pointer-events-auto
+            font-mono
+            font-semibold
+            uppercase
+            leading-none
+            cursor-pointer
+            flex
+            justify-center
+            items-center
+            select-none
+          "
           style={{
             fontSize: "clamp(6vw, 12vw, 15rem)",
             letterSpacing: "-0.05em",
           }}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          onMouseEnter={() => {
-            setShowHoverImage(true);
-            setHoverName(true);
-          }}
-          onMouseLeave={() => {
-            setShowHoverImage(false);
-            setHoverName(false);
-          }}
-          onMouseMove={handleMouseMove}
+          onMouseEnter={() => setHoverName(true)}
+          onMouseLeave={() => setHoverName(false)}
         >
           <span
             className={
               hoverName
-                ? "text-grayLight-200 dark:text-grayDark-200"
+                ? "text-grayLight-10 dark:text-grayDark-10"
                 : "text-grayLight-900 dark:text-grayDark-900"
             }
           >
             [
           </span>
-          <span className={hoverName ? "text-accent" : "text-grayLight-900 dark:text-grayDark-900"}>
-            JADA{" "}
-          </span>
+
           <span
             className={
               hoverName
-                ? "text-grayLight-200 dark:text-grayDark-200"
+                ? "text-accent"
+                : "text-grayLight-900 dark:text-grayDark-900"
+            }
+          >
+            JADA{" "}
+          </span>
+
+          <span
+            className={
+              hoverName
+                ? "text-grayLight-10 dark:text-grayDark-10"
                 : "text-grayLight-900 dark:text-grayDark-900"
             }
           >
             NGUYEND
           </span>
+
           <span
             className={
               hoverName
-                ? "text-grayLight-200 dark:text-grayDark-200"
+                ? "text-grayLight-10 dark:text-grayDark-10"
                 : "text-grayLight-900 dark:text-grayDark-900"
             }
           >
@@ -143,31 +158,17 @@ export default function HomeHero() {
         </motion.h1>
       </div>
 
-      <div className="relative flex flex-col items-center gap-6 z-10">
+      <div className="relative z-10 flex flex-col items-center gap-6 pointer-events-none">
         <div className="flex flex-wrap justify-center gap-3">
           <div className="relative inline-flex meta-pill items-center gap-1">
-            <FiMapPin /> SEATTLE, WA
-
-            <motion.img
-              src={skateboarderGif}
-              alt="Skateboarder"
-              className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none block dark:hidden"
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            />
-
-            <motion.img
-              src={skateboarderDarkGif}
-              alt="Skateboarder dark"
-              className="absolute -top-10 right-16 w-6 md:w-10 pointer-events-none hidden dark:block"
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            />
+            <FiMapPin />
+            SEATTLE, WA
           </div>
 
           {lastCommit && (
             <div className="relative inline-flex meta-pill items-center gap-1 uppercase">
-              <FiClock /> LAST COMMIT: {lastCommit}
+              <FiClock />
+              LAST DEPLOYED: {lastCommit}
             </div>
           )}
         </div>
@@ -181,24 +182,16 @@ export default function HomeHero() {
         </div>
 
         <motion.div className="font-mono text-xs uppercase tracking-tight">
-          Consistent details matter. Mine’s a{" "}
-          <span className="text-accent">blue hat</span> :)
+          <span>{displayedText}</span>
+          <span
+            className={`ml-[1px] ${
+              showCaret ? "opacity-100" : "opacity-0"
+            } transition-opacity duration-100`}
+          >
+            |
+          </span>
         </motion.div>
       </div>
-
-      <AnimatePresence>
-        {showHoverImage && (
-          <motion.img
-            src={miniMe}
-            alt=""
-            className="pointer-events-none fixed top-0 left-0 z-[9999] w-24 md:w-32"
-            style={{ x: smoothX, y: smoothY }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-          />
-        )}
-      </AnimatePresence>
     </section>
   );
 }

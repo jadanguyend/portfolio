@@ -48,7 +48,7 @@ export default function ProjectsSection() {
           <motion.div
             key={index}
             className="project-card group cursor-pointer"
-            whileHover={{ scale: 1 }}
+            whileHover={{ scale: 1.01 }}
           >
             {/* Left side */}
             <div className="project-card-left flex flex-col justify-between h-full">

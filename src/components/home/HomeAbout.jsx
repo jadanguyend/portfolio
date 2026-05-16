@@ -1,36 +1,13 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+// src/components/HomeAbout.jsx
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { FiInfo } from "react-icons/fi";
 
 import DayCalendar from "../DayCalendar";
 
-import howPlanner from "../../assets/howPlanner.png";
-import howTinkerer from "../../assets/howTinkerer.png";
-import howBuilder from "../../assets/howBuilder.png";
-import howPainter from "../../assets/howPainter.png";
+import miniMe from "../../assets/miniMe.png";
 
-const howItems = [
-  {
-    id: 0,
-    src: howPlanner,
-    desc: "I carefully shape each piece so the experience feels clear, intentional, and thoughtfully connected while balancing structure, usability, and visual clarity throughout the process.",
-  },
-  {
-    id: 1,
-    src: howTinkerer,
-    desc: "I constantly experiment, refine, and iterate until the experience feels seamless and intuitive, paying close attention to the small interactions that shape how people engage with a product.",
-  },
-  {
-    id: 2,
-    src: howBuilder,
-    desc: "I build systems that are scalable, practical, and designed for real-world use by creating foundations that support consistency, flexibility, and long-term growth beyond polished visuals alone.",
-  },
-  {
-    id: 3,
-    src: howPainter,
-    desc: "I add thoughtful details that make experiences feel memorable, delightful, and genuinely human. I bring personality and warmth into moments that might otherwise feel purely functional.",
-  },
-];
+
 
 const exploringItems = [
   { label: "Retro.app", href: "https://retro.app" },
@@ -52,18 +29,68 @@ const tags = [
 ];
 
 export default function HomeAbout() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [hoverIndex, setHoverIndex] = useState(null);
+  const sectionRef = useRef(null);
 
-  const currentIndex = hoverIndex ?? activeIndex;
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 70%", "end 50%"],
+  });
+
+    const stampOpacity = useTransform(
+    scrollYProgress,
+    [0.22, 0.32],
+    [0, 1]
+    );
+
+    const stampScale = useTransform(
+    scrollYProgress,
+    [0.22, 0.32],
+    [2.4, 1]
+    );
+
+    const stampRotate = useTransform(
+    scrollYProgress,
+    [0.22, 0.32],
+    [28, 10]
+    );
 
   return (
-    <section id="about" className="relative py-12 px-16 pb-24">
+    <section
+      ref={sectionRef}
+      id="about"
+      className="relative py-12 px-16 pb-24"
+    >
       <div className="grid grid-cols-12">
         <div className="col-span-12 md:col-span-4">
-          <h1 className="font-mono uppercase md:sticky md:top-36 text-grayLight-900 dark:text-grayDark-900">
-            [JADA]
-          </h1>
+        <div className="md:sticky md:top-36 min-h-[320px]">
+            <div className="relative inline-block">
+            <h1 className="relative z-10 font-mono uppercase text-grayLight-900 dark:text-grayDark-900">
+                [JADA]
+            </h1>
+
+            <motion.img
+                src={miniMe}
+                alt=""
+                className="
+                pointer-events-none
+                absolute
+                left-1/2
+                top-1/2
+                z-20
+                w-20
+                md:w-24
+                drop-shadow-sm
+                "
+                style={{
+                opacity: stampOpacity,
+                scale: stampScale,
+                rotate: stampRotate,
+                x: "-50%",
+                y: "-50%",
+                }}
+            />
+            </div>
+        </div>
         </div>
 
         <div className="hidden md:block md:col-span-1" />
@@ -136,34 +163,77 @@ export default function HomeAbout() {
             <span className="text-accent">design philosophy and values</span> ↓
           </motion.div>
 
-          <div className="border border-dashed border-grayLight-200 dark:border-grayDark-200 bg-grayLight-100/40 dark:bg-grayDark-800/40 rounded-lg px-6 py-4">
-            <div className="flex items-center justify-between">
-              {howItems.map((item, index) => {
-                const isActive = currentIndex === index;
+<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+  {[
+    {
+      symbol: "⌘",
+      title: "Intentionality",
+      description:
+        "Designing with clarity, purpose, and thoughtful attention.",
+    },
+    {
+      symbol: "⌥",
+      title: "Tenacity",
+      description:
+        "Embracing curiosity and iteration to uncover intuitive experiences.",
+    },
+    {
+      symbol: "[]",
+      title: "Reliable",
+      description:
+        "Building flexible foundations that support consistency and growth.",
+    },
+    {
+      symbol: "*",
+      title: "Delight",
+      description:
+        "Creating small moments that make experiences feel memorable.",
+    },
+  ].map((item, index) => (
+    <motion.div
+      key={index}
+      className="
+        group
+        rounded-lg
+        border
+        border-dashed
+        border-grayLight-200
+        dark:border-grayDark-200
+        bg-grayLight-100/40
+        dark:bg-grayDark-800/40
+        px-5
+        py-4
+        transition-all
+        duration-300
+        hover:border-accent
+      "
+      whileHover={{ y: -2 }}
+    >
+      <div className="grid grid-cols-[56px_1fr] gap-4 items-start">
+        <div
+        className={`
+            font-mono
+            leading-none
+            text-accent
+            ${item.symbol === "[]" ? "text-2xl pt-1" : "text-4xl"}
+        `}
+        >
+        {item.symbol}
+        </div>
 
-                return (
-                  <img
-                    key={item.id}
-                    src={item.src}
-                    alt=""
-                    loading="lazy"
-                    className="w-16 sm:w-20 md:w-24 lg:w-28 cursor-pointer transition-all duration-300"
-                    style={{
-                      filter: isActive ? "saturate(1)" : "saturate(0)",
-                      transform: isActive ? "scale(1.08)" : "scale(1)",
-                    }}
-                    onMouseEnter={() => setHoverIndex(index)}
-                    onMouseLeave={() => setHoverIndex(null)}
-                    onClick={() => setActiveIndex(index)}
-                  />
-                );
-              })}
-            </div>
-          </div>
+        <div>
+          <h5 className="mb-1 text-sm text-grayLight-900 dark:text-grayDark-900">
+            {item.title}
+          </h5>
 
-          <div className="text-grayLight-700 dark:text-grayDark-700 transition-all duration-300 text-xs font-mono leading-tight">
-            {howItems[currentIndex].desc}
-          </div>
+          <p className="text-[11px] leading-relaxed text-grayLight-700 dark:text-grayDark-700">
+            {item.description}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  ))}
+</div>
 
           <div className="mt-16">
             <div className="relative mb-4 flex items-center justify-between">
