@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import CustomCursor from "./components/CustomCursor";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Sandbox from "./pages/Sandbox";
@@ -31,10 +32,11 @@ function AppContent({ isLoading, setIsLoading }) {
 
   return (
     <div className="min-h-screen bg-grayLight-10 dark:bg-grayDark-10">
+      <CustomCursor />
       {!isCaseStudy && <Navbar />}
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home isLoading={isLoading} />} />
         <Route path="/sandbox" element={<Sandbox />} />
         <Route path="/about" element={<About />} />
         <Route path="/case-studies/nomo" element={<Nomo />} />

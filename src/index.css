@@ -332,7 +332,7 @@
     @apply font-mono inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border transition-colors;
 
     /* Use gray palette for border in light and dark mode */
-    @apply border-grayLight-200 dark:border-grayDark-200;
+    @apply border-accent dark:border-accent;
 
     /* Use gray palette for text in light and dark mode */
     @apply text-grayLight-500 dark:text-grayDark-500;
@@ -583,10 +583,49 @@ body {
   will-change: transform;
 }
 
+@media (min-width: 768px) {
+  body,
+  a,
+  button,
+  [role="button"] {
+    cursor: none;
+  }
 
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+}
 
+::selection {
+  background: var(--accent-color);
+  color: white;
+}
 
+::-moz-selection {
+  background: var(--accent-color);
+  color: white;
+}
 
+html,
+body,
+#root {
+  user-select: text;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+li,
+div {
+  user-select: text;
+}
 
 
 
