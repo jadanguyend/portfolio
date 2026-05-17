@@ -1,12 +1,13 @@
 // src/components/HomeHero.jsx
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FiMapPin, FiClock } from "react-icons/fi";
 
 import HeroCursorFlow from "./HeroCursorFlow";
 
-
 export default function HomeHero() {
+  const navigate = useNavigate();
+
   const lastCommit = import.meta.env.VITE_LAST_COMMIT
     ? new Date(import.meta.env.VITE_LAST_COMMIT).toLocaleDateString("en-US", {
         year: "numeric",
@@ -15,9 +16,21 @@ export default function HomeHero() {
       })
     : null;
 
-
   const [hoverName, setHoverName] = useState(false);
+  const [hoverText, setHoverText] = useState(null);
 
+  const scrollToWork = () => {
+    const el = document.getElementById("work");
+    if (!el) return;
+
+    const yOffset = -100;
+    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section
@@ -37,14 +50,11 @@ export default function HomeHero() {
         dark:bg-grayDark-10
       "
     >
-      {/* Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-auto">
         <HeroCursorFlow />
-
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-grayLight-10 dark:to-grayDark-10" />
       </div>
 
-      {/* Hero Title */}
       <div className="relative z-10 flex justify-center">
         <h1
           className="
@@ -108,7 +118,6 @@ export default function HomeHero() {
         </h1>
       </div>
 
-      {/* Bottom Content */}
       <div className="relative z-10 flex flex-col items-center gap-6">
         <div className="flex flex-wrap justify-center gap-3">
           <div className="relative inline-flex meta-pill items-center gap-1 text-accent">
@@ -125,16 +134,60 @@ export default function HomeHero() {
         </div>
 
         <div className="grid grid-cols-12">
-          <h3 className="col-span-12 font-medium text-center">
-            By day, I design thoughtful product experiences that bring together systems, strategy, and 
-            visual craft. By night, I disappear into creative rabbit holes — experimenting with new tools, 
-            building LEGO sets, curating fragrances, and chasing niche internet deep dives.
+          <h3
+            className={`
+              col-span-12
+              font-medium
+              text-center
+              leading-snug
+              transition-colors
+              duration-300
+              ${
+                hoverText
+                  ? "text-grayLight-300 dark:text-grayDark-300"
+                  : "text-grayLight-900 dark:text-grayDark-900"
+              }
+            `}
+          >
+            By day,{" "}
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={scrollToWork}
+              onMouseEnter={() => setHoverText("day")}
+              onMouseLeave={() => setHoverText(null)}
+              className="inline cursor-pointer transition-colors duration-300"
+              style={{
+                color: hoverText === "day" ? "var(--accent-color)" : "inherit",
+              }}
+            >
+              I design experiences that align systems, strategy, and visual craft,
+              bringing delight to enterprise systems, consumer products, and complex
+              workflows
+            </span>
+            . By night,{" "}
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate("/sandbox")}
+              onMouseEnter={() => setHoverText("night")}
+              onMouseLeave={() => setHoverText(null)}
+              className="inline cursor-pointer transition-colors duration-300"
+              style={{
+                color:
+                  hoverText === "night" ? "var(--accent-color)" : "inherit",
+              }}
+            >
+              I disappear into creative rabbit holes — experimenting with new tools,
+              building LEGO sets, and discovering new fragrances
+            </span>
+            .
           </h3>
         </div>
 
         <div className="font-mono text-xs uppercase tracking-tight text-grayLight-700 dark:text-grayDark-700">
-        Consistent details matter, mine is a{" "}
-        <span className="text-accent">blue hat</span>:)
+          Consistent details matter, mine is a{" "}
+          <span className="text-accent">Seiko Watch (SSEH105)</span>
         </div>
       </div>
     </section>

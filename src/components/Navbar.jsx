@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
 
@@ -15,6 +15,7 @@ export default function Navbar() {
   // ===== Smooth scroll helper =====
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
+
     if (el) {
       const yOffset = -100;
       const y =
@@ -33,10 +34,10 @@ export default function Navbar() {
       if (location.pathname === "/") {
         scrollToSection(item.target);
       } else {
-        // navigate to home, then scroll after short delay
         navigate("/");
         setTimeout(() => scrollToSection(item.target), 100);
       }
+
       setMenuOpen(false);
     } else if (item.type === "route") {
       navigate(item.path);
@@ -47,12 +48,12 @@ export default function Navbar() {
     }
   };
 
-  // ===== Detect active section (IntersectionObserver) =====
+  // ===== Detect active section =====
   useEffect(() => {
     if (location.pathname === "/") {
-      setActiveSection("hero"); // default on home
+      setActiveSection("hero");
 
-      const sections = ["hero", "work", "about"];
+      const sections = ["hero", "work", "about", "contact"];
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -80,7 +81,7 @@ export default function Navbar() {
     }
   }, [location.pathname]);
 
-  // Close menu when clicking outside
+  // ===== Close menu when clicking outside =====
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -88,13 +89,19 @@ export default function Navbar() {
       }
     };
 
-    if (menuOpen) document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [menuOpen]);
 
-  // Load stored theme
+  // ===== Load stored theme =====
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
+
     if (storedTheme === "dark") {
       document.documentElement.classList.add("dark");
       setIsDark(true);
@@ -109,12 +116,14 @@ export default function Navbar() {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
     }
+
     setIsDark(!isDark);
   };
 
   const navItems = [
     { label: "Work", type: "scroll", target: "work" },
     { label: "About", type: "scroll", target: "about" },
+    { label: "Contact", type: "scroll", target: "contact" },
     /* { label: "Sandbox", type: "route", path: "/sandbox" }, */
     { label: "Resume", type: "external", href: "/resume.pdf" },
   ];
@@ -149,7 +158,9 @@ export default function Navbar() {
           <div className="flex items-center justify-between px-6 py-4">
             {/* Logo */}
             <button
-              onClick={() => handleNavClick({ type: "scroll", target: "hero" })}
+              onClick={() =>
+                handleNavClick({ type: "scroll", target: "hero" })
+              }
               className={getNavClass(activeSection === "hero")}
             >
               <span className="bracket">[</span>
@@ -169,7 +180,9 @@ export default function Navbar() {
             <nav className="hidden md:flex items-center gap-6">
               {navItems.map((item) => {
                 const isActive =
-                  item.type === "scroll" && activeSection === item.target;
+                  item.type === "scroll" &&
+                  activeSection === item.target;
+
                 return (
                   <button
                     key={item.label}
@@ -188,7 +201,11 @@ export default function Navbar() {
                 aria-label="Toggle dark mode"
                 className="hover:text-accent dark:hover:text-accent transition-colors"
               >
-                {isDark ? <RiSunFill size={16} /> : <RiMoonFill size={16} />}
+                {isDark ? (
+                  <RiSunFill size={16} />
+                ) : (
+                  <RiMoonFill size={16} />
+                )}
               </button>
             </nav>
           </div>
@@ -209,7 +226,9 @@ export default function Navbar() {
               <div className="flex flex-col items-center gap-4 py-4">
                 {navItems.map((item) => {
                   const isActive =
-                    item.type === "scroll" && activeSection === item.target;
+                    item.type === "scroll" &&
+                    activeSection === item.target;
+
                   return (
                     <button
                       key={item.label}
@@ -228,7 +247,11 @@ export default function Navbar() {
                   aria-label="Toggle dark mode"
                   className="hover:text-accent dark:hover:text-accent transition-colors"
                 >
-                  {isDark ? <RiSunFill size={18} /> : <RiMoonFill size={18} />}
+                  {isDark ? (
+                    <RiSunFill size={18} />
+                  ) : (
+                    <RiMoonFill size={18} />
+                  )}
                 </button>
               </div>
             </nav>
