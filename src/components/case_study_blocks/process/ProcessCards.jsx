@@ -36,7 +36,7 @@ export default function ProcessCards({
                 </h3>
               )}
 
-              <div className="text-base text-grayLight-700 dark:text-grayDark-400 leading-relaxed">
+              <div className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
                 {step.description}
               </div>
             </div>

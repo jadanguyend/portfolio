@@ -151,7 +151,7 @@ export default function HomeAbout() {
               </span>
             ))}
           </div>
-
+{/*
           <h4 className="mt-16 max-w-3xl mx-auto text-grayLight-900 dark:text-grayDark-900">
             I design experiences like building LEGO — methodical in structure,
             creative in execution, and thoughtfully connected to build something
@@ -234,8 +234,8 @@ export default function HomeAbout() {
     </motion.div>
   ))}
 </div>
-
-          <div className="mt-16">
+*/}
+          <div className="mt-8">
             <div className="relative mb-4 flex items-center justify-between">
               <div className="font-mono text-sm uppercase text-grayLight-900 dark:text-grayDark-900">
                 How do I spend my time when I’m not designing?

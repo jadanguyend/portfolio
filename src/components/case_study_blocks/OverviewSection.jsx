@@ -46,13 +46,22 @@ export default function OverviewSection({
 
             <button
               onClick={() => {
+                if (onButtonClick) {
+                  onButtonClick();
+                  return;
+                }
+
                 if (buttonHref) {
                   const element = document.querySelector(buttonHref);
 
                   if (element) {
-                    element.scrollIntoView({
+                    const yOffset = -120;
+                    const y =
+                      element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+                    window.scrollTo({
+                      top: y,
                       behavior: "smooth",
-                      block: "start",
                     });
                   }
                 }

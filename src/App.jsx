@@ -42,7 +42,8 @@ function AppContent({ isLoading, setIsLoading }) {
         <Route path="/case-studies/nomo" element={<Nomo />} />
         <Route path="/case-studies/radar" element={<Radar />} />
         <Route path="/case-studies/event" element={<Event />} />
-
+        {/*. */}
+        
         <Route path="*" element={<NotFound />} />
       </Routes>
 

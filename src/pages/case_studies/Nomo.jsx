@@ -180,7 +180,7 @@ const features = [
       <Hero
         title="NOMO"
         tag="Case Study"
-        readTime="6 min read"
+        readTime="Full"
         brief="An app that supports users in reducing waste by making their consumption patterns more visible and actionable."
         role="UX Researcher & Designer"
         timeline="October 2024 – May 2025"
@@ -204,7 +204,7 @@ const features = [
         bodyPrimary="Busy young adults often care about reducing food waste but struggle to act on that intention in everyday life due to time pressure and cognitive load.
                       NOMO explores how behavioral design can support these moments through lightweight, awareness-driven interactions."
         bodySecondary="I led the design of the “My Kitchen” feature, translating behavioral research into a system that supports visibility, reflection, and everyday decision-making around food."
-        buttonLabel="View final design"
+        buttonLabel="Jump to Final Design"
         buttonHref="#final-design"
       />
 
@@ -235,7 +235,7 @@ const features = [
             </ul>
 
             <p className="mb-4">
-              These are not moments of intention, they’re <strong> moments of cognitive overload </strong>. The problem wasn’t convincing users to care. It was supporting them when they weren’t thinking about it.
+              These are not moments of intention, they’re <strong> moments of cognitive overload</strong>. The problem wasn’t convincing users to care. It was supporting them when they weren’t thinking about it.
             </p>
           </>
         }

@@ -34,7 +34,7 @@ export default function FeatureSection({
 
         {/* Right Paragraph */}
         <div className="col-span-12 md:col-span-6">
-          <div className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed space-y-4">
+          <div className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
             {introBody}
           </div>
         </div>

@@ -1,234 +1,67 @@
-// src/pages/case_studies/Nomo.jsx
-
-import { useState } from "react";
+// src/pages/case_studies/Radar.jsx
+import { useNavigate } from "react-router-dom";
 
 import CaseStudyLayout from "../../layouts/CaseStudyLayout";
 import Hero from "../../components/case_study_blocks/Hero";
 import OverviewSection from "../../components/case_study_blocks/OverviewSection";
-import PreviewSection from "../../components/case_study_blocks/PreviewSection";
-import ExplainerSection from "../../components/case_study_blocks/explainer/ExplainerSection";
-import HighlightSection from "../../components/case_study_blocks/highlight/HighlightSection";
-import ProcessSection from "../../components/case_study_blocks/process/ProcessSection";
-import QuoteSection from "../../components/case_study_blocks/QuoteSection";
-import FeatureSection from "../../components/case_study_blocks/feature/FeatureSection";
 import Footer from "../../components/Footer";
 
-// Images
-import project1Img from "../../assets/project1.png";
-import researchImg1 from "../../assets/research1.png";
-import researchImg2 from "../../assets/research2.png";
-import highlightImg1 from "../../assets/highlight1.png";
-import highlightImg2 from "../../assets/highlight2.png";
-import highlightImg3 from "../../assets/highlight3.png";
-import featureImg1 from "../../assets/feature1.png";
-import featureImg2 from "../../assets/feature2.png";
-import featureImg3 from "../../assets/feature3.png";
-
-// Icons
-import {
-  FiEye,
-  FiUsers,
-  FiCheckCircle,
-  FiUser,
-  FiClipboard,
-} from "react-icons/fi";
+import radar_thumbnail from "../../assets/radar_thumbnail.png";
 
 export default function Radar() {
-  const [password, setPassword] = useState("");
-  const [unlocked, setUnlocked] = useState(false);
+  const navigate = useNavigate();
 
-  const correctPassword = "radar2026";
+    const goToContact = () => {
+    navigate("/");
 
-  const processSteps = [
-    {
-      icon: FiUser,
-      description:
-        "We began by identifying real-world food waste behaviors through user interviews and diary studies to understand where breakdowns occurred.",
-    },
-    {
-      icon: FiClipboard,
-      description:
-        "Insights were synthesized into clear opportunity areas that informed how accountability and ownership could be designed into daily habits.",
-    },
-    {
-      icon: FiCheckCircle,
-      description:
-        "These insights directly shaped features that made sustainable behaviors visible, lightweight, and socially reinforced.",
-    },
-  ];
+    setTimeout(() => {
+        const element = document.getElementById("contact");
+        if (!element) return;
 
-  const features = [
-    {
-      title: "Kitchen visibility",
-      description:
-        "Users can quickly see what food they have at home, reducing forgotten items and encouraging mindful consumption.",
-      imageSrc: featureImg1,
-      imageAlt: "Kitchen inventory feature",
-    },
-    {
-      title: "Shared accountability",
-      description:
-        "Household members can view shared food activity, reinforcing collective ownership over food decisions.",
-      imageSrc: featureImg2,
-      imageAlt: "Shared accountability feature",
-    },
-    {
-      title: "Low-friction logging",
-      description:
-        "Lightweight interactions make tracking food use feel natural rather than burdensome.",
-      imageSrc: featureImg3,
-      imageAlt: "Food logging feature",
-    },
-  ];
+        const yOffset = -120;
+        const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
-if (!unlocked) {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-grayLight-10 dark:bg-grayDark-10 px-6">
-      <div className="w-full max-w-sm">
-        <p className="font-mono text-sm mb-2 uppercase text-grayLight-400 dark:text-grayLight-400">
-          Protected Case Study
-        </p>
-
-        <h3 className="text-grayLight-900 dark:text-grayDark-900 mb-2">
-          Enter Access Code
-        </h3>
-
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Access Code"
-          className="w-full bg-grayLight-10 dark:bg-grayDark-10 border border-grayLight-200 dark:border-grayDark-200 bg-grayLight-10 px-4 py-3 rounded-xl mb-6 outline-none text-sm text-grayLight-600 dark:text-grayLight-600"
-        />
-
-        <button
-          onClick={() => {
-            if (password === correctPassword) {
-              setUnlocked(true);
-            } else {
-              alert("Incorrect password");
-            }
-          }}
-          className="w-full bg-accent text-grayLight-10 dark:text-grayLight-10 py-3 rounded-xl font-medium transition hover:opacity-90"
-        >
-          View Case Study
-        </button>
-      </div>
-    </div>
-  );
-}
+        window.scrollTo({
+        top: y,
+        behavior: "smooth",
+        });
+    }, 250);
+    };
 
   return (
-    <>
-      <CaseStudyLayout footer={<Footer />}>
-        {/* HERO */}
-        <Hero
-          title="RADAR"
-          tag="Case Study"
-          readTime="6 min read"
-          brief="Streamlining enterprise compliance by turning complex regulations into actionable tasks"
-          role="UX Researcher & Designer"
-          timeline="Jan 2026 - Present"
-          tools="Micrsoft Copilot Studio, Azure DevOps, Power BI, Visio"
-          contributors="Bright Hoang, Lucy Lin, Nathan Salman Joshua Taylor"
-          imageSrc={project1Img}
-          imageAlt="Nomo product interface"
-        />
+    <CaseStudyLayout footer={<Footer />}>
+      <Hero
+        title="RADAR"
+        tag="Case Study"
+        readTime="Restricted"
+        brief="Streamlining enterprise compliance by turning complex regulations into actionable tasks"
+        role="UX Researcher & Designer"
+        timeline="Jan 2026 - Present"
+        tools="Microsoft Copilot Studio, Azure DevOps, Power BI, Visio"
+        contributors="Bright Hoang, Lucy Lin, Nathan Salman, Joshua Taylor"
+        imageSrc={radar_thumbnail}
+        imageAlt="RADAR compliance dashboard interface"
+        learnMoreContent={
+          <>
+            <p>
+              This was a Microsoft-sponsored capstone project. While I can’t
+              share the full details publicly due to confidentiality agreements,
+              I’d be happy to provide more context about the work through email.
+            </p>
+          </>
+        }
+      />
 
-        {/* OVERVIEW */}
-        <OverviewSection
-          sectionLabel="Overview"
-          sectionId="overview"
-          title="Reducing food waste through accountability and visibility"
-          bodyPrimary="VietQ is a mobile application designed to help individuals better understand and manage their food habits through social accountability and behavioral nudges."
-          bodySecondary="By making food consumption more visible and encouraging shared ownership, VietQ aims to reduce everyday food waste while fostering more sustainable routines."
-          buttonLabel="View final design"
-        />
-
-        {/* PREVIEW */}
-        <PreviewSection
-          sectionId="preview"
-          sectionLabel="Preview"
-          images={[highlightImg1, highlightImg2, highlightImg3]}
-        />
-
-        {/* FEATURE SECTION — FINAL DESIGN */}
-        <FeatureSection
-          sectionId="final-design"
-          sectionLabel="Final Design"
-          introTitle="Designing for shared ownership"
-          introBody="The final design focuses on making food visibility lightweight and social. By surfacing shared behaviors without adding friction, VietQ encourages accountability while fitting naturally into everyday routines."
-          introImageSrc={project1Img}
-          introImageAlt="Final NOMO design overview"
-          features={features}
-        />
-
-        {/* EXPLAINER — RESEARCH */}
-        <ExplainerSection
-          sectionLabel="Research"
-          sectionId="research"
-          title="Understanding everyday food waste behaviors"
-          body="We conducted interviews and diary studies to understand how people make food decisions at home, where waste occurs most often, and what emotional barriers prevent behavior change."
-          imageVariant="two"
-          images={[
-            { src: researchImg1, alt: "Interview notes" },
-            { src: researchImg2, alt: "Affinity mapping" },
-          ]}
-        />
-
-        {/* HIGHLIGHT — IMAGES */}
-        <HighlightSection
-          sectionLabel="Key Insights"
-          sectionId="key-insights"
-          headline="Three patterns in food waste behaviors emerged"
-          contentType="images"
-          items={[highlightImg1, highlightImg2, highlightImg3]}
-        />
-
-        {/* HIGHLIGHT — TEXT CARDS */}
-        <HighlightSection
-          sectionLabel="Design Principles"
-          sectionId="design-principles"
-          headline="How we approached reducing food waste"
-          contentType="cards"
-          items={[
-            {
-              icon: FiEye,
-              title: "Make it visible",
-              description:
-                "Highlight food items in users' kitchens to encourage mindful consumption.",
-            },
-            {
-              icon: FiUsers,
-              title: "Encourage ownership",
-              description:
-                "Use social accountability to promote consistent behavior change.",
-            },
-            {
-              icon: FiCheckCircle,
-              title: "Reduce friction",
-              description:
-                "Simplify meal planning and tracking to make sustainable habits easy.",
-            },
-          ]}
-        />
-
-        {/* QUOTE */}
-        <QuoteSection
-          sectionId="quote"
-          sectionLabel="Key Insight"
-          quote="Food waste wasn’t caused by a lack of awareness, but by low visibility and a lack of shared ownership."
-        />
-
-        {/* PROCESS */}
-        <ProcessSection
-          sectionId="process"
-          sectionLabel="Process"
-          title="How we approached the problem"
-          steps={processSteps}
-          variant="three"
-        />
-      </CaseStudyLayout>
-    </>
+      <OverviewSection
+        sectionLabel="Overview"
+        sectionId="overview"
+        title="Designing clarity within complex compliance workflows"
+        bodyPrimary="Compliance teams often struggle to interpret evolving regulatory requirements, identify gaps, and coordinate delivery across fragmented systems and processes. RADAR explores how AI-assisted workflows and structured visibility can simplify compliance planning and make regulatory work more actionable."
+        bodySecondary="I designed compliance readiness and progress dashboards that brought clarity to complex compliance workflows by surfacing gaps, tracking progress, and connecting regulatory requirements to delivery outcomes."
+        buttonLabel="Learn More"
+        onButtonClick={goToContact}
+      />
+    </CaseStudyLayout>
   );
 }

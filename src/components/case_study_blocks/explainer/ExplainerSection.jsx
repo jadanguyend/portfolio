@@ -37,7 +37,7 @@ export default function ExplainerSection({
 
         {/* Right: Body */}
         <div className="col-span-12 md:col-span-6">
-          <div className="text-base text-grayLight-900 dark:text-grayDark-900">
+          <div className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed ">
             {body}
           </div>
         </div>

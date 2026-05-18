@@ -28,7 +28,7 @@ export default function QuoteSection({
           </h2>
 
           {description && (
-            <div className="mt-4 text-base text-grayLight-600 dark:text-grayDark-500">
+            <div className="mt-4 text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
               {description}
             </div>
           )}

@@ -42,7 +42,7 @@ export default function HighlightCards({
               {card.title}
             </h3>
 
-            <p className="text-base text-grayLight-700 dark:text-grayDark-400 leading-relaxed">
+            <p className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
               {card.description}
             </p>
           </div>

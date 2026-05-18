@@ -93,12 +93,12 @@ export default function Hero({
                 "
               >
                 <div>
-                  <p className="text-xs font-mono uppercase tracking-wide text-grayLight-600 dark:text-grayDark-600">
+                  <p className="text-xs font-mono uppercase tracking-wide text-grayLight-900 dark:text-grayDark-900">
                     Learn more about the context of this project
                   </p>
                 </div>
 
-                <div className="text-grayLight-500 dark:text-grayDark-400">
+                <div className="text-grayLight-900 dark:text-grayDark-900">
                   {open ? <FiChevronUp /> : <FiChevronDown />}
                 </div>
               </button>

@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 import radar_thumbnail from "../assets/radar_thumbnail.png";
 import nomo_thumbnail from "../assets/nomo_thumbnail.png";
 import event_thumbnail from "../assets/event_thumbnail.png";
-import project0Img from "../assets/project0.png";
-import project1Img from "../assets/project1.png";
-import project2Img from "../assets/project2.png";
-import project3Img from "../assets/project3.png";
 
 const projects = [
   {
@@ -28,16 +24,16 @@ const projects = [
     image: nomo_thumbnail,
     href: "/case-studies/nomo",
   },
-  {
-    type: "University of Washington | Web Design",
-    title: "Redesigning for Scalable Campus Event Services",
-    description:
-      "Helping individuals tackle food waste by fostering personal ownership and social accountability.",
-    tags: ["Information Architecture", "Web Development"],
-    image: event_thumbnail,
-    href: "/case-studies/Event",
-  },
 
+  // {
+  //   type: "University of Washington | Web Design",
+  //   title: "Redesigning for Scalable Campus Event Services",
+  //   description:
+  //     "Helping individuals tackle food waste by fostering personal ownership and social accountability.",
+  //   tags: ["Information Architecture", "Web Development"],
+  //   image: event_thumbnail,
+  //   href: "/case-studies/Event",
+  // },
 ];
 
 export default function ProjectsSection() {

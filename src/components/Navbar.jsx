@@ -125,7 +125,7 @@ export default function Navbar() {
     { label: "About", type: "scroll", target: "about" },
     { label: "Contact", type: "scroll", target: "contact" },
     /* { label: "Sandbox", type: "route", path: "/sandbox" }, */
-    { label: "Resume", type: "external", href: "/resume.pdf" },
+    { label: "Resume", type: "external", href: "https://drive.google.com/file/d/10J4j3lFfsc8HbZ3LgZa_lwA_e2Xl3AZg/view?usp=sharing" },
   ];
 
   const getNavClass = (isActive) =>

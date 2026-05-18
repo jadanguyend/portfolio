@@ -31,7 +31,7 @@ export default function HighlightSection({
         </h2>
 
         {description && (
-          <div className="mt-4 text-base">
+          <div className="mt-4 text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
             {description}
           </div>
         )}
