@@ -9,6 +9,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import Nomo from "./pages/case_studies/Nomo";
 import Radar from "./pages/case_studies/Radar";
 import Event from "./pages/case_studies/Event";
+import DesignSystem from "./pages/DesignSystem";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -43,6 +44,7 @@ function AppContent({ isLoading, setIsLoading }) {
         <Route path="/case-studies/radar" element={<Radar />} />
         <Route path="/case-studies/event" element={<Event />} />
         {/*. */}
+        <Route path="/design-system" element={<DesignSystem />} />
         
         <Route path="*" element={<NotFound />} />
       </Routes>

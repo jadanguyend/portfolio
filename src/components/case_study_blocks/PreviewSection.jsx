@@ -10,9 +10,9 @@ export default function PreviewSection({ sectionId, sectionLabel, images }) {
       {/* Section Label */}
       <div className="grid grid-cols-12 gap-y-6 mb-4">
         <div className="col-span-12">
-          <p className="text-sm font-mono uppercase tracking-wide text-grayLight-400 dark:text-grayDark-400">
+          <h6>
             {sectionLabel}
-          </p>
+          </h6>
         </div>
       </div>
 

@@ -18,16 +18,16 @@ export default function ExplainerSection({
     >
       {/* Section Label */}
       <div className="col-span-12 mb-4">
-        <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
+        <h6>
           {sectionLabel}
-        </p>
+        </h6>
       </div>
 
       {/* Top Content */}
       <div className="grid grid-cols-12 gap-x-6 gap-y-4">
         {/* Left: H2 */}
         <div className="col-span-12 md:col-span-5">
-          <h2 className="leading-tight text-grayLight-900 dark:text-grayDark-900">
+          <h2>
             {title}
           </h2>
         </div>
@@ -37,7 +37,7 @@ export default function ExplainerSection({
 
         {/* Right: Body */}
         <div className="col-span-12 md:col-span-6">
-          <div className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed ">
+          <div className="body">
             {body}
           </div>
         </div>

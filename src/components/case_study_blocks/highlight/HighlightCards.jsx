@@ -38,11 +38,11 @@ export default function HighlightCards({
               </div>
             )}
 
-            <h3 className="text-lg font-semibold text-grayLight-900 dark:text-grayDark-900">
+            <h4>
               {card.title}
-            </h3>
+            </h4>
 
-            <p className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
+            <p>
               {card.description}
             </p>
           </div>

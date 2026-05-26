@@ -31,12 +31,12 @@ export default function ProcessCards({
 
             <div className="flex flex-col gap-1">
               {step.title && (
-                <h3 className="text-lg font-semibold text-grayLight-900 dark:text-grayDark-900">
+                <h4>
                   {step.title}
-                </h3>
+                </h4>
               )}
 
-              <div className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
+              <div className="body">
                 {step.description}
               </div>
             </div>

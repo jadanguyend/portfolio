@@ -16,9 +16,9 @@ export default function QuoteSection({
         
         {/* LABEL */}
         <div className="col-span-12">
-          <p className="text-sm font-mono uppercase tracking-wide text-grayLight-400 dark:text-grayDark-400">
+          <h6>
             {sectionLabel}
-          </p>
+          </h6>
         </div>
 
         {/* QUOTE */}

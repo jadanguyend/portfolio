@@ -19,9 +19,9 @@ export default function HighlightSection({
     >
       {/* Section Label */}
       <div className="col-span-12 mb-4">
-        <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
+        <h6>
           {sectionLabel}
-        </p>
+        </h6>
       </div>
 
       {/* Headline */}

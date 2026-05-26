@@ -37,16 +37,16 @@ export default function Hero({
       <div className="grid grid-cols-12 gap-x-6 gap-y-6">
         {/* LEFT COLUMN */}
         <div className="col-span-12 md:col-span-5 space-y-3">
-          <p className="text-xs font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
+          <h6>
             {tag} · {readTime}
-          </p>
+          </h6>
 
-          <h1 className="text-3xl md:text-4xl font-semibold text-grayLight-900 dark:text-grayDark-900 leading-tight">
+          <h1>
             {title}
           </h1>
 
           {brief && (
-            <p className="text-base text-grayLight-700 dark:text-grayDark-700 leading-relaxed">
+            <p>
               {brief}
             </p>
           )}
@@ -62,10 +62,10 @@ export default function Hero({
 
           {contributors && (
             <div className="mt-4 md:mt-6">
-              <p className="text-sm font-mono text-grayLight-500 dark:text-grayDark-500 mb-1">
+              <h6>
                 CONTRIBUTORS
-              </p>
-              <p className="text-base text-grayLight-900 dark:text-grayDark-900">
+              </h6>
+              <p>
                 {contributors}
               </p>
             </div>
@@ -116,15 +116,11 @@ export default function Hero({
   );
 }
 
-function Meta({ label, value, labelSize = "text-xs", valueSize = "text-sm" }) {
+function Meta({ label, value }) {
   return (
     <div>
-      <p className={`${labelSize} font-mono text-grayLight-500 dark:text-grayDark-500 mb-1`}>
-        {label}
-      </p>
-      <p className={`${valueSize} text-grayLight-900 dark:text-grayDark-900`}>
-        {value}
-      </p>
+      <h6>{label}</h6>
+      <p>{value}</p>
     </div>
   );
 }

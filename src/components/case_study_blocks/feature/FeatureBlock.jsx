@@ -28,14 +28,12 @@ export default function FeatureBlock({
             : "col-span-12 md:col-span-4 flex flex-col justify-center"
         }
       >
-        <h3 className="text-2xl md:text-3xl font-semibold leading-tight text-grayLight-900 dark:text-grayDark-900 mb-4">
+        <h3>
           {title}
         </h3>
 
         <div
-          className="
-            text-base md:text-lg leading-relaxed
-            text-grayLight-700 dark:text-grayDark-400
+          className=" body
 
             [&_p]:text-inherit
             [&_ul]:text-inherit

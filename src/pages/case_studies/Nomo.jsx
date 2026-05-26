@@ -253,7 +253,7 @@ const features = [
               Across 13 interviews and 100+ survey responses, a clear pattern emerged: <strong> The busier someone was, the more food they wasted. </strong> 
             </p>
             <p className="mb-4">
-              When asked what makes reducing food waste most difficult, <strong> 69% of respondents identified forgetfulness as a primary barrier </strong>. To understand this breakdown, I dug deeper into what causes people to forget food they already own.
+              When asked what makes reducing food waste most difficult, <strong> 69% of respondents identified forgetfulness as a primary barrier.</strong> To understand this breakdown, I dug deeper into what causes people to forget food they already own.
             </p>
           </>
         }

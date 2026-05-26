@@ -96,12 +96,12 @@ export default function HomeAbout() {
         <div className="hidden md:block md:col-span-1" />
 
         <div className="col-span-12 md:col-span-7 flex flex-col gap-6">
-          <h2 className="text-grayLight-900 dark:text-grayDark-900">
+          <h2>
             I’m a multi-disciplinary designer with background in product design
             and brand strategy.
           </h2>
 
-          <p className="text-grayLight-900 dark:text-grayDark-900">
+          <p>
             I’m a Chinese <span className="text-accent">(碧玉)</span>
             –Vietnamese <span className="text-accent">(Bích Ngọc)</span>{" "}
             designer based in Seattle. Before I knew product design was a
@@ -110,7 +110,7 @@ export default function HomeAbout() {
             think, explore, and design today.
           </p>
 
-          <p className="text-grayLight-900 dark:text-grayDark-900">
+          <p>
             I keep up with what’s happening in tech and love exploring new
             products and tools, lately diving into{" "}
             {exploringItems.map((item, index) => (
@@ -132,7 +132,7 @@ export default function HomeAbout() {
             .
           </p>
 
-          <p className="text-grayLight-900 dark:text-grayDark-900">
+          <p>
             I thrive in playful, collaborative environments, especially
             alongside people who share a strong sense of care and curiosity. As{" "}
             <span className="text-accent">a designer who wears many hats</span>{" "}
@@ -237,9 +237,9 @@ export default function HomeAbout() {
 */}
           <div className="mt-8">
             <div className="relative mb-4 flex items-center justify-between">
-              <div className="font-mono text-sm uppercase text-grayLight-900 dark:text-grayDark-900">
+              <h6>
                 How do I spend my time when I’m not designing?
-              </div>
+              </h6>
 
               <div className="group relative z-50">
                 <FiInfo className="h-4 w-4 text-grayLight-400 dark:text-grayDark-500 cursor-pointer" />

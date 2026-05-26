@@ -49,7 +49,7 @@ export default function Footer() {
 
         {/* Column 1 */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-mono font-semibold">JADA NGUYEN</p>
+          <p className="font-mono font-semibold text-accent2">JADA NGUYEN</p>
 
           <div className="font-body font-normal text-sm tracking-tight">
             <div>PRODUCT DESIGNER</div>
@@ -61,7 +61,7 @@ export default function Footer() {
 
         {/* Column 2 */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-mono font-semibold">CONTACT</p>
+          <p className="font-mono font-semibold text-accent2">CONTACT</p>
 
           <div className="font-body font-normal text-sm flex flex-col gap-1 leading-tight">
             {contactLinks.map((link, i) => {
@@ -126,7 +126,7 @@ export default function Footer() {
 
         {/* Column 3 */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-mono font-semibold">SYSTEM</p>
+          <p className="font-mono font-semibold text-accent2">SYSTEM</p>
 
           <div className="font-body font-normal text-sm tracking-tight">
             <div>SF PRO TEXT</div>
@@ -137,7 +137,7 @@ export default function Footer() {
 
         {/* Column 4 */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-mono font-semibold">BUILD</p>
+          <p className="font-mono font-semibold text-accent2">BUILD</p>
 
           <div className="font-body font-normal text-sm tracking-tight">
             <div>REACT + VITE</div>

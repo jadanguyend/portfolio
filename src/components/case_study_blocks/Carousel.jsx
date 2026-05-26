@@ -21,9 +21,9 @@ export default function Carousel({
       {/* LABEL */}
       {sectionLabel && (
         <div className="col-span-12 mb-6">
-          <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
-            {sectionLabel}
-          </p>
+        <h6>
+          {sectionLabel}
+        </h6>
         </div>
       )}
 

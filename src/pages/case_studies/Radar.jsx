@@ -1,5 +1,6 @@
 // src/pages/case_studies/Radar.jsx
 import { useNavigate } from "react-router-dom";
+import CaseStudySection from "../../components/case_study_blocks/shared/CaseStudySection";
 
 import CaseStudyLayout from "../../layouts/CaseStudyLayout";
 import Hero from "../../components/case_study_blocks/Hero";
@@ -7,6 +8,7 @@ import OverviewSection from "../../components/case_study_blocks/OverviewSection"
 import Footer from "../../components/Footer";
 
 import radar_thumbnail from "../../assets/radar_thumbnail.png";
+import radar_poster from "../../assets/radar_poster.png";
 
 export default function Radar() {
   const navigate = useNavigate();
@@ -62,6 +64,17 @@ export default function Radar() {
         buttonLabel="Learn More"
         onButtonClick={goToContact}
       />
+
+<CaseStudySection>
+  <div className="col-span-12">
+    <img
+      src={radar_poster}
+      alt="RADAR project poster"
+      className="w-full h-auto rounded-2xl border border-grayLight-200 dark:border-grayDark-200"
+      loading="lazy"
+    />
+  </div>
+</CaseStudySection>
     </CaseStudyLayout>
   );
 }

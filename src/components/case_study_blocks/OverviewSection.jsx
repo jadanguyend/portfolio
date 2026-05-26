@@ -16,9 +16,9 @@ export default function OverviewSection({
 
         {/* SECTION LABEL — 12 COLS */}
         <div className="col-span-12">
-          <p className="text-sm font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
+          <h6>
             {sectionLabel}
-          </p>
+          </h6>
         </div>
 
         {/* CONTENT */}

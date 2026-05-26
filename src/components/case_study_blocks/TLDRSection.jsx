@@ -30,9 +30,9 @@ export default function TLDRSection({
           "
         >
           <div>
-            <p className="text-xs font-mono uppercase tracking-wide text-grayLight-500 dark:text-grayDark-500">
-              {sectionLabel}
-            </p>
+          <h6>
+            {sectionLabel}
+          </h6>
 
             {summary && (
               <p className="mt-1 text-sm text-grayLight-800 dark:text-grayDark-200">
