@@ -38,13 +38,13 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section className="container px-16 py-24 grid gap-6 md:gap-10">
+    <section className="container px-16 grid gap-10 md:gap-16">
       {projects.map((project, index) => {
         const Card = (
           <motion.div
             key={index}
-            className="project-card group cursor-pointer"
-            whileHover={{ scale: 1.01 }}
+            className="project-card group"
+            
           >
             {/* Left side */}
             <div className="project-card-left flex flex-col justify-between h-full">
@@ -81,8 +81,6 @@ export default function ProjectsSection() {
           Card
         );
       })}
-
-
     </section>
   );
 }

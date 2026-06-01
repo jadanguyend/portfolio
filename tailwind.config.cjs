@@ -24,23 +24,21 @@ module.exports = {
         mono: ['"IBM Plex Mono"', "monospace"],
       },
       colors: {
-        accent: "var(--accent-color)",   // Light mode uses --accent-color
-        accent2: "var(--accent-color-2)", // Light mode secondary
-        accentSoft: "var(--accent-soft)",
-
-        /* Optional: explicit dark variants (can be used if you want different classes) */
-        "accent-dark": "var(--accent-color)", // Will be overridden by .dark automatically
-        "accent2-dark": "var(--accent-color-2)",
+        accent: {
+          DEFAULT: "var(--accent-color)",
+          2: "var(--accent-color-2)",
+          soft: "var(--accent-soft)",
+        },
 
         /* ---------------- LIGHT MODE GRAYS ---------------- */
         grayLight: {
           0: "#FFFFFF",
           10: "#FDFDFD",
-          50: "#FAFAFA",
+          50: "#F8F8F8",
           100: "#F4F4F4",
-          200: "#E4E4E4",
-          300: "#CFCFCF",
-          400: "#A8A8A8",
+          200: "#ECECEC",
+          300: "#D8D8D8",
+          400: "#B5B5B5",
           500: "#8C8C8C",
           600: "#6E6E6E",
           700: "#4F4F4F",
@@ -48,15 +46,14 @@ module.exports = {
           900: "#050505",
         },
 
-        /* ---------------- DARK MODE GRAYS ---------------- */
         grayDark: {
           0: "#000000",
           10: "#050505",
-          50: "#1A1A1A",
-          100: "#2C2C2C",
-          200: "#3D3D3D",
-          300: "#555555",
-          400: "#707070",
+          50: "#181818",
+          100: "#242424",
+          200: "#323232",
+          300: "#4A4A4A",
+          400: "#686868",
           500: "#8A8A8A",
           600: "#A5A5A5",
           700: "#C0C0C0",

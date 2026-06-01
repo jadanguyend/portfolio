@@ -137,7 +137,7 @@ export default function DayCalendar() {
                 key={i}
                     className="
                     absolute top-10 h-20 rounded-md px-2 py-1 text-xs  cursor-pointer
-                    bg-accentSoft text-accent 
+                    bg-accent-soft text-accent 
                     hover:bg-accent hover:text-white
                     transition-colors duration-150
                     "

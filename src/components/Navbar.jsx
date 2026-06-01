@@ -1,18 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FiMenu, FiX } from "react-icons/fi";
-import { RiMoonFill, RiSunFill } from "react-icons/ri";
+import { FiMenu, FiX, FiMail } from "react-icons/fi";
 
 export default function Navbar() {
-  const [isDark, setIsDark] = useState(false);
+  // const [isDark, setIsDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [copied, setCopied] = useState(false);
   const menuRef = useRef(null);
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  // ===== Smooth scroll helper =====
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
 
@@ -28,7 +27,6 @@ export default function Navbar() {
     }
   };
 
-  // ===== Scroll or navigate depending on current page =====
   const handleNavClick = (item) => {
     if (item.type === "scroll") {
       if (location.pathname === "/") {
@@ -48,12 +46,25 @@ export default function Navbar() {
     }
   };
 
-  // ===== Detect active section =====
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("jadanguyend@gmail.com");
+      setCopied(true);
+      setMenuOpen(false);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy email", err);
+    }
+  };
+
   useEffect(() => {
     if (location.pathname === "/") {
       setActiveSection("hero");
 
-      const sections = ["hero", "work", "about", "contact"];
+      const sections = ["hero", "work", "about"];
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -81,7 +92,6 @@ export default function Navbar() {
     }
   }, [location.pathname]);
 
-  // ===== Close menu when clicking outside =====
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -98,6 +108,7 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  /*
   // ===== Load stored theme =====
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -120,26 +131,57 @@ export default function Navbar() {
     setIsDark(!isDark);
   };
 
+  const ThemeToggle = () => (
+    <button
+      onClick={toggleTheme}
+      className="
+        relative
+        h-[14px]
+        w-[26px]
+        rounded-full
+        border
+        border-current
+        hover:opacity-100
+        transition-all
+      "
+    >
+      <span
+        className={`
+          absolute
+          left-[2px]
+          top-[2px]
+          h-[8px]
+          w-[8px]
+          rounded-full
+          bg-current
+          transition-transform
+          duration-300
+          ${isDark ? "translate-x-[12px]" : "translate-x-0"}
+        `}
+      />
+    </button>
+  );
+  */
+
   const navItems = [
     { label: "Work", type: "scroll", target: "work" },
     { label: "About", type: "scroll", target: "about" },
-    { label: "Contact", type: "scroll", target: "contact" },
     /* { label: "Sandbox", type: "route", path: "/sandbox" }, */
-    { label: "Resume", type: "external", href: "https://drive.google.com/file/d/10J4j3lFfsc8HbZ3LgZa_lwA_e2Xl3AZg/view?usp=sharing" },
+    {
+      label: "Resume",
+      type: "external",
+      href: "https://drive.google.com/file/d/10J4j3lFfsc8HbZ3LgZa_lwA_e2Xl3AZg/view?usp=sharing",
+    },
   ];
 
   const getNavClass = (isActive) =>
-    `nav-link text-xs font-mono transition-colors ${
-      isActive
-        ? "text-accent"
-        : "text-grayLight-900 dark:text-grayDark-900 hover:text-accent dark:hover:text-accent"
+    `nav-link text-xs transition-colors ${
+      isActive ? "text-accent" : "text-grayLight-900 hover:text-accent"
     }`;
 
   const getMobileNavClass = (isActive) =>
-    `nav-link font-mono transition-colors ${
-      isActive
-        ? "text-accent"
-        : "text-grayLight-900 dark:text-grayDark-100 hover:text-accent dark:hover:text-accent"
+    `nav-link transition-colors ${
+      isActive ? "text-accent" : "text-grayLight-900 hover:text-accent"
     }`;
 
   return (
@@ -149,39 +191,34 @@ export default function Navbar() {
           className="
             relative
             rounded-xl
-            bg-grayLight-50/30 dark:bg-grayDark-50/30
+            bg-grayLight-50/30
             backdrop-blur-md
-            border border-grayLight-300/30 dark:border-grayDark-300/30
+            border border-grayLight-300/30
             transition-colors
           "
         >
           <div className="flex items-center justify-between px-6 py-4">
-            {/* Logo */}
             <button
               onClick={() =>
                 handleNavClick({ type: "scroll", target: "hero" })
               }
               className={getNavClass(activeSection === "hero")}
             >
-              <span className="bracket">[</span>
               jadanguyend
-              <span className="bracket">]</span>
             </button>
 
-            {/* Hamburger */}
             <button
-              className="md:hidden p-2 rounded-md hover:bg-grayLight-100/50 dark:hover:bg-grayDark-100/50 transition-colors font-mono"
+              className="md:hidden p-2 rounded-md hover:bg-grayLight-100/50 transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
             >
               {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
             </button>
 
-            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6">
               {navItems.map((item) => {
                 const isActive =
-                  item.type === "scroll" &&
-                  activeSection === item.target;
+                  item.type === "scroll" && activeSection === item.target;
 
                 return (
                   <button
@@ -189,35 +226,61 @@ export default function Navbar() {
                     onClick={() => handleNavClick(item)}
                     className={getNavClass(isActive)}
                   >
-                    <span className="bracket">[</span>
                     {item.label}
-                    <span className="bracket">]</span>
                   </button>
                 );
               })}
 
               <button
-                onClick={toggleTheme}
-                aria-label="Toggle dark mode"
-                className="hover:text-accent dark:hover:text-accent transition-colors"
+                onClick={copyEmail}
+                aria-label="Copy email"
+                className="
+                  relative
+                  text-grayLight-900
+                  hover:text-accent
+                  transition-colors
+                "
               >
-                {isDark ? (
-                  <RiSunFill size={16} />
-                ) : (
-                  <RiMoonFill size={16} />
-                )}
+                <FiMail size={14} />
+
+                <span
+                  className={`
+                    absolute
+                    top-7
+                    left-1/2
+                    -translate-x-1/2
+                    whitespace-nowrap
+                    rounded-md
+                    bg-black
+                    px-2
+                    py-1
+                    text-[10px]
+                    text-white
+                    transition-all
+                    duration-200
+                    pointer-events-none
+                    ${
+                      copied
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 -translate-y-1"
+                    }
+                  `}
+                >
+                  Copied!
+                </span>
               </button>
+
+              {/* <ThemeToggle /> */}
             </nav>
           </div>
 
-          {/* Mobile Menu */}
           {menuOpen && (
             <nav
               ref={menuRef}
               className="
                 md:hidden
-                border-t border-grayLight-300 dark:border-grayDark-300
-                bg-grayLight-50/80 dark:bg-grayDark-50/80
+                border-t border-grayLight-300
+                bg-grayLight-50/80
                 backdrop-blur-md
                 rounded-b-2xl
                 transition-colors
@@ -226,8 +289,7 @@ export default function Navbar() {
               <div className="flex flex-col items-center gap-4 py-4">
                 {navItems.map((item) => {
                   const isActive =
-                    item.type === "scroll" &&
-                    activeSection === item.target;
+                    item.type === "scroll" && activeSection === item.target;
 
                   return (
                     <button
@@ -235,24 +297,19 @@ export default function Navbar() {
                       onClick={() => handleNavClick(item)}
                       className={getMobileNavClass(isActive)}
                     >
-                      <span className="bracket">[</span>
                       {item.label}
-                      <span className="bracket">]</span>
                     </button>
                   );
                 })}
 
                 <button
-                  onClick={toggleTheme}
-                  aria-label="Toggle dark mode"
-                  className="hover:text-accent dark:hover:text-accent transition-colors"
+                  onClick={copyEmail}
+                  className={getMobileNavClass(false)}
                 >
-                  {isDark ? (
-                    <RiSunFill size={18} />
-                  ) : (
-                    <RiMoonFill size={18} />
-                  )}
+                  {copied ? "Copied!" : "Email"}
                 </button>
+
+                {/* <ThemeToggle /> */}
               </div>
             </nav>
           )}

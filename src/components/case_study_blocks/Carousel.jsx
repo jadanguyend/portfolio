@@ -41,31 +41,16 @@ export default function Carousel({
               className="flex gap-4 pr-4"
             >
               {set.map((image, index) => (
-                <div
-                  key={`${setIndex}-${index}`}
-                  className="
-                    shrink-0
-                    w-[60vw]
-                    sm:w-[45vw]
-                    md:w-[30vw]
-                    lg:w-[24vw]
-                  "
-                >
-                  <div
-                    className="
-                      aspect-[4/5]
-                      overflow-hidden
-                      rounded-2xl
-                    "
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt || ""}
-                      className="block w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
+              <div className="shrink-0">
+                <div className="h-[320px] md:h-[380px] overflow-hidden rounded-2xl">
+                  <img
+                    src={image.src}
+                    alt={image.alt || ""}
+                    className="block h-full w-auto object-cover"
+                    loading="lazy"
+                  />
                 </div>
+              </div>
               ))}
             </div>
           ))}

@@ -42,16 +42,16 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="px-12 md:px-24 py-16 flex flex-col gap-12 uppercase text-accent2">
+    <footer className="px-12 md:px-24 py-16 flex flex-col gap-12 uppercase text-fnt2">
 
       {/* ===== ROW 1: META ===== */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-sm md:text-base leading-tight">
 
         {/* Column 1 */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-mono font-semibold text-accent2">JADA NGUYEN</p>
+          <p className="font-mono font-semibold !text-accent-2">JADA NGUYEN</p>
 
-          <div className="font-body font-normal text-sm tracking-tight">
+          <div className="font-body font-normal text-sm tracking-tight text-accent-2">
             <div>PRODUCT DESIGNER</div>
             <div>BRAND STRATEGIST</div>
             <div>LEGO BUILDER</div>
@@ -61,9 +61,9 @@ export default function Footer() {
 
         {/* Column 2 */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-mono font-semibold text-accent2">CONTACT</p>
+          <p className="font-mono font-semibold !text-accent-2">CONTACT</p>
 
-          <div className="font-body font-normal text-sm flex flex-col gap-1 leading-tight">
+          <div className="font-body font-normal text-sm flex flex-col gap-1 leading-tight text-accent-2">
             {contactLinks.map((link, i) => {
               if (link.type === "copy") {
                 return (
@@ -126,9 +126,9 @@ export default function Footer() {
 
         {/* Column 3 */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-mono font-semibold text-accent2">SYSTEM</p>
+          <p className="font-mono font-semibold !text-accent-2">SYSTEM</p>
 
-          <div className="font-body font-normal text-sm tracking-tight">
+          <div className="font-body font-normal text-sm tracking-tight text-accent-2">
             <div>SF PRO TEXT</div>
             <div>IBM PLEX MONO</div>
             <div>FEATHER ICONS</div>
@@ -137,9 +137,9 @@ export default function Footer() {
 
         {/* Column 4 */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-mono font-semibold text-accent2">BUILD</p>
+          <p className="font-mono font-semibold !text-accent-2">BUILD</p>
 
-          <div className="font-body font-normal text-sm tracking-tight">
+          <div className="font-body font-normal text-sm tracking-tight text-accent-2">
             <div>REACT + VITE</div>
             <div>TAILWIND + FRAMER MOTION</div>
             <div>CLAUDE + CHATGPT</div>
@@ -160,7 +160,7 @@ export default function Footer() {
       </div>
 
       {/* ===== ROW 3: BOTTOM BAR ===== */}
-      <div className="flex justify-between items-center font-medium text-sm md:text-base leading-tight">
+      <div className="flex justify-between items-center font-medium text-sm md:text-base leading-tight text-accent-2">
 
         {/* Left */}
         <span>©2026 Jada Nguyen</span>
@@ -170,7 +170,7 @@ export default function Footer() {
           onClick={scrollToTop}
           className="group relative flex items-center gap-1"
         >
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 text-accent-2">
             BACK TO TOP <span>↑</span>
           </span>
 

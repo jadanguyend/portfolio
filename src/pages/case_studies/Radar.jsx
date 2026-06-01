@@ -5,10 +5,15 @@ import CaseStudySection from "../../components/case_study_blocks/shared/CaseStud
 import CaseStudyLayout from "../../layouts/CaseStudyLayout";
 import Hero from "../../components/case_study_blocks/Hero";
 import OverviewSection from "../../components/case_study_blocks/OverviewSection";
+import Carousel from "../../components/case_study_blocks/Carousel";
 import Footer from "../../components/Footer";
 
 import radar_thumbnail from "../../assets/radar_thumbnail.png";
 import radar_poster from "../../assets/radar_poster.png";
+import radar_showcase from "../../assets/radar_showcase.png";
+import radar_stair from "../../assets/radar_stair.png";
+import radar_logo from "../../assets/radar_logo.png";
+
 
 export default function Radar() {
   const navigate = useNavigate();
@@ -65,16 +70,28 @@ export default function Radar() {
         onButtonClick={goToContact}
       />
 
-<CaseStudySection>
-  <div className="col-span-12">
-    <img
-      src={radar_poster}
-      alt="RADAR project poster"
-      className="w-full h-auto rounded-2xl border border-grayLight-200 dark:border-grayDark-200"
-      loading="lazy"
-    />
-  </div>
-</CaseStudySection>
+      <CaseStudySection>
+        <div className="col-span-12">
+          <img
+            src={radar_poster}
+            alt="RADAR project poster"
+            className="w-full h-auto rounded-2xl border border-grayLight-200 dark:border-grayDark-200"
+            loading="lazy"
+          />
+        </div>
+      </CaseStudySection>
+
+      <Carousel
+        sectionId="bts"
+        sectionLabel="Behind the Scenes"
+        duration={45}
+        caption="This project brought together two capstone teams into one team of ten, making it the largest team I've worked on to date. It was my first time collaborating so closely with so many developers, and I learned a tremendous amount from the talented people around me. I'm especially grateful for our PM, whose leadership helped keep the team aligned and moving forward throughout the project."
+        images={[
+          { src: radar_showcase, alt: "Iteration 1" },
+          { src: radar_logo, alt: "Iteration 2" },
+          { src: radar_stair, alt: "Iteration 3" },
+        ]}
+      />
     </CaseStudyLayout>
   );
 }

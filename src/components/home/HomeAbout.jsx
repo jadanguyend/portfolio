@@ -1,13 +1,13 @@
 // src/components/HomeAbout.jsx
 import { useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll } from "framer-motion";
 import { FiInfo } from "react-icons/fi";
 
 import DayCalendar from "../DayCalendar";
 
-import miniMe from "../../assets/miniMe.png";
-
-
+import jadaAdult from "../../assets/jada_adult.png";
+import jadaAdultHover from "../../assets/jada_adult_hover.png";
+import jadaAdultFun from "../../assets/jada_adult_fun.png";
 
 const exploringItems = [
   { label: "Retro.app", href: "https://retro.app" },
@@ -30,67 +30,60 @@ const tags = [
 
 export default function HomeAbout() {
   const sectionRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const { scrollYProgress } = useScroll({
+  useScroll({
     target: sectionRef,
     offset: ["start 70%", "end 50%"],
   });
-
-    const stampOpacity = useTransform(
-    scrollYProgress,
-    [0.22, 0.32],
-    [0, 1]
-    );
-
-    const stampScale = useTransform(
-    scrollYProgress,
-    [0.22, 0.32],
-    [2.4, 1]
-    );
-
-    const stampRotate = useTransform(
-    scrollYProgress,
-    [0.22, 0.32],
-    [28, 10]
-    );
 
   return (
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-12 px-16 pb-24"
+      className="relative py-12 px-16 pb-24 mb-12"
     >
       <div className="grid grid-cols-12">
         <div className="col-span-12 md:col-span-4">
-        <div className="md:sticky md:top-36 min-h-[320px]">
-            <div className="relative inline-block">
-            <h1 className="relative z-10 font-mono uppercase text-grayLight-900 dark:text-grayDark-900">
-                [JADA]
-            </h1>
+          <div className="md:sticky md:top-28">
+            <div
+              className="
+                relative
+                h-40
+                aspect-[3/4]
+                overflow-hidden
+                rounded-lg
+                cursor-pointer
+                select-none
+              "
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <img
+                src={jadaAdult}
+                alt="Jada"
+                className={`
+                  absolute inset-0
+                  w-full h-full
+                  object-cover
+                  transition-opacity duration-300
+                  ${isHovered ? "opacity-0" : "opacity-100"}
+                `}
+              />
 
-            <motion.img
-                src={miniMe}
-                alt=""
-                className="
-                pointer-events-none
-                absolute
-                left-1/2
-                top-1/2
-                z-20
-                w-20
-                md:w-24
-                drop-shadow-sm
-                "
-                style={{
-                opacity: stampOpacity,
-                scale: stampScale,
-                rotate: stampRotate,
-                x: "-50%",
-                y: "-50%",
-                }}
-            />
+              <img
+                src={jadaAdultFun}
+                alt="Jada"
+                className={`
+                  absolute inset-0
+                  w-full h-full
+                  object-cover
+                  transition-opacity duration-300
+                  ${isHovered ? "opacity-100" : "opacity-0"}
+                `}
+              />
             </div>
-        </div>
+          </div>
         </div>
 
         <div className="hidden md:block md:col-span-1" />
@@ -151,7 +144,8 @@ export default function HomeAbout() {
               </span>
             ))}
           </div>
-{/*
+
+          {/*
           <h4 className="mt-16 max-w-3xl mx-auto text-grayLight-900 dark:text-grayDark-900">
             I design experiences like building LEGO — methodical in structure,
             creative in execution, and thoughtfully connected to build something
@@ -163,83 +157,12 @@ export default function HomeAbout() {
             <span className="text-accent">design philosophy and values</span> ↓
           </motion.div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-  {[
-    {
-      symbol: "⌘",
-      title: "Intentionality",
-      description:
-        "Designing with clarity, purpose, and thoughtful attention.",
-    },
-    {
-      symbol: "⌥",
-      title: "Tenacity",
-      description:
-        "Embracing curiosity and iteration to uncover intuitive experiences.",
-    },
-    {
-      symbol: "[]",
-      title: "Reliable",
-      description:
-        "Building flexible foundations that support consistency and growth.",
-    },
-    {
-      symbol: "*",
-      title: "Delight",
-      description:
-        "Creating small moments that make experiences feel memorable.",
-    },
-  ].map((item, index) => (
-    <motion.div
-      key={index}
-      className="
-        group
-        rounded-lg
-        border
-        border-dashed
-        border-grayLight-200
-        dark:border-grayDark-200
-        bg-grayLight-100/40
-        dark:bg-grayDark-800/40
-        px-5
-        py-4
-        transition-all
-        duration-300
-        hover:border-accent
-      "
-      whileHover={{ y: -2 }}
-    >
-      <div className="grid grid-cols-[56px_1fr] gap-4 items-start">
-        <div
-        className={`
-            font-mono
-            leading-none
-            text-accent
-            ${item.symbol === "[]" ? "text-2xl pt-1" : "text-4xl"}
-        `}
-        >
-        {item.symbol}
-        </div>
+          ...
+          */}
 
-        <div>
-          <h5 className="mb-1 text-sm text-grayLight-900 dark:text-grayDark-900">
-            {item.title}
-          </h5>
-
-          <p className="text-[11px] leading-relaxed text-grayLight-700 dark:text-grayDark-700">
-            {item.description}
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  ))}
-</div>
-*/}
           <div className="mt-8">
             <div className="relative mb-4 flex items-center justify-between">
-              <h6>
-                How do I spend my time when I’m not designing?
-              </h6>
+              <h6>How do I spend my time when I’m not designing?</h6>
 
               <div className="group relative z-50">
                 <FiInfo className="h-4 w-4 text-grayLight-400 dark:text-grayDark-500 cursor-pointer" />
