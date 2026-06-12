@@ -657,6 +657,28 @@ div {
 
 
 
+.hero-badge-wrapper {
+  position: absolute;
+  right: 6rem;
+  bottom: 2rem;
+  z-index: 10;
+}
 
+.hero-badge {
+  width: clamp(6rem, 8vw, 7rem); /* 96px → 112px */
+  height: auto;
 
+  animation: heroBadgeSpin 20s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes heroBadgeSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
 

@@ -11,14 +11,15 @@ export default function Home({ isLoading }) {
   return (
     <Layout footer={<Footer />}>
       <HomeHero isLoading={isLoading} />
-      
 
-      <div id="work" className="mb-24">
-        <ProjectsSection />
-        <SandboxSection />
+      <div className="container">
+        <div id="work" className="mb-24">
+          <ProjectsSection />
+          <SandboxSection />
+        </div>
+
+        <HomeAbout />
       </div>
-
-      <HomeAbout />
     </Layout>
   );
 }

@@ -170,7 +170,7 @@ export default function Navbar() {
     {
       label: "Resume",
       type: "external",
-      href: "https://drive.google.com/file/d/10J4j3lFfsc8HbZ3LgZa_lwA_e2Xl3AZg/view?usp=sharing",
+      href: "https://drive.google.com/file/d/1SeZzUdKRPaDZOg217T7v1A6QjWU8UbWe/view?usp=sharing",
     },
   ];
 
