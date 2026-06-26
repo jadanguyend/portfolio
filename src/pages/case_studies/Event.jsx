@@ -11,16 +11,8 @@ import FeatureSection from "../../components/case_study_blocks/feature/FeatureSe
 import Footer from "../../components/Footer";
 
 // Images
-import project1Img from "../../assets/project1.png";
-import researchImg1 from "../../assets/research1.png";
-import researchImg2 from "../../assets/research2.png";
-import highlightImg1 from "../../assets/highlight1.png";
-import highlightImg2 from "../../assets/highlight2.png";
-import highlightImg3 from "../../assets/highlight3.png";
-import featureImg1 from "../../assets/feature1.png";
-import featureImg2 from "../../assets/feature2.png";
-import featureImg3 from "../../assets/feature3.png";
-import event_thumbnail from "../../assets/event_thumbnail.png";
+
+import event_thumbnail from "../../assets/event_thumbnail.webp";
 
 // Icons
 import {

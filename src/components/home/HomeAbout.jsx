@@ -5,9 +5,8 @@ import { FiInfo } from "react-icons/fi";
 
 import DayCalendar from "../DayCalendar";
 
-import jadaAdult from "../../assets/jada_adult.png";
-import jadaAdultHover from "../../assets/jada_adult_hover.png";
-import jadaAdultFun from "../../assets/jada_adult_fun.png";
+import jadaAdult from "../../assets/jada_adult.webp";
+import jadaAdultFun from "../../assets/jada_adult_fun.webp";
 
 const exploringItems = [
   { label: "Retro.app", href: "https://retro.app" },
@@ -129,7 +128,7 @@ export default function HomeAbout() {
             I thrive in playful, collaborative environments, especially
             alongside people who share a strong sense of care and curiosity. As{" "}
             <span className="text-accent">a designer who wears many hats</span>{" "}
-            literally, I enjoy working across product, brand, and front-end
+            (literally), I enjoy working across product, brand, and front-end
             experiences, blending systems thinking with visual craft through
             tools and skills like...
           </p>

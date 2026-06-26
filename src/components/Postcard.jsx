@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FiSend } from "react-icons/fi";
-import stamp from "../assets/Stamp.png";
+
 
 export default function Postcard() {
   const formRef = useRef();

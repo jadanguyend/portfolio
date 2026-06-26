@@ -8,11 +8,11 @@ import OverviewSection from "../../components/case_study_blocks/OverviewSection"
 import Carousel from "../../components/case_study_blocks/Carousel";
 import Footer from "../../components/Footer";
 
-import radar_thumbnail from "../../assets/radar_thumbnail.png";
-import radar_poster from "../../assets/radar_poster.png";
-import radar_showcase from "../../assets/radar_showcase.png";
-import radar_stair from "../../assets/radar_stair.png";
-import radar_logo from "../../assets/radar_logo.png";
+import radar_thumbnail from "../../assets/radar_thumbnail.webp";
+import radar_poster from "../../assets/radar_poster.webp";
+import radar_showcase from "../../assets/radar_showcase.webp";
+import radar_stair from "../../assets/radar_stair.webp";
+import radar_logo from "../../assets/radar_logo.webp";
 
 
 export default function Radar() {

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-import radar_thumbnail from "../assets/radar_thumbnail.png";
-import nomo_thumbnail from "../assets/nomo_thumbnail.png";
-import event_thumbnail from "../assets/event_thumbnail.png";
+import radar_thumbnail from "../assets/radar_thumbnail.webp";
+import nomo_thumbnail from "../assets/nomo_thumbnail.webp";
+import event_thumbnail from "../assets/event_thumbnail.webp";
 
 const projects = [
   {

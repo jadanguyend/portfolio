@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 
 import placeholderImg from "../assets/placeholderImg.png";
-import soma_thumbnail from "../assets/soma_thumbnail.png";
-import songhoa_thumbnail from "../assets/songhoa_thumbnail.png";
-import atlas_thumbnail from "../assets/atlas_thumbnail.png";
+import soma_thumbnail from "../assets/soma_thumbnail.webp";
+import songhoa_thumbnail from "../assets/songhoa_thumbnail.webp";
+import atlas_thumbnail from "../assets/atlas_thumbnail.webp";
 
 const projects = [
   {

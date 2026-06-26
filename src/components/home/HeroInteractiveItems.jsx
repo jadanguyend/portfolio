@@ -3,13 +3,13 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiX } from "react-icons/fi";
 
-import StickerKubo from "../../assets/Sticker_Kubo.png";
-import StickerCar from "../../assets/Sticker_Car.png";
-import StickerSmiski from "../../assets/Sticker_Smiski.png";
-import StickerFragrance from "../../assets/Sticker_Fragrance.png";
-import StickerCoffee from "../../assets/Sticker_Cofee.png";
-import StickerPlant from "../../assets/Sticker_Plant.png";
-import StickerMinifig from "../../assets/Sticker_Minifig.png";
+import StickerKubo from "../../assets/Sticker_Kubo.webp";
+import StickerCar from "../../assets/Sticker_Car.webp";
+import StickerSmiski from "../../assets/Sticker_Smiski.webp";
+import StickerFragrance from "../../assets/Sticker_Fragrance.webp";
+import StickerCoffee from "../../assets/Sticker_Coffee.webp";
+import StickerPlant from "../../assets/Sticker_Plant.webp";
+import StickerMinifig from "../../assets/Sticker_Minifig.webp";
 
 const SPAWN_DURATION = 0.32;
 const SPAWN_GAP = 0.06;

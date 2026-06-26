@@ -17,7 +17,7 @@ import Carousel from "../../components/case_study_blocks/Carousel";
 
 // Images
 import placeholderImg from "../../assets/placeholderImg.png";
-import nomo_thumbnail from "../../assets/nomo_thumbnail.png";
+import nomo_thumbnail from "../../assets/nomo_thumbnail.webp";
 import nomo_problem from "../../assets/nomo_problem.png";
 import nomo_preview_1 from "../../assets/nomo_preview_1.png";
 import nomo_preview_2 from "../../assets/nomo_preview_2.png";
@@ -37,7 +37,7 @@ import nomo_brainstorm_1 from "../../assets/nomo_brainstorm_1.png";
 import nomo_brainstorm_2 from "../../assets/nomo_brainstorm_2.png";
 import nomo_sketch_1 from "../../assets/nomo_sketch_1.png";
 import nomo_sketch_2 from "../../assets/nomo_sketch_2.png";
-import event_thumbnail from "../../assets/event_thumbnail.png";
+import event_thumbnail from "../../assets/event_thumbnail.webp";
 
 
 // Icons

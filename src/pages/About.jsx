@@ -4,14 +4,7 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motio
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 
-import MeBookstore from "../assets/MeBookstore.png";
 
-/* ================= How Images ================= */
-
-import howPlanner from "../assets/howPlanner.png";
-import howTinkerer from "../assets/howTinkerer.png";
-import howBuilder from "../assets/howBuilder.png";
-import howPainter from "../assets/howPainter.png";
 
 /* ===================================================== */
 /* ======================= ABOUT ======================== */

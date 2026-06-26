@@ -1,7 +1,7 @@
 // src/components/LoadingScreen.jsx
 import { useEffect, useState } from "react";
 
-import Loading_Coffee from "../assets/Loading_Coffee.png";
+import Loading_Coffee from "../assets/Loading_Coffee.webp";
 
 const TEXT = "Good things take time...";
 const TYPING_SPEED = 75;
