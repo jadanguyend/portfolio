@@ -1,11 +1,9 @@
-// src/components/HomeHero.jsx
+// src/components/home/HomeHero.jsx
 import { useEffect, useState } from "react";
 import HeroCursorFlow from "./HeroCursorFlow";
-import HeroAsterisk from "./HeroAsterisk";
-import getInTouch from "../../assets/get_in_touch.png";
+import HeroInteractiveItems from "./HeroInteractiveItems";
 
 export default function HomeHero() {
-  const [hoverHero, setHoverHero] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
 
   const lastCommit = import.meta.env.VITE_LAST_COMMIT
@@ -30,7 +28,9 @@ export default function HomeHero() {
     };
 
     updateTime();
+
     const interval = setInterval(updateTime, 1000);
+
     return () => clearInterval(interval);
   }, []);
 
@@ -46,16 +46,20 @@ export default function HomeHero() {
         mb-12
       "
     >
+      {/* Background shader / cursor flow */}
       <div className="absolute top-0 left-1/2 z-0 h-full w-screen -translate-x-1/2 overflow-hidden pointer-events-auto">
         <HeroCursorFlow />
 
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-grayLight-10 dark:to-grayDark-10" />
       </div>
 
+      {/* Interactive draggable hero items */}
+      <HeroInteractiveItems />
+
+      {/* Main hero content */}
       <div
         className="
           relative
-          z-10
           min-h-screen
           flex
           flex-col
@@ -64,47 +68,53 @@ export default function HomeHero() {
           md:px-16
           pt-28
           pb-10
+          pointer-events-none
         "
       >
         <div className="grid grid-cols-12">
           <div className="col-span-12 md:col-span-12">
             <h1
-              onMouseEnter={() => setHoverHero(true)}
-              onMouseLeave={() => setHoverHero(false)}
-              className={`
+              className="
+                relative
+                z-[5]
                 font-bold
-                transition-colors
-                duration-300
                 leading-[1.1]
-                ${
-                  hoverHero
-                    ? "text-grayLight-200 dark:text-grayDark-200"
-                    : "text-grayLight-900 dark:text-grayDark-900"
-                }
-              `}
+                pointer-events-none
+                text-grayLight-0
+                mix-blend-difference
+              "
+              style={{
+                textShadow: "0 0 20px rgba(0, 0, 0, 0.10)",
+              }}
             >
-              <span
-                className={`
-                  transition-colors
-                  duration-300
-                  ${hoverHero ? "text-accent" : ""}
-                `}
-              >
-                Jada Nguyen
-              </span>{" "}
-              designs experiences that align systems, strategy, and visual craft,
-              bringing delight to enterprise products, consumer experiences, and
-              complex workflows.
+              <span>Jada Nguyen</span>{" "}
+              designs experiences that align systems, strategy, and visual
+              craft, bringing delight to enterprise products, consumer
+              experiences, and complex workflows.
             </h1>
 
-            <h3 className="mt-4 text-grayLight-400 dark:text-grayDark-400">
-              Consistent details matter, mine is a Seiko Watch (SSEH105)
+            <h3
+              className="
+                relative
+                z-[5]
+                mt-4
+                pointer-events-none
+                text-grayLight-0/40
+                mix-blend-difference
+              "
+              style={{
+                textShadow: "0 0 20px rgba(0, 0, 0, 0.10)",
+              }}
+            >
+              Consistent details matter, mine is a Seiko Watch &#40;SSEH105&#41;
             </h3>
           </div>
         </div>
 
         <div
           className="
+            relative
+            z-[5]
             flex
             items-center
             gap-12
@@ -113,30 +123,18 @@ export default function HomeHero() {
             md:text-sm
             uppercase
             tracking-tight
-            text-grayLight-400
-            dark:text-grayDark-400
+            pointer-events-none
+            text-grayLight-0/40
+            mix-blend-difference
           "
         >
           <span className="font-medium">
             {lastCommit ? `Current Build: ${lastCommit}` : "Current Build"}
           </span>
 
-          <span className="font-medium">
-            Seattle {currentTime}
-          </span>
+          <span className="font-medium">Seattle {currentTime}</span>
         </div>
       </div>
-
-      {/* Bottom-right decorative asterisk */}
-    <div className="hero-badge-wrapper">
-      <a href="#contact" aria-label="Get in touch">
-        <img
-          src={getInTouch}
-          alt=""
-          className="hero-badge"
-        />
-      </a>
-    </div>
     </section>
   );
 }

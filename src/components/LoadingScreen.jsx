@@ -1,32 +1,17 @@
 // src/components/LoadingScreen.jsx
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
-import miniDog from "../assets/miniDog.png";
-import miniRead from "../assets/miniRead.png";
-import miniSkateboard from "../assets/miniSkateboard.png";
+import Loading_Coffee from "../assets/Loading_Coffee.png";
 
-const stickers = [miniDog, miniRead, miniSkateboard];
-
-const TEXT = "loading...";
+const TEXT = "Good things take time...";
 const TYPING_SPEED = 75;
-const STICKER_SPEED = 650;
 const EXIT_DELAY = 3600;
 const EXIT_DURATION = 650;
 
 export default function LoadingScreen({ onComplete }) {
-  const [stickerIndex, setStickerIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const [exiting, setExiting] = useState(false);
-
-  useEffect(() => {
-    const stickerInterval = setInterval(() => {
-      setStickerIndex((prev) => (prev + 1) % stickers.length);
-    }, STICKER_SPEED);
-
-    return () => clearInterval(stickerInterval);
-  }, []);
 
   useEffect(() => {
     let index = 0;
@@ -78,26 +63,14 @@ export default function LoadingScreen({ onComplete }) {
         transitionDuration: `${EXIT_DURATION}ms`,
       }}
     >
-      <div className="relative h-32 w-32">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={stickers[stickerIndex]}
-            src={stickers[stickerIndex]}
-            alt=""
-            draggable={false}
-            initial={{ opacity: 50 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 50 }}
-            transition={{
-              duration: 0.35,
-              ease: "linear",
-            }}
-            className="absolute inset-0 w-28 md:w-32"
-          />
-        </AnimatePresence>
-      </div>
+      <img
+        src={Loading_Coffee}
+        alt=""
+        draggable={false}
+        className="w-24 md:w-28"
+      />
 
-      <div className="mt-16 flex items-center font-mono text-xs uppercase tracking-tight text-white">
+      <div className="mt-8 flex items-center font-mono text-xs uppercase tracking-tight text-white">
         <span>{displayedText}</span>
 
         <span
