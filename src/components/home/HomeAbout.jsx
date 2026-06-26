@@ -1,12 +1,17 @@
-// src/components/HomeAbout.jsx
 import { useState, useRef } from "react";
 import { useScroll } from "framer-motion";
 import { FiInfo } from "react-icons/fi";
 
 import DayCalendar from "../DayCalendar";
+import StickerPeel from "../StickerPeel";
 
 import jadaAdult from "../../assets/jada_adult.webp";
 import jadaAdultFun from "../../assets/jada_adult_fun.webp";
+
+import minifigPlanner from "../../assets/minifig_planner.webp";
+import minifigBuilder from "../../assets/minifig_builder.webp";
+import minifigFixer from "../../assets/minifig_fixer.webp";
+import minifigPainter from "../../assets/minifig_painter.webp";
 
 const exploringItems = [
   { label: "Retro.app", href: "https://retro.app" },
@@ -27,6 +32,39 @@ const tags = [
   "design systems",
 ];
 
+const stickerSize = 160;
+
+const minifigItems = [
+  {
+    src: minifigPlanner,
+    alt: "Minifigure planner",
+    label: "Strategic Thinker",
+    rotate: -4,
+    peelDirection: 0,
+  },
+  {
+    src: minifigBuilder,
+    alt: "Minifigure builder",
+    label: "Systems Builder",
+    rotate: 3,
+    peelDirection: 8,
+  },
+  {
+    src: minifigFixer,
+    alt: "Minifigure fixer",
+    label: "Relentless Tinkerer",
+    rotate: -2,
+    peelDirection: -6,
+  },
+  {
+    src: minifigPainter,
+    alt: "Minifigure painter",
+    label: "Joyful Crafter",
+    rotate: 4,
+    peelDirection: 5,
+  },
+];
+
 export default function HomeAbout() {
   const sectionRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -40,9 +78,9 @@ export default function HomeAbout() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-12 px-16 pb-24 mb-12"
+      className="relative overflow-visible py-12 px-16 pb-24 mb-12"
     >
-      <div className="grid grid-cols-12">
+      <div className="grid grid-cols-12 overflow-visible">
         <div className="col-span-12 md:col-span-4">
           <div className="md:sticky md:top-28">
             <div
@@ -87,7 +125,7 @@ export default function HomeAbout() {
 
         <div className="hidden md:block md:col-span-1" />
 
-        <div className="col-span-12 md:col-span-7 flex flex-col gap-6">
+        <div className="col-span-12 md:col-span-7 flex flex-col gap-6 overflow-visible">
           <h2>
             I’m a multi-disciplinary designer with background in product design
             and brand strategy.
@@ -141,6 +179,82 @@ export default function HomeAbout() {
               >
                 {tag}
               </span>
+            ))}
+          </div>
+
+          <div className="mt-2 grid grid-cols-4 gap-3 sm:gap-4 overflow-visible">
+            {minifigItems.map((item) => (
+              <div
+                key={item.alt}
+                className="
+                  relative
+                  flex
+                  h-56
+                  flex-col
+                  items-center
+                  justify-center
+                  overflow-visible
+                  rounded-xl
+                "
+              >
+                <div
+                  className="
+                    relative
+                    flex
+                    h-48
+                    w-full
+                    items-center
+                    justify-center
+                    overflow-visible
+                  "
+                >
+                  <img
+                    src={item.src}
+                    alt=""
+                    aria-hidden="true"
+                    className="
+                      pointer-events-none
+                      absolute
+                      select-none
+                    "
+                    style={{
+                      width: stickerSize,
+                      transform: `rotate(${item.rotate}deg)`,
+                      opacity: 0.1,
+                      filter:
+                        "brightness(0) saturate(100%) invert(22%) sepia(87%) saturate(2987%) hue-rotate(225deg) brightness(94%) contrast(99%)",
+                    }}
+                  />
+
+                  <StickerPeel
+                    imageSrc={item.src}
+                    alt={item.alt}
+                    width={stickerSize}
+                    rotate={item.rotate}
+                    peelDirection={item.peelDirection}
+                    peelBackHoverPct={16}
+                    peelBackActivePct={32}
+                    shadowIntensity={0.12}
+                    lightingIntensity={0.08}
+                    isDraggable
+                    boundsRef={sectionRef}
+                  />
+                </div>
+
+                <p
+                  className="
+                    pointer-events-none
+                    -mt-4
+                    font-mono
+                    text-xs
+                    uppercase
+                    tracking-tight
+                    text-accent
+                  "
+                >
+                  {item.label}
+                </p>
+              </div>
             ))}
           </div>
 
