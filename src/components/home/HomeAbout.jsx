@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useScroll } from "framer-motion";
-import { FiInfo } from "react-icons/fi";
+import { FiInfo, FiGrid } from "react-icons/fi";
 
 import DayCalendar from "../DayCalendar";
 import StickerPeel from "../StickerPeel";
@@ -14,7 +14,7 @@ import minifigFixer from "../../assets/minifig_fixer.webp";
 import minifigPainter from "../../assets/minifig_painter.webp";
 
 const exploringItems = [
-  { label: "Retro.app", href: "https://retro.app" },
+  { label: "Maze", href: "https://maze.co/" },
   { label: "Claude", href: "https://claude.ai" },
   { label: "GSAP", href: "https://gsap.com" },
   { label: "Three.js", href: "https://threejs.org" },
@@ -24,12 +24,12 @@ const tags = [
   "figma",
   "jitter",
   "spline",
+  "framer",
   "illustrator",
   "react",
-  "user research",
-  "prototyping",
-  "interaction design",
-  "design systems",
+  "javascript",
+  "vercel",
+  "github",
 ];
 
 const stickerSize = 160;
@@ -68,6 +68,7 @@ const minifigItems = [
 export default function HomeAbout() {
   const sectionRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
 
   useScroll({
     target: sectionRef,
@@ -134,10 +135,10 @@ export default function HomeAbout() {
           <p>
             I’m a Chinese <span className="text-accent">(碧玉)</span>
             –Vietnamese <span className="text-accent">(Bích Ngọc)</span>{" "}
-            designer based in Seattle. Before I knew product design was a
-            field, I have long been drawn to design — starting with childhood
-            dreams of becoming an architect. That curiosity still shapes how I
-            think, explore, and design today.
+            designer based in Seattle. Before I knew product design was a field,
+            I have long been drawn to design — starting with childhood dreams of
+            becoming an architect. That curiosity still shapes how I think,
+            explore, and design today.
           </p>
 
           <p>
@@ -182,80 +183,121 @@ export default function HomeAbout() {
             ))}
           </div>
 
-          <div className="mt-2 grid grid-cols-4 gap-3 sm:gap-4 overflow-visible">
-            {minifigItems.map((item) => (
-              <div
-                key={item.alt}
+          <div className="mt-6">
+            <div className="relative mb-2 flex items-center justify-between">
+              <h6>What hats do I wear as a designer?</h6>
+
+              <button
+                type="button"
+                aria-label="Reset stickers to original positions"
+                onClick={() => setResetKey((current) => current + 1)}
                 className="
-                  relative
-                  flex
-                  h-56
-                  flex-col
-                  items-center
-                  justify-center
-                  overflow-visible
-                  rounded-xl
+                  cursor-pointer
+                  text-grayLight-400
+                  transition-colors
+                  duration-200
+                  hover:text-accent
+                  focus:outline-none
+                  focus-visible:text-accent
+                  dark:text-grayDark-500
+                  dark:hover:text-accent
+                  dark:focus-visible:text-accent
                 "
               >
+                <FiGrid className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div
+              className="
+                grid
+                grid-cols-4
+                gap-3
+                sm:gap-4
+                rounded-lg
+                bg-grayLight-50
+                px-4
+                pt-4
+                pb-8
+                overflow-visible
+              "
+            >
+              {minifigItems.map((item) => (
                 <div
+                  key={item.alt}
                   className="
                     relative
                     flex
-                    h-48
-                    w-full
+                    flex-col
                     items-center
                     justify-center
+                    gap-2
                     overflow-visible
+                    rounded-xl
                   "
                 >
-                  <img
-                    src={item.src}
-                    alt=""
-                    aria-hidden="true"
+                  <div
                     className="
-                      pointer-events-none
-                      absolute
-                      select-none
+                      relative
+                      flex
+                      items-center
+                      justify-center
+                      overflow-visible
                     "
                     style={{
                       width: stickerSize,
-                      transform: `rotate(${item.rotate}deg)`,
-                      opacity: 0.1,
-                      filter:
-                        "brightness(0) saturate(100%) invert(22%) sepia(87%) saturate(2987%) hue-rotate(225deg) brightness(94%) contrast(99%)",
+                      height: stickerSize,
                     }}
-                  />
+                  >
+                    <img
+                      src={item.src}
+                      alt=""
+                      aria-hidden="true"
+                      className="
+                        pointer-events-none
+                        absolute
+                        select-none
+                      "
+                      style={{
+                        width: stickerSize,
+                        transform: `rotate(${item.rotate}deg)`,
+                        opacity: 0.1,
+                        filter:
+                          "brightness(0) saturate(100%) invert(22%) sepia(87%) saturate(2987%) hue-rotate(225deg) brightness(94%) contrast(99%)",
+                      }}
+                    />
 
-                  <StickerPeel
-                    imageSrc={item.src}
-                    alt={item.alt}
-                    width={stickerSize}
-                    rotate={item.rotate}
-                    peelDirection={item.peelDirection}
-                    peelBackHoverPct={16}
-                    peelBackActivePct={32}
-                    shadowIntensity={0.12}
-                    lightingIntensity={0.08}
-                    isDraggable
-                    boundsRef={sectionRef}
-                  />
+                    <StickerPeel
+                      key={`${item.alt}-${resetKey}`}
+                      imageSrc={item.src}
+                      alt={item.alt}
+                      width={stickerSize}
+                      rotate={item.rotate}
+                      peelDirection={item.peelDirection}
+                      peelBackHoverPct={16}
+                      peelBackActivePct={32}
+                      shadowIntensity={0.12}
+                      lightingIntensity={0.08}
+                      isDraggable
+                      boundsRef={sectionRef}
+                    />
+                  </div>
+
+                  <p
+                    className="
+                      pointer-events-none
+                      font-mono
+                      text-xs
+                      uppercase
+                      tracking-tight
+                      text-accent
+                    "
+                  >
+                    {item.label}
+                  </p>
                 </div>
-
-                <p
-                  className="
-                    pointer-events-none
-                    -mt-4
-                    font-mono
-                    text-xs
-                    uppercase
-                    tracking-tight
-                    text-accent
-                  "
-                >
-                  {item.label}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/*
@@ -278,12 +320,24 @@ export default function HomeAbout() {
               <h6>How do I spend my time when I’m not designing?</h6>
 
               <div className="group relative z-50">
-                <FiInfo className="h-4 w-4 text-grayLight-400 dark:text-grayDark-500 cursor-pointer" />
+                <FiInfo
+                  className="
+                    h-4
+                    w-4
+                    cursor-pointer
+                    text-grayLight-400
+                    transition-colors
+                    duration-200
+                    group-hover:text-accent
+                    dark:text-grayDark-500
+                    dark:group-hover:text-accent
+                  "
+                />
 
                 <div className="pointer-events-none absolute right-0 top-6 z-50 w-64 rounded-md bg-black text-white text-xs leading-relaxed p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  I believe a great way to get to know someone is to see how
+                  A great way to get to know someone is to see how
                   they spend their time. Here is how I would spend mine... when
-                  I'm not designing :)
+                  I'm not designing of course :)
                 </div>
               </div>
             </div>
