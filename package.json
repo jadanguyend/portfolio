@@ -5,7 +5,7 @@
   "main": "index.js",
   "homepage": "https://jadanguyend.com",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "vite",
@@ -19,6 +19,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "22": "^0.0.0",
     "@emailjs/browser": "4.4.1",
     "@react-three/drei": "10.7.7",
     "@react-three/fiber": "9.5.0",
