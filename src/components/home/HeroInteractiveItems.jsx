@@ -10,6 +10,10 @@ import StickerFragrance from "../../assets/Sticker_Fragrance.webp";
 import StickerCoffee from "../../assets/Sticker_Coffee.webp";
 import StickerPlant from "../../assets/Sticker_Plant.webp";
 import StickerMinifig from "../../assets/Sticker_Minifig.webp";
+import StickerShoe from "../../assets/Sticker_Shoe.png";
+import StickerSunglass from "../../assets/Sticker_Sunglass.png";
+import StickerHeadphones from "../../assets/Sticker_Headphones.png";
+import StickerWatch from "../../assets/Sticker_Watch.png";
 
 const SPAWN_DURATION = 0.32;
 const SPAWN_GAP = 0.06;
@@ -32,19 +36,19 @@ const heroItems = [
     r: -6,
     baseHeight: 118,
     zIndex: 1,
-    name: "KUBO 24/7 YOU Series | Bedtime Story",
-    description: "Desk companion for late-night making",
+    name: "Desk companion for late-night making",
+    description: "KUBO 24/7 YOU Series | Bedtime Story",
   },
   {
     id: 2,
     src: StickerPlant,
     x: "15%",
-    y: "12%",
+    y: "2%",
     r: -8,
     baseHeight: 116,
     zIndex: 1,
-    name: "LEGO 1/2 Happy Plant",
-    description: "The only plant I can keep alive",
+    name: "The only plant I can keep alive",
+    description: "LEGO | Botanicals Happy Plant",
   },
   {
     id: 3,
@@ -54,19 +58,19 @@ const heroItems = [
     r: -12,
     baseHeight: 72,
     zIndex: 1,
-    name: "LEGO Porsche 911",
-    description: "A timeless display piece",
+    name: "A timeless display piece",
+    description: "LEGO | Porsche 911",
   },
   {
     id: 4,
     src: StickerCoffee,
-    x: "52%",
+    x: "50%",
     y: "8%",
     r: 8,
     baseHeight: 120,
     zIndex: 1,
-    name: "Vietnamese Drip Coffee",
-    description: "Condensed milk required",
+    name: "My comfort drink with a kick",
+    description: "Cà Phê Sữa Đá",
   },
   {
     id: 5,
@@ -76,30 +80,74 @@ const heroItems = [
     r: -10,
     baseHeight: 126,
     zIndex: 1,
-    name: "Diptyque Eau Moheli EDT",
-    description: "Summer 2026 Signature Scent",
+    name: "Summer 2026 Signature Scent",
+    description: "Diptyque | Eau Moheli EDT",
   },
   {
     id: 6,
     src: StickerSmiski,
-    x: "76%",
-    y: "62%",
+    x: "70%",
+    y: "56%",
     r: 4,
     baseHeight: 112,
     zIndex: 1,
-    name: "SMISKI Sunday Series | Skateboarding",
-    description: "Keeping things playful ;)",
+    name: "Keeping things playful ;)",
+    description: "SMISKI Sunday Series | Skateboarding",
   },
   {
     id: 7,
     src: StickerMinifig,
     x: "90%",
-    y: "22%",
+    y: "14%",
     r: -9,
     baseHeight: 120,
     zIndex: 1,
     name: "Customized Minifig",
-    description: "My hypothetical little sidekick, Kimi",
+    description: "Me & my hypothetical pet dog, Kimi",
+  },
+  {
+    id: 8,
+    src: StickerShoe,
+    x: "3%",
+    y: "30%",
+    r: 8,
+    baseHeight: 72,
+    zIndex: 1,
+    name: "For my beginner runner arc",
+    description: "Saucony | Women's Ride 19",
+  },
+  {
+    id: 9,
+    src: StickerSunglass,
+    x: "62%",
+    y: "31%",
+    r: -7,
+    baseHeight: 74,
+    zIndex: 1,
+    name: "For rare Seattle sun appearances",
+    description: "Rayban | DADDY-O",
+  },
+  {
+    id: 10,
+    src: StickerHeadphones,
+    x: "90%",
+    y: "66%",
+    r: 10,
+    baseHeight: 112,
+    zIndex: 1,
+    name: "For walks, work, and zoning in",
+    description: "Bose | QuietComfort Ultra",
+  },
+  {
+    id: 11,
+    src: StickerWatch,
+    x: "24%",
+    y: "74%",
+    r: 7,
+    baseHeight: 92,
+    zIndex: 1,
+    name: "Functional, minimal, everyday",
+    description: "Seiko | Nano Universe SSEH015",
   },
 ];
 
@@ -492,7 +540,7 @@ function HeroItemPopup({ item, onClose }) {
 
   const description = item
     ? item.description
-    : "Welcom to my tiny internet nook!";
+    : "Welcome to my tiny internet nook :)";
 
   return (
     <div
@@ -642,7 +690,7 @@ export default function HeroInteractiveItems() {
         >
           {heroItems.map((item, index) => (
             <HeroSelectableItem
-              key={`${item.id}-${spawnCycle}`}
+              key={`${item.id}-${item.baseHeight}-${spawnCycle}`}
               item={item}
               index={index}
               visibleCount={visibleCount}

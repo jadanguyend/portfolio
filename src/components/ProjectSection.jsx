@@ -41,19 +41,15 @@ export default function ProjectsSection() {
     <section className="container px-16 grid gap-10 md:gap-16">
       {projects.map((project, index) => {
         const Card = (
-          <motion.div
-            key={index}
-            className="project-card group"
-            
-          >
+          <motion.div className="project-card group">
             {/* Left side */}
-            <div className="project-card-left flex flex-col justify-between h-full">
-              <div className="card-left-top flex flex-col gap-2">
+            <div className="project-card-left">
+              <div className="card-left-top">
                 <p className="project-card-type uppercase">{project.type}</p>
                 <h2 className="project-card-title">{project.title}</h2>
               </div>
 
-              <div className="card-left-bottom flex flex-wrap gap-2 mt-4">
+              <div className="card-left-bottom">
                 {project.tags.map((tag, i) => (
                   <span key={i} className="project-card-tag uppercase">
                     {tag}
@@ -78,7 +74,7 @@ export default function ProjectsSection() {
             {Card}
           </Link>
         ) : (
-          Card
+          <div key={index}>{Card}</div>
         );
       })}
     </section>

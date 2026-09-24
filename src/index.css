@@ -474,6 +474,14 @@ body {
   @apply grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 p-5 rounded-[16px];
   @apply bg-grayLight-100 dark:bg-grayDark-50;
   @apply transition-all duration-300;
+
+  min-height: 440px;
+}
+
+@media (min-width: 768px) {
+  .project-card {
+    min-height: 520px;
+  }
 }
 
 .project-card:hover {
@@ -482,7 +490,7 @@ body {
 
 /* Left side */
 .project-card-left {
-  @apply col-span-1 md:col-span-4 flex flex-col justify-between w-full;
+  @apply col-span-1 md:col-span-4 flex flex-col justify-between w-full h-full;
 }
 
 /* Top section */
@@ -531,11 +539,20 @@ body {
 /* Right side (image) */
 .project-card-right {
   @apply col-span-1 md:col-span-8 mt-4 md:mt-0 w-full overflow-hidden rounded-[12px];
+
+  min-height: 280px;
+}
+
+@media (min-width: 768px) {
+  .project-card-right {
+    height: 100%;
+    min-height: 100%;
+  }
 }
 
 /* Image */
 .project-card-img {
-  @apply w-full h-auto md:h-96 object-cover rounded-[12px];
+  @apply w-full h-full object-cover rounded-[12px];
   @apply transition-transform duration-500;
 }
 

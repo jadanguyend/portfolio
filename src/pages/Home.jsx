@@ -6,6 +6,7 @@ import ProjectsSection from "../components/ProjectSection";
 import SandboxSection from "../components/SandboxSection";
 import HomeAbout from "../components/home/HomeAbout";
 import HomeContact from "../components/home/HomeContact";
+import HomeWordSearch from "../components/home/HomeWordSearch";
 
 export default function Home({ isLoading }) {
   return (
@@ -19,6 +20,7 @@ export default function Home({ isLoading }) {
         </div>
 
         <HomeAbout />
+
       </div>
     </Layout>
   );
