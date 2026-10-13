@@ -6,14 +6,14 @@ import { FiX } from "react-icons/fi";
 import StickerKubo from "../../assets/Sticker_Kubo.webp";
 import StickerCar from "../../assets/Sticker_Car.webp";
 import StickerSmiski from "../../assets/Sticker_Smiski.webp";
-import StickerFragrance from "../../assets/Sticker_Fragrance.webp";
+import StickerOrpheon from "../../assets/Sticker_Orpheon.png";
 import StickerCoffee from "../../assets/Sticker_Coffee.webp";
 import StickerPlant from "../../assets/Sticker_Plant.webp";
 import StickerMinifig from "../../assets/Sticker_Minifig.webp";
 import StickerShoe from "../../assets/Sticker_Shoe.png";
 import StickerSunglass from "../../assets/Sticker_Sunglass.png";
 import StickerHeadphones from "../../assets/Sticker_Headphones.png";
-import StickerWatch from "../../assets/Sticker_Watch.png";
+import StickerGaiac from "../../assets/Sticker_Gaiac.png";
 
 const SPAWN_DURATION = 0.32;
 const SPAWN_GAP = 0.06;
@@ -74,14 +74,14 @@ const heroItems = [
   },
   {
     id: 5,
-    src: StickerFragrance,
+    src: StickerOrpheon,
     x: "33%",
     y: "38%",
     r: -10,
     baseHeight: 126,
     zIndex: 1,
-    name: "Summer 2026 Signature Scent",
-    description: "Diptyque | Eau Moheli EDT",
+    name: "Winter 2026 Scent",
+    description: "Diptyque | Orphéon EDP",
   },
   {
     id: 6,
@@ -140,14 +140,14 @@ const heroItems = [
   },
   {
     id: 11,
-    src: StickerWatch,
+    src: StickerGaiac,
     x: "24%",
     y: "74%",
     r: 7,
     baseHeight: 92,
     zIndex: 1,
-    name: "Functional, minimal, everyday",
-    description: "Seiko | Nano Universe SSEH015",
+    name: "My Signature Scent!",
+    description: "Le Labo | Gaiac 10",
   },
 ];
 
